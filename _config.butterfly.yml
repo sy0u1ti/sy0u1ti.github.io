@@ -640,7 +640,7 @@ tag_ui: # 留空或 index
 # Website Background (設置網站背景)
 # can set it to color or image (可設置圖片 或者 顔色)
 # The formal of image: url(http://xxxxxx.com/xxx.jpg)
-background: url(https://github.com/shangy1yi/picx-images-hosting/raw/master/image_2026-04-03_21-40-24.b9hrsl4kw.png)
+background: https://raw.githubusercontent.com/shangy1yi/picx-images-hosting/master/image_2026-04-03_21-40-24.b9hrsl4kw.png
 
 # Footer Background
 footer_bg: false
