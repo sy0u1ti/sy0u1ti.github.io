@@ -236,7 +236,7 @@ aside:
       link: https://www.shangy1yi.tech/
   card_announcement:
     enable: true
-    content: <font color="red"><h2>墙内网络无法正常浏览本博客</h2></font>这里会分享国际新闻，科技趋势，在这个嘈杂的时代，希望能与站主一起传递更多有价值的信息
+    content: <font color="red"><h2>你正在读一本书，却无法翻回上一页</h2></font>
   card_recent_post:
     enable: true
     limit: 5 # if set 0 will show all
