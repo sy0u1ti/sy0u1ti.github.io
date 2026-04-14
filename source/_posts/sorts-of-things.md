@@ -30,8 +30,7 @@ tags:
 - 网站
 - 生活好物
 title: sorts-of-things|个人常用工具推荐
-sticky: 100
-top: 100
+top: true
 topic: null
 type: null
 updated: '2024-11-19T19:33:20.726+08:00'
