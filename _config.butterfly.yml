@@ -3,7 +3,7 @@
 # --------------------------------------
 
 nav:
-  logo: https://cdn.jsdelivr.net/gh/shangy1yi/picx-images-hosting@master/X-(2)---resized-2023-06-27-21-36-40.2fahtzu81i1w.webp # image
+  logo: https://raw.githubusercontent.com/shangy1yi/picx-images-hosting/master/image.6t736trr6e.png # image
   display_title: true
   fixed: false # fixed navigation bar
 
@@ -43,11 +43,11 @@ social:
 # --------------------------------------
 
 # Favicon（網站圖標）
-favicon: https://github.com/shangy1yi/picx-images-hosting/raw/master/X-(2).2t0aisxefuw0.webp
+favicon: https://raw.githubusercontent.com/shangy1yi/picx-images-hosting/master/image.6t736trr6e.png
 
 # Avatar (頭像)
 avatar:
-  img: https://github.com/shangy1yi/picx-images-hosting/raw/master/wwii_An_logo_that_represents_the_initials_S_and_Ywith_a_modern__861d7506-1e8a-4ec3-bb8f-867ab78aad93.9ftde5xt99c.webp
+  img: https://raw.githubusercontent.com/shangy1yi/picx-images-hosting/master/image.6t736trr6e.png
   effect: false
 
 # Disable all banner image
