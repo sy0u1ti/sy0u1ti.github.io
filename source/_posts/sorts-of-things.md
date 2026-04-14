@@ -32,7 +32,7 @@ tags:
 title: sorts-of-things|个人常用工具推荐
 topic: null
 type: null
-updated: '2024-11-19T19:33:20.726+08:00'
+updated: '2026-04-14T23:14:03.355+08:00'
 ---
 文章发布时间为2024/9/13，因为没法置顶文章，所以把文章发布时间设置在未来，这样文章就能一直在最前面😥如果你会置顶文章，请麻烦联系我
 
@@ -45,8 +45,7 @@ updated: '2024-11-19T19:33:20.726+08:00'
 
 ### 美化
 
-* [**iTop Easy Desktop**](https://www.itopvpn.com/itop-easy-desktop?name=ied&ver=2.6.0.8&lan=&insur=other&to=homepage):（免费）桌面整理工具，可以按照文件类型自动分类桌面上的快捷方式和文档文件。*可以把桌面整理的干干净净，简洁主义者狂喜*
-* [**TranslucentTB**](https://translucenttb.github.io/)：（免费）可使 Windows 任务栏半透明/透明。*单纯好看*
+* [**Fences**](https://www.stardock.com/products/fences/):（付费）桌面整理工具
 
 ### 工具
 
@@ -123,6 +122,7 @@ updated: '2024-11-19T19:33:20.726+08:00'
 * [**meiguodizhi**](https://www.meiguodizhi.com/)：用于支付的虚拟地址
 * [**cobalt**](https://cobalt.tools/)：最好的YouTube、X...视频下载平台
 * [**Spotify Downloader**](https://spotifydown.com/)：Spotify音乐下载
+
 ## 资源类
 
 * [**appstorrent**](https://appstorrent.ru/)：Mac软件资源站
