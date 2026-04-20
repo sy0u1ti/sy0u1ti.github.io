@@ -32,12 +32,10 @@ tags:
 title: sorts-of-things|个人常用工具推荐
 topic: null
 type: null
-updated: '2026-04-14T23:14:03.355+08:00'
+updated: '2026-04-21T01:34:54.566+08:00'
 ---
-文章发布时间为2024/9/13，因为没法置顶文章，所以把文章发布时间设置在未来，这样文章就能一直在最前面😥如果你会置顶文章，请麻烦联系我
+将自己使用的比较不错的 Win/Mac软件、网站、生活好物给整理了一下，给未来的自己留个档，期待也给你一些帮助。
 
-最近趁着有空，将自己使用的比较不错的 Win/Mac软件、网站、生活好物给整理了一下，给未来的自己留个档，期待也给你一些帮助。
-![](https://cdn.jsdelivr.net/gh/shangy1yi/picx-images-hosting@master/image.1ovem4027t.png)
 
 # 软件
 
