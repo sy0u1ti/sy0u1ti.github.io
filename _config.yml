@@ -7,8 +7,13 @@ title: 白上賞一
 avatar: https://cdn.jsdelivr.net/gh/shangy1yi/picx-images-hosting@master/image.6t736trr6e.png
 favicon: https://cdn.jsdelivr.net/gh/shangy1yi/picx-images-hosting@master/image.6t736trr6e.png
 subtitle: 运气永在身🎲 | 就爱瞎折腾💯
-description: 'lozier'
+description: '记录 AI、效率工具、网络技术与各种折腾。'
 keywords:
+  - AI
+  - 效率工具
+  - 网络技术
+  - 科技产品
+  - 折腾
 author: 白上賞一「しらかみしょういち」
 language:
   - zh-CN
@@ -102,7 +107,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: butterfly
+theme: stellar
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
@@ -116,8 +121,9 @@ bangumis:
   show: 1                   # 想看，在看，看完
   title: 'アニメ'          # 标题
   quote: '相信你的运气，但不要依赖运气，运气只会在你有实力时为你锦上添花'        # 格言
-  color_meta: "#FF8A80"        # 追番项元数据的颜色
-  color_summary: "#FF8A80"     # 追番项简介的颜色
+  color_meta: "var(--text-p2)" # 追番项元数据的颜色
+  color: "var(--text-p2)"      # 追番项简介的颜色
+  color_summary: "var(--text-p2)" # 兼容旧字段名
   bgmtv_uid: shangy1yi        # bgm.tv的uid
   download_image: true      # 下载图片并使用本地图片，否则使用bgm.tv提供的网络图源
   image_level: l            # 图片高清等级 (l, c, m, s, g)

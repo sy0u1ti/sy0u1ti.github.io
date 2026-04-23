@@ -10,7 +10,7 @@ cover: https://ph-files.imgix.net/defd6e18-21a5-4ad0-ba05-aea30e26b091.jpeg?auto
 date: '2024-09-10T21:49:24.590375+08:00'
 description: null
 h1: null
-indexing: null
+indexing: false
 katex: null
 leftbar: null
 mathjax: null
@@ -25,7 +25,7 @@ rightbar: null
 sticky: null
 tags: []
 title: PH今日热榜 | 2024-09-10
-topic: null
+topic: producthunt-daily
 type: null
 updated: '2024-09-10T21:49:25.668+08:00'
 ---

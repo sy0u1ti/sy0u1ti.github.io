@@ -8,7 +8,7 @@ categories:
 - - 科技&产品
 comments: null
 cover: null
-date: '2099-01-01T16:39:41.715695+08:00'
+date: '2024-09-11T16:39:41.715695+08:00'
 description: null
 h1: null
 indexing: null
@@ -23,7 +23,7 @@ poster:
   topic: null
 references: null
 rightbar: null
-sticky: null
+sticky: 100
 tags:
 - 推荐
 - 软件
@@ -148,4 +148,3 @@ updated: '2026-04-21T01:34:54.566+08:00'
 * [**uBlock Origin Lite**](https://chromewebstore.google.com/detail/ublock-origin-lite/ddkjiahejlhfcafbddmgiahcphecmpfh)：uBlock新版，比原版简洁很多，但功能没少
 * [**Immersive Translate**](https://chromewebstore.google.com/detail/immersive-translate-trans/bpoadfkcbjbfhfodiogcnhhhpibjhbnh)：沉浸式翻译，我搭配自建的One-Api和DeepL用起来非常顺心
 * [**easy bookmark search**](https://syouiti.lanzout.com/iRfWs2bmtvkb)：和4o一起写的谷歌书签搜索插件，我自己有书签搜索需求，于是乎写了一个
-

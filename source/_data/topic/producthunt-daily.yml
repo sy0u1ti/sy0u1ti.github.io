@@ -1,0 +1,4 @@
+title: Product Hunt 日榜
+description: 汇总每日 Product Hunt 热榜，按日期集中回看值得关注的新产品和工具。
+icon: /images/topic-producthunt-daily.svg
+order_by: -date

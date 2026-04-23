@@ -1,0 +1,33 @@
+profile:
+  layout: markdown
+  content: |
+    这里记录 AI、效率工具、网络技术，以及各种值得试一试的新东西。
+  linklist:
+    columns: 2
+    items:
+      - title: 分类
+        url: /categories/
+        icon: default:category
+      - title: 归档
+        url: /archives/
+        icon: default:calendar
+      - title: 标签
+        url: /tags/
+        icon: solar:hashtag-square-bold
+      - title: 番剧
+        url: /bangumis/
+        icon: solar:notebook-bookmark-bold-duotone
+
+recent_posts:
+  layout: recent
+  limit: 6
+
+topic_tags:
+  layout: tagcloud
+  title: 标签索引
+  min_font: 12
+  max_font: 18
+  amount: 24
+  orderby: name
+  order: 1
+  color: false
