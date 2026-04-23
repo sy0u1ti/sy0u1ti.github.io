@@ -1,0 +1,90 @@
+@font-face {
+  font-family: ZhuZiAYuanJWD;
+  src: url(https://npm.elemecdn.com/anzhiyu-blog@1.1.6/fonts/ZhuZiAWan.woff2);
+  font-display: swap;
+  font-weight: lighter;
+}
+
+.logo-wrap a.title,
+.post-title,
+.article.banner .title {
+  font-family: "ZhuZiAYuanJWD", system-ui, sans-serif;
+}
+
+.nav-area .menu:empty {
+  display: none;
+  margin: 0;
+}
+
+.bangumi-tab.bangumi-active {
+  background: var(--theme);
+  border-radius: 10px;
+  color: #fff;
+}
+
+a.bangumi-tab:hover,
+a.bangumi-button.bangumi-nextpage:hover {
+  text-decoration: none !important;
+}
+
+.bangumi-button:hover {
+  background: var(--theme) !important;
+  border-radius: 10px !important;
+  color: #fff !important;
+}
+
+.bangumi-button,
+a.bangumi-tab {
+  padding: 5px 10px !important;
+}
+
+.bangumi-info-item {
+  border-right: 1px solid var(--text-meta);
+}
+
+.aspect-ratio {
+  height: 0;
+  margin: 3% auto;
+  padding-bottom: 75%;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.aspect-ratio iframe {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.my-flex-container {
+  align-items: stretch;
+  display: flex;
+}
+
+.my-image {
+  margin-right: 20px;
+  object-fit: cover;
+  width: 240px;
+}
+
+.my-table {
+  width: 100%;
+}
+
+.widget-wrapper.related.post-list .widget-body {
+  max-height: min(70vh, 32rem);
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.widget-wrapper.related.post-list .widget-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.widget-wrapper.related.post-list .widget-body::-webkit-scrollbar-thumb {
+  background: var(--text-meta);
+  border-radius: 999px;
+}
