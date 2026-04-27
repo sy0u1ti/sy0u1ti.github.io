@@ -312,18 +312,18 @@ comments:
 ######## Footer ########
 footer:
   social:
-     X:
-       icon: '<img src="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/x-twitter-brands-solid.7sn5rr5q2e.svg"/>'
-       title: X
-       url: https://x.com/Syou1Ti
-     AIToken:
-       icon: '<img src="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/microchip-solid.6pnggv9d11.svg"/>'
-       title: AI Token
-       url: https://aichat.syouiti.com
-     home:
-       icon: '<img src="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/house-solid.41y06ifind.svg"/>'
-       title: Home
-       url: https://home.syouiti.com
+    # X:
+    #   icon: '<img src="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/x-twitter-brands-solid.7sn5rr5q2e.svg"/>'
+    #   title: X
+    #   url: https://x.com/Syou1Ti
+    # AIToken:
+    #   icon: '<img src="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/microchip-solid.6pnggv9d11.svg"/>'
+    #   title: AI Token
+    #   url: https://aichat.syouiti.com
+    # home:
+    #   icon: '<img src="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/house-solid.41y06ifind.svg"/>'
+    #   title: Home
+    #   url: https://home.syouiti.com
     # comments:
     #   icon: '<img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/942ebbf1a4b91.svg"/>'
     #   url: /about/#comments
