@@ -36,8 +36,8 @@ updated: '2024-10-18T20:31:08.302+08:00'
 
 meta的新模型**llama-3.1-nemotron-70b**击败 **4o 05-13**和**Claude 3.5 Sonnet**
 
-![image_2024-10-18_00-31-49](https://cdn.jsdelivr.net/gh/shangy1yi/picx-images-hosting@master/image_2024-10-18_00-31-49.9kg682cmtk.webp)
+![image_2024-10-18_00-31-49](https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image_2024-10-18_00-31-49.9kg682cmtk.webp)
 
 01万物的**yi-lighting**超越4o4o 05-13。过几天渠道上**yi-lighting**
 
-![image_2024-10-18_00-23-37](https://cdn.jsdelivr.net/gh/shangy1yi/picx-images-hosting@master/image_2024-10-18_00-23-37.4n7pe7wyzk.webp)
+![image_2024-10-18_00-23-37](https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image_2024-10-18_00-23-37.4n7pe7wyzk.webp)

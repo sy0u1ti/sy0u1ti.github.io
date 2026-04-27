@@ -6,7 +6,7 @@ breadcrumb: null
 categories:
 - - 站主的瞎话
 comments: null
-cover: https://cdn.jsdelivr.net/gh/shangy1yi/picx-images-hosting@master/image.8s395fap8y.png
+cover: https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.8s395fap8y.png
 date: '2024-09-08T04:48:08.480543+08:00'
 description: null
 h1: null
@@ -77,4 +77,3 @@ Final Instruction:
 
 By following these instructions, you will ensure that your coding approach is methodical, well-reasoned, and optimized for technical precision and efficiency. Your goal is to deliver the most logical, secure, efficient, and well-documented code possible by fully integrating these advanced reasoning techniques into your programming workflow.
 ```
-

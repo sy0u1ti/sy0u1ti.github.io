@@ -237,7 +237,7 @@ comments:
   # https://giscus.app/zh-CN
   giscus:
     src: https://giscus.app/client.js
-    data-repo: shangy1yi/shangy1yi.github.io
+    data-repo: sy0u1ti/sy0u1ti.github.io
     data-repo-id: R_kgDOKbZc8Q
     data-category: General
     data-category-id: DIC_kwDOKbZc8c4CZ0-1
@@ -313,15 +313,15 @@ comments:
 footer:
   social:
      X:
-       icon: '<img src="https://cdn.jsdelivr.net/gh/shangy1yi/picx-images-hosting@master/x-twitter-brands-solid.7sn5rr5q2e.svg"/>'
+       icon: '<img src="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/x-twitter-brands-solid.7sn5rr5q2e.svg"/>'
        title: X
        url: https://x.com/Syou1Ti
      AIToken:
-       icon: '<img src="https://cdn.jsdelivr.net/gh/shangy1yi/picx-images-hosting@master/microchip-solid.6pnggv9d11.svg"/>'
+       icon: '<img src="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/microchip-solid.6pnggv9d11.svg"/>'
        title: AI Token
        url: https://aichat.syouiti.com
      home:
-       icon: '<img src="https://cdn.jsdelivr.net/gh/shangy1yi/picx-images-hosting@master/house-solid.41y06ifind.svg"/>'
+       icon: '<img src="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/house-solid.41y06ifind.svg"/>'
        title: Home
        url: https://home.syouiti.com
     # comments:

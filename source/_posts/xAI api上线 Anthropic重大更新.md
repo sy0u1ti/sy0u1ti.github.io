@@ -36,7 +36,7 @@ updated: '2024-10-23T00:25:28.545+08:00'
 ---
 今天仿佛是过节，上午Elon musk宣布xAI API正式上线，晚上Anthropic 宣布推出新模型
 
-![image](https://cdn.jsdelivr.net/gh/shangy1yi/picx-images-hosting@master/image.6t7474n424.webp)
+![image](https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t7474n424.webp)
 
 {% twitter https://x.com/elonmusk/status/1848398370219364385 %}
 
@@ -52,4 +52,3 @@ Claude 3.5 Sonnet：
 • 在编程测试（SWE-bench Verified）中表现提高到49%，在零售领域的工具使用测试（TAU-bench）中提升至69.2%，航空领域则达到了46%。
 • 新版 Sonnet 与其前代版本保持相同的价格和速度，并在多步开发过程中提高了推理和编程能力。
 [更多详细](https://www.anthropic.com/news/3-5-models-and-computer-use)
-

@@ -6,7 +6,7 @@ breadcrumb: null
 categories:
 - - 科技&产品
 comments: null
-cover: https://cdn.jsdelivr.net/gh/shangy1yi/picx-images-hosting@master/image.7sn5uzd35e.webp
+cover: https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.7sn5uzd35e.webp
 date: '2024-09-10T00:15:38.127858+08:00'
 description: null
 h1: null
@@ -35,7 +35,7 @@ updated: '2024-09-10T02:02:14.004+08:00'
 ---
 ## Apple Watch Series 10
 
-![](https://cdn.jsdelivr.net/gh/shangy1yi/picx-images-hosting@master/image.5c0xg18d6u.webp)
+![](https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.5c0xg18d6u.webp)
 
 - 更大、更先进的显示屏，屏幕面积比前代产品增加最多 30%。采用广视角 OLED 屏，亮度提升最高达 40%。
 - 最薄的 Apple Watch，厚度仅 9.7 毫米，比 Series 9 薄近 10%。
@@ -109,4 +109,3 @@ updated: '2024-09-10T02:02:14.004+08:00'
 * Image Playground：生成原创图像，并整合到信息等 app 中。
 * 视觉智能功能：通过相机控制功能快速获取环境信息，支持与第三方工具整合，如 Google 搜索和 ChatGPT。
 * 隐私与安全：私密云计算技术运行大型模型，确保用户数据不会被储存或分享。
-

@@ -6,7 +6,7 @@ breadcrumb: null
 categories:
 - - 站主的瞎话
 comments: null
-cover: https://cdn.jsdelivr.net/gh/shangy1yi/picx-images-hosting@master/image.6bh0plu8ni.png
+cover: https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6bh0plu8ni.png
 date: '2024-09-07T13:46:59.734481+08:00'
 description: null
 h1: null
@@ -202,4 +202,3 @@ AutoProxy：[https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.tx
 Quantumult X 配置文件/编辑/server\_local字头下填写：
 
 `http=你的域名:443, username=用户名, password=密码, over-tls=true, tls-verification=true, tls-host=你的域名, fast-open=false, udp-relay=false, tls13=false, tag=caddy2`
-

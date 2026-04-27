@@ -16,7 +16,7 @@ title: 'Curator（策书）：一个纯本地的 Chrome 书签管理扩展'
 
 书签存得多了，Chrome 自带的书签管理器就开始力不从心 —— 搜索弱、没法批量处理、死链躺在那没人管、导入别人的书签一堆重复。我干脆写了一个扩展来解决自己的这些问题：**Curator（策书）**。
 
-项目地址：<https://github.com/shangy1yi/curator-bookmarks>
+项目地址：<https://github.com/sy0u1ti/curator-bookmarks>
 
 ## 它能做什么
 
@@ -49,7 +49,7 @@ title: 'Curator（策书）：一个纯本地的 Chrome 书签管理扩展'
 在仓库页点 **Code → Download ZIP**，或者：
 
 ```bash
-git clone https://github.com/shangy1yi/curator-bookmarks.git
+git clone https://github.com/sy0u1ti/curator-bookmarks.git
 cd curator-bookmarks
 ```
 

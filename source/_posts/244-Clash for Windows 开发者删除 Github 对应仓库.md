@@ -36,4 +36,4 @@ Clash for Windows（CFW）是Clash内核的GUI图形化操作界面，这并不�
 10. Fclash 「已archived」
 11. Clash verge 「已archived」
 
-![开发者tg频道官宣](https://cdn.jsdelivr.net/gh/shangy1yi/picx-images-hosting@master/image.1xalojqf7hs0.webp)
+![开发者tg频道官宣](https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.1xalojqf7hs0.webp)
