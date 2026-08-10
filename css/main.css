@@ -9383,6 +9383,10 @@ table a:not([class]):has(img):hover {
 img:not([src]) {
   visibility: hidden;
 }
+.lazy {
+  opacity: 0;
+  z-index: 1;
+}
 .lazy-box {
   position: relative;
   overflow: hidden;
@@ -9392,21 +9396,7 @@ img:not([src]) {
   background: var(--block);
   min-height: 4rem;
 }
-img[data-ll-status] {
-  z-index: 1;
-  transition: all 0.38s ease-out;
-  -moz-transition: all 0.38s ease-out;
-  -webkit-transition: all 0.38s ease-out;
-  -o-transition: all 0.38s ease-out;
-}
-img[data-ll-status]:not(.loaded) {
-  opacity: 0;
-}
-img[data-ll-status].loaded,
-img[data-ll-status].error {
-  opacity: 1;
-}
-img[data-ll-status]+.lazy-icon {
+img.lazy.loading + .lazy-icon {
   position: absolute;
   width: 2rem;
   height: 2rem;
@@ -9419,15 +9409,50 @@ img[data-ll-status]+.lazy-icon {
   background-repeat: no-repeat;
   background-position: center;
 }
-img[data-ll-status].loaded+.lazy-icon {
+img.lazy.loaded + .lazy-icon,
+img.lazy.error + .lazy-icon {
   display: none;
 }
-img[data-ll-status].error {
+img.lazy.error {
   width: 2rem;
   height: 2rem;
 }
-img[data-ll-status].error+.lazy-icon {
-  display: none;
+.lazy.loaded,
+.lazy.error {
+  opacity: 1;
+  animation: ll-fade-in 0.5s ease-out;
+}
+@-moz-keyframes ll-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes ll-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-o-keyframes ll-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes ll-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .md-text .aplayer {
   border-radius: 14px;

@@ -53,11 +53,14 @@ const util = {
   },
 
   scrollTop: () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    smoothScrollTo(0);
   },
 
   scrollComment: () => {
-    document.getElementById('comments').scrollIntoView({ behavior: "smooth" });
+    const el = document.getElementById('comments');
+    if (el) {
+      smoothScrollTo(el.getBoundingClientRect().top + window.scrollY - 32);
+    }
   },
 
   viewportLazyload: (target, func, enabled = true) => {
@@ -94,73 +97,168 @@ const hud = {
 
 const l_body = document.querySelector('.l_body');
 
+// 通用平滑滚动（自定义动画，TOC / 回到顶部 / 参与讨论共用）
+let scrollAnim = null;
+function cancelSmoothScroll() {
+  if (scrollAnim !== null) {
+    cancelAnimationFrame(scrollAnim);
+    scrollAnim = null;
+  }
+}
+function smoothScrollTo(targetY) {
+  cancelSmoothScroll();
+  targetY = Math.max(0, targetY);
+  const startY = window.scrollY;
+  const diff = targetY - startY;
+  if (Math.abs(diff) < 2) {
+    return;
+  }
+  // 短距离 300ms，长距离最多 600ms
+  const duration = Math.min(600, Math.max(300, Math.abs(diff) * 0.15));
+  const startTime = performance.now();
+  function step(now) {
+    const t = Math.min(1, (now - startTime) / duration);
+    const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
+    // 显式指定 instant，避免全局 scroll-behavior: smooth 与自定义动画叠加导致滚动变慢
+    window.scrollTo({ top: startY + diff * eased, behavior: 'instant' });
+    if (t < 1) {
+      scrollAnim = requestAnimationFrame(step);
+    } else {
+      scrollAnim = null;
+    }
+  }
+  scrollAnim = requestAnimationFrame(step);
+}
+window.addEventListener('wheel', cancelSmoothScroll, { passive: true });
+window.addEventListener('touchstart', cancelSmoothScroll, { passive: true });
+
 
 const init = {
   toc: () => {
-    utils.jq(() => {
-      const scrollOffset = 32;
-      var segs = [];
-      $("article.md-text :header").each(function (idx, node) {
-        segs.push(node);
-      });
-      function activeTOC() {
-        var scrollTop = $(this).scrollTop();
-        var topSeg = null;
-        for (var idx in segs) {
-          var seg = $(segs[idx]);
-          if (seg.offset().top > scrollTop + scrollOffset) {
-            continue;
-          }
-          if (!topSeg) {
-            topSeg = seg;
-          } else if (seg.offset().top >= topSeg.offset().top) {
-            topSeg = seg;
-          }
+    const scrollOffset = 32;
+    // 滚动位置取整后标题顶可能落在偏移线下方 1~2px，加容差避免高亮回跳到上一条
+    const scrollTolerance = 4;
+    var segs = utils.qsa("article.md-text h1, article.md-text h2, article.md-text h3, article.md-text h4, article.md-text h5, article.md-text h6");
+    function activeTOC() {
+      var scrollTop = window.scrollY;
+      var topSeg = null;
+      for (var i = 0; i < segs.length; i++) {
+        var segTop = segs[i].getBoundingClientRect().top + window.scrollY;
+        if (segTop > scrollTop + scrollOffset + scrollTolerance) {
+          continue;
         }
-        if (topSeg) {
-          $("#data-toc a.toc-link").removeClass("active");
-          var link = "#" + topSeg.attr("id");
-          if (link != '#undefined') {
-            const highlightItem = $('#data-toc a.toc-link[href="' + encodeURI(link) + '"]');
-            if (highlightItem.length > 0) {
-              highlightItem.addClass("active");
-            }
-          } else {
-            $('#data-toc a.toc-link:first').addClass("active");
-          }
+        if (!topSeg || segTop >= topSeg.getBoundingClientRect().top + window.scrollY) {
+          topSeg = segs[i];
         }
       }
-      function scrollTOC() {
-        const e0 = document.querySelector('#data-toc .toc');
-        const e1 = document.querySelector('#data-toc .toc a.toc-link.active');
-        if (e0 == null || e1 == null) {
-          return;
-        }
-        const offsetBottom = e1.getBoundingClientRect().bottom - e0.getBoundingClientRect().bottom + 100;
-        const offsetTop = e1.getBoundingClientRect().top - e0.getBoundingClientRect().top - 64;
-        if (offsetTop < 0) {
-          e0.scrollBy({ top: offsetTop, behavior: "smooth" });
-        } else if (offsetBottom > 0) {
-          e0.scrollBy({ top: offsetBottom, behavior: "smooth" });
+      if (topSeg) {
+        utils.dom("#data-toc a.toc-link").removeClass("active");
+        var id = topSeg.getAttribute("id");
+        var link = id ? "#" + id : "#undefined";
+        if (link != '#undefined') {
+          const highlightItem = utils.dom('#data-toc a.toc-link[href="' + encodeURI(link) + '"]');
+          if (highlightItem.length > 0) {
+            highlightItem.addClass("active");
+          }
+        } else {
+          const first = utils.qs('#data-toc a.toc-link');
+          if (first) first.classList.add("active");
         }
       }
+    }
+    function scrollTOC() {
+      const e0 = document.querySelector('#data-toc .toc');
+      const e1 = document.querySelector('#data-toc .toc a.toc-link.active');
+      if (e0 == null || e1 == null) {
+        return;
+      }
+      const offsetBottom = e1.getBoundingClientRect().bottom - e0.getBoundingClientRect().bottom + 100;
+      const offsetTop = e1.getBoundingClientRect().top - e0.getBoundingClientRect().top - 64;
+      if (offsetTop < 0) {
+        e0.scrollBy({ top: offsetTop, behavior: "smooth" });
+      } else if (offsetBottom > 0) {
+        e0.scrollBy({ top: offsetBottom, behavior: "smooth" });
+      }
+    }
 
-      var timeout = null;
-      window.addEventListener('scroll', function () {
-        activeTOC();
-        if (timeout !== null) clearTimeout(timeout);
-        timeout = setTimeout(function () {
-          scrollTOC();
-        }.bind(this), 50);
-      });
-    })
+    var timeout = null;
+    window.addEventListener('scroll', function () {
+      activeTOC();
+      if (timeout !== null) clearTimeout(timeout);
+      timeout = setTimeout(function () {
+        scrollTOC();
+      }, 50);
+    });
   },
   sidebar: () => {
-    utils.jq(() => {
-      $("#data-toc a.toc-link").click(function (e) {
-        sidebar.dismiss();
-      });
-    })
+    utils.dom("#data-toc a.toc-link").click(function (e) {
+      const href = this.getAttribute("href");
+      const id = href && href.indexOf("#") === 0 ? decodeURIComponent(href.slice(1)) : null;
+      const target = id && document.getElementById(id);
+      if (target) {
+        e.preventDefault();
+        const offset = 32; // 与 activeTOC 的 scrollOffset 保持一致
+        const targetY = target.getBoundingClientRect().top + window.scrollY - offset;
+        smoothScrollTo(targetY);
+        if (window.history && window.history.pushState) {
+          window.history.pushState(null, "", href);
+        }
+      }
+      sidebar.dismiss();
+    });
+  },
+  leftbarScroll: () => {
+    const container = document.querySelector('.l_left .widgets');
+    if (container == null) {
+      return;
+    }
+    const PREFIX = 'Stellar.leftbarScroll.';
+    const encode = (s) => encodeURIComponent(String(s || ''));
+    function scope() {
+      const wikiEl = document.querySelector('.doc-tree[data-wiki]');
+      if (wikiEl != null) {
+        return 'wiki:' + encode(wikiEl.getAttribute('data-wiki'));
+      }
+      const notebookEl = document.querySelector('widget[data-notebook]');
+      if (notebookEl != null) {
+        return 'notebook:' + encode(notebookEl.getAttribute('data-notebook'));
+      }
+      const body = document.querySelector('.l_body');
+      return 'layout:' + encode((body && body.getAttribute('layout')) || 'default');
+    }
+    window.addEventListener('pagehide', function () {
+      try {
+        const s = scope();
+        sessionStorage.setItem(PREFIX + s, String(container.scrollTop));
+        sessionStorage.setItem(PREFIX + 'last', s);
+      } catch (e) {}
+    });
+    try {
+      const s = scope();
+      // 仅当上一页与当前页属于同一分区时才恢复，离开分区后再回来不跳回旧位置
+      if (sessionStorage.getItem(PREFIX + 'last') !== s) {
+        return;
+      }
+      const value = sessionStorage.getItem(PREFIX + s);
+      if (value == null) {
+        return;
+      }
+      container.scrollTop = parseInt(value, 10) || 0;
+      const link = container.querySelector('a.link.active');
+      if (link == null) {
+        return;
+      }
+      const padding = 16;
+      const containerRect = container.getBoundingClientRect();
+      const linkRect = link.getBoundingClientRect();
+      const top = linkRect.top - containerRect.top;
+      const bottom = linkRect.bottom - containerRect.top;
+      if (top < 0) {
+        container.scrollTop += top - padding;
+      } else if (bottom > container.clientHeight) {
+        container.scrollTop += bottom - container.clientHeight + padding;
+      }
+    } catch (e) {}
   },
   relativeDate: (selector) => {
     selector.forEach(item => {
@@ -293,25 +391,15 @@ window.stellar = window.stellar || {};
 
 /**
  * Initialize page components
- * Called on initial load and after PJAX navigation
  */
 stellar.initPage = function () {
   init.toc();
   init.sidebar();
+  init.leftbarScroll();
   init.relativeDate(document.querySelectorAll('#post-meta time'));
   init.registerTabsTag();
-  
-  // Reinitialize comments after PJAX navigation
-  if (stellar.initComments) {
-    for (const commentSystem in stellar.initComments) {
-      if (typeof stellar.initComments[commentSystem] === 'function') {
-        stellar.initComments[commentSystem]();
-      }
-    }
-  }
 };
 
 // Initial page load
 stellar.initPage();
 init.canonicalCheck();
-
