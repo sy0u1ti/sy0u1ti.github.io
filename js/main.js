@@ -97,6 +97,30 @@ const hud = {
 
 const l_body = document.querySelector('.l_body');
 
+const sidebar = {
+  leftbar: () => {
+    if (l_body) {
+      l_body.toggleAttribute('leftbar');
+      l_body.removeAttribute('rightbar');
+    }
+  },
+  rightbar: () => {
+    if (l_body) {
+      l_body.toggleAttribute('rightbar');
+      l_body.removeAttribute('leftbar');
+    }
+  },
+  dismiss: () => {
+    if (l_body) {
+      l_body.removeAttribute('leftbar');
+      l_body.removeAttribute('rightbar');
+    }
+  },
+  toggleTOC: () => {
+    document.querySelector('#data-toc').classList.toggle('collapse');
+  }
+}
+
 // 通用平滑滚动（自定义动画，TOC / 回到顶部 / 参与讨论共用）
 let scrollAnim = null;
 function cancelSmoothScroll() {
@@ -216,6 +240,40 @@ function bindTocClick(widget) {
     }
   });
 }
+
+// 通用页内锚点平滑滚动（标题左侧 headerlink、{% navbar %} 页内导航、脚注回链等）
+// 已被其他处理器拦截的点击（TOC、tabs、wiki #start 等）通过 defaultPrevented 跳过，避免重复滚动
+function bindAnchorClick() {
+  document.addEventListener('click', function (e) {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link || e.defaultPrevented) {
+      return;
+    }
+    const href = link.getAttribute('href');
+    if (!href || href.indexOf('#') !== 0) {
+      return;
+    }
+    let id = href.slice(1);
+    try {
+      id = decodeURIComponent(id);
+    } catch (err) {
+      // 片段含非法编码时按原样查找
+    }
+    const target = id && document.getElementById(id);
+    if (!target) {
+      return;
+    }
+    e.preventDefault();
+    // #start 锚点贴顶滚动，不预留 offset；其余锚点与 TOC 点击滚动保持一致（32px）
+    const offset = id === 'start' ? 0 : 32;
+    const targetY = target.getBoundingClientRect().top + window.scrollY - offset;
+    smoothScrollTo(targetY);
+    if (window.history && window.history.pushState) {
+      window.history.pushState(null, '', href);
+    }
+  });
+}
+bindAnchorClick();
 
 // 远程 md 渲染完成后由页面层重建右栏 TOC
 document.addEventListener('stellar:mdrender', function (e) {
@@ -367,6 +425,61 @@ const init = {
       }
     } catch (e) {}
   },
+  navbarPin: () => {
+    // 列表页 navbar top 背景条状态切换：未吸顶为卡片样式（var(--card) + 文章卡片同款阴影），
+    // 吸顶后恢复玻璃效果。在吸顶边界切换 .pinned 类，视觉由 CSS 控制。
+    // 吸顶判定直接测 navbar 的实际视口位置，而非用 scrollY 推算：
+    // 移动端浏览器顶栏伸缩会改变 scrollY（展开顶栏时 scrollY 减小），
+    // 即使 navbar 仍吸顶也可能跌破阈值，导致玻璃效果误消失。
+    const navbars = document.querySelectorAll('.navbar.top');
+    if (navbars.length === 0) {
+      return;
+    }
+    // 视口顶部允许的偏差（px），吸收亚像素/取整误差
+    const TOLERANCE = 2;
+    let states = [];
+    function update() {
+      states.forEach((state) => {
+        const top = state.navbar.getBoundingClientRect().top;
+        state.bar.classList.toggle('pinned', top <= state.stickyTop + TOLERANCE);
+      });
+    }
+    function measure() {
+      states = [];
+      navbars.forEach((navbar) => {
+        const bar = navbar.querySelector('.navbar-blur');
+        if (bar == null) {
+          return;
+        }
+        // getComputedStyle().top 自动兼容桌面 var(--gap-margin) 与移动端 8pt
+        const stickyTop = parseFloat(getComputedStyle(navbar).top) || 16;
+        states.push({
+          navbar: navbar,
+          bar: bar,
+          stickyTop: stickyTop
+        });
+      });
+      update();
+    }
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (ticking) {
+        return;
+      }
+      ticking = true;
+      utils.requestAnimationFrame(() => {
+        update();
+        ticking = false;
+      });
+    }, { passive: true });
+    // 顶栏伸缩不一定触发 scroll，兜底监听 visualViewport 尺寸变化
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', update);
+    }
+    window.addEventListener('resize', measure);
+    window.addEventListener('pageshow', measure);
+    measure();
+  },
   relativeDate: (selector) => {
     selector.forEach(item => {
       const $this = item
@@ -509,6 +622,7 @@ stellar.initPage = function () {
   init.sidebar();
   init.wikiStart();
   init.leftbarScroll();
+  init.navbarPin();
   init.relativeDate(document.querySelectorAll('#post-meta time'));
   init.registerTabsTag();
 };
