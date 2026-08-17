@@ -1,3 +1,41 @@
+:root {
+  --width-main: 720px;
+  --fsp: 17px;
+  --fsh2: calc(var(--fsp) + 11px);
+  --fsh3: calc(var(--fsp) + 7px);
+  --fsh4: calc(var(--fsp) + 4px);
+  --side-content-width: 224px;
+  --gap-base: 16px;
+  --gap-page: 16px;
+  --rightbar-width-extra: calc(var(--gap-base) * 2);
+  --gap-p: calc(17px + 4px);
+  --gap-p-compact: calc(17px * 0.75);
+}
+@media screen and (min-width: 1180px) {
+  :root {
+    --gap-page: 32px;
+  }
+}
+@media screen and (min-width: 2048px) {
+  :root {
+    --width-main: 780px;
+  }
+}
+@media screen and (min-width: 2560px) {
+  :root {
+    --width-main: 860px;
+  }
+}
+@media screen and (max-width: 768px) {
+  :root {
+    --side-content-width: 188px;
+  }
+}
+@media screen and (max-width: 667px) {
+  :root {
+    --side-content-width: 224px;
+  }
+}
 .cmt-body {
   --waline-font-size: 0.9375rem;
 /* 常规颜色 */
@@ -83,4 +121,28 @@
     font-size: 1.25em;
     color: #fff;
   }
+}
+.md-text .cmt-body.waline p {
+  font-size: var(--waline-font-size);
+  line-height: 1.5;
+  margin: 0;
+}
+.md-text .cmt-body.waline .wl-reply-to * {
+  line-height: 1.5;
+}
+.md-text .cmt-body.waline .wl-header label,
+.md-text .cmt-body.waline .wl-input {
+  font-size: 0.875em;
+}
+.md-text .cmt-body.waline .wl-editor {
+  font-size: var(--waline-font-size);
+  font-family: system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif;
+}
+.md-text .cmt-body.waline .wl-content .wl-emoji,
+.md-text .cmt-body.waline .wl-content .vemoji {
+  height: 2.5em;
+}
+.md-text .cmt-body.waline .wl-content img:not(.wl-emoji):not(.vemoji) {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }

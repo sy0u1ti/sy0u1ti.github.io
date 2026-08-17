@@ -5,10 +5,16 @@
   --fsh3: calc(var(--fsp) + 7px);
   --fsh4: calc(var(--fsp) + 4px);
   --side-content-width: 224px;
-  --gap-margin: 16px;
-  --gap-padding: 16px;
+  --gap-base: 16px;
+  --gap-page: 16px;
+  --rightbar-width-extra: calc(var(--gap-base) * 2);
   --gap-p: calc(17px + 4px);
   --gap-p-compact: calc(17px * 0.75);
+}
+@media screen and (min-width: 1180px) {
+  :root {
+    --gap-page: 32px;
+  }
 }
 @media screen and (min-width: 2048px) {
   :root {
@@ -29,9 +35,6 @@
   :root {
     --side-content-width: 224px;
   }
-}
-:root {
-  --gap-max: calc(var(--gap-margin) + var(--gap-padding));
 }
 .cmt-body.artalk .artalk {
   margin-top: 1rem;
