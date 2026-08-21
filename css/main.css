@@ -8690,7 +8690,7 @@ details.toc[open] >div.body section .header+.doc_tree {
   background-size: cover;
   --inset: 32px;
   --background-opacity: 0.85;
-  background-image: url("https://res.xaox.cc/gh/cdn-x/placeholder@1.0.13/image/sidebar-bg1@small.jpg");
+  background-image: url("https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/mrito_commission_143759824_p2.9gx8zqx8c3.jpg");
   filter: saturate(var(--saturate)) blur(var(--blur-px)) opacity(var(--background-opacity));
 }
 :root[data-theme="dark"] .l_left .sidebg {
