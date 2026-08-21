@@ -57,7 +57,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"白上賞一「しらかみしょういち」","sameAs":[],"image":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png"},"dateCreated":"2026-08-20T15:30:52+00:00","dateModified":"2026-08-20T15:30:52+00:00","datePublished":"2026-08-20T15:30:52+00:00","description":"Steam 游戏的破解（打补丁）思路分两类：需要在线联机用 Unsteam，只玩单机或局域网用 GBE Fork。游戏自身通过 Epic Online Services（EOS）联机时，两个方案都要再配一个 Nemirtingas Epic Emulator 处理 EOS 层（见「EOS 联机」一节）。\n前置准备\nUnsteam —— 联机补丁（需 Steam 客户端运行）\nGBE Fork...","headline":"Steam 游戏破解与联机补丁指南","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.syouiti.com/%E6%B8%B8%E6%88%8F%E7%A0%B4%E8%A7%A3%E6%8C%87%E5%8D%97/"},"publisher":{"@type":"Organization","name":"白上賞一「しらかみしょういち」","sameAs":[],"image":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png"}},"url":"https://blog.syouiti.com/%E6%B8%B8%E6%88%8F%E7%A0%B4%E8%A7%A3%E6%8C%87%E5%8D%97/","keywords":"Steam, Pirated Game, Epic, 游戏, 破解","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"白上賞一「しらかみしょういち」","sameAs":[],"image":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png"},"dateCreated":"2026-08-20T15:30:52+00:00","dateModified":"2026-08-20T15:30:52+00:00","datePublished":"2026-08-20T15:30:52+00:00","description":"核心方案思路\nSteam 游戏的破解与联机修复思路主要分两类：在线联机需求：使用 Unsteam（伪装免费占位游戏借助 Steam 联机）。单机/局域网需求：使用 GBE Fork（完全离线独立运行模拟器）。跨平台 EOS 联机：当游戏自带 Epic Online Services 时，配合 Nemirtingas Epic Emulator 处理 EOS 鉴权层。\n\n前置准备\nUnstea...","headline":"Steam 游戏破解与联机补丁指南","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.syouiti.com/%E6%B8%B8%E6%88%8F%E7%A0%B4%E8%A7%A3%E6%8C%87%E5%8D%97/"},"publisher":{"@type":"Organization","name":"白上賞一「しらかみしょういち」","sameAs":[],"image":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png"}},"url":"https://blog.syouiti.com/%E6%B8%B8%E6%88%8F%E7%A0%B4%E8%A7%A3%E6%8C%87%E5%8D%97/","keywords":"Steam, Pirated Game, Epic, 游戏, 破解","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"]}</script>
   <link rel="stylesheet" href="/css/stellar-overrides.css">
 
   <!-- icons.yml 驱动的 CSS 装饰图标 -->
@@ -85,7 +85,132 @@
 <svg class="grad-def" width="0" height="0" aria-hidden="true" focusable="false"><defs><linearGradient id="leftbar-active-icon-grad" x1="75%" y1="6.7%" x2="6.7%" y2="125%"><stop offset="20%" style="stop-color:var(--item-theme-light)"/><stop offset="60%" style="stop-color:var(--item-theme)"/></linearGradient></defs></svg>
 <div class="nav-area">
 
+<nav class="menu dis-select">
+<div class="ui-collection" data-layout="list" data-variant="nav" data-density="auto">
+  
+    
+<a class="ui-collection__item is-themed" href="/" title="首页" style="--item-theme:#3B82F6;--item-grad:url(#menu-grad-home);">
+  
+  <span class="ui-collection__leading"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M9.163 2.819c1.671-1.09 3.864-1.09 5.536 0l5.882 3.839A3.25 3.25 0 0 1 22 9.38v8.87A3.75 3.75 0 0 1 18.25 22h-1.5A2.75 2.75 0 0 1 14 19.25v-3.5a1.75 1.75 0 0 0-1.75-1.75h-1.5A1.75 1.75 0 0 0 9 15.75v3.5A2.75 2.75 0 0 1 6.25 22h-1.5A3.75 3.75 0 0 1 1 18.25V9.38a3.25 3.25 0 0 1 1.419-2.722z" opacity=".5"/><path fill="currentColor" d="M10.25 15.75c0-.414.336-.75.75-.75h2c.414 0 .75.336.75.75v3.5c0 .69.56 1.25 1.25 1.25h1.5c1.243 0 2.25-1.007 2.25-2.25V9.38a1.75 1.75 0 0 0-.764-1.466l-5.882-3.838a2.535 2.535 0 0 0-2.784 0L3.438 7.914A1.75 1.75 0 0 0 2.674 9.38v8.87c0 1.243 1.007 2.25 2.25 2.25h1.5c.69 0 1.25-.56 1.25-1.25z"/></svg></span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">首页</span>
+      
+      
+    </span>
+  
+  
+  
+  
+<svg class="grad-def" width="0" height="0" aria-hidden="true" focusable="false"><defs><linearGradient id="menu-grad-home" x1="75%" y1="6.7%" x2="6.7%" y2="125%"><stop offset="20%" style="stop-color:var(--item-theme-light)"/><stop offset="60%" style="stop-color:var(--item-theme)"/></linearGradient></defs></svg>
 
+</a>
+
+  
+    
+<a class="ui-collection__item is-themed" href="/archives/" title="归档" style="--item-theme:#10B981;--item-grad:url(#menu-grad-archives);">
+  
+  <span class="ui-collection__leading"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M3 9h18v10a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3z" opacity=".5"/><path fill="currentColor" d="M2 5a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm7 8a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2z"/></svg></span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">归档</span>
+      
+      
+    </span>
+  
+  
+  
+  
+<svg class="grad-def" width="0" height="0" aria-hidden="true" focusable="false"><defs><linearGradient id="menu-grad-archives" x1="75%" y1="6.7%" x2="6.7%" y2="125%"><stop offset="20%" style="stop-color:var(--item-theme-light)"/><stop offset="60%" style="stop-color:var(--item-theme)"/></linearGradient></defs></svg>
+
+</a>
+
+  
+    
+<a class="ui-collection__item is-themed" href="/categories/" title="分类" style="--item-theme:#F59E0B;--item-grad:url(#menu-grad-categories);">
+  
+  <span class="ui-collection__leading"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 9.5V18a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4V9.5z" opacity=".5"/><path fill="currentColor" d="M2 7.5A3.5 3.5 0 0 1 5.5 4h3.086a2 2 0 0 1 1.414.586L11.414 6H18.5A3.5 3.5 0 0 1 22 9.5v.5H2z"/></svg></span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">分类</span>
+      
+      
+    </span>
+  
+  
+  
+  
+<svg class="grad-def" width="0" height="0" aria-hidden="true" focusable="false"><defs><linearGradient id="menu-grad-categories" x1="75%" y1="6.7%" x2="6.7%" y2="125%"><stop offset="20%" style="stop-color:var(--item-theme-light)"/><stop offset="60%" style="stop-color:var(--item-theme)"/></linearGradient></defs></svg>
+
+</a>
+
+  
+    
+<a class="ui-collection__item is-themed" href="/tags/" title="标签" style="--item-theme:#EC4899;--item-grad:url(#menu-grad-tags);">
+  
+  <span class="ui-collection__leading"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"/><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"/></svg></span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">标签</span>
+      
+      
+    </span>
+  
+  
+  
+  
+<svg class="grad-def" width="0" height="0" aria-hidden="true" focusable="false"><defs><linearGradient id="menu-grad-tags" x1="75%" y1="6.7%" x2="6.7%" y2="125%"><stop offset="20%" style="stop-color:var(--item-theme-light)"/><stop offset="60%" style="stop-color:var(--item-theme)"/></linearGradient></defs></svg>
+
+</a>
+
+  
+    
+<a class="ui-collection__item is-themed" href="/bangumis/" title="番剧" style="--item-theme:#8B5CF6;--item-grad:url(#menu-grad-bangumis);">
+  
+  <span class="ui-collection__leading"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 10.5V18a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4v-7.5z" opacity=".5"/><path fill="currentColor" d="M18 2a4 4 0 0 1 4 4v3H2V6a4 4 0 0 1 4-4zm-9.354 2l-2 3h2.384l2-3zm4.5 0l-2 3h2.384l2-3z"/></svg></span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">番剧</span>
+      
+      
+    </span>
+  
+  
+  
+  
+<svg class="grad-def" width="0" height="0" aria-hidden="true" focusable="false"><defs><linearGradient id="menu-grad-bangumis" x1="75%" y1="6.7%" x2="6.7%" y2="125%"><stop offset="20%" style="stop-color:var(--item-theme-light)"/><stop offset="60%" style="stop-color:var(--item-theme)"/></linearGradient></defs></svg>
+
+</a>
+
+  
+    
+<a class="ui-collection__item is-themed" href="/topic/" title="专栏" style="--item-theme:#06B6D4;--item-grad:url(#menu-grad-topic);">
+  
+  <span class="ui-collection__leading"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">专栏</span>
+      
+      
+    </span>
+  
+  
+  
+  
+<svg class="grad-def" width="0" height="0" aria-hidden="true" focusable="false"><defs><linearGradient id="menu-grad-topic" x1="75%" y1="6.7%" x2="6.7%" y2="125%"><stop offset="20%" style="stop-color:var(--item-theme-light)"/><stop offset="60%" style="stop-color:var(--item-theme)"/></linearGradient></defs></svg>
+
+</a>
+
+  
+</div>
+
+</nav>
 </div>
 
 
@@ -213,7 +338,7 @@
 
 
 
-<widget class="widget-wrapper tagcloud"><div class="widget-header dis-select"><span class="name">标签索引</span></div><div class="widget-body fs14"><a href="/tags/AI/" style="font-size: 15px;" class="tag -5">AI</a> <a href="/tags/AI%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90%E5%99%A8/" style="font-size: 12px;" class="tag -0">AI视频生成器</a> <a href="/tags/Epic/" style="font-size: 12px;" class="tag -0">Epic</a> <a href="/tags/Pirated-Game/" style="font-size: 12px;" class="tag -0">Pirated Game</a> <a href="/tags/Sam-Altman/" style="font-size: 12px;" class="tag -0">Sam Altman</a> <a href="/tags/Steam/" style="font-size: 12px;" class="tag -0">Steam</a> <a href="/tags/Telegram%E5%AE%A2%E6%88%B7%E7%AB%AF/" style="font-size: 12px;" class="tag -0">Telegram客户端</a> <a href="/tags/UI%E5%BC%80%E5%8F%91/" style="font-size: 12px;" class="tag -0">UI开发</a> <a href="/tags/X/" style="font-size: 12px;" class="tag -0">X</a> <a href="/tags/ai/" style="font-size: 18px;" class="tag -10">ai</a> <a href="/tags/airpods/" style="font-size: 12px;" class="tag -0">airpods</a> <a href="/tags/anthropic/" style="font-size: 12px;" class="tag -0">anthropic</a> <a href="/tags/apple/" style="font-size: 15px;" class="tag -5">apple</a> <a href="/tags/caddy/" style="font-size: 12px;" class="tag -0">caddy</a> <a href="/tags/chatgpt/" style="font-size: 12px;" class="tag -0">chatgpt</a> <a href="/tags/chrome/" style="font-size: 12px;" class="tag -0">chrome</a> <a href="/tags/clash/" style="font-size: 12px;" class="tag -0">clash</a> <a href="/tags/cloudflare/" style="font-size: 12px;" class="tag -0">cloudflare</a> <a href="/tags/cursor/" style="font-size: 12px;" class="tag -0">cursor</a> <a href="/tags/elon-musk/" style="font-size: 12px;" class="tag -0">elon musk</a> <a href="/tags/gpt/" style="font-size: 12px;" class="tag -0">gpt</a> <a href="/tags/gpts/" style="font-size: 12px;" class="tag -0">gpts</a> <a href="/tags/https/" style="font-size: 12px;" class="tag -0">https</a> <a href="/tags/hwid/" style="font-size: 12px;" class="tag -0">hwid</a></div></widget>
+<widget class="widget-wrapper tagcloud"><div class="widget-header dis-select"><span class="name">标签索引</span></div><div class="widget-body fs14"><a href="/tags/%E5%BE%AE%E8%BD%AF/" style="font-size: 12px;" class="tag -0">微软</a> <a href="/tags/hwid/" style="font-size: 12px;" class="tag -0">hwid</a> <a href="/tags/clash/" style="font-size: 12px;" class="tag -0">clash</a> <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 14.5px;" class="tag -5">科学上网</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 12px;" class="tag -0">网络</a> <a href="/tags/%E7%A7%91%E6%99%AE/" style="font-size: 12px;" class="tag -0">科普</a> <a href="/tags/ai/" style="font-size: 17px;" class="tag -10">ai</a> <a href="/tags/%E6%B1%87%E6%80%BB/" style="font-size: 12px;" class="tag -0">汇总</a> <a href="/tags/%E5%AE%A2%E6%88%B7%E7%AB%AF/" style="font-size: 12px;" class="tag -0">客户端</a> <a href="/tags/proxy/" style="font-size: 12px;" class="tag -0">proxy</a> <a href="/tags/https/" style="font-size: 12px;" class="tag -0">https</a> <a href="/tags/caddy/" style="font-size: 12px;" class="tag -0">caddy</a> <a href="/tags/twitter/" style="font-size: 12px;" class="tag -0">twitter</a> <a href="/tags/X/" style="font-size: 12px;" class="tag -0">X</a> <a href="/tags/x/" style="font-size: 12px;" class="tag -0">x</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 12px;" class="tag -0">技巧</a> <a href="/tags/%E5%B9%B2%E8%B4%A7/" style="font-size: 12px;" class="tag -0">干货</a> <a href="/tags/mac/" style="font-size: 14.5px;" class="tag -5">mac</a> <a href="/tags/apple/" style="font-size: 14.5px;" class="tag -5">apple</a> <a href="/tags/openai/" style="font-size: 14.5px;" class="tag -5">openai</a> <a href="/tags/gpt/" style="font-size: 12px;" class="tag -0">gpt</a> <a href="/tags/AI/" style="font-size: 14.5px;" class="tag -5">AI</a> <a href="/tags/%E5%8C%B9%E9%85%8D%E7%B3%BB%E7%BB%9F/" style="font-size: 12px;" class="tag -0">匹配系统</a> <a href="/tags/%E7%94%B5%E5%AD%90%E8%A1%A8%E6%A0%BC/" style="font-size: 12px;" class="tag -0">电子表格</a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main" data-ui-surface="content">
@@ -242,7 +367,9 @@
     
   </div>
   </div></div>
-<article class="md-text content"><p>Steam 游戏的破解（打补丁）思路分两类：需要在线联机用 <strong>Unsteam</strong>，只玩单机或局域网用 <strong>GBE Fork</strong>。游戏自身通过 Epic Online Services（EOS）联机时，两个方案都要再配一个 <strong>Nemirtingas Epic Emulator</strong> 处理 EOS 层（见「EOS 联机」一节）。</p>
+<article class="md-text content"><div class="tag-plugin colorful note" color="blue"><div class="title"><strong><p>核心方案思路</p>
+</strong></div><div class="body"><p>Steam 游戏的破解与联机修复思路主要分两类：</p><ol><li><strong>在线联机需求</strong>：使用 <strong>Unsteam</strong>（伪装免费占位游戏借助 Steam 联机）。</li><li><strong>单机/局域网需求</strong>：使用 <strong>GBE Fork</strong>（完全离线独立运行模拟器）。</li><li><strong>跨平台 EOS 联机</strong>：当游戏自带 Epic Online Services 时，配合 <strong>Nemirtingas Epic Emulator</strong> 处理 EOS 鉴权层。</li></ol></div></div>
+
 <h2 id="前置准备"><a href="#前置准备" class="headerlink" title="前置准备"></a>前置准备</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://cs.rin.ru/forum/viewtopic.php?f=29&amp;t=134707">Unsteam</a> —— 联机补丁（需 Steam 客户端运行）</li>
 <li><a target="_blank" rel="noopener" href="https://github.com/Detanup01/gbe_fork">GBE Fork</a> —— 离线/局域网模拟器</li>
@@ -251,131 +378,128 @@
 </ul>
 <p>干净的 Steam 游戏文件可在 <a target="_blank" rel="noopener" href="https://cs.rin.ru/forum">CS.RIN.RU</a> 获取，获取方式见文末「工具与资源」。</p>
 <h3 id="查找-Steam-AppID"><a href="#查找-Steam-AppID" class="headerlink" title="查找 Steam AppID"></a>查找 Steam AppID</h3><p>AppID 是游戏在 Steam 商店的编号，两个方案都用得到（Unsteam 的 <code>real_app_id</code>、GBE 的 <code>steam_appid.txt</code>），先查好备用。</p>
-<p>方法：打开游戏的 Steam 商店页，URL 里 <code>/app/</code> 后面那串数字就是。比如 <code>store.steampowered.com/app/3683770/</code> 的 AppID 是 <code>3683770</code>。</p>
-<p>也可以在商店页地址栏直接搜索游戏名，或用 SteamDB（<a target="_blank" rel="noopener" href="https://steamdb.info/">https://steamdb.info</a> ）按游戏名查。</p>
-<h2 id="方案1：Unsteam（在线联机）"><a href="#方案1：Unsteam（在线联机）" class="headerlink" title="方案1：Unsteam（在线联机）"></a>方案1：Unsteam（在线联机）</h2><p>Unsteam 让游戏伪装成 Steam 的免费占位标题 Spacewar（AppID 480）运行，借 Steam 的网络联机。<strong>需要 Steam 客户端登录</strong>；联机对象不限破解玩家。</p>
-<h3 id="1-（可选）用-Steamless-去-DRM"><a href="#1-（可选）用-Steamless-去-DRM" class="headerlink" title="1. （可选）用 Steamless 去 DRM"></a>1. （可选）用 Steamless 去 DRM</h3><p>只有游戏 exe 带 Steam Stub（SteamDRM 包装）才需要这一步。打开 <code>Steamless.exe</code>，拖入游戏可执行文件，点 Unpack File。</p>
+<ul>
+<li><strong>方法一</strong>：打开游戏的 Steam 商店页，URL 里 <code>/app/</code> 后面那串数字就是。比如 <code>store.steampowered.com/app/3683770/</code> 的 AppID 是 <code>3683770</code>。</li>
+<li><strong>方法二</strong>：在商店页地址栏直接搜索游戏名，或用 <a target="_blank" rel="noopener" href="https://steamdb.info/">SteamDB</a> 按游戏名查。</li>
+</ul>
+<hr>
+<div class="tag-plugin tabs" id="tab_2"><div class="nav-tabs"><div class="tab active"><a href="#tab_2-1">方案1：Unsteam（在线联机）</a></div><div class="tab"><a href="#tab_2-2">方案2：GBE Fork（离线 / 局域网）</a></div><div class="tab"><a href="#tab_2-3">EOS 联机（Epic 模拟器）</a></div></div><div class="tab-content"><div class="tab-pane active" id="tab_2-1"><p>Unsteam 让游戏伪装成 Steam 的免费占位标题 <strong>Spacewar（AppID 480）</strong> 运行，借 Steam 的官方网络联机。<strong>需要 Steam 客户端登录</strong>；联机对象不限破解玩家。</p>
+<h4 id="1-（可选）用-Steamless-去-DRM"><a href="#1-（可选）用-Steamless-去-DRM" class="headerlink" title="1. （可选）用 Steamless 去 DRM"></a>1. （可选）用 Steamless 去 DRM</h4><p>只有游戏 exe 带 Steam Stub（SteamDRM 包装）才需要这一步。打开 <code>Steamless.exe</code>，拖入游戏可执行文件，点 <strong>Unpack File</strong>。</p>
 <ul>
 <li>提示 <code>This file dose not appear to be packed with steamstub!</code> 说明没有 Steam 加密，跳过。</li>
 <li>成功会生成 <code>游戏名.unpacked.exe</code>。把原 exe 改名备份（如 <code>游戏名.exe.old</code>），再把 unpacked 版改名为原 exe 名。</li>
 </ul>
-<h3 id="2-部署-Unsteam-并配置"><a href="#2-部署-Unsteam-并配置" class="headerlink" title="2. 部署 Unsteam 并配置"></a>2. 部署 Unsteam 并配置</h3><p>把 <code>unsteam/{x64,x86}/*</code>（一般是 x64）复制到游戏目录，运行 <code>unsteam_loader64.exe</code>，生成 <code>unsteam.ini</code>。关键配置：</p>
+<h4 id="2-部署-Unsteam-并配置"><a href="#2-部署-Unsteam-并配置" class="headerlink" title="2. 部署 Unsteam 并配置"></a>2. 部署 Unsteam 并配置</h4><p>把 <code>unsteam/{x64,x86}/*</code>（一般是 x64）复制到游戏目录，运行 <code>unsteam_loader64.exe</code>，生成 <code>unsteam.ini</code>。关键配置如下：</p>
 <figure class="highlight ini"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[loader]</span></span><br><span class="line"><span class="attr">exe_file</span>=Game.exe            <span class="comment">; 【必改】游戏可执行文件名</span></span><br><span class="line"><span class="attr">dll_file</span>=unsteam64.dll</span><br><span class="line"></span><br><span class="line"><span class="section">[game]</span></span><br><span class="line"><span class="attr">offline_mode</span>=<span class="number">0</span>               <span class="comment">; 0 = 在线，1 = 强制离线</span></span><br><span class="line"><span class="attr">steam_id</span>=</span><br><span class="line"><span class="attr">player_name</span>=YourName         <span class="comment">; 默认是打包者的名字，建议改掉</span></span><br><span class="line"><span class="attr">real_app_id</span>=replace_that     <span class="comment">; 【必改】游戏的 Steam AppID，获取方法见「前置准备」</span></span><br><span class="line"><span class="attr">fake_app_id</span>=<span class="number">480</span>              <span class="comment">; Spacewar，不用改</span></span><br><span class="line"><span class="attr">language</span>=english</span><br><span class="line"><span class="attr">beta_name</span>=public</span><br><span class="line"><span class="attr">saves_path</span>=saves</span><br><span class="line">game_launch_options=</span><br></pre></td></tr></tbody></table></figure>
 
-<h3 id="3-（可选）替换-EOS-SDK"><a href="#3-（可选）替换-EOS-SDK" class="headerlink" title="3. （可选）替换 EOS SDK"></a>3. （可选）替换 EOS SDK</h3><p>存在 <code>EOSSDK-Win64-Shipping.dll</code> 时，说明游戏用 EOS 联机，按「EOS 联机」一节处理。</p>
-<h3 id="4-启动"><a href="#4-启动" class="headerlink" title="4. 启动"></a>4. 启动</h3><p>确保 Steam 已登录，两种方式任选：</p>
+<h4 id="3-（可选）替换-EOS-SDK"><a href="#3-（可选）替换-EOS-SDK" class="headerlink" title="3. （可选）替换 EOS SDK"></a>3. （可选）替换 EOS SDK</h4><p>存在 <code>EOSSDK-Win64-Shipping.dll</code> 时，说明游戏用 EOS 联机，按「EOS 联机」标签页处理。</p>
+<h4 id="4-启动与验证"><a href="#4-启动与验证" class="headerlink" title="4. 启动与验证"></a>4. 启动与验证</h4><p>确保 Steam 客户端已登录，两种方式任选：</p>
 <ol>
 <li>直接运行游戏可执行文件。失败一般是 unsteam 版本架构不对，换 x64/x86。</li>
 <li>用 <code>unsteam_loader.exe</code> 启动。</li>
 </ol>
-<p>成功的标志：Steam 状态栏显示正在玩 <strong>Spacewar</strong>。</p>
-<h2 id="方案2：GBE-Fork（离线-局域网）"><a href="#方案2：GBE-Fork（离线-局域网）" class="headerlink" title="方案2：GBE Fork（离线 / 局域网）"></a>方案2：GBE Fork（离线 / 局域网）</h2><p>GBE Fork 直接替换游戏的 <code>steam_api(64).dll</code>，让游戏以为 Steam 在运行。<strong>不依赖 Steam 客户端，但无法在线联机</strong>，只能局域网或同配置玩家间联机。</p>
-<h3 id="1-（可选）用-Steamless-处理-exe"><a href="#1-（可选）用-Steamless-处理-exe" class="headerlink" title="1. （可选）用 Steamless 处理 exe"></a>1. （可选）用 Steamless 处理 exe</h3><p>同方案1第 1 步：Steamless 去掉 exe 上的 SteamDRM 包装。没 DRM 的文件安全跳过，不会损坏。</p>
-<h3 id="2-找-steam-api-64-dll"><a href="#2-找-steam-api-64-dll" class="headerlink" title="2. 找 steam_api(64).dll"></a>2. 找 steam_api(64).dll</h3><p>游戏目录搜 <code>steam_api*.dll</code>，两种情况：</p>
+<p><mark class="tag-plugin colorful mark" color="yellow">green 成功标志</mark>：Steam 个人状态栏显示正在玩 <strong>Spacewar</strong>。</p>
+<!-- endtab --></div><div class="tab-pane" id="tab_2-2"><p>GBE Fork 直接替换游戏的 <code>steam_api(64).dll</code>，让游戏以为 Steam 在运行。<strong>不依赖 Steam 客户端，但无法在线公网匹配</strong>，只能局域网或同配置玩家间联机。</p>
+<h4 id="1-（可选）用-Steamless-处理-exe"><a href="#1-（可选）用-Steamless-处理-exe" class="headerlink" title="1. （可选）用 Steamless 处理 exe"></a>1. （可选）用 Steamless 处理 exe</h4><p>同方案1第 1 步：Steamless 去掉 exe 上的 SteamDRM 包装。没 DRM 的文件安全跳过，不会损坏。</p>
+<h4 id="2-查找-steam-api-64-dll"><a href="#2-查找-steam-api-64-dll" class="headerlink" title="2. 查找 steam_api(64).dll"></a>2. 查找 steam_api(64).dll</h4><p>在游戏目录搜索 <code>steam_api*.dll</code>，两种情况：</p>
 <ul>
 <li><strong>只有一个</strong>（通用/Unity 引擎）：替换这个 DLL，<code>steam_settings</code> 放它旁边。</li>
 <li><strong>有两个</strong>（Unreal Engine 游戏）：</li>
 </ul>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;GameDir&gt;\Engine\Binaries\ThirdParty\Steamworks\Steamv157\Win64\steam_api64.dll</span><br><span class="line">&lt;GameDir&gt;\&lt;GameName&gt;\Binaries\Win64\steam_api64.dll</span><br></pre></td></tr></tbody></table></figure>
+<div class="tag-plugin colorful note" color="yellow"><div class="title"><strong><p>注意</p>
+</strong></div><div class="body"><p>UE 引擎启动时从 <strong>Engine 目录</strong>加载 <code>steam_api64.dll</code>，不是游戏主目录。只替换 Engine 目录那个，<code>steam_settings</code> 也放 Engine 目录。游戏主目录的 DLL 保持原版不动。</p></div></div>
 
-<p>UE 引擎启动时从 <strong>Engine 目录</strong>加载 <code>steam_api64.dll</code>，不是游戏主目录。只替换 Engine 目录那个，<code>steam_settings</code> 也放 Engine 目录。游戏主目录的 DLL 保持原版不动。</p>
-<h3 id="3-备份原版-DLL"><a href="#3-备份原版-DLL" class="headerlink" title="3. 备份原版 DLL"></a>3. 备份原版 DLL</h3><p>复制要替换的 DLL，重命名成 <code>steam_api64.dll.old</code>。后续生成接口文件要用这个备份。</p>
-<h3 id="4-替换成模拟器-DLL"><a href="#4-替换成模拟器-DLL" class="headerlink" title="4. 替换成模拟器 DLL"></a>4. 替换成模拟器 DLL</h3><p>从 GBE Fork 发布包（<code>emu-win-release</code>）复制对应架构的 DLL 覆盖：</p>
-<ul>
+<h4 id="3-备份原版-DLL-并替换"><a href="#3-备份原版-DLL-并替换" class="headerlink" title="3. 备份原版 DLL 并替换"></a>3. 备份原版 DLL 并替换</h4><ol>
+<li>复制要替换的 DLL，重命名成 <code>steam_api64.dll.old</code>（后续生成接口文件备用）。</li>
+<li>从 GBE Fork 发布包（<code>emu-win-release</code>）复制对应架构的 DLL 覆盖：<ul>
 <li>64 位游戏：<code>regular\x64\steam_api64.dll</code></li>
-<li>32 位游戏：<code>regular\x86\steam_api.dll</code></li>
+<li>32 位游戏：<code>regular\x86\steam_api.dll</code><br><em>(模拟器 DLL 约 7–11MB，原版约 200–400KB，大小一眼能区分)</em></li>
 </ul>
-<p>模拟器 DLL 约 7–11MB，原版约 200–400KB，大小一眼能区分。UE 游戏主目录的 DLL 不动。</p>
-<h3 id="5-创建-steam-settings-目录"><a href="#5-创建-steam-settings-目录" class="headerlink" title="5. 创建 steam_settings 目录"></a>5. 创建 steam_settings 目录</h3><p>在模拟器 DLL 同级建 <code>steam_settings</code> 文件夹。UE 引擎放 Engine 目录，通用引擎放游戏 exe 同级。</p>
-<h3 id="6-放-steam-appid-txt"><a href="#6-放-steam-appid-txt" class="headerlink" title="6. 放 steam_appid.txt"></a>6. 放 steam_appid.txt</h3><p>建 <code>steam_settings\steam_appid.txt</code>，只写纯数字 AppID（获取见「前置准备」）。</p>
-<h3 id="7-生成-steam-interfaces-txt（推荐）"><a href="#7-生成-steam-interfaces-txt（推荐）" class="headerlink" title="7. 生成 steam_interfaces.txt（推荐）"></a>7. 生成 steam_interfaces.txt（推荐）</h3><p>接口版本不匹配会导致崩溃或功能缺失。用 GBE Fork 里的 <code>generate_interfaces_x64.exe</code>（或 x86 版）对备份的原版 DLL 跑一次，生成在工具当前目录，移到 <code>steam_settings\</code> 里。必须对原版 DLL 跑，不能用模拟器 DLL。</p>
-<h3 id="8-（可选）配置-INI"><a href="#8-（可选）配置-INI" class="headerlink" title="8. （可选）配置 INI"></a>8. （可选）配置 INI</h3><p><code>steam_settings.EXAMPLE\</code> 有模板，按需复制到 <code>steam_settings\</code>，去掉 <code>.EXAMPLE</code> 中缀：</p>
+</li>
+</ol>
+<h4 id="4-创建配置目录与-AppID"><a href="#4-创建配置目录与-AppID" class="headerlink" title="4. 创建配置目录与 AppID"></a>4. 创建配置目录与 AppID</h4><ol>
+<li>在模拟器 DLL 同级建 <code>steam_settings</code> 文件夹。</li>
+<li>新建 <code>steam_settings\steam_appid.txt</code>，只写纯数字 AppID。</li>
+</ol>
+<h4 id="5-生成-steam-interfaces-txt（推荐）"><a href="#5-生成-steam-interfaces-txt（推荐）" class="headerlink" title="5. 生成 steam_interfaces.txt（推荐）"></a>5. 生成 steam_interfaces.txt（推荐）</h4><p>接口版本不匹配会导致崩溃。用 GBE Fork 里的 <code>generate_interfaces_x64.exe</code> 对<strong>备份的原版 DLL</strong> 跑一次，将生成的 <code>steam_interfaces.txt</code> 移入 <code>steam_settings\</code>。</p>
+<h4 id="6-（可选）配置-INI"><a href="#6-（可选）配置-INI" class="headerlink" title="6. （可选）配置 INI"></a>6. （可选）配置 INI</h4><p><code>steam_settings.EXAMPLE\</code> 有模板，按需复制到 <code>steam_settings\</code> 并去掉 <code>.EXAMPLE</code> 中缀：</p>
 <ul>
-<li><code>configs.user.ini</code>：<code>local_save_path=./path/relative/to/dll</code> 把存档存到游戏目录而非 <code>%appdata%</code>；<code>account_name=Player</code> 改游戏内名字</li>
-<li><code>configs.main.ini</code>：<code>offline=0</code> 离线模式</li>
-<li><code>configs.app.ini</code>：<code>unlock_all=1</code> 解锁全部 DLC</li>
+<li><code>configs.user.ini</code>：<code>local_save_path=./saves</code>（将存档保存在游戏目录）、<code>account_name=Player</code>（改名字）</li>
+<li><code>configs.main.ini</code>：<code>offline=0</code></li>
+<li><code>configs.app.ini</code>：<code>unlock_all=1</code>（解锁全部 DLC）</li>
 </ul>
-<h3 id="9-（可选）替换-EOS-SDK"><a href="#9-（可选）替换-EOS-SDK" class="headerlink" title="9. （可选）替换 EOS SDK"></a>9. （可选）替换 EOS SDK</h3><p>同方案1第 3 步，按「EOS 联机」一节处理。</p>
-<h2 id="EOS-联机（Nemirtingas-Epic-Emulator）"><a href="#EOS-联机（Nemirtingas-Epic-Emulator）" class="headerlink" title="EOS 联机（Nemirtingas Epic Emulator）"></a>EOS 联机（Nemirtingas Epic Emulator）</h2><p>游戏自带的正版 <code>EOSSDK-Win64-Shipping.dll</code>（通常十几 MB）会连接 Epic 服务器验证账号、所有权、DLC。Nemirtingas Epic Emulator 把这些验证在本机模拟：游戏调用的 EOS 函数正常返回，但结果本地生成，从而绕过 Epic 登录与验证。</p>
-<p>适用条件：游戏目录存在 <code>EOSSDK-Win64-Shipping.dll</code>（一般在游戏二进制目录或子目录，如 <code>binaries/win64/</code>）。</p>
-<h3 id="1-备份并替换"><a href="#1-备份并替换" class="headerlink" title="1. 备份并替换"></a>1. 备份并替换</h3><p>搜索游戏里所有 <code>EOSSDK-Win64-Shipping.dll</code>（有的游戏有多份），把原版改名备份（如加 <code>.old</code> 后缀），再把 Nemirtingas 的 DLL 复制到原路径覆盖。不确定加载哪份就全部替换。</p>
-<h3 id="2-启动生成配置"><a href="#2-启动生成配置" class="headerlink" title="2. 启动生成配置"></a>2. 启动生成配置</h3><p>直接启动游戏，模拟器会在游戏工作目录自动生成配置文件 <code>NemirtingasEpicEmu.json</code>。</p>
-<h3 id="3-（可选）修改配置"><a href="#3-（可选）修改配置" class="headerlink" title="3. （可选）修改配置"></a>3. （可选）修改配置</h3><p>用记事本打开 <code>NemirtingasEpicEmu.json</code>，填一个自己能记住的用户名，这样生成的身份 ID 固定且唯一：</p>
+<!-- endtab --></div><div class="tab-pane" id="tab_2-3"><p>游戏自带的正版 <code>EOSSDK-Win64-Shipping.dll</code>（通常十几 MB）会连接 Epic 服务器验证账号、所有权和 DLC。<strong>Nemirtingas Epic Emulator</strong> 把这些验证在本机模拟，绕过 Epic 登录与鉴权。</p>
+<ul>
+<li><strong>适用条件</strong>：游戏目录存在 <code>EOSSDK-Win64-Shipping.dll</code>（如 <code>binaries/win64/</code>）。</li>
+</ul>
+<h4 id="1-备份并替换"><a href="#1-备份并替换" class="headerlink" title="1. 备份并替换"></a>1. 备份并替换</h4><p>搜索游戏内所有 <code>EOSSDK-Win64-Shipping.dll</code>，原版改名备份（如加 <code>.old</code> 后缀），再把 Nemirtingas 的 DLL 复制到原路径覆盖。不确定加载哪份就全部替换。</p>
+<h4 id="2-启动生成配置"><a href="#2-启动生成配置" class="headerlink" title="2. 启动生成配置"></a>2. 启动生成配置</h4><p>直接启动游戏，模拟器会在游戏工作目录自动生成配置文件 <code>NemirtingasEpicEmu.json</code>。</p>
+<h4 id="3-修改配置"><a href="#3-修改配置" class="headerlink" title="3. 修改配置"></a>3. 修改配置</h4><p>用记事本打开 <code>NemirtingasEpicEmu.json</code>，填入自定义用户名：</p>
 <figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">{</span></span><br><span class="line">  <span class="attr">"username"</span><span class="punctuation">:</span> <span class="string">"MyAwesomeUsername"</span></span><br><span class="line"><span class="punctuation">}</span></span><br></pre></td></tr></tbody></table></figure>
 
-<p>只填这一行即可：<code>epicid</code> 与 <code>productuserid</code> 会自动生成。不同玩家只要用户名不同，身份就不同，联机不会串号。</p>
-<p>常用字段：</p>
-<div class="md-table-scroll"><table>
+<h4 id="常用字段对照表"><a href="#常用字段对照表" class="headerlink" title="常用字段对照表"></a>常用字段对照表</h4><div class="md-table-scroll"><table>
 <thead>
 <tr>
-<th>字段</th>
-<th>默认值</th>
-<th>说明</th>
+<th align="left">字段</th>
+<th align="left">默认值</th>
+<th align="left">说明</th>
 </tr>
 </thead>
 <tbody><tr>
-<td><code>username</code></td>
-<td><code>DefaultName</code></td>
-<td>你的名字，用于生成身份 ID；部分游戏用它显示游戏内昵称</td>
+<td align="left"><code>username</code></td>
+<td align="left"><code>DefaultName</code></td>
+<td align="left">你的名字，用于生成唯一身份 ID，联机不串号</td>
 </tr>
 <tr>
-<td><code>appid</code></td>
-<td>自动/留空</td>
-<td>匹配同款游戏的房间，房主与玩家需一致</td>
+<td align="left"><code>appid</code></td>
+<td align="left">自动/留空</td>
+<td align="left">匹配同款游戏的房间，房主与玩家需一致</td>
 </tr>
 <tr>
-<td><code>savepath</code></td>
-<td>空（游戏目录）</td>
-<td>存档/成就保存位置；填 <code>appdata</code> 则存到 <code>%appdata%</code></td>
+<td align="left"><code>savepath</code></td>
+<td align="left">空（游戏目录）</td>
+<td align="left">存档/成就保存位置；填 <code>appdata</code> 则存到 <code>%appdata%</code></td>
 </tr>
 <tr>
-<td><code>disable_online_networking</code></td>
-<td><code>false</code></td>
-<td><code>true</code> 时禁用公网连接（只留局域网/VPN），开了崩溃就改回 <code>false</code></td>
+<td align="left"><code>disable_online_networking</code></td>
+<td align="left"><code>false</code></td>
+<td align="left"><code>true</code> 时禁用公网连接（仅局域网），崩溃则改回 <code>false</code></td>
 </tr>
 <tr>
-<td><code>unlock_dlcs</code></td>
-<td><code>false</code></td>
-<td><code>true</code> 时尝试解锁全部 DLC</td>
+<td align="left"><code>unlock_dlcs</code></td>
+<td align="left"><code>false</code></td>
+<td align="left"><code>true</code> 时尝试解锁全部 DLC</td>
 </tr>
 <tr>
-<td><code>log_level</code></td>
-<td><code>OFF</code></td>
-<td>排障时设 <code>DEBUG</code>，完事改回 <code>OFF</code></td>
+<td align="left"><code>log_level</code></td>
+<td align="left"><code>OFF</code></td>
+<td align="left">排障时设 <code>DEBUG</code>，查看详细日志</td>
 </tr>
 </tbody></table></div>
-<h3 id="4-确认已生效"><a href="#4-确认已生效" class="headerlink" title="4. 确认已生效"></a>4. 确认已生效</h3><ul>
-<li><code>NemirtingasEpicEmu.json</code> 已生成/更新 → DLL 被加载了。</li>
-<li><code>log_level</code> 设为 <code>DEBUG</code> 后启动，日志里出现 <code>EOS_Connect_Login</code> 等调用记录 → 已接管 EOS API。</li>
-<li>游戏能正常创建/加入联机房间，且不再弹出 Epic 登录提示。</li>
-</ul>
-<h3 id="5-排障"><a href="#5-排障" class="headerlink" title="5. 排障"></a>5. 排障</h3><ul>
-<li><strong>游戏崩溃或提示 EOS 初始化失败</strong>：确认替换了实际加载的那份 DLL（有多份就全换）；删除 <code>NemirtingasEpicEmu.json</code> 让它重新生成；<code>disable_online_networking</code> 改回 <code>false</code>；<code>log_level: DEBUG</code> 看日志。</li>
-<li><strong>查 EOS 的游戏 appid</strong>：打开 <a target="_blank" rel="noopener" href="https://epicdata.info/items/">https://epicdata.info/items/</a> ，搜索游戏名，在条目 <code>releaseInfo</code> 的 <code>appId</code> 字段里。房主与玩家需一致才能匹配。</li>
-<li><strong>多人联机身份冲突</strong>：每个玩家填不同的 <code>username</code>。同一个人的多台电脑建议共用同一份配置文件，避免 ID 变化。</li>
-<li><strong>和其他 EOS 补丁冲突</strong>：功能重叠的补丁二选一，保留一个删另一个。本模拟器可替换 FreeTP 的 EpicFix。</li>
-</ul>
-<h2 id="工具与资源"><a href="#工具与资源" class="headerlink" title="工具与资源"></a>工具与资源</h2><h3 id="自动化工具"><a href="#自动化工具" class="headerlink" title="自动化工具"></a>自动化工具</h3><ul>
-<li><strong>ARMGDDN Autocracker</strong>：基于 GBE Fork，右键游戏文件夹自动完成补丁。仓库 <a target="_blank" rel="noopener" href="https://github.com/KaladinDMP/ARMGDDN-Autocracker">https://github.com/KaladinDMP/ARMGDDN-Autocracker</a></li>
-<li><strong>SteamAutoCracker</strong>：封装 Steamless + Goldberg，一键去 DRM 和替换 DLL。仓库 <a target="_blank" rel="noopener" href="https://github.com/BigBoiCJ/SteamAutoCracker">https://github.com/BigBoiCJ/SteamAutoCracker</a></li>
+<!-- endtab --></div></div></div>
+
+<hr>
+<details class="tag-plugin colorful folding" color="cyan"><summary><p>排障与常见问题排查</p>
+</summary><div class="body"><ul> <li><strong>游戏崩溃或提示 EOS 初始化失败</strong>：<ol> <li>确认替换了实际加载的那份 DLL（有多份就全换）。</li> <li>删除 <code>NemirtingasEpicEmu.json</code> 让模拟器重新生成。</li> <li><code>disable_online_networking</code> 改回 <code>false</code>。</li> <li>将 <code>log_level</code> 改为 <code>DEBUG</code> 查看详细运行日志。</li> </ol> </li> <li><strong>查 EOS 游戏 appid</strong>：<br>打开 <a target="_blank" rel="noopener" href="https://epicdata.info/items/">EpicData</a> 搜索游戏名，在条目 <code>releaseInfo</code> 的 <code>appId</code> 字段中获取。</li> <li><strong>多人联机身份冲突</strong>：<br>每个玩家填不同的 <code>username</code>。同一个人的多台电脑建议共用同一份配置文件，避免 ID 变动。</li> <li><strong>和其他 EOS 补丁冲突</strong>：<br>功能重叠的补丁二选一（本模拟器可完整替代 FreeTP 的 EpicFix）。</li> </ul> </div></details>
+
+<hr>
+<h2 id="工具与资源"><a href="#工具与资源" class="headerlink" title="工具与资源"></a>工具与资源</h2><h3 id="自动化补丁工具"><a href="#自动化补丁工具" class="headerlink" title="自动化补丁工具"></a>自动化补丁工具</h3><ul>
+<li><strong><a target="_blank" rel="noopener" href="https://github.com/KaladinDMP/ARMGDDN-Autocracker">ARMGDDN Autocracker</a></strong> —— 基于 GBE Fork，右键游戏文件夹一键自动打补丁</li>
+<li><strong><a target="_blank" rel="noopener" href="https://github.com/BigBoiCJ/SteamAutoCracker">SteamAutoCracker</a></strong> —— 封装 Steamless + Goldberg，一键去 DRM 和替换 DLL</li>
 </ul>
 <h3 id="其他补丁工具"><a href="#其他补丁工具" class="headerlink" title="其他补丁工具"></a>其他补丁工具</h3><ul>
-<li><strong>GreenLuma</strong> —— Steam 客户端补丁，支持在线联机，Windows 专用。<a target="_blank" rel="noopener" href="https://cs.rin.ru/forum/viewtopic.php?f=29&amp;t=103709">https://cs.rin.ru/forum/viewtopic.php?f=29&amp;t=103709</a></li>
-<li><strong>SLSsteam</strong> —— Steam 客户端补丁，支持在线联机，Linux 专用。<a target="_blank" rel="noopener" href="https://github.com/AceSLS/SLSsteam">https://github.com/AceSLS/SLSsteam</a></li>
-<li><strong>WeMod 破解</strong>（游戏修改器）。<a target="_blank" rel="noopener" href="https://github.com/k1tbyte/Wemod-Patcher">https://github.com/k1tbyte/Wemod-Patcher</a></li>
+<li><strong><a target="_blank" rel="noopener" href="https://cs.rin.ru/forum/viewtopic.php?f=29&amp;t=103709">GreenLuma</a></strong> —— Steam 客户端补丁，支持在线联机（Windows 专用）</li>
+<li><strong><a target="_blank" rel="noopener" href="https://github.com/AceSLS/SLSsteam">SLSsteam</a></strong> —— Steam 客户端补丁，支持在线联机（Linux 专用）</li>
+<li><strong><a target="_blank" rel="noopener" href="https://github.com/k1tbyte/Wemod-Patcher">WeMod Patcher</a></strong> —— 游戏修改器 WeMod 破解工具</li>
 </ul>
-<h3 id="游戏资源"><a href="#游戏资源" class="headerlink" title="游戏资源"></a>游戏资源</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://cs.rin.ru/forum">https://cs.rin.ru/forum</a> —— 破解工具与 STEAM 游戏资源的主论坛</li>
-<li>论坛找不到时，最稳的办法是 Steam 商店购买 → 下载 → 退款。</li>
-</ul>
-<h3 id="更多参考"><a href="#更多参考" class="headerlink" title="更多参考"></a>更多参考</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://rentry.org/pgames">https://rentry.org/pgames</a></li>
-<li><a target="_blank" rel="noopener" href="https://ripped.guide/PC-Software/Games/#cracking-tools">https://ripped.guide/PC-Software/Games/#cracking-tools</a></li>
-<li><a target="_blank" rel="noopener" href="https://cs.rin.ru/forum/viewforum.php?f=29">https://cs.rin.ru/forum/viewforum.php?f=29</a></li>
+<h3 id="资源论坛"><a href="#资源论坛" class="headerlink" title="资源论坛"></a>资源论坛</h3><ul>
+<li><strong><a target="_blank" rel="noopener" href="https://cs.rin.ru/forum">CS.RIN.RU 论坛</a></strong> —— 破解工具与 STEAM 游戏资源的主论坛</li>
+<li><strong><a target="_blank" rel="noopener" href="https://rentry.org/pgames">Rentry 游戏导航</a></strong> &amp; <strong><a target="_blank" rel="noopener" href="https://ripped.guide/PC-Software/Games/#cracking-tools">Ripped Guide</a></strong></li>
 </ul>
 <hr>
 <blockquote>
-<p>作者: Nite<br>URL: <a target="_blank" rel="noopener" href="https://www.nite07.com/zh-cn/posts/game-crack-tutorial/">https://www.nite07.com/zh-cn/posts/game-crack-tutorial/</a></p>
+<p>原文作者：<a target="_blank" rel="noopener" href="https://www.nite07.com/zh-cn/">Nite</a><br>原文链接：<a target="_blank" rel="noopener" href="https://www.nite07.com/zh-cn/posts/game-crack-tutorial/">https://www.nite07.com/zh-cn/posts/game-crack-tutorial/</a><br>授权许可：<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p>
 </blockquote>
 </article>
 
@@ -438,7 +562,7 @@
       <a class="cap-action" onclick="sidebar.toggleTOC()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a>
     </div>
   
-  <div class="widget-body"><ol class="toc ui-collection-adapter"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E5%87%86%E5%A4%87"><span class="toc-text">前置准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE-Steam-AppID"><span class="toc-text">查找 Steam AppID</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%A1%881%EF%BC%9AUnsteam%EF%BC%88%E5%9C%A8%E7%BA%BF%E8%81%94%E6%9C%BA%EF%BC%89"><span class="toc-text">方案1：Unsteam（在线联机）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%E7%94%A8-Steamless-%E5%8E%BB-DRM"><span class="toc-text">1. （可选）用 Steamless 去 DRM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%83%A8%E7%BD%B2-Unsteam-%E5%B9%B6%E9%85%8D%E7%BD%AE"><span class="toc-text">2. 部署 Unsteam 并配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%E6%9B%BF%E6%8D%A2-EOS-SDK"><span class="toc-text">3. （可选）替换 EOS SDK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%90%AF%E5%8A%A8"><span class="toc-text">4. 启动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%A1%882%EF%BC%9AGBE-Fork%EF%BC%88%E7%A6%BB%E7%BA%BF-%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89"><span class="toc-text">方案2：GBE Fork（离线 &#x2F; 局域网）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%E7%94%A8-Steamless-%E5%A4%84%E7%90%86-exe"><span class="toc-text">1. （可选）用 Steamless 处理 exe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%89%BE-steam-api-64-dll"><span class="toc-text">2. 找 steam_api(64).dll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%A4%87%E4%BB%BD%E5%8E%9F%E7%89%88-DLL"><span class="toc-text">3. 备份原版 DLL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%9B%BF%E6%8D%A2%E6%88%90%E6%A8%A1%E6%8B%9F%E5%99%A8-DLL"><span class="toc-text">4. 替换成模拟器 DLL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%88%9B%E5%BB%BA-steam-settings-%E7%9B%AE%E5%BD%95"><span class="toc-text">5. 创建 steam_settings 目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%94%BE-steam-appid-txt"><span class="toc-text">6. 放 steam_appid.txt</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E7%94%9F%E6%88%90-steam-interfaces-txt%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-text">7. 生成 steam_interfaces.txt（推荐）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%E9%85%8D%E7%BD%AE-INI"><span class="toc-text">8. （可选）配置 INI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%E6%9B%BF%E6%8D%A2-EOS-SDK"><span class="toc-text">9. （可选）替换 EOS SDK</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EOS-%E8%81%94%E6%9C%BA%EF%BC%88Nemirtingas-Epic-Emulator%EF%BC%89"><span class="toc-text">EOS 联机（Nemirtingas Epic Emulator）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%A4%87%E4%BB%BD%E5%B9%B6%E6%9B%BF%E6%8D%A2"><span class="toc-text">1. 备份并替换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%90%AF%E5%8A%A8%E7%94%9F%E6%88%90%E9%85%8D%E7%BD%AE"><span class="toc-text">2. 启动生成配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="toc-text">3. （可选）修改配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%A1%AE%E8%AE%A4%E5%B7%B2%E7%94%9F%E6%95%88"><span class="toc-text">4. 确认已生效</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%8E%92%E9%9A%9C"><span class="toc-text">5. 排障</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E4%B8%8E%E8%B5%84%E6%BA%90"><span class="toc-text">工具与资源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E5%85%B7"><span class="toc-text">自动化工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E8%A1%A5%E4%B8%81%E5%B7%A5%E5%85%B7"><span class="toc-text">其他补丁工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%B8%E6%88%8F%E8%B5%84%E6%BA%90"><span class="toc-text">游戏资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E5%8F%82%E8%80%83"><span class="toc-text">更多参考</span></a></li></ol></li></ol></div>
+  <div class="widget-body"><ol class="toc ui-collection-adapter"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E5%87%86%E5%A4%87"><span class="toc-text">前置准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE-Steam-AppID"><span class="toc-text">查找 Steam AppID</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%E7%94%A8-Steamless-%E5%8E%BB-DRM"><span class="toc-text">1. （可选）用 Steamless 去 DRM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%83%A8%E7%BD%B2-Unsteam-%E5%B9%B6%E9%85%8D%E7%BD%AE"><span class="toc-text">2. 部署 Unsteam 并配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%E6%9B%BF%E6%8D%A2-EOS-SDK"><span class="toc-text">3. （可选）替换 EOS SDK</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%90%AF%E5%8A%A8%E4%B8%8E%E9%AA%8C%E8%AF%81"><span class="toc-text">4. 启动与验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%E7%94%A8-Steamless-%E5%A4%84%E7%90%86-exe"><span class="toc-text">1. （可选）用 Steamless 处理 exe</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%9F%A5%E6%89%BE-steam-api-64-dll"><span class="toc-text">2. 查找 steam_api(64).dll</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%A4%87%E4%BB%BD%E5%8E%9F%E7%89%88-DLL-%E5%B9%B6%E6%9B%BF%E6%8D%A2"><span class="toc-text">3. 备份原版 DLL 并替换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%88%9B%E5%BB%BA%E9%85%8D%E7%BD%AE%E7%9B%AE%E5%BD%95%E4%B8%8E-AppID"><span class="toc-text">4. 创建配置目录与 AppID</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E7%94%9F%E6%88%90-steam-interfaces-txt%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-text">5. 生成 steam_interfaces.txt（推荐）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%E9%85%8D%E7%BD%AE-INI"><span class="toc-text">6. （可选）配置 INI</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%A4%87%E4%BB%BD%E5%B9%B6%E6%9B%BF%E6%8D%A2"><span class="toc-text">1. 备份并替换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%90%AF%E5%8A%A8%E7%94%9F%E6%88%90%E9%85%8D%E7%BD%AE"><span class="toc-text">2. 启动生成配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="toc-text">3. 修改配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%AD%97%E6%AE%B5%E5%AF%B9%E7%85%A7%E8%A1%A8"><span class="toc-text">常用字段对照表</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E4%B8%8E%E8%B5%84%E6%BA%90"><span class="toc-text">工具与资源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E8%A1%A5%E4%B8%81%E5%B7%A5%E5%85%B7"><span class="toc-text">自动化补丁工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E8%A1%A5%E4%B8%81%E5%B7%A5%E5%85%B7"><span class="toc-text">其他补丁工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E8%AE%BA%E5%9D%9B"><span class="toc-text">资源论坛</span></a></li></ol></li></ol></div>
   <div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M8 10.5h8M8 14h5.5M17 3.338A9.95 9.95 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.63 1.63 0 0 1 1.149.133A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"/></svg><span>参与讨论</span></a></div>
 </widget>
 
