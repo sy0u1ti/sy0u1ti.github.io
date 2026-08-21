@@ -1,3 +1,16 @@
+/* =======================================================
+   0. Global Wallpaper & Atmospheric Canvas
+   ======================================================= */
+body {
+  background-image: 
+    linear-gradient(rgba(14, 18, 26, 0.68), rgba(14, 18, 26, 0.68)),
+    url('https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/mrito_commission_143759824_p2.9gx8zqx8c3.jpg') !important;
+  background-position: center center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+}
+
 @font-face {
   font-family: ZhuZiAYuanJWD;
   src: url(https://npm.elemecdn.com/anzhiyu-blog@1.1.6/fonts/ZhuZiAWan.woff2);
@@ -73,8 +86,19 @@
   will-change: transform !important;
 }
 
-[data-theme="dark"] .post-card {
-  border: 1px solid rgba(255, 255, 255, 0.06);
+[data-theme="dark"] .post-card,
+[data-theme="dark"] .card-hover {
+  background: rgba(22, 28, 38, 0.78) !important;
+  backdrop-filter: blur(20px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(140%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme="dark"] .navbar-blur {
+  background: rgba(22, 28, 38, 0.78) !important;
+  backdrop-filter: blur(20px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(140%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
 [data-theme="dark"] .post-card:hover,
@@ -185,7 +209,7 @@
   left: 24px !important;
   right: 24px !important;
   border-radius: 20px !important;
-  background-image: url('https://res.xaox.cc/gh/cdn-x/placeholder@1.0.13/image/sidebar-bg1@small.jpg') !important;
+  background-image: url('https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/mrito_commission_143759824_p2.9gx8zqx8c3.jpg') !important;
   background-position: center !important;
   background-size: cover !important;
   filter: saturate(180%) blur(90px) !important;

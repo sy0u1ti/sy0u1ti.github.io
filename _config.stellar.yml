@@ -24,8 +24,8 @@ canonical:
 
 inject:
   head:
-    - '<script defer src="/js/plugins/card-hover.js?v=20260821j"></script>'
-    - '<link rel="stylesheet" href="/css/stellar-overrides.css?v=20260821j">'
+    - '<script defer src="/js/plugins/card-hover.js?v=20260821k"></script>'
+    - '<link rel="stylesheet" href="/css/stellar-overrides.css?v=20260821k">'
 
 
 ######## Sidebar ########
@@ -625,7 +625,7 @@ style:
     # 启用原生彩色发光背景
     ui-style: glass
     background-color: var(--card)
-    background-image: url(https://res.xaox.cc/gh/cdn-x/placeholder@1.0.13/image/sidebar-bg1@small.jpg)
+    background-image: url(https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/mrito_commission_143759824_p2.9gx8zqx8c3.jpg)
     blur-px: 100px
     blur-bg: var(--bg-a60)
     background-opacity: 0.85
