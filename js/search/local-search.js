@@ -129,23 +129,60 @@ var searchFunc = function(path, filter, wrapperId, searchId, contentId) {
     });
   }
 
-  // 构建单条搜索结果 DOM
+  function escapeHtml(text) {
+    var map = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#039;'
+    };
+    return String(text || '').replace(/[&<>"']/g, function(m) { return map[m]; });
+  }
+
+  function highlightKeywords(text, pairs) {
+    if (!text) return '';
+    var validKws = pairs.map(function(p) { return escapeRegExp(p.kw); }).filter(Boolean);
+    if (!validKws.length) return text;
+    var regS = new RegExp('(' + validKws.join('|') + ')', 'gi');
+    return text.replace(regS, function(match) {
+      return '<span class="search-keyword">' + match + '</span>';
+    });
+  }
+
+  // 构建单条搜索结果 DOM（修复空 a 标签与悬浮碰撞箱错位 Bug）
   function buildResultElement(dataTitle, sectionName, secText, secFirst, pairs, href) {
     const li = document.createElement('li');
 
-    // 文章标题位于链接上方，不参与跳转
+    // 纯标题匹配（无正文/章节匹配）：直接包裹在 a 标签内，碰撞箱与文字完美重合
+    if (!sectionName && (!secText || secFirst < 0)) {
+      const a = document.createElement('a');
+      a.href = href;
+      a.className = 'search-result-card title-only';
+
+      const titleSpan = document.createElement('span');
+      titleSpan.className = 'search-result-title in-card';
+      titleSpan.innerHTML = highlightKeywords(escapeHtml(dataTitle), pairs);
+      a.appendChild(titleSpan);
+
+      li.appendChild(a);
+      return li;
+    }
+
+    // 含有章节/正文匹配：顶部显示文章归属，下方卡片承载匹配章节与高亮摘要
     const titleSpan = document.createElement('span');
     titleSpan.className = 'search-result-title';
-    titleSpan.textContent = dataTitle;
+    titleSpan.innerHTML = highlightKeywords(escapeHtml(dataTitle), pairs);
     li.appendChild(titleSpan);
 
     const a = document.createElement('a');
     a.href = href;
+    a.className = 'search-result-card';
 
     if (sectionName) {
       const sectionSpan = document.createElement('span');
       sectionSpan.className = 'search-result-section';
-      sectionSpan.textContent = sectionName;
+      sectionSpan.innerHTML = highlightKeywords(escapeHtml(sectionName), pairs);
       a.appendChild(sectionSpan);
     }
 
@@ -153,12 +190,8 @@ var searchFunc = function(path, filter, wrapperId, searchId, contentId) {
       var start = Math.max(0, secFirst - 20);
       var end = Math.min(secText.length, secFirst + 80);
       if (start === 0) end = 100;
-      var matchContent = secText.substring(start, end);
-
-      var regS = new RegExp(pairs.map(function(p) { return escapeRegExp(p.kw); }).join("|"), "gi");
-      matchContent = matchContent.replace(regS, function(keyword) {
-        return "<span class=\"search-keyword\">" + keyword + "</span>";
-      });
+      var matchContent = escapeHtml(secText.substring(start, end));
+      matchContent = highlightKeywords(matchContent, pairs);
 
       const para = document.createElement('p');
       para.className = 'search-result-content';
