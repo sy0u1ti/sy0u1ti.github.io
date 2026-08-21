@@ -5,6 +5,7 @@ const path = require('node:path');
 
 const overrides = [
   ['layout/archive.ejs', 'theme-overrides/layout/archive.ejs'],
+  ['layout/index.ejs', 'theme-overrides/layout/index.ejs'],
   ['layout/categories.ejs', 'theme-overrides/layout/categories.ejs'],
   ['layout/_partial/main/article/article_footer.ejs', 'theme-overrides/layout/_partial/main/article/article_footer.ejs'],
   ['source/js/search/local-search.js', 'theme-overrides/source/js/search/local-search.js']
