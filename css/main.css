@@ -8689,16 +8689,16 @@ details.toc[open] >div.body section .header+.doc_tree {
   background-position: center;
   background-size: cover;
   --inset: 32px;
-  --background-opacity: 0.8;
-  background-image: url("https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.13/image/sidebar-bg1@small.jpg");
+  --background-opacity: 0.85;
+  background-image: url("https://res.xaox.cc/gh/cdn-x/placeholder@1.0.13/image/sidebar-bg1@small.jpg");
   filter: saturate(var(--saturate)) blur(var(--blur-px)) opacity(var(--background-opacity));
 }
 :root[data-theme="dark"] .l_left .sidebg {
-  --background-opacity: 0.6;
+  --background-opacity: 0.6375;
 }
 @media screen and (prefers-color-scheme: dark) {
   :root:not([data-theme]) .l_left .sidebg {
-    --background-opacity: 0.6;
+    --background-opacity: 0.6375;
   }
 }
 .l_left .leftbar-container {
