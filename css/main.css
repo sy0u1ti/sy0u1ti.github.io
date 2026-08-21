@@ -3238,16 +3238,19 @@ div.toast.show {
 }
 .l_cover.wiki-hero .wiki-cover-background.image .wiki-cover-background-overlay {
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   inset: 0;
   pointer-events: none;
   background: linear-gradient(to bottom, transparent 0%, transparent 80%, var(--background) 100%);
 }
-.l_cover.wiki-hero .wiki-cover-background.galaxy {
+.l_cover.wiki-hero .wiki-cover-background.galaxy:not(.image) {
   background: #000;
 }
 .l_cover.wiki-hero .wiki-cover-background.galaxy canvas {
   display: block;
+  position: absolute;
+  z-index: 2;
+  inset: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
@@ -3388,8 +3391,8 @@ div.toast.show {
   color: var(--text-banner, var(--text));
   background: var(--text-banner, var(--text));
 }
-.l_cover.wiki-hero .wiki-cover-actions a.button.wiki-cover-source svg,
-.l_cover.wiki-hero .wiki-cover-actions a.button.wiki-cover-source span {
+.l_cover.wiki-hero .wiki-cover-actions a.button.wiki-cover-source > svg,
+.l_cover.wiki-hero .wiki-cover-actions a.button.wiki-cover-source > span:not(.card-hover__spotlight) {
   filter: invert(1);
 }
 .l_cover.wiki-hero .wiki-cover-actions a.button.wiki-cover-source:hover {
@@ -8433,12 +8436,18 @@ details.toc[open] >div.body section .header+.doc_tree {
   opacity: 1;
 }
 .search-wrapper .search-input {
+  -webkit-appearance: none;
+  appearance: none;
   width: 100%;
   box-sizing: border-box;
   font-family: system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif;
   font-size: calc(var(--fs-content-base) - 2px);
   padding: 12px 0;
   color: var(--text);
+}
+.search-wrapper .search-input::-webkit-search-cancel-button,
+.search-wrapper .search-input::-webkit-search-decoration {
+  -webkit-appearance: none;
 }
 .search-wrapper .search-input::placeholder {
   color: var(--text-p3);
@@ -8459,6 +8468,7 @@ details.toc[open] >div.body section .header+.doc_tree {
   flex-shrink: 0;
   width: 1.5rem;
   height: 1.5rem;
+  cursor: pointer;
 }
 .search-wrapper .search-button svg {
   height: 1rem;
@@ -8518,18 +8528,11 @@ details.toc[open] >div.body section .header+.doc_tree {
 }
 .search-wrapper #search-result li a {
   display: block;
-  background: var(--ui-summary-item-bg);
+  background: var(--ui-adapter-bg-hover);
+  box-shadow: var(--ui-adapter-shadow-hover);
   line-height: 1.2;
   padding: 0.75rem 1rem;
   border-radius: 12px;
-  transition: background 0.2s ease-out;
-  -moz-transition: background 0.2s ease-out;
-  -webkit-transition: background 0.2s ease-out;
-  -o-transition: background 0.2s ease-out;
-}
-.search-wrapper #search-result li a:hover {
-  background: var(--ui-adapter-bg-hover);
-  box-shadow: var(--ui-adapter-shadow-hover);
 }
 .search-wrapper #search-result li a:focus-visible {
   outline: 2px solid var(--theme);
@@ -10055,38 +10058,6 @@ details.toc[open] >div.body section .header+.doc_tree {
   .md-text.error-page {
     margin-top: 4rem;
   }
-}
-.md-text .tag-list {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0;
-  margin-top: 2rem;
-}
-.md-text .tag-list a.tag {
-  display: inline-flex;
-  align-items: center;
-  position: relative;
-  color: var(--text-p2);
-  margin: 4px;
-  padding: 0.5em 0.75rem;
-  border-radius: 4px;
-  background: var(--block);
-  font-size: calc(var(--fs-content-base) - 3px);
-  font-weight: 500;
-}
-.md-text .tag-list a.tag:before {
-  content: "#";
-  margin-left: -2px;
-  margin-right: 2px;
-  opacity: 0.4;
-}
-.md-text .tag-list a.tag:hover {
-  color: var(--text);
-  background: var(--block-border);
-}
-.md-text .tag-list a.tag:hover:before {
-  color: var(--theme);
-  opacity: 1;
 }
 .post-list .post-card .meta.cap .tag:before {
   content: "#";
