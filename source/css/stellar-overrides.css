@@ -48,28 +48,44 @@
 }
 
 /* =======================================================
-   3. 3D Card Hover & Dynamic Spotlight Physics
+   3. Real 3D Tilt Physics & Dynamic Spotlight
    ======================================================= */
-.post-card-wrap {
+.post-list .post-card-wrap {
   perspective: 1000px !important;
 }
 
-.post-card {
+.post-card,
+.card-hover {
   position: relative !important;
+  --card-hover-mouse-x: 50%;
+  --card-hover-mouse-y: 50%;
+  --card-hover-rotate-x: 0deg;
+  --card-hover-rotate-y: 0deg;
   transform-style: preserve-3d !important;
-  will-change: transform, box-shadow !important;
+  transform: perspective(1000px) translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg);
   transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.25s ease !important;
 }
 
-[data-theme="dark"] .post-card,
-[data-theme="dark"] .article {
+.post-card.is-card-hover-active,
+.card-hover.is-card-hover-active {
+  transform: perspective(1000px) translate3d(0, -6px, 16px) rotateX(var(--card-hover-rotate-x, 0deg)) rotateY(var(--card-hover-rotate-y, 0deg)) !important;
+  transition-duration: 50ms, 0.2s, 0.2s !important;
+  will-change: transform !important;
+}
+
+[data-theme="dark"] .post-card {
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 [data-theme="dark"] .post-card:hover,
-.post-card.is-card-hover-active {
+[data-theme="dark"] .post-card.is-card-hover-active {
   border-color: rgba(99, 179, 237, 0.45) !important;
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.55), 0 0 20px 0 rgba(59, 130, 246, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6), 0 0 24px 0 rgba(59, 130, 246, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.12) !important;
+}
+
+:root[data-theme="light"] .post-card:hover,
+:root[data-theme="light"] .post-card.is-card-hover-active {
+  box-shadow: 0 16px 32px -6px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.06) !important;
 }
 
 .card-hover__spotlight {
@@ -77,7 +93,7 @@
   inset: 0;
   z-index: 2;
   border-radius: inherit;
-  background: radial-gradient(circle at var(--card-hover-mouse-x, 50%) var(--card-hover-mouse-y, 50%), rgba(255, 255, 255, 0.18), transparent 60%);
+  background: radial-gradient(circle 280px at var(--card-hover-mouse-x, 50%) var(--card-hover-mouse-y, 50%), rgba(255, 255, 255, 0.16), transparent 70%);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.25s ease-out;
