@@ -92,7 +92,8 @@
   }
 
   function initAllCards() {
-    const targets = document.querySelectorAll('.post-card, .wiki-card, .link-card, .card-hover');
+    // Skip topic cards: they are very tall and 3D tilt looks disorienting on them.
+    const targets = document.querySelectorAll('.post-card:not(.topic), .wiki-card, .link-card, .card-hover');
     targets.forEach(bindCardHover);
   }
 
