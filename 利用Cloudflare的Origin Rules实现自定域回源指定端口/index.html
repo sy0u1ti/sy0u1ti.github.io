@@ -19,11 +19,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
-  <title>利用Cloudflare的Origin Rules实现自定域回源指定端口 - 白上賞一</title>
+  <title>利用 Cloudflare Origin Rules 实现自定义域名回源指定端口 - 白上賞一</title>
 
   <meta name="description" content="转载自 https:&#x2F;&#x2F;link.syouiti.com&#x2F;cf-origin-rules归档 通过添加Cloudflare的Origin Rules回源规则，可以将源服务器上的某个端口服务交由Cloudflare所绑定的自定义域名的CDN所反代，实现指定端口转发。 这里使用docker在源服务器上部署了Vocechat服务，而docker对外访问端口是3019。在没有绑定域名的情况下，默认只能使用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="利用Cloudflare的Origin Rules实现自定域回源指定端口">
+<meta property="og:title" content="利用 Cloudflare Origin Rules 实现自定义域名回源指定端口">
 <meta property="og:url" content="https://blog.syouiti.com/%E5%88%A9%E7%94%A8Cloudflare%E7%9A%84Origin%20Rules%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E5%9F%9F%E5%9B%9E%E6%BA%90%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3/">
 <meta property="og:site_name" content="白上賞一">
 <meta property="og:description" content="转载自 https:&#x2F;&#x2F;link.syouiti.com&#x2F;cf-origin-rules归档 通过添加Cloudflare的Origin Rules回源规则，可以将源服务器上的某个端口服务交由Cloudflare所绑定的自定义域名的CDN所反代，实现指定端口转发。 这里使用docker在源服务器上部署了Vocechat服务，而docker对外访问端口是3019。在没有绑定域名的情况下，默认只能使用">
@@ -36,7 +36,7 @@
 <meta property="article:tag" content="反代">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://hyrikuma-akari.top/images/cf-origin-rules/docker-port.png">
-<meta name="twitter:creator" content="@Syou1Ti"><meta name="twitter:title" content="利用Cloudflare的Origin Rules实现自定域回源指定端口">
+<meta name="twitter:creator" content="@Syou1Ti"><meta name="twitter:title" content="利用 Cloudflare Origin Rules 实现自定义域名回源指定端口">
   
   
   <meta name="keywords" content="cloudflare,反代">
@@ -54,7 +54,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"白上賞一「しらかみしょういち」","sameAs":[],"image":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png"},"dateCreated":"2024-10-06T16:19:53+00:00","dateModified":"2024-10-06T16:26:23+00:00","datePublished":"2024-10-06T16:19:53+00:00","description":"转载自 https://link.syouiti.com/cf-origin-rules归档\n通过添加Cloudflare的Origin Rules回源规则，可以将源服务器上的某个端口服务交由Cloudflare所绑定的自定义域名的CDN所反代，实现指定端口转发。\n这里使用docker在源服务器上部署了Vocechat服务，而docker对外访问端口是3019。在没有绑定域名的情况下，默认只...","headline":"利用Cloudflare的Origin Rules实现自定域回源指定端口","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.syouiti.com/%E5%88%A9%E7%94%A8Cloudflare%E7%9A%84Origin%20Rules%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E5%9F%9F%E5%9B%9E%E6%BA%90%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3/"},"publisher":{"@type":"Organization","name":"白上賞一「しらかみしょういち」","sameAs":[],"image":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png"}},"url":"https://blog.syouiti.com/%E5%88%A9%E7%94%A8Cloudflare%E7%9A%84Origin%20Rules%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E5%9F%9F%E5%9B%9E%E6%BA%90%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3/","keywords":"cloudflare, 反代","thumbnailUrl":"https://hyrikuma-akari.top/images/cf-origin-rules/docker-port.png","image":["https://hyrikuma-akari.top/images/cf-origin-rules/docker-port.png"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"白上賞一「しらかみしょういち」","sameAs":[],"image":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png"},"dateCreated":"2024-10-06T16:19:53+00:00","dateModified":"2024-10-06T16:26:23+00:00","datePublished":"2024-10-06T16:19:53+00:00","description":"转载自 https://link.syouiti.com/cf-origin-rules归档\n通过添加Cloudflare的Origin Rules回源规则，可以将源服务器上的某个端口服务交由Cloudflare所绑定的自定义域名的CDN所反代，实现指定端口转发。\n这里使用docker在源服务器上部署了Vocechat服务，而docker对外访问端口是3019。在没有绑定域名的情况下，默认只...","headline":"利用 Cloudflare Origin Rules 实现自定义域名回源指定端口","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.syouiti.com/%E5%88%A9%E7%94%A8Cloudflare%E7%9A%84Origin%20Rules%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E5%9F%9F%E5%9B%9E%E6%BA%90%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3/"},"publisher":{"@type":"Organization","name":"白上賞一「しらかみしょういち」","sameAs":[],"image":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png"}},"url":"https://blog.syouiti.com/%E5%88%A9%E7%94%A8Cloudflare%E7%9A%84Origin%20Rules%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E5%9F%9F%E5%9B%9E%E6%BA%90%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3/","keywords":"cloudflare, 反代","thumbnailUrl":"https://hyrikuma-akari.top/images/cf-origin-rules/docker-port.png","image":["https://hyrikuma-akari.top/images/cf-origin-rules/docker-port.png"]}</script>
   <link rel="stylesheet" href="/css/stellar-overrides.css">
 
   <!-- icons.yml 驱动的 CSS 装饰图标 -->
@@ -97,13 +97,13 @@
   <div class="widget-body"><div class="ui-collection" data-layout="list" data-variant="nav" data-density="compact">
   
     
-<a class="ui-collection__item" href="/curator-bookmarks-Chrome%E6%9C%AC%E5%9C%B0%E4%B9%A6%E7%AD%BE%E7%AE%A1%E7%90%86%E6%89%A9%E5%B1%95/" title="Curator（策书）：一个本地优先的 Chrome 书签管理与 AI 整理扩展">
+<a class="ui-collection__item" href="/curator-bookmarks-Chrome%E6%9C%AC%E5%9C%B0%E4%B9%A6%E7%AD%BE%E7%AE%A1%E7%90%86%E6%89%A9%E5%B1%95/" title="Curator（策书）：本地优先的 Chrome 书签管理与 AI 整理扩展">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">Curator（策书）：一个本地优先的 Chrome 书签管理与 AI 整理扩展</span>
+      <span class="ui-collection__title">Curator（策书）：本地优先的 Chrome 书签管理与 AI 整理扩展</span>
       
       
     </span>
@@ -115,31 +115,13 @@
 
   
     
-<a class="ui-collection__item" href="/201-%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%20Microsoft%20%E6%BF%80%E6%B4%BB%E8%84%9A%E6%9C%AC%20(%20%E9%87%87%E7%94%A8%E6%96%B0%E6%96%B9%E6%B3%95%E9%87%8D%E6%96%B0%E6%94%AF%E6%8C%81%20HWID%20%E6%BF%80%E6%B4%BB/" title="开源项目 Microsoft 激活脚本 (MAS) 采用新方法重新支持 HWID 激活">
+<a class="ui-collection__item" href="/201-%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%20Microsoft%20%E6%BF%80%E6%B4%BB%E8%84%9A%E6%9C%AC%20(%20%E9%87%87%E7%94%A8%E6%96%B0%E6%96%B9%E6%B3%95%E9%87%8D%E6%96%B0%E6%94%AF%E6%8C%81%20HWID%20%E6%BF%80%E6%B4%BB/" title="Microsoft 激活脚本 (MAS) 采用新方法重新支持 HWID 激活">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">开源项目 Microsoft 激活脚本 (MAS) 采用新方法重新支持 HWID 激活</span>
-      
-      
-    </span>
-  
-  
-  
-  
-</a>
-
-  
-    
-<a class="ui-collection__item" href="/244-Clash%20for%20Windows%20%E5%BC%80%E5%8F%91%E8%80%85%E5%88%A0%E9%99%A4%20Github%20%E5%AF%B9%E5%BA%94%E4%BB%93%E5%BA%93/" title="Clash for Windows 开发者删除 Github 对应仓库，并在频道宣布停止更新">
-  
-  
-  
-    <span class="ui-collection__content">
-      
-      <span class="ui-collection__title">Clash for Windows 开发者删除 Github 对应仓库，并在频道宣布停止更新</span>
+      <span class="ui-collection__title">Microsoft 激活脚本 (MAS) 采用新方法重新支持 HWID 激活</span>
       
       
     </span>
@@ -169,13 +151,13 @@
 
   
     
-<a class="ui-collection__item" href="/59-%E7%BB%9D%E5%AF%B9%E5%B9%B2%E8%B4%A7%E7%9A%84Twitter%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A7/" title="绝对干货的Twitter搜索技巧">
+<a class="ui-collection__item" href="/244-Clash%20for%20Windows%20%E5%BC%80%E5%8F%91%E8%80%85%E5%88%A0%E9%99%A4%20Github%20%E5%AF%B9%E5%BA%94%E4%BB%93%E5%BA%93/" title="Clash for Windows 开发者删除 GitHub 仓库并宣布停止更新">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">绝对干货的Twitter搜索技巧</span>
+      <span class="ui-collection__title">Clash for Windows 开发者删除 GitHub 仓库并宣布停止更新</span>
       
       
     </span>
@@ -187,13 +169,31 @@
 
   
     
-<a class="ui-collection__item" href="/%E6%B8%B8%E6%88%8F%E7%A0%B4%E8%A7%A3%E6%8C%87%E5%8D%97/" title="游戏破解指南">
+<a class="ui-collection__item" href="/59-%E7%BB%9D%E5%AF%B9%E5%B9%B2%E8%B4%A7%E7%9A%84Twitter%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A7/" title="Twitter (X) 搜索技巧与高级语法指南">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">游戏破解指南</span>
+      <span class="ui-collection__title">Twitter (X) 搜索技巧与高级语法指南</span>
+      
+      
+    </span>
+  
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item" href="/%E6%B8%B8%E6%88%8F%E7%A0%B4%E8%A7%A3%E6%8C%87%E5%8D%97/" title="Steam 游戏破解与联机补丁指南">
+  
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">Steam 游戏破解与联机补丁指南</span>
       
       
     </span>
@@ -232,7 +232,7 @@
     <div class="bottom only-title">
       
       <div class="text-area">
-        <h1 class="text title"><span>利用Cloudflare的Origin Rules实现自定域回源指定端口</span></h1>
+        <h1 class="text title"><span>利用 Cloudflare Origin Rules 实现自定义域名回源指定端口</span></h1>
         
       </div>
     </div>
@@ -269,7 +269,7 @@
       <div class="header"><span>分享文章</span></div>
       <div class="body">
         <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https:&#x2F;&#x2F;blog.syouiti.com&#x2F;%E5%88%A9%E7%94%A8Cloudflare%E7%9A%84Origin%20Rules%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E5%9F%9F%E5%9B%9E%E6%BA%90%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3&#x2F;" /></div>
-        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fblog.syouiti.com%2F%25E5%2588%25A9%25E7%2594%25A8Cloudflare%25E7%259A%2584Origin%2520Rules%25E5%25AE%259E%25E7%258E%25B0%25E8%2587%25AA%25E5%25AE%259A%25E5%259F%259F%25E5%259B%259E%25E6%25BA%2590%25E6%258C%2587%25E5%25AE%259A%25E7%25AB%25AF%25E5%258F%25A3%2F&title=%E5%88%A9%E7%94%A8Cloudflare%E7%9A%84Origin%20Rules%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E5%9F%9F%E5%9B%9E%E6%BA%90%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3%20-%20%E7%99%BD%E4%B8%8A%E8%B3%9E%E4%B8%80&summary=%E8%BD%AC%E8%BD%BD%E8%87%AA%20https%3A%2F%2Flink.syouiti.com%2Fcf-origin-rules%E5%BD%92%E6%A1%A3%0A%E9%80%9A%E8%BF%87%E6%B7%BB%E5%8A%A0Cloudflare%E7%9A%84Origin%20Rules%E5%9B%9E%E6%BA%90%E8%A7%84%E5%88%99%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%B0%86%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84%E6%9F%90%E4%B8%AA%E7%AB%AF%E5%8F%A3%E6%9C%8D%E5%8A%A1%E4%BA%A4%E7%94%B1Cloudflare%E6%89%80%E7%BB%91%E5%AE%9A%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E7%9A%84C..."><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/80c07e4dbb303.svg" /></a><a class="social share-item email" href="mailto:?subject=%E5%88%A9%E7%94%A8Cloudflare%E7%9A%84Origin%20Rules%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E5%9F%9F%E5%9B%9E%E6%BA%90%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3%20-%20%E7%99%BD%E4%B8%8A%E8%B3%9E%E4%B8%80&amp;body=https%3A%2F%2Fblog.syouiti.com%2F%25E5%2588%25A9%25E7%2594%25A8Cloudflare%25E7%259A%2584Origin%2520Rules%25E5%25AE%259E%25E7%258E%25B0%25E8%2587%25AA%25E5%25AE%259A%25E5%259F%259F%25E5%259B%259E%25E6%25BA%2590%25E6%258C%2587%25E5%25AE%259A%25E7%25AB%25AF%25E5%258F%25A3%2F"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/a1b00e20f425d.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
+        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fblog.syouiti.com%2F%25E5%2588%25A9%25E7%2594%25A8Cloudflare%25E7%259A%2584Origin%2520Rules%25E5%25AE%259E%25E7%258E%25B0%25E8%2587%25AA%25E5%25AE%259A%25E5%259F%259F%25E5%259B%259E%25E6%25BA%2590%25E6%258C%2587%25E5%25AE%259A%25E7%25AB%25AF%25E5%258F%25A3%2F&title=%E5%88%A9%E7%94%A8%20Cloudflare%20Origin%20Rules%20%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E5%9B%9E%E6%BA%90%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3%20-%20%E7%99%BD%E4%B8%8A%E8%B3%9E%E4%B8%80&summary=%E8%BD%AC%E8%BD%BD%E8%87%AA%20https%3A%2F%2Flink.syouiti.com%2Fcf-origin-rules%E5%BD%92%E6%A1%A3%0A%E9%80%9A%E8%BF%87%E6%B7%BB%E5%8A%A0Cloudflare%E7%9A%84Origin%20Rules%E5%9B%9E%E6%BA%90%E8%A7%84%E5%88%99%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%B0%86%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84%E6%9F%90%E4%B8%AA%E7%AB%AF%E5%8F%A3%E6%9C%8D%E5%8A%A1%E4%BA%A4%E7%94%B1Cloudflare%E6%89%80%E7%BB%91%E5%AE%9A%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E7%9A%84C..."><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/80c07e4dbb303.svg" /></a><a class="social share-item email" href="mailto:?subject=%E5%88%A9%E7%94%A8%20Cloudflare%20Origin%20Rules%20%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E5%9B%9E%E6%BA%90%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3%20-%20%E7%99%BD%E4%B8%8A%E8%B3%9E%E4%B8%80&amp;body=https%3A%2F%2Fblog.syouiti.com%2F%25E5%2588%25A9%25E7%2594%25A8Cloudflare%25E7%259A%2584Origin%2520Rules%25E5%25AE%259E%25E7%258E%25B0%25E8%2587%25AA%25E5%25AE%259A%25E5%259F%259F%25E5%259B%259E%25E6%25BA%2590%25E6%258C%2587%25E5%25AE%259A%25E7%25AB%25AF%25E5%258F%25A3%2F"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/a1b00e20f425d.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
         
         <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
           <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https%3A%2F%2Fblog.syouiti.com%2F%25E5%2588%25A9%25E7%2594%25A8Cloudflare%25E7%259A%2584Origin%2520Rules%25E5%25AE%259E%25E7%258E%25B0%25E8%2587%25AA%25E5%25AE%259A%25E5%259F%259F%25E5%259B%259E%25E6%25BA%2590%25E6%258C%2587%25E5%25AE%259A%25E7%25AB%25AF%25E5%258F%25A3%2F"/>
@@ -279,7 +279,7 @@
     </section>
     </div>
 
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/%E5%BC%80%E6%BA%90%EF%BC%81%E5%85%8D%E8%B4%B9%EF%BC%81%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E7%9A%84%E9%9B%B7%E6%80%BB%E5%A3%B0%E7%BA%BF%EF%BC%81/">开源！免费！本地部署的雷总声线！</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/Mac%EF%BC%9A%E7%BB%88%E6%9E%81%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/">Mac：终极配置教程</a></div></section></div>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/%E5%BC%80%E6%BA%90%EF%BC%81%E5%85%8D%E8%B4%B9%EF%BC%81%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E7%9A%84%E9%9B%B7%E6%80%BB%E5%A3%B0%E7%BA%BF%EF%BC%81/">开源免费：本地部署雷总声线语音模型 (VITS)</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/Mac%EF%BC%9A%E7%BB%88%E6%9E%81%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/">Mac 终极配置与装机优化教程</a></div></section></div>
 
 
 
