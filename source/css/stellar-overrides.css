@@ -136,3 +136,65 @@ a.bangumi-tab {
   overflow: hidden;
   white-space: nowrap;
 }
+/* Search Result Dropdown Polish & Hitbox Alignment Fix */
+#search-result .search-result-list {
+  padding: 0;
+  margin: 8px 0;
+  list-style: none;
+}
+
+#search-result .search-result-list li {
+  margin-top: 8px;
+}
+
+#search-result .search-result-title {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.8125rem;
+  color: var(--text-p2);
+  padding: 0.35rem 0.75rem 0.2rem;
+  opacity: 0.85;
+}
+
+#search-result .search-result-card {
+  display: block;
+  background: var(--ui-summary-item-bg, rgba(255, 255, 255, 0.04));
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  line-height: 1.4;
+  text-decoration: none !important;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+#search-result .search-result-card:hover {
+  background: var(--ui-adapter-bg-hover, rgba(255, 255, 255, 0.1));
+  box-shadow: var(--ui-adapter-shadow-hover, 0 4px 12px rgba(0, 0, 0, 0.2));
+  transform: translateY(-1px);
+}
+
+#search-result .search-result-card.title-only {
+  padding: 0.65rem 0.9rem;
+}
+
+#search-result .search-result-card.title-only .search-result-title.in-card {
+  display: block;
+  padding: 0;
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-p1);
+  white-space: normal;
+  line-height: 1.35;
+  opacity: 1;
+}
+
+#search-result .search-keyword {
+  color: var(--theme, #3b82f6) !important;
+  border-bottom: 1.5px solid var(--theme, #3b82f6) !important;
+  font-weight: 700;
+  background: rgba(59, 130, 246, 0.15);
+  padding: 0 2px;
+  border-radius: 3px;
+}
