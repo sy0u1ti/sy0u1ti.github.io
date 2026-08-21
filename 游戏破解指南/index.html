@@ -1,0 +1,991 @@
+
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark">
+
+<head><!-- hexo injector head_begin start -->
+<link rel="stylesheet" href="/css/bilicard.css">
+<!-- hexo injector head_begin end -->
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.43.1" theme-name="Stellar" theme-version="1.43.1">
+  <link rel="canonical" href="https://blog.syouiti.com/%E6%B8%B8%E6%88%8F%E7%A0%B4%E8%A7%A3%E6%8C%87%E5%8D%97/">
+  
+  <meta name="generator" content="Hexo 8.1.2">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  <title>游戏破解指南 - 白上賞一</title>
+
+  <meta name="description" content="Windows 下 Steam 游戏补丁与联机修复的完整流程：Unsteam 方案（在线联机）与 GBE Fork 方案（离线&#x2F;局域网），以及 EOS 联机的配置方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="游戏破解指南">
+<meta property="og:url" content="https://blog.syouiti.com/%E6%B8%B8%E6%88%8F%E7%A0%B4%E8%A7%A3%E6%8C%87%E5%8D%97/">
+<meta property="og:site_name" content="白上賞一">
+<meta property="og:description" content="Windows 下 Steam 游戏补丁与联机修复的完整流程：Unsteam 方案（在线联机）与 GBE Fork 方案（离线&#x2F;局域网），以及 EOS 联机的配置方法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png">
+<meta property="article:published_time" content="2026-08-20T15:30:52.000Z">
+<meta property="article:modified_time" content="2026-08-20T15:30:52.000Z">
+<meta property="article:author" content="白上賞一「しらかみしょういち」">
+<meta property="article:tag" content="Epic">
+<meta property="article:tag" content="Pirated Game">
+<meta property="article:tag" content="Steam">
+<meta property="article:tag" content="游戏">
+<meta property="article:tag" content="破解">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png">
+<meta name="twitter:creator" content="@Syou1Ti"><meta name="twitter:title" content="游戏破解指南">
+  
+  
+  <meta name="keywords" content="Steam,Pirated Game,Epic,游戏,破解">
+
+  <!-- feed -->
+  
+
+  <link rel="preload" href="/css/main.css?v=1.43.1" as="style">
+  <link rel="stylesheet" href="/css/main.css?v=1.43.1">
+
+
+  
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png">
+  
+
+  
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"白上賞一「しらかみしょういち」","sameAs":[],"image":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png"},"dateCreated":"2026-08-20T15:30:52+00:00","dateModified":"2026-08-20T15:30:52+00:00","datePublished":"2026-08-20T15:30:52+00:00","description":"Steam 游戏的破解（打补丁）思路分两类：需要在线联机用 Unsteam，只玩单机或局域网用 GBE Fork。游戏自身通过 Epic Online Services（EOS）联机时，两个方案都要再配一个 Nemirtingas Epic Emulator 处理 EOS 层（见「EOS 联机」一节）。\n前置准备\nUnsteam —— 联机补丁（需 Steam 客户端运行）\nGBE Fork...","headline":"游戏破解指南","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.syouiti.com/%E6%B8%B8%E6%88%8F%E7%A0%B4%E8%A7%A3%E6%8C%87%E5%8D%97/"},"publisher":{"@type":"Organization","name":"白上賞一「しらかみしょういち」","sameAs":[],"image":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png"}},"url":"https://blog.syouiti.com/%E6%B8%B8%E6%88%8F%E7%A0%B4%E8%A7%A3%E6%8C%87%E5%8D%97/","keywords":"Steam, Pirated Game, Epic, 游戏, 破解","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"]}</script>
+  <link rel="stylesheet" href="/css/stellar-overrides.css">
+
+  <!-- icons.yml 驱动的 CSS 装饰图标 -->
+  
+  
+  <style>:root {
+  --icon-h3-left: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2024%2024%22%3E%3C!--%20Icon%20from%20Solar%20by%20480%20Design%20-%20https%3A%2F%2Fcreativecommons.org%2Flicenses%2Fby%2F4.0%2F%20--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M17.75%2019a.75.75%200%200%201-1.32.488l-6-7a.75.75%200%200%201%200-.976l6-7A.75.75%200%200%201%2017.75%205z%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20fill%3D%22currentColor%22%20fill-rule%3D%22evenodd%22%20d%3D%22M13.488%2019.57a.75.75%200%200%200%20.081-1.058L7.988%2012l5.581-6.512a.75.75%200%201%200-1.138-.976l-6%207a.75.75%200%200%200%200%20.976l6%207a.75.75%200%200%200%201.057.082%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E");
+  --icon-h3-right: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2024%2024%22%3E%3C!--%20Icon%20from%20Solar%20by%20480%20Design%20-%20https%3A%2F%2Fcreativecommons.org%2Flicenses%2Fby%2F4.0%2F%20--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M6.25%2019a.75.75%200%200%200%201.32.488l6-7a.75.75%200%200%200%200-.976l-6-7A.75.75%200%200%200%206.25%205z%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20fill%3D%22currentColor%22%20fill-rule%3D%22evenodd%22%20d%3D%22M10.512%2019.57a.75.75%200%200%201-.081-1.058L16.012%2012l-5.581-6.512a.75.75%200%201%201%201.139-.976l6%207a.75.75%200%200%201%200%20.976l-6%207a.75.75%200%200%201-1.058.082%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E");
+  --icon-quote-left: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2024%2024%22%3E%3C!--%20Icon%20from%20BoxIcons%20Solid%20by%20Atisa%20-%20https%3A%2F%2Fcreativecommons.org%2Flicenses%2Fby%2F4.0%2F%20--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M3.691%206.292C5.094%204.771%207.217%204%2010%204h1v2.819l-.804.161c-1.37.274-2.323.813-2.833%201.604A2.9%202.9%200%200%200%206.925%2010H10a1%201%200%200%201%201%201v7c0%201.103-.897%202-2%202H3a1%201%200%200%201-1-1v-5l.003-2.919c-.009-.111-.199-2.741%201.688-4.789M20%2020h-6a1%201%200%200%201-1-1v-5l.003-2.919c-.009-.111-.199-2.741%201.688-4.789C16.094%204.771%2018.217%204%2021%204h1v2.819l-.804.161c-1.37.274-2.323.813-2.833%201.604A2.9%202.9%200%200%200%2017.925%2010H21a1%201%200%200%201%201%201v7c0%201.103-.897%202-2%202%22%2F%3E%3C%2Fsvg%3E");
+  --icon-quote-right: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2024%2024%22%3E%3C!--%20Icon%20from%20BoxIcons%20Solid%20by%20Atisa%20-%20https%3A%2F%2Fcreativecommons.org%2Flicenses%2Fby%2F4.0%2F%20--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M20.309%2017.708C22.196%2015.66%2022.006%2013.03%2022%2013V5a1%201%200%200%200-1-1h-6c-1.103%200-2%20.897-2%202v7a1%201%200%200%200%201%201h3.078a2.9%202.9%200%200%201-.429%201.396c-.508.801-1.465%201.348-2.846%201.624l-.803.16V20h1c2.783%200%204.906-.771%206.309-2.292m-11.007%200C11.19%2015.66%2010.999%2013.03%2010.993%2013V5a1%201%200%200%200-1-1h-6c-1.103%200-2%20.897-2%202v7a1%201%200%200%200%201%201h3.078a2.9%202.9%200%200%201-.429%201.396c-.508.801-1.465%201.348-2.846%201.624l-.803.16V20h1c2.783%200%204.906-.771%206.309-2.292%22%2F%3E%3C%2Fsvg%3E");
+  --icon-loading: url("data:image/svg+xml,%3Csvg%20class%3D%22loading%22%20style%3D%22vertical-align%3Amiddle%3Bfill%3AcurrentColor%3Boverflow%3Ahidden%3B%22%20viewBox%3D%220%200%201024%201024%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20p-id%3D%222709%22%3E%3Cpath%20d%3D%22M832%20512c0-176-144-320-320-320V128c211.2%200%20384%20172.8%20384%20384h-64zM192%20512c0%20176%20144%20320%20320%20320v64C300.8%20896%20128%20723.2%20128%20512h64z%22%20p-id%3D%222710%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E");
+}</style>
+  
+</head>
+<body><div id="l_cover"></div><div class="l_body content" id="start" layout="post" type="tech" ><aside class="l_left leftbar-card" data-ui-surface="card"><div class="sidebg"></div><div class="leftbar-container">
+
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" target="_blank" rel="noopener" href="https://home.syouiti.com/#contact"><div class="bg"></div><img no-lazy class="avatar" src="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">白上賞一</div><div class="sub normal cap">运气永在身🎲</div><div class="sub hover cap" style="opacity:0"> 就爱瞎折腾💯</div></a></div></header>
+
+
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+<div class="widgets">
+<svg class="grad-def" width="0" height="0" aria-hidden="true" focusable="false"><defs><linearGradient id="leftbar-active-icon-grad" x1="75%" y1="6.7%" x2="6.7%" y2="125%"><stop offset="20%" style="stop-color:var(--item-theme-light)"/><stop offset="60%" style="stop-color:var(--item-theme)"/></linearGradient></defs></svg>
+<div class="nav-area">
+
+
+</div>
+
+
+
+<widget class="widget-wrapper recent-widget">
+  
+    <div class="widget-header dis-select">
+      <span class="name">最近更新</span>
+      
+    </div>
+  
+  <div class="widget-body"><div class="ui-collection" data-layout="list" data-variant="nav" data-density="compact">
+  
+    
+<a class="ui-collection__item" href="/curator-bookmarks-Chrome%E6%9C%AC%E5%9C%B0%E4%B9%A6%E7%AD%BE%E7%AE%A1%E7%90%86%E6%89%A9%E5%B1%95/" title="Curator（策书）：一个本地优先的 Chrome 书签管理与 AI 整理扩展">
+  
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">Curator（策书）：一个本地优先的 Chrome 书签管理与 AI 整理扩展</span>
+      
+      
+    </span>
+  
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item" href="/201-%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%20Microsoft%20%E6%BF%80%E6%B4%BB%E8%84%9A%E6%9C%AC%20(%20%E9%87%87%E7%94%A8%E6%96%B0%E6%96%B9%E6%B3%95%E9%87%8D%E6%96%B0%E6%94%AF%E6%8C%81%20HWID%20%E6%BF%80%E6%B4%BB/" title="开源项目 Microsoft 激活脚本 (MAS) 采用新方法重新支持 HWID 激活">
+  
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">开源项目 Microsoft 激活脚本 (MAS) 采用新方法重新支持 HWID 激活</span>
+      
+      
+    </span>
+  
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item" href="/244-Clash%20for%20Windows%20%E5%BC%80%E5%8F%91%E8%80%85%E5%88%A0%E9%99%A4%20Github%20%E5%AF%B9%E5%BA%94%E4%BB%93%E5%BA%93/" title="Clash for Windows 开发者删除 Github 对应仓库，并在频道宣布停止更新">
+  
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">Clash for Windows 开发者删除 Github 对应仓库，并在频道宣布停止更新</span>
+      
+      
+    </span>
+  
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item" href="/202%E4%B8%AD%E5%9B%BD%E5%9B%BD%E5%86%85%E8%87%B3%E5%9B%BD%E9%99%85%E9%AA%A8%E5%B9%B2%E7%BA%BF%E8%B7%AF%E6%95%B4%E7%90%86/" title="中国国内至国际骨干 ISP 线路整理">
+  
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">中国国内至国际骨干 ISP 线路整理</span>
+      
+      
+    </span>
+  
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item" href="/59-%E7%BB%9D%E5%AF%B9%E5%B9%B2%E8%B4%A7%E7%9A%84Twitter%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A7/" title="绝对干货的Twitter搜索技巧">
+  
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">绝对干货的Twitter搜索技巧</span>
+      
+      
+    </span>
+  
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item" href="/%E6%B8%B8%E6%88%8F%E7%A0%B4%E8%A7%A3%E6%8C%87%E5%8D%97/" title="游戏破解指南">
+  
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">游戏破解指南</span>
+      
+      
+    </span>
+  
+  
+  
+  
+</a>
+
+  
+</div></div>
+  
+</widget>
+
+
+
+<widget class="widget-wrapper tagcloud"><div class="widget-header dis-select"><span class="name">标签索引</span></div><div class="widget-body fs14"><a href="/tags/AI/" style="font-size: 15px;" class="tag -5">AI</a> <a href="/tags/AI%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90%E5%99%A8/" style="font-size: 12px;" class="tag -0">AI视频生成器</a> <a href="/tags/Epic/" style="font-size: 12px;" class="tag -0">Epic</a> <a href="/tags/Pirated-Game/" style="font-size: 12px;" class="tag -0">Pirated Game</a> <a href="/tags/Sam-Altman/" style="font-size: 12px;" class="tag -0">Sam Altman</a> <a href="/tags/Steam/" style="font-size: 12px;" class="tag -0">Steam</a> <a href="/tags/Telegram%E5%AE%A2%E6%88%B7%E7%AB%AF/" style="font-size: 12px;" class="tag -0">Telegram客户端</a> <a href="/tags/UI%E5%BC%80%E5%8F%91/" style="font-size: 12px;" class="tag -0">UI开发</a> <a href="/tags/X/" style="font-size: 12px;" class="tag -0">X</a> <a href="/tags/ai/" style="font-size: 18px;" class="tag -10">ai</a> <a href="/tags/airpods/" style="font-size: 12px;" class="tag -0">airpods</a> <a href="/tags/anthropic/" style="font-size: 12px;" class="tag -0">anthropic</a> <a href="/tags/apple/" style="font-size: 15px;" class="tag -5">apple</a> <a href="/tags/caddy/" style="font-size: 12px;" class="tag -0">caddy</a> <a href="/tags/chatgpt/" style="font-size: 12px;" class="tag -0">chatgpt</a> <a href="/tags/chrome/" style="font-size: 12px;" class="tag -0">chrome</a> <a href="/tags/clash/" style="font-size: 12px;" class="tag -0">clash</a> <a href="/tags/cloudflare/" style="font-size: 12px;" class="tag -0">cloudflare</a> <a href="/tags/cursor/" style="font-size: 12px;" class="tag -0">cursor</a> <a href="/tags/elon-musk/" style="font-size: 12px;" class="tag -0">elon musk</a> <a href="/tags/gpt/" style="font-size: 12px;" class="tag -0">gpt</a> <a href="/tags/gpts/" style="font-size: 12px;" class="tag -0">gpts</a> <a href="/tags/https/" style="font-size: 12px;" class="tag -0">https</a> <a href="/tags/hwid/" style="font-size: 12px;" class="tag -0">hwid</a></div></widget>
+</div>
+
+</div></aside><div class="l_main" id="main" data-ui-surface="content">
+
+
+
+
+
+
+<div class="article-banner-wrap"><div class="article banner top">
+  <div class="content">
+    
+    <div class="top bread-nav footnote"><div class="top-row"><div class="left" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E7%A7%91%E6%8A%80-%E4%BA%A7%E5%93%81/">科技&产品</a>
+</div></div><div class="meta-row">
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-08-20T15:30:52.000Z">2026-08-20</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-08-20T15:30:52.000Z">2026-08-20</time></span></div>
+</div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>游戏破解指南</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div></div>
+<article class="md-text content"><p>Steam 游戏的破解（打补丁）思路分两类：需要在线联机用 <strong>Unsteam</strong>，只玩单机或局域网用 <strong>GBE Fork</strong>。游戏自身通过 Epic Online Services（EOS）联机时，两个方案都要再配一个 <strong>Nemirtingas Epic Emulator</strong> 处理 EOS 层（见「EOS 联机」一节）。</p>
+<h2 id="前置准备"><a href="#前置准备" class="headerlink" title="前置准备"></a>前置准备</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://cs.rin.ru/forum/viewtopic.php?f=29&amp;t=134707">Unsteam</a> —— 联机补丁（需 Steam 客户端运行）</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Detanup01/gbe_fork">GBE Fork</a> —— 离线/局域网模拟器</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/atom0s/Steamless">Steamless</a> —— SteamDRM 移除工具</li>
+<li><a target="_blank" rel="noopener" href="https://cs.rin.ru/forum/viewtopic.php?f=29&amp;t=105551">Nemirtingas Epic Emulator</a> —— EOS 联机模拟器</li>
+</ul>
+<p>干净的 Steam 游戏文件可在 <a target="_blank" rel="noopener" href="https://cs.rin.ru/forum">CS.RIN.RU</a> 获取，获取方式见文末「工具与资源」。</p>
+<h3 id="查找-Steam-AppID"><a href="#查找-Steam-AppID" class="headerlink" title="查找 Steam AppID"></a>查找 Steam AppID</h3><p>AppID 是游戏在 Steam 商店的编号，两个方案都用得到（Unsteam 的 <code>real_app_id</code>、GBE 的 <code>steam_appid.txt</code>），先查好备用。</p>
+<p>方法：打开游戏的 Steam 商店页，URL 里 <code>/app/</code> 后面那串数字就是。比如 <code>store.steampowered.com/app/3683770/</code> 的 AppID 是 <code>3683770</code>。</p>
+<p>也可以在商店页地址栏直接搜索游戏名，或用 SteamDB（<a target="_blank" rel="noopener" href="https://steamdb.info/">https://steamdb.info</a> ）按游戏名查。</p>
+<h2 id="方案1：Unsteam（在线联机）"><a href="#方案1：Unsteam（在线联机）" class="headerlink" title="方案1：Unsteam（在线联机）"></a>方案1：Unsteam（在线联机）</h2><p>Unsteam 让游戏伪装成 Steam 的免费占位标题 Spacewar（AppID 480）运行，借 Steam 的网络联机。<strong>需要 Steam 客户端登录</strong>；联机对象不限破解玩家。</p>
+<h3 id="1-（可选）用-Steamless-去-DRM"><a href="#1-（可选）用-Steamless-去-DRM" class="headerlink" title="1. （可选）用 Steamless 去 DRM"></a>1. （可选）用 Steamless 去 DRM</h3><p>只有游戏 exe 带 Steam Stub（SteamDRM 包装）才需要这一步。打开 <code>Steamless.exe</code>，拖入游戏可执行文件，点 Unpack File。</p>
+<ul>
+<li>提示 <code>This file dose not appear to be packed with steamstub!</code> 说明没有 Steam 加密，跳过。</li>
+<li>成功会生成 <code>游戏名.unpacked.exe</code>。把原 exe 改名备份（如 <code>游戏名.exe.old</code>），再把 unpacked 版改名为原 exe 名。</li>
+</ul>
+<h3 id="2-部署-Unsteam-并配置"><a href="#2-部署-Unsteam-并配置" class="headerlink" title="2. 部署 Unsteam 并配置"></a>2. 部署 Unsteam 并配置</h3><p>把 <code>unsteam/{x64,x86}/*</code>（一般是 x64）复制到游戏目录，运行 <code>unsteam_loader64.exe</code>，生成 <code>unsteam.ini</code>。关键配置：</p>
+<figure class="highlight ini"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[loader]</span></span><br><span class="line"><span class="attr">exe_file</span>=Game.exe            <span class="comment">; 【必改】游戏可执行文件名</span></span><br><span class="line"><span class="attr">dll_file</span>=unsteam64.dll</span><br><span class="line"></span><br><span class="line"><span class="section">[game]</span></span><br><span class="line"><span class="attr">offline_mode</span>=<span class="number">0</span>               <span class="comment">; 0 = 在线，1 = 强制离线</span></span><br><span class="line"><span class="attr">steam_id</span>=</span><br><span class="line"><span class="attr">player_name</span>=YourName         <span class="comment">; 默认是打包者的名字，建议改掉</span></span><br><span class="line"><span class="attr">real_app_id</span>=replace_that     <span class="comment">; 【必改】游戏的 Steam AppID，获取方法见「前置准备」</span></span><br><span class="line"><span class="attr">fake_app_id</span>=<span class="number">480</span>              <span class="comment">; Spacewar，不用改</span></span><br><span class="line"><span class="attr">language</span>=english</span><br><span class="line"><span class="attr">beta_name</span>=public</span><br><span class="line"><span class="attr">saves_path</span>=saves</span><br><span class="line">game_launch_options=</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="3-（可选）替换-EOS-SDK"><a href="#3-（可选）替换-EOS-SDK" class="headerlink" title="3. （可选）替换 EOS SDK"></a>3. （可选）替换 EOS SDK</h3><p>存在 <code>EOSSDK-Win64-Shipping.dll</code> 时，说明游戏用 EOS 联机，按「EOS 联机」一节处理。</p>
+<h3 id="4-启动"><a href="#4-启动" class="headerlink" title="4. 启动"></a>4. 启动</h3><p>确保 Steam 已登录，两种方式任选：</p>
+<ol>
+<li>直接运行游戏可执行文件。失败一般是 unsteam 版本架构不对，换 x64/x86。</li>
+<li>用 <code>unsteam_loader.exe</code> 启动。</li>
+</ol>
+<p>成功的标志：Steam 状态栏显示正在玩 <strong>Spacewar</strong>。</p>
+<h2 id="方案2：GBE-Fork（离线-局域网）"><a href="#方案2：GBE-Fork（离线-局域网）" class="headerlink" title="方案2：GBE Fork（离线 / 局域网）"></a>方案2：GBE Fork（离线 / 局域网）</h2><p>GBE Fork 直接替换游戏的 <code>steam_api(64).dll</code>，让游戏以为 Steam 在运行。<strong>不依赖 Steam 客户端，但无法在线联机</strong>，只能局域网或同配置玩家间联机。</p>
+<h3 id="1-（可选）用-Steamless-处理-exe"><a href="#1-（可选）用-Steamless-处理-exe" class="headerlink" title="1. （可选）用 Steamless 处理 exe"></a>1. （可选）用 Steamless 处理 exe</h3><p>同方案1第 1 步：Steamless 去掉 exe 上的 SteamDRM 包装。没 DRM 的文件安全跳过，不会损坏。</p>
+<h3 id="2-找-steam-api-64-dll"><a href="#2-找-steam-api-64-dll" class="headerlink" title="2. 找 steam_api(64).dll"></a>2. 找 steam_api(64).dll</h3><p>游戏目录搜 <code>steam_api*.dll</code>，两种情况：</p>
+<ul>
+<li><strong>只有一个</strong>（通用/Unity 引擎）：替换这个 DLL，<code>steam_settings</code> 放它旁边。</li>
+<li><strong>有两个</strong>（Unreal Engine 游戏）：</li>
+</ul>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;GameDir&gt;\Engine\Binaries\ThirdParty\Steamworks\Steamv157\Win64\steam_api64.dll</span><br><span class="line">&lt;GameDir&gt;\&lt;GameName&gt;\Binaries\Win64\steam_api64.dll</span><br></pre></td></tr></tbody></table></figure>
+
+<p>UE 引擎启动时从 <strong>Engine 目录</strong>加载 <code>steam_api64.dll</code>，不是游戏主目录。只替换 Engine 目录那个，<code>steam_settings</code> 也放 Engine 目录。游戏主目录的 DLL 保持原版不动。</p>
+<h3 id="3-备份原版-DLL"><a href="#3-备份原版-DLL" class="headerlink" title="3. 备份原版 DLL"></a>3. 备份原版 DLL</h3><p>复制要替换的 DLL，重命名成 <code>steam_api64.dll.old</code>。后续生成接口文件要用这个备份。</p>
+<h3 id="4-替换成模拟器-DLL"><a href="#4-替换成模拟器-DLL" class="headerlink" title="4. 替换成模拟器 DLL"></a>4. 替换成模拟器 DLL</h3><p>从 GBE Fork 发布包（<code>emu-win-release</code>）复制对应架构的 DLL 覆盖：</p>
+<ul>
+<li>64 位游戏：<code>regular\x64\steam_api64.dll</code></li>
+<li>32 位游戏：<code>regular\x86\steam_api.dll</code></li>
+</ul>
+<p>模拟器 DLL 约 7–11MB，原版约 200–400KB，大小一眼能区分。UE 游戏主目录的 DLL 不动。</p>
+<h3 id="5-创建-steam-settings-目录"><a href="#5-创建-steam-settings-目录" class="headerlink" title="5. 创建 steam_settings 目录"></a>5. 创建 steam_settings 目录</h3><p>在模拟器 DLL 同级建 <code>steam_settings</code> 文件夹。UE 引擎放 Engine 目录，通用引擎放游戏 exe 同级。</p>
+<h3 id="6-放-steam-appid-txt"><a href="#6-放-steam-appid-txt" class="headerlink" title="6. 放 steam_appid.txt"></a>6. 放 steam_appid.txt</h3><p>建 <code>steam_settings\steam_appid.txt</code>，只写纯数字 AppID（获取见「前置准备」）。</p>
+<h3 id="7-生成-steam-interfaces-txt（推荐）"><a href="#7-生成-steam-interfaces-txt（推荐）" class="headerlink" title="7. 生成 steam_interfaces.txt（推荐）"></a>7. 生成 steam_interfaces.txt（推荐）</h3><p>接口版本不匹配会导致崩溃或功能缺失。用 GBE Fork 里的 <code>generate_interfaces_x64.exe</code>（或 x86 版）对备份的原版 DLL 跑一次，生成在工具当前目录，移到 <code>steam_settings\</code> 里。必须对原版 DLL 跑，不能用模拟器 DLL。</p>
+<h3 id="8-（可选）配置-INI"><a href="#8-（可选）配置-INI" class="headerlink" title="8. （可选）配置 INI"></a>8. （可选）配置 INI</h3><p><code>steam_settings.EXAMPLE\</code> 有模板，按需复制到 <code>steam_settings\</code>，去掉 <code>.EXAMPLE</code> 中缀：</p>
+<ul>
+<li><code>configs.user.ini</code>：<code>local_save_path=./path/relative/to/dll</code> 把存档存到游戏目录而非 <code>%appdata%</code>；<code>account_name=Player</code> 改游戏内名字</li>
+<li><code>configs.main.ini</code>：<code>offline=0</code> 离线模式</li>
+<li><code>configs.app.ini</code>：<code>unlock_all=1</code> 解锁全部 DLC</li>
+</ul>
+<h3 id="9-（可选）替换-EOS-SDK"><a href="#9-（可选）替换-EOS-SDK" class="headerlink" title="9. （可选）替换 EOS SDK"></a>9. （可选）替换 EOS SDK</h3><p>同方案1第 3 步，按「EOS 联机」一节处理。</p>
+<h2 id="EOS-联机（Nemirtingas-Epic-Emulator）"><a href="#EOS-联机（Nemirtingas-Epic-Emulator）" class="headerlink" title="EOS 联机（Nemirtingas Epic Emulator）"></a>EOS 联机（Nemirtingas Epic Emulator）</h2><p>游戏自带的正版 <code>EOSSDK-Win64-Shipping.dll</code>（通常十几 MB）会连接 Epic 服务器验证账号、所有权、DLC。Nemirtingas Epic Emulator 把这些验证在本机模拟：游戏调用的 EOS 函数正常返回，但结果本地生成，从而绕过 Epic 登录与验证。</p>
+<p>适用条件：游戏目录存在 <code>EOSSDK-Win64-Shipping.dll</code>（一般在游戏二进制目录或子目录，如 <code>binaries/win64/</code>）。</p>
+<h3 id="1-备份并替换"><a href="#1-备份并替换" class="headerlink" title="1. 备份并替换"></a>1. 备份并替换</h3><p>搜索游戏里所有 <code>EOSSDK-Win64-Shipping.dll</code>（有的游戏有多份），把原版改名备份（如加 <code>.old</code> 后缀），再把 Nemirtingas 的 DLL 复制到原路径覆盖。不确定加载哪份就全部替换。</p>
+<h3 id="2-启动生成配置"><a href="#2-启动生成配置" class="headerlink" title="2. 启动生成配置"></a>2. 启动生成配置</h3><p>直接启动游戏，模拟器会在游戏工作目录自动生成配置文件 <code>NemirtingasEpicEmu.json</code>。</p>
+<h3 id="3-（可选）修改配置"><a href="#3-（可选）修改配置" class="headerlink" title="3. （可选）修改配置"></a>3. （可选）修改配置</h3><p>用记事本打开 <code>NemirtingasEpicEmu.json</code>，填一个自己能记住的用户名，这样生成的身份 ID 固定且唯一：</p>
+<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">{</span></span><br><span class="line">  <span class="attr">"username"</span><span class="punctuation">:</span> <span class="string">"MyAwesomeUsername"</span></span><br><span class="line"><span class="punctuation">}</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>只填这一行即可：<code>epicid</code> 与 <code>productuserid</code> 会自动生成。不同玩家只要用户名不同，身份就不同，联机不会串号。</p>
+<p>常用字段：</p>
+<div class="md-table-scroll"><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>username</code></td>
+<td><code>DefaultName</code></td>
+<td>你的名字，用于生成身份 ID；部分游戏用它显示游戏内昵称</td>
+</tr>
+<tr>
+<td><code>appid</code></td>
+<td>自动/留空</td>
+<td>匹配同款游戏的房间，房主与玩家需一致</td>
+</tr>
+<tr>
+<td><code>savepath</code></td>
+<td>空（游戏目录）</td>
+<td>存档/成就保存位置；填 <code>appdata</code> 则存到 <code>%appdata%</code></td>
+</tr>
+<tr>
+<td><code>disable_online_networking</code></td>
+<td><code>false</code></td>
+<td><code>true</code> 时禁用公网连接（只留局域网/VPN），开了崩溃就改回 <code>false</code></td>
+</tr>
+<tr>
+<td><code>unlock_dlcs</code></td>
+<td><code>false</code></td>
+<td><code>true</code> 时尝试解锁全部 DLC</td>
+</tr>
+<tr>
+<td><code>log_level</code></td>
+<td><code>OFF</code></td>
+<td>排障时设 <code>DEBUG</code>，完事改回 <code>OFF</code></td>
+</tr>
+</tbody></table></div>
+<h3 id="4-确认已生效"><a href="#4-确认已生效" class="headerlink" title="4. 确认已生效"></a>4. 确认已生效</h3><ul>
+<li><code>NemirtingasEpicEmu.json</code> 已生成/更新 → DLL 被加载了。</li>
+<li><code>log_level</code> 设为 <code>DEBUG</code> 后启动，日志里出现 <code>EOS_Connect_Login</code> 等调用记录 → 已接管 EOS API。</li>
+<li>游戏能正常创建/加入联机房间，且不再弹出 Epic 登录提示。</li>
+</ul>
+<h3 id="5-排障"><a href="#5-排障" class="headerlink" title="5. 排障"></a>5. 排障</h3><ul>
+<li><strong>游戏崩溃或提示 EOS 初始化失败</strong>：确认替换了实际加载的那份 DLL（有多份就全换）；删除 <code>NemirtingasEpicEmu.json</code> 让它重新生成；<code>disable_online_networking</code> 改回 <code>false</code>；<code>log_level: DEBUG</code> 看日志。</li>
+<li><strong>查 EOS 的游戏 appid</strong>：打开 <a target="_blank" rel="noopener" href="https://epicdata.info/items/">https://epicdata.info/items/</a> ，搜索游戏名，在条目 <code>releaseInfo</code> 的 <code>appId</code> 字段里。房主与玩家需一致才能匹配。</li>
+<li><strong>多人联机身份冲突</strong>：每个玩家填不同的 <code>username</code>。同一个人的多台电脑建议共用同一份配置文件，避免 ID 变化。</li>
+<li><strong>和其他 EOS 补丁冲突</strong>：功能重叠的补丁二选一，保留一个删另一个。本模拟器可替换 FreeTP 的 EpicFix。</li>
+</ul>
+<h2 id="工具与资源"><a href="#工具与资源" class="headerlink" title="工具与资源"></a>工具与资源</h2><h3 id="自动化工具"><a href="#自动化工具" class="headerlink" title="自动化工具"></a>自动化工具</h3><ul>
+<li><strong>ARMGDDN Autocracker</strong>：基于 GBE Fork，右键游戏文件夹自动完成补丁。仓库 <a target="_blank" rel="noopener" href="https://github.com/KaladinDMP/ARMGDDN-Autocracker">https://github.com/KaladinDMP/ARMGDDN-Autocracker</a></li>
+<li><strong>SteamAutoCracker</strong>：封装 Steamless + Goldberg，一键去 DRM 和替换 DLL。仓库 <a target="_blank" rel="noopener" href="https://github.com/BigBoiCJ/SteamAutoCracker">https://github.com/BigBoiCJ/SteamAutoCracker</a></li>
+</ul>
+<h3 id="其他补丁工具"><a href="#其他补丁工具" class="headerlink" title="其他补丁工具"></a>其他补丁工具</h3><ul>
+<li><strong>GreenLuma</strong> —— Steam 客户端补丁，支持在线联机，Windows 专用。<a target="_blank" rel="noopener" href="https://cs.rin.ru/forum/viewtopic.php?f=29&amp;t=103709">https://cs.rin.ru/forum/viewtopic.php?f=29&amp;t=103709</a></li>
+<li><strong>SLSsteam</strong> —— Steam 客户端补丁，支持在线联机，Linux 专用。<a target="_blank" rel="noopener" href="https://github.com/AceSLS/SLSsteam">https://github.com/AceSLS/SLSsteam</a></li>
+<li><strong>WeMod 破解</strong>（游戏修改器）。<a target="_blank" rel="noopener" href="https://github.com/k1tbyte/Wemod-Patcher">https://github.com/k1tbyte/Wemod-Patcher</a></li>
+</ul>
+<h3 id="游戏资源"><a href="#游戏资源" class="headerlink" title="游戏资源"></a>游戏资源</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://cs.rin.ru/forum">https://cs.rin.ru/forum</a> —— 破解工具与 STEAM 游戏资源的主论坛</li>
+<li>论坛找不到时，最稳的办法是 Steam 商店购买 → 下载 → 退款。</li>
+</ul>
+<h3 id="更多参考"><a href="#更多参考" class="headerlink" title="更多参考"></a>更多参考</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://rentry.org/pgames">https://rentry.org/pgames</a></li>
+<li><a target="_blank" rel="noopener" href="https://ripped.guide/PC-Software/Games/#cracking-tools">https://ripped.guide/PC-Software/Games/#cracking-tools</a></li>
+<li><a target="_blank" rel="noopener" href="https://cs.rin.ru/forum/viewforum.php?f=29">https://cs.rin.ru/forum/viewforum.php?f=29</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>作者: Nite<br>URL: <a target="_blank" rel="noopener" href="https://www.nite07.com/zh-cn/posts/game-crack-tutorial/">https://www.nite07.com/zh-cn/posts/game-crack-tutorial/</a></p>
+</blockquote>
+</article>
+
+<div class="article-tags"><a class="tag" href="/tags/Steam/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Steam</a><a class="tag" href="/tags/Pirated-Game/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Pirated Game</a><a class="tag" href="/tags/Epic/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Epic</a><a class="tag" href="/tags/%E6%B8%B8%E6%88%8F/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>游戏</a><a class="tag" href="/tags/%E7%A0%B4%E8%A7%A3/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>破解</a></div>
+
+<div class="article-footer">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+
+
+    <section id="share">
+      <div class="header"><span>分享文章</span></div>
+      <div class="body">
+        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https:&#x2F;&#x2F;blog.syouiti.com&#x2F;%E6%B8%B8%E6%88%8F%E7%A0%B4%E8%A7%A3%E6%8C%87%E5%8D%97&#x2F;" /></div>
+        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fblog.syouiti.com%2F%25E6%25B8%25B8%25E6%2588%258F%25E7%25A0%25B4%25E8%25A7%25A3%25E6%258C%2587%25E5%258D%2597%2F&title=%E6%B8%B8%E6%88%8F%E7%A0%B4%E8%A7%A3%E6%8C%87%E5%8D%97%20-%20%E7%99%BD%E4%B8%8A%E8%B3%9E%E4%B8%80&summary=Windows%20%E4%B8%8B%20Steam%20%E6%B8%B8%E6%88%8F%E8%A1%A5%E4%B8%81%E4%B8%8E%E8%81%94%E6%9C%BA%E4%BF%AE%E5%A4%8D%E7%9A%84%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B%EF%BC%9AUnsteam%20%E6%96%B9%E6%A1%88%EF%BC%88%E5%9C%A8%E7%BA%BF%E8%81%94%E6%9C%BA%EF%BC%89%E4%B8%8E%20GBE%20Fork%20%E6%96%B9%E6%A1%88%EF%BC%88%E7%A6%BB%E7%BA%BF%2F%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89%EF%BC%8C%E4%BB%A5%E5%8F%8A%20EOS%20%E8%81%94%E6%9C%BA%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95%E3%80%82"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/80c07e4dbb303.svg" /></a><a class="social share-item email" href="mailto:?subject=%E6%B8%B8%E6%88%8F%E7%A0%B4%E8%A7%A3%E6%8C%87%E5%8D%97%20-%20%E7%99%BD%E4%B8%8A%E8%B3%9E%E4%B8%80&amp;body=https%3A%2F%2Fblog.syouiti.com%2F%25E6%25B8%25B8%25E6%2588%258F%25E7%25A0%25B4%25E8%25A7%25A3%25E6%258C%2587%25E5%258D%2597%2F"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/a1b00e20f425d.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
+        
+        <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
+          <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https%3A%2F%2Fblog.syouiti.com%2F%25E6%25B8%25B8%25E6%2588%258F%25E7%25A0%25B4%25E8%25A7%25A3%25E6%258C%2587%25E5%258D%2597%2F"/>
+        </div>
+        
+      </div>
+    </section>
+    </div>
+
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">较早文章</div><a href="/curator-bookmarks-Chrome%E6%9C%AC%E5%9C%B0%E4%B9%A6%E7%AD%BE%E7%AE%A1%E7%90%86%E6%89%A9%E5%B1%95/">Curator（策书）：一个本地优先的 Chrome 书签管理与 AI 整理扩展</a></div></section></div>
+
+
+
+
+  <div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    <section class='body cmt-body giscus'>
+      
+
+<div class="lazy-icon"></div>
+
+<div id="giscus" src="https://giscus.app/client.js" data-repo="sy0u1ti/sy0u1ti.github.io" data-repo-id="R_kgDOKbZc8Q" data-category="General" data-category-id="DIC_kwDOKbZc8c4CZ0-1" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="noborder_dark" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+<footer class="page-footer footnote"><hr><div class="text"><p>记录 AI、效率工具、网络技术与各种折腾。<br>本站由 <a href="/">白上賞一「しらかみしょういち」</a> 创建 · <a target="_blank" rel="noopener" href="https://icp.gov.moe/?keyword=20244469">萌ICP备20244469号</a></p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right" data-ui-surface="sidebar"><div class="widgets">
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false">
+  
+    <div class="widget-header dis-select">
+      <span class="name">本文目录</span>
+      <a class="cap-action" onclick="sidebar.toggleTOC()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a>
+    </div>
+  
+  <div class="widget-body"><ol class="toc ui-collection-adapter"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E5%87%86%E5%A4%87"><span class="toc-text">前置准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE-Steam-AppID"><span class="toc-text">查找 Steam AppID</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%A1%881%EF%BC%9AUnsteam%EF%BC%88%E5%9C%A8%E7%BA%BF%E8%81%94%E6%9C%BA%EF%BC%89"><span class="toc-text">方案1：Unsteam（在线联机）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%E7%94%A8-Steamless-%E5%8E%BB-DRM"><span class="toc-text">1. （可选）用 Steamless 去 DRM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%83%A8%E7%BD%B2-Unsteam-%E5%B9%B6%E9%85%8D%E7%BD%AE"><span class="toc-text">2. 部署 Unsteam 并配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%E6%9B%BF%E6%8D%A2-EOS-SDK"><span class="toc-text">3. （可选）替换 EOS SDK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%90%AF%E5%8A%A8"><span class="toc-text">4. 启动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%A1%882%EF%BC%9AGBE-Fork%EF%BC%88%E7%A6%BB%E7%BA%BF-%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89"><span class="toc-text">方案2：GBE Fork（离线 &#x2F; 局域网）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%E7%94%A8-Steamless-%E5%A4%84%E7%90%86-exe"><span class="toc-text">1. （可选）用 Steamless 处理 exe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%89%BE-steam-api-64-dll"><span class="toc-text">2. 找 steam_api(64).dll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%A4%87%E4%BB%BD%E5%8E%9F%E7%89%88-DLL"><span class="toc-text">3. 备份原版 DLL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%9B%BF%E6%8D%A2%E6%88%90%E6%A8%A1%E6%8B%9F%E5%99%A8-DLL"><span class="toc-text">4. 替换成模拟器 DLL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%88%9B%E5%BB%BA-steam-settings-%E7%9B%AE%E5%BD%95"><span class="toc-text">5. 创建 steam_settings 目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%94%BE-steam-appid-txt"><span class="toc-text">6. 放 steam_appid.txt</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E7%94%9F%E6%88%90-steam-interfaces-txt%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-text">7. 生成 steam_interfaces.txt（推荐）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%E9%85%8D%E7%BD%AE-INI"><span class="toc-text">8. （可选）配置 INI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%E6%9B%BF%E6%8D%A2-EOS-SDK"><span class="toc-text">9. （可选）替换 EOS SDK</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EOS-%E8%81%94%E6%9C%BA%EF%BC%88Nemirtingas-Epic-Emulator%EF%BC%89"><span class="toc-text">EOS 联机（Nemirtingas Epic Emulator）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%A4%87%E4%BB%BD%E5%B9%B6%E6%9B%BF%E6%8D%A2"><span class="toc-text">1. 备份并替换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%90%AF%E5%8A%A8%E7%94%9F%E6%88%90%E9%85%8D%E7%BD%AE"><span class="toc-text">2. 启动生成配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="toc-text">3. （可选）修改配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%A1%AE%E8%AE%A4%E5%B7%B2%E7%94%9F%E6%95%88"><span class="toc-text">4. 确认已生效</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%8E%92%E9%9A%9C"><span class="toc-text">5. 排障</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E4%B8%8E%E8%B5%84%E6%BA%90"><span class="toc-text">工具与资源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E5%85%B7"><span class="toc-text">自动化工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E8%A1%A5%E4%B8%81%E5%B7%A5%E5%85%B7"><span class="toc-text">其他补丁工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%B8%E6%88%8F%E8%B5%84%E6%BA%90"><span class="toc-text">游戏资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E5%8F%82%E8%80%83"><span class="toc-text">更多参考</span></a></li></ol></li></ol></div>
+  <div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M8 10.5h8M8 14h5.5M17 3.338A9.95 9.95 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.63 1.63 0 0 1 1.149.133A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"/></svg><span>参与讨论</span></a></div>
+</widget>
+
+
+</div></aside><div class='float-panel'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+
+
+<script type="text/javascript">
+  window.canonical = {"originalHost":"blog.syouiti.com","officialHosts":["localhost"],"encoded":"YmxvZy5zeW91aXRpLmNvbQ=="};
+  window.canonical["param"] = {"permalink":"https://blog.syouiti.com/%E6%B8%B8%E6%88%8F%E7%A0%B4%E8%A7%A3%E6%8C%87%E5%8D%97/","checklink":"/js/plugins/video.js"};
+  // Fix: Ensure page is at the correct top position on data load
+  if (history.scrollRestoration) {
+    history.scrollRestoration = 'auto';
+  }
+  (function() {
+    const scrollHandler = () => {
+      // 存在有效锚点时，等待布局稳定后滚动到目标
+      // （浏览器原生锚点滚动发生在布局完成前，长文章的懒加载图片/异步组件会把目标顶偏）
+      const hash = window.location.hash;
+      if (hash.length > 1) {
+        let anchorId = hash.slice(1);
+        try {
+          anchorId = decodeURIComponent(anchorId);
+        } catch (e) {
+          // 片段含非法编码时按原样查找
+        }
+        const anchor = document.getElementById(anchorId);
+        if (anchor) {
+          // #start 锚点贴顶，不预留 offset；其余锚点与 TOC 点击滚动保持一致
+          const offset = anchorId === 'start' ? 0 : 32;
+          const targetY = () => anchor.getBoundingClientRect().top + window.scrollY - offset;
+          let timer = null;
+          let lastY = null;
+          let quiet = 0;
+          let attempts = 0;
+          // 记录最近一次资源加载完成时间，判断异步数据/图片是否仍在改变布局
+          let lastResourceTime = performance.now();
+          let observer = null;
+          try {
+            observer = new PerformanceObserver(function (list) {
+              lastResourceTime = performance.now();
+            });
+            observer.observe({ entryTypes: ['resource'] });
+          } catch (e) {}
+          // 统计进行中的 fetch/XHR 请求，异步组件（timeline 等）未完成前不判定布局稳定
+          let pendingRequests = 0;
+          const trackRequest = (fn) => {
+            pendingRequests++;
+            try {
+              const result = fn();
+              if (result && typeof result.finally === 'function') {
+                result.finally(function () {
+                  pendingRequests = Math.max(0, pendingRequests - 1);
+                });
+              } else {
+                pendingRequests = Math.max(0, pendingRequests - 1);
+              }
+              return result;
+            } catch (e) {
+              pendingRequests = Math.max(0, pendingRequests - 1);
+              throw e;
+            }
+          };
+          if (typeof window.fetch === 'function') {
+            const origFetch = window.fetch.bind(window);
+            window.fetch = function () {
+              const args = arguments;
+              return trackRequest(function () {
+                return origFetch.apply(window, args);
+              });
+            };
+          }
+          if (window.XMLHttpRequest) {
+            const origOpen = window.XMLHttpRequest.prototype.open;
+            const origSend = window.XMLHttpRequest.prototype.send;
+            window.XMLHttpRequest.prototype.open = function () {
+              this.__anchorTracked = true;
+              return origOpen.apply(this, arguments);
+            };
+            window.XMLHttpRequest.prototype.send = function () {
+              if (this.__anchorTracked) {
+                pendingRequests++;
+                const done = () => {
+                  if (this.__anchorTracked) {
+                    this.__anchorTracked = false;
+                    pendingRequests = Math.max(0, pendingRequests - 1);
+                  }
+                };
+                this.addEventListener('loadend', done);
+              }
+              return origSend.apply(this, arguments);
+            };
+          }
+          const cancel = () => {
+            if (timer !== null) {
+              clearInterval(timer);
+              timer = null;
+            }
+            if (observer !== null) {
+              try {
+                observer.disconnect();
+              } catch (e) {}
+            }
+          };
+          const adjust = () => {
+            const y = targetY();
+            const atTarget = Math.abs(window.scrollY - y) <= 2;
+            if (!atTarget || lastY === null || Math.abs(y - lastY) > 2) {
+              window.scrollTo({ top: y, behavior: 'instant' });
+              lastY = y;
+              quiet = 0;
+            } else {
+              quiet++;
+            }
+            attempts++;
+            const resourceQuiet = performance.now() - lastResourceTime > 3000;
+            // 位置连续 1.8 秒无变化、无进行中的请求且最近 3 秒无资源加载才视为稳定；最长等待 30 秒
+            if ((quiet >= 3 && pendingRequests === 0 && resourceQuiet) || attempts >= 50) {
+              cancel();
+            }
+          };
+          requestAnimationFrame(() => {
+            // 锚点链接打开时直接定位，不做动画；用户主动点击（如 TOC）仍走平滑滚动
+            window.scrollTo({ top: targetY(), behavior: 'instant' });
+            timer = setInterval(adjust, 600);
+          });
+          // 用户主动滚动时停止自动校正
+          window.addEventListener('wheel', cancel, { passive: true });
+          window.addEventListener('touchstart', cancel, { passive: true });
+          window.addEventListener('mousedown', cancel, { passive: true });
+          window.addEventListener('keydown', cancel, { passive: true });
+          return;
+        }
+      }
+      // 没有锚点时始终保持页面顶部；Wiki Hero 只在用户显式访问 #start 时定位正文。
+      window.scrollTo(0, 0);
+    };
+    if (document.readyState !== 'loading') scrollHandler();
+    else document.addEventListener('DOMContentLoaded', scrollHandler);
+  })();
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+    tag_plugins: {
+      chat: Object.assign({"api":"https://siteinfo.listentothewind.cn/api/v1"}),
+    },
+    // 图标由构建期生成的 /js/stellar-icons.js 填充（defer，早于 DOMContentLoaded 就绪）
+    icons: {},
+    services: {"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"rating":{"js":"/js/services/rating.js","api":"https://star-vote.xaox.cc/api/rating"},"vote":{"js":"/js/services/vote.js","api":"https://star-vote.xaox.cc/api/vote"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"friends_and_posts":{"js":"/js/services/friends_and_posts.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"},"voice":{"js":"/js/plugins/voice.js"},"video":{"js":"/js/plugins/video.js"},"download-file":{"js":"/js/plugins/download-file.js"},"twikoo":{"js":"/js/services/twikoo_latest_comment.js"},"waline":{"js":"/js/services/waline_latest_comment.js"},"artalk":{"js":"/js/services/artalk_latest_comment.js"},"giscus":{"js":"/js/services/giscus_latest_comment.js"},"contributors":{"edit_this_page":{"_posts/":null,"wiki/stellar/":"https://github.com/xaoxuu/hexo-theme-stellar-docs/blob/main/"},"js":"/js/services/contributors.js"},"rss":{"js":"/js/services/rss.js"}},
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"post","path":"/search.json","content":true,"lazy_load":true,"cache_ttl":86400,"skip_search":null,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+    data_cache: {"enable":true,"default_ttl":3600,"ttl":{"giscus":600,"waline":600,"artalk":600,"memos":600,"memos-user":86400,"sites":86400,"friends":86400,"friends_and_posts":86400,"siteinfo":86400},"max_entries":200},
+  };
+  const deps = {
+    marked: `https://cdn.jsdelivr.net/npm/marked@13.0.1/lib/marked.umd.min.js`,
+    lazyload: `https://gcore.jsdelivr.net/npm/vanilla-lazyload@19.1/dist/lazyload.min.js`
+  }
+
+  // 主题切换提示文案（供 /js/theme.js 使用）
+  window.__STELLAR_I18N__ = {
+    light: `切换到浅色模式`,
+    dark: `切换到深色模式`,
+    auto: `切换到跟随系统配色`,
+  };
+
+  // 搜索跳转高亮：URL 带 ?kw= 时按需加载，定位正文中的匹配词
+  (function () {
+    try {
+      if (!window.location.search) return;
+      if (!new URLSearchParams(window.location.search).has('kw')) return;
+      document.addEventListener('DOMContentLoaded', function () {
+        // utils 由 /js/utils.js 定义（同时暴露 window.utils）；
+        // 未就绪时由 bootstrap 队列兜底，此处按就绪状态判断
+        if (typeof utils === 'object' && typeof utils.js === 'function') {
+          utils.js('/js/search/highlight.js', { defer: true }).catch(function () {});
+        }
+      });
+    } catch (e) {}
+  })();
+</script>
+
+
+<script>
+  // 插件注册队列：utils.js 尚未就绪时先缓存注册请求，就绪后统一补跑，
+  // 保证解析期注册的插件不因加载时序丢失。
+  window.stellar = window.stellar || {};
+  window.stellar._pluginQueue = window.stellar._pluginQueue || [];
+  window.stellar.initPlugin = function (fn, name, options) {
+    if (typeof utils === 'object' && typeof utils.initPlugin === 'function') {
+      return utils.initPlugin(fn, name, options);
+    }
+    window.stellar._pluginQueue.push({ fn: fn, name: name, options: options || {} });
+  };
+  window.stellar._flushPlugins = function () {
+    var pending = window.stellar._pluginQueue.splice(0);
+    if (typeof utils !== 'object' || typeof utils.initPlugin !== 'function') return;
+    for (var i = 0; i < pending.length; i++) {
+      try {
+        utils.initPlugin(pending[i].fn, pending[i].name, pending[i].options);
+      } catch (e) {
+        console.error('[Stellar] 插件补注册失败:', e);
+      }
+    }
+  };
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof utils === 'object') return;
+    // utils 未就绪时补载；加载成功后由 utils.js 内部补跑插件队列
+    var s = document.createElement('script');
+    // 用 setAttribute 赋值 src，避免被基于 `s.src = "..."` 的正则
+    // （图片懒加载 / 脚本延迟优化器）误改写
+    s.setAttribute('src', '/js/utils.js?v=1.43.1');
+    s.async = false;
+    s.onerror = function () {
+      console.error('[Stellar] 无法加载 /js/utils.js，已启用内容兜底显示（sr-fallback）');
+      document.documentElement.classList.add('sr-fallback');
+    };
+    document.head.appendChild(s);
+  });
+</script>
+
+
+<!-- core: utils 必须同步加载（页尾内联插件片段在解析期即调用 utils.initPlugin） -->
+<script src="/js/utils.js?v=1.43.1"></script>
+<script>
+  // 解析期检测 utils 是否已就绪；未就绪时同步补载，
+  // 保证「utils 先于页尾插件片段定义」的不变量。
+  if (typeof utils === 'undefined') {
+    document.write('<script src="/js/utils.js?v=1.43.1"><\/script>');
+  }
+</script>
+<script defer src="/js/stellar-icons.js?v=1.43.1"></script>
+<!-- 非首屏图标异步加载：占位符替换依赖构建期生成的 js/icons/{ns}.json -->
+<script defer src="/js/icons.js?v=1.43.1" data-version="1.43.1"></script>
+<script defer src="/js/plugins/dropdown.js?v=1.43.1"></script>
+<script src="/js/main.js?v=1.43.1" defer></script>
+<script defer src="/js/theme.js?v=1.43.1"></script>
+
+
+
+<script>
+  // 先声明配置与初始化监听，再异步加载库：
+  // 保证库执行时 lazyLoadOptions 已就绪，避免 async 脚本抢先执行导致自初始化失败
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+    callback_loaded: (el) => {
+      el.classList.add('loaded');
+      // {% image %} 没有 .lazy-box 包裹，回退到父元素查找加载图标
+      const wrapper = el.closest('.lazy-box') || el.parentElement;
+      const icon = wrapper?.querySelector('.lazy-icon');
+      if (icon) icon.remove();
+    }
+  };
+  // 监听初始化事件，获取 LazyLoad 实例
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+
+  // 兜底：动态插入的 .lazy 元素（如站点自定义脚本在 update() 之后追加的图片）
+  // 不会被 vanilla-lazyload 自动扫描，未注册的 img.lazy 会被 CSS opacity:0 永久隐藏。
+  // MutationObserver 检测到新增 .lazy 元素后自动调用 update() 重新注册。
+  if (window.MutationObserver) {
+    window.lazyMutationObserver = new MutationObserver((mutations) => {
+      if (window.lazyMutationObserver._pending) return;
+      const hasLazy = mutations.some((m) =>
+        Array.prototype.some.call(m.addedNodes, (node) =>
+          node.nodeType === 1 &&
+          (node.matches?.('.lazy') || !!node.querySelector?.('.lazy'))
+        )
+      );
+      if (!hasLazy) return;
+      window.lazyMutationObserver._pending = requestAnimationFrame(() => {
+        window.lazyMutationObserver._pending = null;
+        window.lazyLoadInstance?.update();
+      });
+    });
+    window.lazyMutationObserver.observe(document.documentElement, {
+      childList: true,
+      subtree: true
+    });
+  }
+
+  window.wrapLazyloadImages = (container) => {
+    if (typeof container === 'string') {
+      container = document.querySelector(container);
+    }
+    if (!container) return;
+
+    const images = container.querySelectorAll('img');
+    images.forEach((img) => {
+      if (img.classList.contains('lazy')) return;
+
+      const src = img.getAttribute('src');
+      if (!src) return;
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'lazy-box';
+
+      const newImg = img.cloneNode();
+      newImg.removeAttribute('src');
+      newImg.setAttribute('data-src', src);
+      newImg.classList.add('lazy');
+
+      const icon = document.createElement('div');
+      icon.className = 'lazy-icon';
+
+      wrapper.appendChild(newImg);
+      wrapper.appendChild(icon);
+
+      img.replaceWith(wrapper);
+    });
+
+    // 通知 LazyLoad 更新
+    if (window.lazyLoadInstance?.update) {
+      window.lazyLoadInstance.update();
+    }
+  }
+</script>
+<script async src="https://gcore.jsdelivr.net/npm/vanilla-lazyload@19.1/dist/lazyload.min.js"></script>
+
+
+<!-- optional -->
+
+  <script type="module">
+  (function() {
+    
+    function initGiscus() {
+      const el = document.querySelector('#comments #giscus');
+      if (!el) return;
+      
+      function load_giscus() {
+        try {
+          el.innerHTML = '';
+        } catch (error) {
+          console.error(error);
+        }
+        const script = document.createElement('script');
+        script.async = true;
+        for (const key of Object.keys(el.attributes)) {
+          const attr = el.attributes[key];
+          if (['class', 'id'].includes(attr.name) === false) {
+            script.setAttribute(attr.name, attr.value);
+          }
+        }
+        el.appendChild(script);
+      }
+      
+      util.viewportLazyload(el, load_giscus);
+    }
+    
+    // Initialize on page load
+    initGiscus();
+  })();
+</script>
+
+
+
+
+<script defer src="/js/services.js?v=1.43.1"></script>
+<script>
+  // 防御：bootstrap 被第三方优化器改写/移除导致 window.stellar.initPlugin 缺失时，
+  // 在此补一个等价注册点：utils 就绪时直接委托，未就绪时入队，utils 加载后自动补跑。
+  if (typeof window.stellar === 'undefined' || typeof window.stellar.initPlugin !== 'function') {
+    window.stellar = window.stellar || {};
+    window.stellar._pluginQueue = window.stellar._pluginQueue || [];
+    window.stellar.initPlugin = function (fn, name, options) {
+      if (typeof utils === 'object' && typeof utils.initPlugin === 'function') {
+        return utils.initPlugin(fn, name, options);
+      }
+      window.stellar._pluginQueue.push({ fn: fn, name: name, options: options || {} });
+    };
+    window.stellar._flushPlugins = function () {
+      var pending = window.stellar._pluginQueue.splice(0);
+      if (typeof utils !== 'object' || typeof utils.initPlugin !== 'function') return;
+      for (var i = 0; i < pending.length; i++) {
+        try {
+          utils.initPlugin(pending[i].fn, pending[i].name, pending[i].options);
+        } catch (e) {
+          console.error('[Stellar] 插件补注册失败:', e);
+        }
+      }
+    };
+  }
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = Object.assign({}, ctx.search, {
+      path: `/search.json`,
+      local_search: {"field":"post","path":"/search.json","content":true,"lazy_load":true,"cache_ttl":86400,"skip_search":null,"sort":"-date"},
+    });
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script>
+<script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"></script><script>
+  ctx.fancybox = {
+    mode: `auto`,
+    selector: `.timenode p>img`,
+    css: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
+    js: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
+  };
+  // auto=按需：页面存在可弹窗图片才加载；global=全局：所有页面加载
+  const isGlobal = ctx.fancybox.mode === 'global';
+  // 评论区图片（artalk/twikoo/waline）显示较小，自动支持放大；
+  // 仅绑定各评论服务的评论内容区，编辑器、表情面板等非内容区图片不弹窗
+  var selector = '[data-fancybox]:not(.error), .with-fancybox .atk-content img:not([atk-emoticon]):not([class*="emo"]), .with-fancybox .tk-content img:not([atk-emoticon]):not([class*="emo"]), .with-fancybox .wl-content img:not([atk-emoticon]):not([class*="emo"])';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = isGlobal;
+  if (!needFancybox) {
+    needFancybox = document.querySelectorAll(selector).length !== 0;
+    if (!needFancybox) {
+      // 图片型评论系统容器：评论区图片小图需要 fancybox
+      const withFancybox = document.getElementsByClassName('with-fancybox');
+      if (withFancybox != undefined && withFancybox.length > 0) {
+        needFancybox = true;
+      }
+    }
+    if (!needFancybox) {
+      // 动态数据服务：memos 渲染的图片需要 fancybox
+      const memos = document.getElementsByClassName('ds-memos');
+      if (memos != undefined && memos.length > 0) {
+        needFancybox = true;
+      }
+    }
+  }
+  if (needFancybox) {
+    utils.css(`/css/plugins/fancybox.css?v=1.43.1`);
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      if (isGlobal) {
+        // 全局模式：正文所有非内联图片均可弹窗
+        selector += ', .md-text img:not(.inline):not([atk-emoticon])';
+      }
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  stellar.initPlugin(() => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`/css/plugins/swiper.css?v=1.43.1`);
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  }, 'swiper');
+</script>
+<script>
+  stellar.initPlugin(() => {
+    const codeElements = document.querySelectorAll('.code');
+    if (codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js', { defer: true }).then(() => {
+        if (typeof createCopyButtons === 'function') {
+          createCopyButtons(codeElements);
+        }
+      });
+    }
+  }, 'copycode');
+</script>
+<script>
+  stellar.initPlugin(() => {
+    const els = Array.prototype.slice.call(document.querySelectorAll('[data-text-adaptive]'));
+    if (els.length === 0) return;
+    utils.js('/js/color.js').then(() => utils.js('/js/plugins/adaptive-text.js')).then(() => {
+      if (typeof applyAdaptiveText === 'function') {
+        applyAdaptiveText(els);
+      }
+    });
+  }, 'adaptive-text');
+</script>
+
+
+
+<!-- inject -->
+
+</div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body></html>
