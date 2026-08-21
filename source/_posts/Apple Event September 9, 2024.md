@@ -28,7 +28,7 @@ tags:
 - watch
 - airpods
 - iphone
-title: Apple Event September 9, 2024
+title: Apple 2024 秋季发布会新品汇总
 topic: null
 type: null
 updated: '2024-09-10T02:02:14.004+08:00'

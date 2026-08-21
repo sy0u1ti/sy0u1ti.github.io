@@ -29,7 +29,7 @@ tags:
 - openai
 - elon musk
 - xai
-title: xAI api上线 Anthropic重大更新
+title: xAI API 上线与 Claude 3.5 系列更新
 topic: null
 type: null
 updated: '2024-10-23T00:25:28.545+08:00'

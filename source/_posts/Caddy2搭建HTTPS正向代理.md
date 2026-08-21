@@ -27,7 +27,7 @@ tags:
 - proxy
 - https
 - caddy
-title: Caddy2搭建HTTPS正向代理
+title: 使用 Caddy 2 搭建 HTTPS 正向代理
 topic: null
 type: null
 updated: '2024-09-07T20:08:42.809+08:00'

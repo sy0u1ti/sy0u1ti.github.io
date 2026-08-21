@@ -26,7 +26,7 @@ sticky: null
 tags:
 - mac
 - apple
-title: Mac：终极配置教程
+title: macOS 装机与效率环境配置指南
 topic: null
 type: null
 updated: '2024-10-06T20:40:13.418+08:00'

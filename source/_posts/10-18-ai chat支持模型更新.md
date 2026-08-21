@@ -25,7 +25,7 @@ rightbar: null
 sticky: null
 tags:
 - ai
-title: 10-18 ai chat支持模型更新
+title: AI Chat 支持模型与渠道更新
 topic: null
 type: null
 updated: '2024-10-18T20:31:08.302+08:00'

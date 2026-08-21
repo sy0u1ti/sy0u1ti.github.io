@@ -15,7 +15,7 @@ tags:
 - Sam Altman
 - AI
 - chatgpt
-title: Sam 在透露较多关于 GPT-5 的信息
+title: Sam Altman 透露的 GPT-5 关键信息整理
 updated: '2024-03-19T21:04:14.737+08:00'
 ---
 Sam 在与韩国硅谷特派记者团的会面中罕见的透露了比较多关于 GPT-5 的信息。  **下面是这篇韩文报道中的一些关键信息和全文：**

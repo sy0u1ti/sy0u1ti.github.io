@@ -11,7 +11,7 @@ tags:
 - typescript
 - vite
 - 开源
-title: 'Curator（策书）：一个本地优先的 Chrome 书签管理与 AI 整理扩展'
+title: Curator：本地优先的 Chrome 书签管理与 AI 整理扩展
 ---
 
 书签存得多了，Chrome 自带的书签管理器就开始力不从心：搜索不够顺手、移动和删除操作偏散、死链没人管、重复收藏越积越多，临时收藏的新页面也经常不知道该放到哪个文件夹。

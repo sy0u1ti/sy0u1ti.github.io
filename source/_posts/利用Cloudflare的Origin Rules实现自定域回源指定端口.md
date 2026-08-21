@@ -26,7 +26,7 @@ sticky: null
 tags:
 - cloudflare
 - 反代
-title: 利用Cloudflare的Origin Rules实现自定域回源指定端口
+title: 利用 Cloudflare Origin Rules 实现自定义域名回源指定端口
 topic: null
 type: null
 updated: '2024-10-07T00:26:23.754+08:00'
