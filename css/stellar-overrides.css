@@ -88,3 +88,12 @@ a.bangumi-tab {
   background: var(--text-meta);
   border-radius: 999px;
 }
+
+.linklist .link .flex {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
