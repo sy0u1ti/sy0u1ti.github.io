@@ -24,8 +24,8 @@ canonical:
 
 inject:
   head:
-    - '<script defer src="/js/plugins/card-hover.js?v=20260821l"></script>'
-    - '<link rel="stylesheet" href="/css/stellar-overrides.css?v=20260821l">'
+    - '<script defer src="/js/plugins/card-hover.js?v=20260821m"></script>'
+    - '<link rel="stylesheet" href="/css/stellar-overrides.css?v=20260821m">'
 
 
 ######## Sidebar ########
