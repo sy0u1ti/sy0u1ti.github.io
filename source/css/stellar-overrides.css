@@ -192,6 +192,9 @@ body {
   border-radius: var(--border-card-l, 24px) !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
   box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.35) !important;
+  /* Fade the entire sidebar frame (border + bg + shadow) at the bottom */
+  -webkit-mask-image: linear-gradient(to bottom, black 82%, transparent 100%) !important;
+  mask-image: linear-gradient(to bottom, black 82%, transparent 100%) !important;
 }
 
 :root[data-theme="dark"] .l_left {
@@ -273,9 +276,6 @@ body {
   overflow-y: auto !important;
   padding: 4px 6px !important;
   box-sizing: border-box !important;
-  /* Gradient fade at the bottom, matching the official Stellar demo */
-  -webkit-mask-image: linear-gradient(to bottom, black 88%, transparent 100%) !important;
-  mask-image: linear-gradient(to bottom, black 88%, transparent 100%) !important;
 }
 
 /* Right sidebar (TOC) rounded corners */
