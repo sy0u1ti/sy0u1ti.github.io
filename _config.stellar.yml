@@ -24,8 +24,8 @@ canonical:
 
 inject:
   head:
-    - '<script defer src="/js/plugins/card-hover.js?v=20260821e"></script>'
-    - '<link rel="stylesheet" href="/css/stellar-overrides.css?v=20260821f">'
+    - '<script defer src="/js/plugins/card-hover.js?v=20260821g"></script>'
+    - '<link rel="stylesheet" href="/css/stellar-overrides.css?v=20260821g">'
 
 
 ######## Sidebar ########
@@ -182,13 +182,11 @@ notebook:
 
 ######## Article ########
 article:
-  # 文章类型，决定布局风格，可以在 front-matter/topic/wiki 中覆盖此参数
-  type: tech # tech: 默认技术类文章, story: 图文类文章，文字和段落间增距大
-  # 缩进两个文字宽度，适合文字类博客，可以在 front-matter/topic/wiki 中覆盖此参数
-  indent: 
-  # 如果没有指定封面，是否根据 tags 作为关键词搜索封面图片？
-  auto_cover: false # search from https://source.unsplash.com/
-  # 封面图宽高比
+  # 文章类型
+  type: tech
+  card_style: default
+  card_tags: 4
+  pin_style: carousel
   cover_ratio: 2.4
   # 如果没有指定横幅，是否根据 tags 作为关键词搜索横幅图片？
   auto_banner: false # search from https://source.unsplash.com/
@@ -500,7 +498,7 @@ plugins:
     # 可以处理评论区的图片（不支持 iframe 类评论系统）例如：
     # 使用 twikoo 评论可以写: .tk-content img:not([class*="emo"])
     # 使用 waline 评论可以写: #waline_container .vcontent img
-    selector: .timenode p>img # 多个选择器用英文逗号隔开
+    selector: '.md-text img:not(.inline):not([class*="avatar"]), .post-cover img, .cover img' # 多个选择器用英文逗号隔开
 
   # swiper
   swiper:
@@ -510,7 +508,7 @@ plugins:
 
   # https://scrollrevealjs.org/api/reveal.html
   scrollreveal:
-    enable: #true
+    enable: true
     js: https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js
     distance: 16px
     duration: 800 # ms
