@@ -9,7 +9,7 @@ tags:
 - x
 - 技巧
 - 干货
-title: Twitter (X) 高级搜索技巧指南
+title: Twitter (X) 搜索技巧与高级语法指南
 updated: 2023-8-27T17:26:54.290+8:0
 ---
 ### 搜索词

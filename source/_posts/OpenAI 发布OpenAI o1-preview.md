@@ -27,7 +27,7 @@ tags:
 - openai
 - ai
 - gpt
-title: OpenAI o1-preview 推理模型发布与解读
+title: OpenAI 正式发布 o1-preview 推理模型 (Strawberry)
 topic: null
 type: null
 updated: '2024-09-13T01:25:19.783+08:00'

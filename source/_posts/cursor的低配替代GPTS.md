@@ -27,7 +27,7 @@ tags:
 - cursor
 - gpts
 - prompt
-title: 替代 Cursor 的编程 GPTs 提示词
+title: Cursor 低配替代方案：编程 GPTs 提示词
 topic: null
 type: null
 updated: '2024-09-08T04:48:10.105+08:00'

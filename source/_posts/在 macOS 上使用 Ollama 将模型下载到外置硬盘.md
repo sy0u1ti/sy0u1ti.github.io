@@ -27,7 +27,7 @@ tags:
 - ai
 - ollama
 - mac
-title: macOS 下使用 Ollama 将模型迁移至外置硬盘
+title: 在 macOS 上使用 Ollama 将模型下载保存到外置硬盘
 topic: null
 type: null
 updated: '2024-11-24T16:30:33.335+08:00'

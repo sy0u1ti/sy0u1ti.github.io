@@ -29,7 +29,7 @@ tags:
 - 软件
 - 网站
 - 生活好物
-title: 个人常用软件与工具推荐清单
+title: 个人常用软件、网站与好物推荐 (sorts-of-things)
 topic: null
 type: null
 updated: '2026-04-21T01:34:54.566+08:00'
