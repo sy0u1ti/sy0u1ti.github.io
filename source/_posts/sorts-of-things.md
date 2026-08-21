@@ -23,7 +23,7 @@ poster:
   topic: null
 references: null
 rightbar: null
-sticky: 100
+sticky: null
 tags:
 - 推荐
 - 软件
