@@ -86,6 +86,13 @@ body {
   will-change: transform !important;
 }
 
+/* Topic cards are very tall; disable 3D tilt entirely on them. */
+.post-card.topic,
+.post-card.topic:hover {
+  transform: none !important;
+  transition: box-shadow 0.2s ease-out, border-color 0.2s ease !important;
+}
+
 [data-theme="dark"] .post-card,
 [data-theme="dark"] .card-hover {
   background: rgba(22, 28, 38, 0.78) !important;
