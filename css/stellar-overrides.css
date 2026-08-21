@@ -298,3 +298,45 @@ a.bangumi-tab {
   color: #ffffff !important;
   text-shadow: 0 0 10px rgba(255, 175, 64, 0.4);
 }
+
+/* =======================================================
+   3D Tilt & Dynamic Spotlight Card Hover Effect (Official)
+   ======================================================= */
+.card-hover.is-card-hover-ready {
+  position: relative !important;
+  --card-hover-mouse-x: 50%;
+  --card-hover-mouse-y: 50%;
+  --card-hover-rotate-x: 0deg;
+  --card-hover-rotate-y: 0deg;
+  transform-style: preserve-3d;
+}
+
+.card-hover.is-card-hover-ready.card-hover--tilt {
+  transform: perspective(900px) translate3d(0, 0, 0) rotateX(var(--card-hover-rotate-x)) rotateY(var(--card-hover-rotate-y));
+  transform-origin: center;
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, border-color 0.2s ease;
+}
+
+.card-hover.is-card-hover-ready.card-hover--tilt.is-card-hover-active {
+  transform: perspective(900px) translate3d(0, -5px, 0) rotateX(var(--card-hover-rotate-x)) rotateY(var(--card-hover-rotate-y)) !important;
+  transition-duration: 60ms, 0.2s, 0.2s;
+  will-change: transform;
+  border-color: rgba(66, 153, 225, 0.45) !important;
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+}
+
+.card-hover__spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--card-hover-mouse-x) var(--card-hover-mouse-y), var(--card-hover-spotlight-color, rgba(255, 255, 255, 0.2)), transparent 65%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease-out;
+}
+
+.card-hover.is-card-hover-ready.card-hover--spotlight.is-card-hover-active > .card-hover__spotlight,
+.card-hover.is-card-hover-ready.card-hover--spotlight:focus-within > .card-hover__spotlight {
+  opacity: 0.75 !important;
+}
