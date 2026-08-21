@@ -273,6 +273,19 @@ body {
   overflow-y: auto !important;
   padding: 4px 6px !important;
   box-sizing: border-box !important;
+  /* Gradient fade at the bottom, matching the official Stellar demo */
+  -webkit-mask-image: linear-gradient(to bottom, black 72%, transparent 100%) !important;
+  mask-image: linear-gradient(to bottom, black 72%, transparent 100%) !important;
+}
+
+/* Right sidebar (TOC) rounded corners */
+.l_right {
+  border-radius: var(--border-card-l, 24px) !important;
+  overflow: hidden !important;
+}
+
+.l_right .widget-wrapper.toc {
+  border-radius: var(--border-card-l, 24px) !important;
 }
 
 .l_left .nav-area {
