@@ -9,9 +9,8 @@ stellar:
 
 ######## head tags ########
 preconnect:
-  # - https://gcore.jsdelivr.net
-  # - https://cdn.jsdelivr.net
-  # - https://unpkg.com
+  - https://cdn.jsdelivr.net
+  - https://gcore.jsdelivr.net
 
 open_graph:
   enable: true
@@ -503,8 +502,8 @@ plugins:
   # swiper
   swiper:
     enable: true
-    css: https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css
-    js: https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js
+    css: https://cdn.jsdelivr.net/npm/swiper@10.3.1/swiper-bundle.min.css
+    js: https://cdn.jsdelivr.net/npm/swiper@10.3.1/swiper-bundle.min.js
 
   # https://scrollrevealjs.org/api/reveal.html
   scrollreveal:

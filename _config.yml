@@ -101,6 +101,7 @@ pagination_dir: page
 # Include / Exclude file(s)
 ## include:/exclude: options only apply to the 'source/' folder
 include:
+  - .nojekyll
 exclude:
 ignore:
 
@@ -115,6 +116,16 @@ deploy:
   type: ''
 
 
+# Sitemap & RSS Feed
+sitemap:
+  path: sitemap.xml
+  rel: false
+
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+
 bangumis:
   enable: true              # 是否启用
   path: bangumis/index.html # 生成追番页面的路径
@@ -126,7 +137,7 @@ bangumis:
   color_summary: "var(--text-p2)" # 兼容旧字段名
   bgmtv_uid: shangy1yi        # bgm.tv的uid
   download_image: true      # 下载图片并使用本地图片，否则使用bgm.tv提供的网络图源
-  image_level: l            # 图片高清等级 (l, c, m, s, g)
+  image_level: c            # 图片等级 (l, c, m, s, g)，c 足够清晰且体积小
   lazyload: false            # 是否开启懒加载
   margin: 20px              # 封面图的偏移量微调
 
