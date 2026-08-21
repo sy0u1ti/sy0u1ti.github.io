@@ -283,3 +283,18 @@ a.bangumi-tab {
   padding: 0 2px;
   border-radius: 3px;
 }
+
+/* =======================================================
+   Custom Text Selection (Soft Ambient Glow Style)
+   ======================================================= */
+::selection {
+  background: rgba(255, 175, 64, 0.35) !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 10px rgba(255, 175, 64, 0.4);
+}
+
+::-moz-selection {
+  background: rgba(255, 175, 64, 0.35) !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 10px rgba(255, 175, 64, 0.4);
+}
