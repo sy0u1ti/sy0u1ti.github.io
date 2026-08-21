@@ -1,15 +1,17 @@
 :root {
+  --fs-root: 16px;
+  --fs-content-base: var(--fs-root);
+  --fs-content: var(--fs-content-base);
   --width-main: 720px;
-  --fsp: 17px;
-  --fsh2: calc(var(--fsp) + 11px);
-  --fsh3: calc(var(--fsp) + 7px);
-  --fsh4: calc(var(--fsp) + 4px);
+  --fsh2: calc(var(--fs-content) + 11px);
+  --fsh3: calc(var(--fs-content) + 7px);
+  --fsh4: calc(var(--fs-content) + 4px);
   --side-content-width: 224px;
   --gap-base: 16px;
   --gap-page: 16px;
   --rightbar-width-extra: calc(var(--gap-base) * 2);
-  --gap-p: calc(17px + 4px);
-  --gap-p-compact: calc(17px * 0.75);
+  --gap-p: calc(var(--fs-content-base) + 4px);
+  --gap-p-compact: calc(var(--fs-content-base) * 0.75);
 }
 @media screen and (min-width: 1180px) {
   :root {
@@ -33,6 +35,7 @@
 }
 @media screen and (max-width: 667px) {
   :root {
+    --fs-root: calc(16px + 2px);
     --side-content-width: 224px;
   }
 }
@@ -240,7 +243,7 @@
 }
 .md-text .cmt-body.artalk .artalk p {
   line-height: 1.5;
-  font-size: 0.9375rem;
+  font-size: calc(var(--fs-content-base) - 1px);
 }
 .md-text .cmt-body.artalk .artalk p >img {
   margin: var(--gap-p) auto;
@@ -258,7 +261,7 @@
 }
 .md-text .cmt-body.artalk .artalk ul li,
 .md-text .cmt-body.artalk .artalk ol li {
-  font-size: 0.875rem;
+  font-size: calc(var(--fs-content-base) - 2px);
 }
 .md-text .cmt-body.artalk .artalk blockquote {
   position: relative;

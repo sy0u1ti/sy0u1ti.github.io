@@ -177,7 +177,7 @@ function rebuildToc(scope) {
     return;
   }
   const ol = document.createElement('ol');
-  ol.className = 'toc';
+  ol.className = 'toc ui-collection-adapter';
   const stack = [];
   headings.forEach(function (h) {
     const id = h.id;
@@ -372,6 +372,56 @@ const init = {
       }
     });
   },
+  wikiCover: () => {
+    document.querySelectorAll('.wiki-cover-terminal').forEach(function (terminal) {
+      const code = terminal.querySelector('pre code');
+      const tabs = terminal.querySelectorAll('[role="tab"]');
+      function renderCodes(value) {
+        const lines = value.split(/\r?\n/).filter(function (line) {
+          return line.trim().length > 0;
+        });
+        terminal.dataset.codes = lines.join('\n');
+        code.innerHTML = '';
+        lines.forEach(function (line) {
+          const row = document.createElement('span');
+          row.textContent = line;
+          code.appendChild(row);
+        });
+      }
+      if (tabs.length > 0) {
+        renderCodes(tabs[0].getAttribute('data-codes') || '');
+      }
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          tabs.forEach(function (item) {
+            const active = item === tab;
+            item.classList.toggle('active', active);
+            item.setAttribute('aria-selected', active ? 'true' : 'false');
+          });
+          renderCodes(tab.getAttribute('data-codes') || '');
+        });
+      });
+      const copy = terminal.querySelector('.wiki-cover-copy');
+      if (copy) {
+        copy.addEventListener('click', function () {
+          const value = terminal.dataset.codes || '';
+          if (!value || !navigator.clipboard) return;
+          navigator.clipboard.writeText(value).then(function () {
+            hud.toast(copy.getAttribute('data-copy-message') || 'Copied', 2500);
+          }).catch(function () {});
+        });
+      }
+    });
+
+    const galaxyCanvases = document.querySelectorAll('.wiki-cover-background.galaxy canvas');
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion || galaxyCanvases.length === 0) return;
+    utils.js('/js/plugins/galaxy.js').then(function () {
+      if (stellar.galaxy && typeof stellar.galaxy.mountAll === 'function') {
+        stellar.galaxy.mountAll(galaxyCanvases);
+      }
+    }).catch(function () {});
+  },
   leftbarScroll: () => {
     const container = document.querySelector('.l_left .widgets');
     if (container == null) {
@@ -380,7 +430,7 @@ const init = {
     const PREFIX = 'Stellar.leftbarScroll.';
     const encode = (s) => encodeURIComponent(String(s || ''));
     function scope() {
-      const wikiEl = document.querySelector('.doc-tree[data-wiki]');
+      const wikiEl = document.querySelector('.doc-tree-widget[data-wiki]');
       if (wikiEl != null) {
         return 'wiki:' + encode(wikiEl.getAttribute('data-wiki'));
       }
@@ -409,7 +459,7 @@ const init = {
         return;
       }
       container.scrollTop = parseInt(value, 10) || 0;
-      const link = container.querySelector('a.link.active');
+      const link = container.querySelector('.ui-collection__item.is-active');
       if (link == null) {
         return;
       }
@@ -426,22 +476,27 @@ const init = {
     } catch (e) {}
   },
   navbarPin: () => {
-    // 列表页 navbar top 背景条状态切换：未吸顶为卡片样式（var(--card) + 文章卡片同款阴影），
-    // 吸顶后恢复玻璃效果。在吸顶边界切换 .pinned 类，视觉由 CSS 控制。
+    // 列表页 navbar top 背景条状态切换：未滚动/未吸顶为卡片样式（var(--card) + 文章卡片同款阴影），
+    // 页面滚动达到阈值且吸顶后恢复玻璃效果。在吸顶边界切换 .pinned 类，视觉由 CSS 控制。
     // 吸顶判定直接测 navbar 的实际视口位置，而非用 scrollY 推算：
     // 移动端浏览器顶栏伸缩会改变 scrollY（展开顶栏时 scrollY 减小），
     // 即使 navbar 仍吸顶也可能跌破阈值，导致玻璃效果误消失。
+    // 无轮播区页面（如 wiki）的 navbar 在页面顶部即已吸顶，需额外要求页面实际滚动达到阈值，
+    // 否则默认保持卡片样式；回到顶部（滚动小于阈值）恢复卡片。
     const navbars = document.querySelectorAll('.navbar.top');
     if (navbars.length === 0) {
       return;
     }
     // 视口顶部允许的偏差（px），吸收亚像素/取整误差
     const TOLERANCE = 2;
+    // 页面滚动阈值（px）：未滚动时保持卡片样式，滚动达到该值后才切换玻璃效果
+    const SCROLL_THRESHOLD = 2;
     let states = [];
     function update() {
+      const scrolled = window.scrollY >= SCROLL_THRESHOLD;
       states.forEach((state) => {
         const top = state.navbar.getBoundingClientRect().top;
-        state.bar.classList.toggle('pinned', top <= state.stickyTop + TOLERANCE);
+        state.bar.classList.toggle('pinned', scrolled && top <= state.stickyTop + TOLERANCE);
       });
     }
     function measure() {
@@ -621,6 +676,7 @@ stellar.initPage = function () {
   init.toc();
   init.sidebar();
   init.wikiStart();
+  init.wikiCover();
   init.leftbarScroll();
   init.navbarPin();
   init.relativeDate(document.querySelectorAll('#post-meta time'));

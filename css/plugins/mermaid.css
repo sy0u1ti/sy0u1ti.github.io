@@ -1,15 +1,17 @@
 :root {
+  --fs-root: 16px;
+  --fs-content-base: var(--fs-root);
+  --fs-content: var(--fs-content-base);
   --width-main: 720px;
-  --fsp: 17px;
-  --fsh2: calc(var(--fsp) + 11px);
-  --fsh3: calc(var(--fsp) + 7px);
-  --fsh4: calc(var(--fsp) + 4px);
+  --fsh2: calc(var(--fs-content) + 11px);
+  --fsh3: calc(var(--fs-content) + 7px);
+  --fsh4: calc(var(--fs-content) + 4px);
   --side-content-width: 224px;
   --gap-base: 16px;
   --gap-page: 16px;
   --rightbar-width-extra: calc(var(--gap-base) * 2);
-  --gap-p: calc(17px + 4px);
-  --gap-p-compact: calc(17px * 0.75);
+  --gap-p: calc(var(--fs-content-base) + 4px);
+  --gap-p-compact: calc(var(--fs-content-base) * 0.75);
 }
 @media screen and (min-width: 1180px) {
   :root {
@@ -33,6 +35,7 @@
 }
 @media screen and (max-width: 667px) {
   :root {
+    --fs-root: calc(16px + 2px);
     --side-content-width: 224px;
   }
 }
@@ -43,14 +46,32 @@ pre.mermaid {
   font-family: system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif;
 }
 .mermaid span,
-text {
+.mermaid text {
   font-family: system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif;
 }
 .mermaid .edgeLabel {
   padding: 4px;
   background-color: var(--background) !important;
+  color: var(--text-p1) !important;
+}
+.mermaid .edgeLabel text,
+.mermaid .label text,
+.mermaid .nodeLabel,
+.mermaid .cluster-label text,
+.mermaid .cluster-label span {
+  fill: var(--text-p1) !important;
+  color: var(--text-p1) !important;
 }
 .mermaid rect.basic.label-container {
+  stroke: var(--block-border) !important;
+  fill: var(--block) !important;
+}
+.mermaid .node rect,
+.mermaid .node circle,
+.mermaid .node ellipse,
+.mermaid .node polygon,
+.mermaid .node path,
+.mermaid .cluster rect {
   stroke: var(--block-border) !important;
   fill: var(--block) !important;
 }
@@ -72,26 +93,26 @@ text {
   stroke: #d3d3d3 !important;
 }
 :root[data-theme="dark"] .mermaid .label {
-  color: #ccc !important;
+  color: var(--text-p1) !important;
 }
 :root[data-theme="dark"] .mermaid .cluster-label text {
-  fill: #f9fffe !important;
+  fill: var(--text-p1) !important;
 }
 :root[data-theme="dark"] .mermaid .cluster-label span {
-  color: #f9fffe !important;
+  color: var(--text-p1) !important;
 }
 :root[data-theme="dark"] .mermaid .label text,
 :root[data-theme="dark"] .mermaid span {
-  fill: #ccc !important;
-  color: #ccc !important;
+  fill: var(--text-p1) !important;
+  color: var(--text-p1) !important;
 }
 :root[data-theme="dark"] .mermaid .node rect,
 :root[data-theme="dark"] .mermaid .node circle,
 :root[data-theme="dark"] .mermaid .node ellipse,
 :root[data-theme="dark"] .mermaid .node polygon,
 :root[data-theme="dark"] .mermaid .node path {
-  fill: #1f2020 !important;
-  stroke: #81b1db !important;
+  fill: var(--block) !important;
+  stroke: var(--block-border) !important;
 }
 :root[data-theme="dark"] .mermaid .arrowheadPath {
   fill: #d3d3d3 !important;
@@ -110,14 +131,14 @@ text {
   fill: #585858 !important;
 }
 :root[data-theme="dark"] .mermaid .cluster rect {
-  fill: #474949 !important;
-  stroke: rgba(255,255,255,0.25) !important;
+  fill: var(--block) !important;
+  stroke: var(--block-border) !important;
 }
 :root[data-theme="dark"] .mermaid .cluster text {
-  fill: #f9fffe !important;
+  fill: var(--text-p1) !important;
 }
 :root[data-theme="dark"] .mermaid .cluster span {
-  color: #f9fffe !important;
+  color: var(--text-p1) !important;
 }
 :root[data-theme="dark"] .mermaid div.mermaidTooltip {
   background: #201f1f !important;
@@ -145,26 +166,26 @@ text {
     stroke: #d3d3d3 !important;
   }
   :root:not([data-theme]) .mermaid .label {
-    color: #ccc !important;
+    color: var(--text-p1) !important;
   }
   :root:not([data-theme]) .mermaid .cluster-label text {
-    fill: #f9fffe !important;
+    fill: var(--text-p1) !important;
   }
   :root:not([data-theme]) .mermaid .cluster-label span {
-    color: #f9fffe !important;
+    color: var(--text-p1) !important;
   }
   :root:not([data-theme]) .mermaid .label text,
   :root:not([data-theme]) .mermaid span {
-    fill: #ccc !important;
-    color: #ccc !important;
+    fill: var(--text-p1) !important;
+    color: var(--text-p1) !important;
   }
   :root:not([data-theme]) .mermaid .node rect,
   :root:not([data-theme]) .mermaid .node circle,
   :root:not([data-theme]) .mermaid .node ellipse,
   :root:not([data-theme]) .mermaid .node polygon,
   :root:not([data-theme]) .mermaid .node path {
-    fill: #1f2020 !important;
-    stroke: #81b1db !important;
+    fill: var(--block) !important;
+    stroke: var(--block-border) !important;
   }
   :root:not([data-theme]) .mermaid .arrowheadPath {
     fill: #d3d3d3 !important;
@@ -183,14 +204,14 @@ text {
     fill: #585858 !important;
   }
   :root:not([data-theme]) .mermaid .cluster rect {
-    fill: #474949 !important;
-    stroke: rgba(255,255,255,0.25) !important;
+    fill: var(--block) !important;
+    stroke: var(--block-border) !important;
   }
   :root:not([data-theme]) .mermaid .cluster text {
-    fill: #f9fffe !important;
+    fill: var(--text-p1) !important;
   }
   :root:not([data-theme]) .mermaid .cluster span {
-    color: #f9fffe !important;
+    color: var(--text-p1) !important;
   }
   :root:not([data-theme]) .mermaid div.mermaidTooltip {
     background: #201f1f !important;
