@@ -17,15 +17,15 @@
    Subtle, Elegant Ambient Glow Sidebar (1:1 Official Stellar Style)
    ======================================================= */
 .l_left {
-  position: relative;
-  overflow: hidden;
+  position: relative !important;
+  overflow: hidden !important;
   border-radius: var(--border-card-l, 24px) !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
   box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.35) !important;
 }
 
 :root[data-theme="dark"] .l_left {
-  background: rgba(18, 22, 28, 0.75) !important;
+  background: rgba(18, 22, 28, 0.78) !important;
   backdrop-filter: blur(30px) saturate(140%) !important;
   -webkit-backdrop-filter: blur(30px) saturate(140%) !important;
 }
@@ -50,20 +50,20 @@
   background-image: url('https://res.xaox.cc/gh/cdn-x/placeholder@1.0.13/image/sidebar-bg1@small.jpg') !important;
   background-position: center !important;
   background-size: cover !important;
-  filter: saturate(200%) blur(90px) !important;
+  filter: saturate(180%) blur(90px) !important;
   z-index: 0 !important;
-  opacity: 0.45 !important;
+  opacity: 0.32 !important;
   transform: translateZ(0);
 }
 
 :root[data-theme="dark"] .l_left .sidebg {
-  opacity: 0.4 !important;
-  filter: saturate(200%) blur(90px) !important;
+  opacity: 0.32 !important;
+  filter: saturate(180%) blur(90px) !important;
 }
 
 :root[data-theme="light"] .l_left .sidebg {
-  opacity: 0.35 !important;
-  filter: saturate(180%) blur(90px) !important;
+  opacity: 0.22 !important;
+  filter: saturate(150%) blur(90px) !important;
 }
 
 .l_left .leftbar-container {
@@ -72,10 +72,35 @@
   background: transparent !important;
 }
 
-/* Clean, unbloated sidebar widgets */
-.l_left .widget-wrapper {
-  background: transparent;
-  border: none;
+/* =======================================================
+   Remove Bounding Boxes on Leftbar Widgets (1:1 Official)
+   ======================================================= */
+.l_left .widget-wrapper,
+.l_left .widget-wrapper .widget-body,
+.l_left .widget-wrapper.markdown .widget-body,
+.l_left .widget-wrapper.tagcloud .widget-body,
+.l_left .widget-wrapper.recent .widget-body,
+.l_left .widget-wrapper.post-list .widget-body {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Link buttons in profile */
+.l_left .linklist .link {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 10px !important;
+  transition: all 0.2s ease !important;
+}
+
+.l_left .linklist .link:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+  transform: translateY(-1px);
 }
 
 /* Menubar Icon Buttons */
