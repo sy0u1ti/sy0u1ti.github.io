@@ -11695,6 +11695,12 @@ img.lazy.error {
 .md-text .aplayer {
   border-radius: 14px;
 }
+.slide-up {
+  visibility: hidden;
+}
+html.sr-fallback .slide-up {
+  visibility: visible !important;
+}
 .highlight {
   position: relative;
 }

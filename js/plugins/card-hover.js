@@ -1,162 +1,98 @@
-"use strict";
-!function() {
-  window.stellar = window.stellar || {};
-  var e = "rgba(255, 255, 255, 0.18)",
-      t = new Map,
-      n = window.matchMedia("(prefers-reduced-motion: reduce)"),
-      o = window.matchMedia("(hover: hover) and (pointer: fine)"),
-      r = !1;
+/**
+ * card-hover.js & reading-progress v2.0
+ * 3D Tilt, Dynamic Spotlight & Reading Progress Bar
+ */
+(function() {
+  'use strict';
 
-  function i() {
-    return !n.matches && o.matches;
+  // 1. Reading Progress Bar at Top
+  function initReadingProgress() {
+    let bar = document.getElementById('reading-progress-bar');
+    if (!bar) {
+      bar = document.createElement('div');
+      bar.id = 'reading-progress-bar';
+      document.body.appendChild(bar);
+    }
+    function updateProgress() {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+      bar.style.width = scrolled + '%';
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
   }
 
-  function a(e) {
-    null === e.frame && (e.frame = window.requestAnimationFrame(function() {
-      if (e.frame = null, e.pointer && document.documentElement.contains(e.element)) {
-        var t = e.element.getBoundingClientRect();
-        if (!(t.width <= 0 || t.height <= 0)) {
-          var n = Math.max(0, Math.min(t.width, e.pointer.x - t.left)),
-              o = Math.max(0, Math.min(t.height, e.pointer.y - t.top)),
-              r = n / t.width * 2 - 1,
-              i = o / t.height * 2 - 1;
-          e.element.style.setProperty("--card-hover-mouse-x", n + "px");
-          e.element.style.setProperty("--card-hover-mouse-y", o + "px");
-          e.hasTilt && (
-            e.element.style.setProperty("--card-hover-rotate-x", (-i * e.maxTilt).toFixed(3) + "deg"),
-            e.element.style.setProperty("--card-hover-rotate-y", (r * e.maxTilt).toFixed(3) + "deg")
-          );
-        }
-      }
-    }));
-  }
+  // 2. 3D Card Tilt & Spotlight
+  const MAX_TILT = 5; // degrees
 
-  function s(e) {
-    e.element.style.setProperty("--card-hover-mouse-x", "50%");
-    e.element.style.setProperty("--card-hover-mouse-y", "50%");
-  }
+  function bindCardHover(card) {
+    if (card._tiltBound) return;
+    card._tiltBound = true;
 
-  function l(e) {
-    null !== e.frame && (window.cancelAnimationFrame(e.frame), e.frame = null);
-    e.pointer = null;
-    e.element.classList.remove("is-card-hover-active");
-    e.element.style.setProperty("--card-hover-rotate-x", "0deg");
-    e.element.style.setProperty("--card-hover-rotate-y", "0deg");
-    e.spotlight && !e.element.matches(":focus-within") || s(e);
-  }
+    // Ensure spotlight span exists
+    let spotlight = card.querySelector('.card-hover__spotlight');
+    if (!spotlight) {
+      spotlight = document.createElement('span');
+      spotlight.className = 'card-hover__spotlight';
+      spotlight.setAttribute('aria-hidden', 'true');
+      card.appendChild(spotlight);
+    }
 
-  function c(e) {
-    l(e);
-    s(e);
-  }
+    let rafId = null;
 
-  function d(e) {
-    Array.from(t.values()).forEach(function(n) {
-      (!e || n.element === e || "function" == typeof e.contains && e.contains(n.element)) && function(e) {
-        c(e);
-        e.element.removeEventListener("pointerenter", e.onPointerEnter);
-        e.element.removeEventListener("pointermove", e.onPointerMove);
-        e.element.removeEventListener("pointerleave", e.onPointerLeave);
-        e.element.removeEventListener("focusin", e.onFocusIn);
-        e.spotlight && e.spotlight.removeEventListener("transitionend", e.onSpotlightTransitionEnd);
-        e.element.classList.remove("is-card-hover-ready");
-        e.spotlight && e.spotlight.parentNode === e.element && e.spotlight.remove();
-        t["delete"](e.element);
-      }(n);
+    function handleMouseMove(e) {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = -((y - centerY) / centerY) * MAX_TILT;
+        const rotateY = ((x - centerX) / centerX) * MAX_TILT;
+
+        card.style.setProperty('--card-hover-mouse-x', x + 'px');
+        card.style.setProperty('--card-hover-mouse-y', y + 'px');
+        card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translate3d(0, -6px, 12px)`;
+        card.classList.add('is-card-hover-active');
+      });
+    }
+
+    function handleMouseLeave() {
+      if (rafId) cancelAnimationFrame(rafId);
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translate3d(0, 0, 0)';
+      card.classList.remove('is-card-hover-active');
+    }
+
+    card.addEventListener('mouseenter', () => {
+      card.style.transition = 'transform 0.1s ease-out, box-shadow 0.25s ease, border-color 0.25s ease';
+    });
+    card.addEventListener('mousemove', handleMouseMove, { passive: true });
+    card.addEventListener('mouseleave', () => {
+      card.style.transition = 'transform 0.4s ease-out, box-shadow 0.3s ease, border-color 0.3s ease';
+      handleMouseLeave();
     });
   }
 
-  function m(n) {
-    if (n && !t.has(n) && i()) {
-      var o = n.classList.contains("card-hover--spotlight"),
-          r = n.classList.contains("card-hover--tilt");
-      if (o || r) {
-        var c = function() {
-          var t = "undefined" != typeof ctx && ctx.card_hover ? ctx.card_hover : {},
-              n = Number(t.maxTilt);
-          null !== t.maxTilt && "" !== t.maxTilt && Number.isFinite(n) || (n = 4);
-          n = Math.max(0, Math.min(8, n));
-          var o = "string" == typeof t.spotlightColor && t.spotlightColor.trim() ? t.spotlightColor.trim() : e;
-          return window.CSS && "function" == typeof window.CSS.supports && !window.CSS.supports("color", o) && (o = e), {
-            maxTilt: n,
-            spotlightColor: o
-          };
-        }();
-        document.documentElement.style.setProperty("--card-hover-spotlight-color", c.spotlightColor);
-        var d = null;
-        o && ((d = document.createElement("span")).className = "card-hover__spotlight", d.setAttribute("aria-hidden", "true"), n.appendChild(d));
-        var m = {
-          element: n,
-          spotlight: d,
-          hasTilt: r,
-          maxTilt: c.maxTilt,
-          frame: null,
-          pointer: null,
-          onPointerEnter: function(e) {
-            m.pointer = { x: e.clientX, y: e.clientY };
-            n.classList.add("is-card-hover-active");
-            a(m);
-          },
-          onPointerMove: function(e) {
-            m.pointer = { x: e.clientX, y: e.clientY };
-            a(m);
-          },
-          onPointerLeave: function() {
-            l(m);
-          },
-          onFocusIn: function() {
-            n.classList.contains("is-card-hover-active") || s(m);
-          },
-          onSpotlightTransitionEnd: function(e) {
-            e.target === d && "opacity" === e.propertyName && (n.classList.contains("is-card-hover-active") || n.matches(":focus-within") || s(m));
-          }
-        };
-        n.addEventListener("pointerenter", m.onPointerEnter, { passive: !0 });
-        n.addEventListener("pointermove", m.onPointerMove, { passive: !0 });
-        n.addEventListener("pointerleave", m.onPointerLeave, { passive: !0 });
-        n.addEventListener("focusin", m.onFocusIn);
-        d && d.addEventListener("transitionend", m.onSpotlightTransitionEnd);
-        n.classList.add("is-card-hover-ready");
-        t.set(n, m);
-      }
-    }
+  function initAllCards() {
+    const cards = document.querySelectorAll('.post-card, .wiki-card, .link-card, .card-hover');
+    cards.forEach(bindCardHover);
   }
 
-  function u(e) {
-    if (function() {
-      if (r) return;
-      r = !0;
-      y(n, h);
-      y(o, h);
-      document.addEventListener("stellar:mdrender", p);
-      document.addEventListener("visibilitychange", f);
-      window.addEventListener("pagehide", v);
-    }(), i()) {
-      var t = e && "function" == typeof e.querySelectorAll ? e : document;
-      1 === t.nodeType && t.matches(".card-hover") && m(t);
-      t.querySelectorAll(".card-hover").forEach(m);
-    } else d();
-  }
-
-  function v() { t.forEach(c); }
-  function h() { i() ? u(document) : d(); }
-  function p(e) { u(e.detail && e.detail.target ? e.detail.target : document); }
-  function f() { document.hidden && v(); }
-  function y(e, t) { "function" == typeof e.addEventListener ? e.addEventListener("change", t) : "function" == typeof e.addListener && e.addListener(t); }
-  function g(e, t) { "function" == typeof e.removeEventListener ? e.removeEventListener("change", t) : "function" == typeof e.removeListener && e.removeListener(t); }
-
-  stellar.cardHover = {
-    mountAll: u,
-    unmountAll: d,
-    destroy: function() {
-      d();
-      r && (r = !1, g(n, h), g(o, h), document.removeEventListener("stellar:mdrender", p), document.removeEventListener("visibilitychange", f), window.removeEventListener("pagehide", v), document.documentElement.style.removeProperty("--card-hover-spotlight-color"));
-    }
-  };
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function() { u(document); });
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      initReadingProgress();
+      initAllCards();
+    });
   } else {
-    u(document);
+    initReadingProgress();
+    initAllCards();
   }
-}();
+
+  // Support PJAX / Dynamic transitions
+  window.addEventListener('load', initAllCards);
+  document.addEventListener('pjax:complete', initAllCards);
+  document.addEventListener('stellar:mdrender', initAllCards);
+})();

@@ -5,7 +5,25 @@
   font-weight: lighter;
 }
 
-/* Typography & Title Styling */
+/* =======================================================
+   1. Top Reading Progress Bar
+   ======================================================= */
+#reading-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--theme, #3b82f6), var(--accent, #f97316));
+  box-shadow: 0 0 10px var(--theme, #3b82f6);
+  z-index: 99999;
+  pointer-events: none;
+  transition: width 0.1s ease-out;
+}
+
+/* =======================================================
+   2. Typography & Avatar Rotating Glow
+   ======================================================= */
 .logo-wrap a.title,
 .post-title,
 .article.banner .title {
@@ -13,8 +31,111 @@
   letter-spacing: 0.02em;
 }
 
+.logo-wrap .avatar {
+  position: relative;
+}
+
+.logo-wrap .avatar .bg {
+  background: linear-gradient(135deg, #3b82f6, #00e1dc, #ec4899, #f97316) !important;
+  filter: blur(6px) saturate(160%) !important;
+  animation: avatar-spin 12s linear infinite !important;
+  opacity: 0.6 !important;
+}
+
+@keyframes avatar-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 /* =======================================================
-   Subtle, Elegant Ambient Glow Sidebar (1:1 Official Stellar Style)
+   3. 3D Card Hover & Dynamic Spotlight Physics
+   ======================================================= */
+.post-card-wrap {
+  perspective: 1000px !important;
+}
+
+.post-card {
+  position: relative !important;
+  transform-style: preserve-3d !important;
+  will-change: transform, box-shadow !important;
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.25s ease !important;
+}
+
+[data-theme="dark"] .post-card,
+[data-theme="dark"] .article {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .post-card:hover,
+.post-card.is-card-hover-active {
+  border-color: rgba(99, 179, 237, 0.45) !important;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.55), 0 0 20px 0 rgba(59, 130, 246, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+}
+
+.card-hover__spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--card-hover-mouse-x, 50%) var(--card-hover-mouse-y, 50%), rgba(255, 255, 255, 0.18), transparent 60%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease-out;
+}
+
+.post-card:hover .card-hover__spotlight,
+.post-card.is-card-hover-active .card-hover__spotlight {
+  opacity: 1 !important;
+}
+
+/* Post card tag chips */
+.post-list .post-card .card-tags .tag-chip {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  color: var(--text-p2);
+  margin-right: 6px;
+  transition: all 0.2s ease;
+}
+
+.post-list .post-card:hover .card-tags .tag-chip {
+  background: rgba(59, 130, 246, 0.18);
+  color: var(--theme, #3b82f6);
+}
+
+/* =======================================================
+   4. macOS Traffic Light Codeblock Dots
+   ======================================================= */
+.highlight {
+  position: relative !important;
+  padding-top: 2rem !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.highlight::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff5f56;
+  box-shadow: 16px 0 0 #ffbd2e, 32px 0 0 #27c93f;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.highlight figcaption {
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+/* =======================================================
+   5. Subtle Ambient Glow Sidebar & Seamless Widgets
    ======================================================= */
 .l_left {
   position: relative !important;
@@ -37,7 +158,6 @@
   border: 1px solid rgba(0, 0, 0, 0.06) !important;
 }
 
-/* Faint, delicate background glow - deep blur, low opacity */
 .l_left .sidebg {
   display: block !important;
   pointer-events: none !important;
@@ -72,9 +192,6 @@
   background: transparent !important;
 }
 
-/* =======================================================
-   Remove Bounding Boxes on Leftbar Widgets (1:1 Official)
-   ======================================================= */
 .l_left .widget-wrapper,
 .l_left .widget-wrapper .widget-body,
 .l_left .widget-wrapper.markdown .widget-body,
@@ -90,7 +207,6 @@
   -webkit-backdrop-filter: none !important;
 }
 
-/* Link buttons in profile */
 .l_left .linklist .link {
   background: rgba(255, 255, 255, 0.08) !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
@@ -103,7 +219,6 @@
   transform: translateY(-1px);
 }
 
-/* Menubar Icon Buttons */
 .menubar .menu-item {
   transition: all 0.2s ease-in-out;
 }
@@ -113,37 +228,29 @@
 }
 
 /* =======================================================
-   Card & Main Content Enhancements
+   6. Custom Text Selection (Amber Glow)
    ======================================================= */
-[data-theme="dark"] .post-card,
-[data-theme="dark"] .article {
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+::selection {
+  background: rgba(255, 175, 64, 0.35) !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 10px rgba(255, 175, 64, 0.4);
 }
 
-[data-theme="dark"] .post-card:hover {
-  border-color: rgba(66, 153, 225, 0.3);
-  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.4);
+::-moz-selection {
+  background: rgba(255, 175, 64, 0.35) !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 10px rgba(255, 175, 64, 0.4);
 }
 
-/* Codeblock Enhancements */
-.highlight, pre {
-  border-radius: 10px !important;
-}
-
-.highlight figcaption {
-  font-size: 0.8rem;
-  opacity: 0.85;
-}
-
-/* Note & Admonition Styling */
+/* =======================================================
+   7. Tag Plugins (Tabs, Notes, Bangumi, Search)
+   ======================================================= */
 .tag-plugin.note {
   border-radius: 10px !important;
   margin: 1.25rem 0 !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-/* Tabs Styling */
 .tag-plugin.tabs {
   border-radius: 12px !important;
   overflow: hidden;
@@ -160,7 +267,6 @@
   transition: all 0.2s ease;
 }
 
-/* Bangumi List Polish */
 .bangumi-tab.bangumi-active {
   background: var(--theme);
   border-radius: 10px;
@@ -187,7 +293,6 @@ a.bangumi-tab {
   border-right: 1px solid var(--text-meta);
 }
 
-/* Global Smooth Scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -221,7 +326,6 @@ a.bangumi-tab {
   white-space: nowrap;
 }
 
-/* Search Result Dropdown Polish & Hitbox Alignment Fix */
 #search-result .search-result-list {
   padding: 0;
   margin: 8px 0;
@@ -282,61 +386,4 @@ a.bangumi-tab {
   background: rgba(59, 130, 246, 0.15);
   padding: 0 2px;
   border-radius: 3px;
-}
-
-/* =======================================================
-   Custom Text Selection (Soft Ambient Glow Style)
-   ======================================================= */
-::selection {
-  background: rgba(255, 175, 64, 0.35) !important;
-  color: #ffffff !important;
-  text-shadow: 0 0 10px rgba(255, 175, 64, 0.4);
-}
-
-::-moz-selection {
-  background: rgba(255, 175, 64, 0.35) !important;
-  color: #ffffff !important;
-  text-shadow: 0 0 10px rgba(255, 175, 64, 0.4);
-}
-
-/* =======================================================
-   3D Tilt & Dynamic Spotlight Card Hover Effect (Official)
-   ======================================================= */
-.card-hover.is-card-hover-ready {
-  position: relative !important;
-  --card-hover-mouse-x: 50%;
-  --card-hover-mouse-y: 50%;
-  --card-hover-rotate-x: 0deg;
-  --card-hover-rotate-y: 0deg;
-  transform-style: preserve-3d;
-}
-
-.card-hover.is-card-hover-ready.card-hover--tilt {
-  transform: perspective(900px) translate3d(0, 0, 0) rotateX(var(--card-hover-rotate-x)) rotateY(var(--card-hover-rotate-y));
-  transform-origin: center;
-  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, border-color 0.2s ease;
-}
-
-.card-hover.is-card-hover-ready.card-hover--tilt.is-card-hover-active {
-  transform: perspective(900px) translate3d(0, -5px, 0) rotateX(var(--card-hover-rotate-x)) rotateY(var(--card-hover-rotate-y)) !important;
-  transition-duration: 60ms, 0.2s, 0.2s;
-  will-change: transform;
-  border-color: rgba(66, 153, 225, 0.45) !important;
-  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
-}
-
-.card-hover__spotlight {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  border-radius: inherit;
-  background: radial-gradient(circle at var(--card-hover-mouse-x) var(--card-hover-mouse-y), var(--card-hover-spotlight-color, rgba(255, 255, 255, 0.2)), transparent 65%);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease-out;
-}
-
-.card-hover.is-card-hover-ready.card-hover--spotlight.is-card-hover-active > .card-hover__spotlight,
-.card-hover.is-card-hover-ready.card-hover--spotlight:focus-within > .card-hover__spotlight {
-  opacity: 0.75 !important;
 }
