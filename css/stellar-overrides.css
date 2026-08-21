@@ -48,7 +48,7 @@
 }
 
 /* =======================================================
-   3. Real 3D Tilt Physics & Dynamic Spotlight
+   3. Real 3D Tilt Physics & Dynamic Spotlight (1:1 Official)
    ======================================================= */
 .post-list .post-card-wrap {
   perspective: 1000px !important;
@@ -61,15 +61,15 @@
   --card-hover-mouse-y: 50%;
   --card-hover-rotate-x: 0deg;
   --card-hover-rotate-y: 0deg;
-  transform-style: preserve-3d !important;
-  transform: perspective(1000px) translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg);
-  transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.25s ease !important;
+  transform: perspective(900px) translate3d(0, 0, 0) rotateX(var(--card-hover-rotate-x, 0deg)) rotateY(var(--card-hover-rotate-y, 0deg));
+  transform-origin: center;
+  transition: transform 0.25s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease !important;
 }
 
 .post-card.is-card-hover-active,
 .card-hover.is-card-hover-active {
-  transform: perspective(1000px) translate3d(0, -6px, 16px) rotateX(var(--card-hover-rotate-x, 0deg)) rotateY(var(--card-hover-rotate-y, 0deg)) !important;
-  transition-duration: 50ms, 0.2s, 0.2s !important;
+  transform: perspective(900px) translate3d(0, -2px, 0) rotateX(var(--card-hover-rotate-x, 0deg)) rotateY(var(--card-hover-rotate-y, 0deg)) !important;
+  transition-duration: 80ms, 0.2s, 0.2s !important;
   will-change: transform !important;
 }
 
@@ -79,13 +79,13 @@
 
 [data-theme="dark"] .post-card:hover,
 [data-theme="dark"] .post-card.is-card-hover-active {
-  border-color: rgba(99, 179, 237, 0.45) !important;
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6), 0 0 24px 0 rgba(59, 130, 246, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(66, 153, 225, 0.35) !important;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
 }
 
 :root[data-theme="light"] .post-card:hover,
 :root[data-theme="light"] .post-card.is-card-hover-active {
-  box-shadow: 0 16px 32px -6px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.06) !important;
+  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04) !important;
 }
 
 .card-hover__spotlight {
@@ -93,7 +93,7 @@
   inset: 0;
   z-index: 2;
   border-radius: inherit;
-  background: radial-gradient(circle 280px at var(--card-hover-mouse-x, 50%) var(--card-hover-mouse-y, 50%), rgba(255, 255, 255, 0.16), transparent 70%);
+  background: radial-gradient(circle at var(--card-hover-mouse-x, 50%) var(--card-hover-mouse-y, 50%), rgba(255, 255, 255, 0.2), transparent 80%);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.25s ease-out;
@@ -101,7 +101,7 @@
 
 .post-card:hover .card-hover__spotlight,
 .post-card.is-card-hover-active .card-hover__spotlight {
-  opacity: 1 !important;
+  opacity: 0.65 !important;
 }
 
 /* Post card tag chips */

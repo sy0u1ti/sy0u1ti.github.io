@@ -1,6 +1,6 @@
 /**
- * card-hover.js v2.1
- * High-performance 3D Tilt, Dynamic Spotlight & Reading Progress
+ * card-hover.js v2.2 - Exact Official Stellar Calibration
+ * 1:1 Apple-style physics, silky smooth 3D tilt, subtle specular spotlight
  */
 (function() {
   'use strict';
@@ -22,14 +22,13 @@
     updateProgress();
   }
 
-  // 2. 3D Tilt Physics & Dynamic Spotlight
-  const MAX_TILT = 7; // degrees
+  // 2. Official 3D Tilt Physics & Ambient Spotlight
+  const MAX_TILT = 3; // Official gentle 3 degrees for Apple/Stellar weighted feel
 
   function bindCardHover(card) {
     if (!card || card._tiltBound) return;
     card._tiltBound = true;
 
-    // Create spotlight element if not present
     let spotlight = card.querySelector('.card-hover__spotlight');
     if (!spotlight) {
       spotlight = document.createElement('span');
@@ -38,42 +37,58 @@
       card.appendChild(spotlight);
     }
 
-    let rafId = null;
+    let frame = null;
+    let pointer = null;
 
-    function onMouseMove(e) {
+    function render() {
+      frame = null;
+      if (!pointer || !document.documentElement.contains(card)) return;
+
       const rect = card.getBoundingClientRect();
       if (rect.width <= 0 || rect.height <= 0) return;
 
-      const x = Math.max(0, Math.min(rect.width, e.clientX - rect.left));
-      const y = Math.max(0, Math.min(rect.height, e.clientY - rect.top));
+      const x = Math.max(0, Math.min(rect.width, pointer.x - rect.left));
+      const y = Math.max(0, Math.min(rect.height, pointer.y - rect.top));
+      const r = (x / rect.width) * 2 - 1;
+      const i = (y / rect.height) * 2 - 1;
 
-      if (rafId) cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(function() {
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = -((y - centerY) / centerY) * MAX_TILT;
-        const rotateY = ((x - centerX) / centerX) * MAX_TILT;
-
-        card.style.setProperty('--card-hover-mouse-x', x.toFixed(1) + 'px');
-        card.style.setProperty('--card-hover-mouse-y', y.toFixed(1) + 'px');
-        card.style.setProperty('--card-hover-rotate-x', rotateX.toFixed(3) + 'deg');
-        card.style.setProperty('--card-hover-rotate-y', rotateY.toFixed(3) + 'deg');
-        card.classList.add('is-card-hover-active');
-      });
+      card.style.setProperty('--card-hover-mouse-x', x.toFixed(1) + 'px');
+      card.style.setProperty('--card-hover-mouse-y', y.toFixed(1) + 'px');
+      card.style.setProperty('--card-hover-rotate-x', (-i * MAX_TILT).toFixed(3) + 'deg');
+      card.style.setProperty('--card-hover-rotate-y', (r * MAX_TILT).toFixed(3) + 'deg');
     }
 
-    function onMouseLeave() {
-      if (rafId) cancelAnimationFrame(rafId);
+    function onPointerEnter(e) {
+      pointer = { x: e.clientX, y: e.clientY };
+      card.classList.add('is-card-hover-ready', 'is-card-hover-active');
+      if (frame === null) {
+        frame = requestAnimationFrame(render);
+      }
+    }
+
+    function onPointerMove(e) {
+      pointer = { x: e.clientX, y: e.clientY };
+      if (frame === null) {
+        frame = requestAnimationFrame(render);
+      }
+    }
+
+    function onPointerLeave() {
+      if (frame !== null) {
+        cancelAnimationFrame(frame);
+        frame = null;
+      }
+      pointer = null;
+      card.classList.remove('is-card-hover-active');
       card.style.setProperty('--card-hover-rotate-x', '0deg');
       card.style.setProperty('--card-hover-rotate-y', '0deg');
-      card.classList.remove('is-card-hover-active');
+      card.style.setProperty('--card-hover-mouse-x', '50%');
+      card.style.setProperty('--card-hover-mouse-y', '50%');
     }
 
-    card.addEventListener('mouseenter', function() {
-      card.classList.add('is-card-hover-ready');
-    });
-    card.addEventListener('mousemove', onMouseMove, { passive: true });
-    card.addEventListener('mouseleave', onMouseLeave, { passive: true });
+    card.addEventListener('pointerenter', onPointerEnter, { passive: true });
+    card.addEventListener('pointermove', onPointerMove, { passive: true });
+    card.addEventListener('pointerleave', onPointerLeave, { passive: true });
   }
 
   function initAllCards() {
