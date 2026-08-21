@@ -154,7 +154,9 @@
    5. Subtle Ambient Glow Sidebar & Seamless Widgets
    ======================================================= */
 .l_left {
-  position: relative !important;
+  position: sticky !important;
+  position: -webkit-sticky !important;
+  top: var(--gap-page, 32px) !important;
   overflow: hidden !important;
   border-radius: var(--border-card-l, 24px) !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
