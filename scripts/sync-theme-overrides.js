@@ -5,7 +5,8 @@ const path = require('node:path');
 
 const overrides = [
   ['layout/archive.ejs', 'theme-overrides/layout/archive.ejs'],
-  ['layout/categories.ejs', 'theme-overrides/layout/categories.ejs']
+  ['layout/categories.ejs', 'theme-overrides/layout/categories.ejs'],
+  ['layout/_partial/main/article/article_footer.ejs', 'theme-overrides/layout/_partial/main/article/article_footer.ejs']
 ];
 
 hexo.extend.filter.register('before_generate', function() {
