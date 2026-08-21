@@ -8,15 +8,9 @@ profile:
       - title: 个人主页
         url: https://home.syouiti.com
         icon: solar:planet-bold-duotone
-      - title: AI Token
-        url: https://aichat.syouiti.com
-        icon: solar:chat-square-like-bold-duotone
       - title: GitHub
         url: https://github.com/sy0u1ti
         icon: github:logo
-      - title: Twitter / X
-        url: https://x.com/Syou1Ti
-        icon: solar:hashtag-square-bold
 
 recent_posts:
   layout: recent

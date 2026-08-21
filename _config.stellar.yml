@@ -348,9 +348,8 @@ footer:
       - '[标签](/tags/)'
       - '[番剧](/bangumis/)'
     '站外':
-      - '[X](https://x.com/Syou1Ti)'
-      - '[AI Token](https://aichat.syouiti.com)'
       - '[Home](https://home.syouiti.com)'
+      - '[GitHub](https://github.com/sy0u1ti)'
   content: | # 支持 Markdown 格式
     记录 AI、效率工具、网络技术与各种折腾。
     本站由 [{author.name}](/) 创建 · [萌ICP备20244469号](https://icp.gov.moe/?keyword=20244469)
