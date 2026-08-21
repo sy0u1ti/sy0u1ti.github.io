@@ -270,6 +270,77 @@ body {
 }
 
 /* =======================================================
+   5.1 VisionOS Frosted Glass Sidebar Menu Interaction
+   ======================================================= */
+.l_left .nav-area .menu .ui-collection__item {
+  border-radius: 12px !important;
+  border: 1px solid transparent !important;
+  margin: 3px 0 !important;
+  padding: 8px 14px !important;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.22s ease,
+              border-color 0.22s ease,
+              box-shadow 0.22s ease,
+              color 0.2s ease !important;
+  transform: translateZ(0);
+}
+
+.l_left .nav-area .menu .ui-collection__item .ui-collection__leading {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), filter 0.22s ease, opacity 0.2s ease !important;
+}
+
+.l_left .nav-area .menu .ui-collection__item .ui-collection__title {
+  transition: color 0.2s ease, text-shadow 0.2s ease !important;
+}
+
+/* Hover: Frosted Glass & Floating Depth */
+.l_left .nav-area .menu .ui-collection__item:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  box-shadow: 0 6px 20px -2px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.32) !important;
+  transform: translateY(-2px) scale(1.015) !important;
+  color: #ffffff !important;
+}
+
+.l_left .nav-area .menu .ui-collection__item:hover .ui-collection__title {
+  color: #ffffff !important;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+}
+
+.l_left .nav-area .menu .ui-collection__item:hover .ui-collection__leading {
+  transform: scale(1.12);
+  filter: drop-shadow(0 0 8px var(--item-theme, #3b82f6));
+}
+
+/* Active State (Current Page) */
+.l_left .nav-area .menu .ui-collection__item.is-active {
+  background: rgba(255, 255, 255, 0.16) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.26) !important;
+  box-shadow: 0 6px 24px -2px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.42), 0 0 16px -2px var(--item-theme, rgba(59, 130, 246, 0.35)) !important;
+  color: #ffffff !important;
+}
+
+.l_left .nav-area .menu .ui-collection__item.is-active .ui-collection__title {
+  font-weight: 600 !important;
+  color: #ffffff !important;
+}
+
+.l_left .nav-area .menu .ui-collection__item.is-active .ui-collection__leading {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 10px var(--item-theme, #3b82f6));
+}
+
+/* Press Feedback */
+.l_left .nav-area .menu .ui-collection__item:active {
+  transform: translateY(0px) scale(0.985) !important;
+  transition-duration: 80ms !important;
+}
+
+/* =======================================================
    6. Custom Text Selection (Amber Glow)
    ======================================================= */
 ::selection {
