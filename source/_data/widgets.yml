@@ -1,22 +1,22 @@
 profile:
   layout: markdown
   content: |
-    这里记录 AI、效率工具、网络技术，以及各种值得试一试的新东西。
+    这里记录 AI、效率工具、网络技术，以及各种值得折腾的新东西。
   linklist:
     columns: 2
     items:
-      - title: 分类
-        url: /categories/
-        icon: default:category
-      - title: 归档
-        url: /archives/
-        icon: default:calendar
-      - title: 标签
-        url: /tags/
+      - title: 个人主页
+        url: https://home.syouiti.com
+        icon: solar:planet-bold-duotone
+      - title: AI Token
+        url: https://aichat.syouiti.com
+        icon: solar:chat-square-like-bold-duotone
+      - title: GitHub
+        url: https://github.com/sy0u1ti
+        icon: github:logo
+      - title: Twitter / X
+        url: https://x.com/Syou1Ti
         icon: solar:hashtag-square-bold
-      - title: 番剧
-        url: /bangumis/
-        icon: solar:notebook-bookmark-bold-duotone
 
 recent_posts:
   layout: recent
@@ -26,8 +26,8 @@ topic_tags:
   layout: tagcloud
   title: 标签索引
   min_font: 12
-  max_font: 18
+  max_font: 17
   amount: 24
-  orderby: name
-  order: 1
+  orderby: count
+  order: -1
   color: false

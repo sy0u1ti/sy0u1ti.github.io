@@ -37,27 +37,38 @@ logo:
 # 侧边栏主功能导航菜单
 menubar:
   columns: 2 # 一行多少个
-  items: [] # 顶部快捷入口已移除
-    # id: 页面中高亮的 menu_id 
-    # theme: 高亮时的颜色，仅 svg 中 fill="currentColor" 时有效
-    # icon: 支持 svg/img 标签，可以定义在 icons.yml 文件中，也支持外部图片的 URL
-    # title: 标题
-    # url: 点击跳转到哪，支持相对路径和绝对路径
-    # - id: wiki
-    #   theme: '#3DC550'
-    #   icon: solar:notebook-bookmark-bold-duotone
-    #   title: 文档
-    #   url: /wiki/
-    # - id: explore
-    #   theme: '#FA6400'
-    #   icon: solar:planet-bold-duotone
-    #   title: 探索
-    #   url: /explore/
-    # - id: social
-    #   theme: '#F44336'
-    #   icon: solar:chat-square-like-bold-duotone
-    #   title: 社交
-    #   url: /friends/
+  items:
+    - id: home
+      theme: '#3B82F6'
+      icon: solar:home-bold-duotone
+      title: 首页
+      url: /
+    - id: archives
+      theme: '#10B981'
+      icon: solar:archive-bold-duotone
+      title: 归档
+      url: /archives/
+    - id: categories
+      theme: '#F59E0B'
+      icon: solar:folder-bold-duotone
+      title: 分类
+      url: /categories/
+    - id: tags
+      theme: '#EC4899'
+      icon: solar:hashtag-square-bold
+      title: 标签
+      url: /tags/
+    - id: bangumis
+      theme: '#8B5CF6'
+      icon: solar:clapperboard-bold-duotone
+      title: 番剧
+      url: /bangumis/
+    - id: topic
+      theme: '#06B6D4'
+      icon: solar:documents-bold-duotone
+      title: 专栏
+      url: /topic/
+
 
 
 ######## Main ########
@@ -598,9 +609,9 @@ style:
     image: 14px # 图片圆角
   color:
     # 主题色配置（不会根据明暗动态调整，请设置为通用的颜色）
-    theme: 'hsl(192 98% 55%)' # 主题色
-    accent: 'hsl(14 100% 57%)' # 强调色
-    link: 'hsl(207 90% 54%)' # 超链接颜色
+    theme: 'hsl(212 96% 56%)' # 主题色
+    accent: 'hsl(16 95% 58%)' # 强调色
+    link: 'hsl(210 90% 56%)' # 超链接颜色
   animated_avatar:
     animate: auto # auto, always
     background: https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp
@@ -615,7 +626,7 @@ style:
   leftbar:
     # 可以设置：纯色/渐变色/图片作为背景
     background-color: var(--card) # var(--block)
-    background-image: url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.13/image/sidebar-bg1@small.jpg)
+    # background-image: none
     blur-px: 100px
     blur-bg: var(--bg-a60)
     background-opacity: 0.8
