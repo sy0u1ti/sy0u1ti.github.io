@@ -23,8 +23,8 @@ canonical:
 
 inject:
   head:
-    - '<script defer src="/js/plugins/card-hover.js?v=20260821q"></script>'
-    - '<link rel="stylesheet" href="/css/stellar-overrides.css?v=20260821q">'
+    - '<script defer src="/js/plugins/card-hover.js?v=20260823b"></script>'
+    - '<link rel="stylesheet" href="/css/stellar-overrides.css?v=20260823c">'
 
 
 ######## Sidebar ########
@@ -336,9 +336,9 @@ footer:
     # comments:
     #   icon: '<img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/942ebbf1a4b91.svg"/>'
     #   url: /about/#comments
-    # theme:
-    #   icon: default:theme
-    #   onclick: 'switchTheme()'
+    theme:
+      icon: default:theme
+      onclick: 'switchTheme()'
   sitemap:
     '站内':
       - '[首页](/)'
@@ -627,7 +627,7 @@ style:
     background-image: url(https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/mrito_commission_143759824_p2.9gx8zqx8c3.jpg)
     blur-px: 100px
     blur-bg: var(--bg-a60)
-    background-opacity: 0.85
+    background-opacity: 0.32
   paginator:
     prev: https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/arrow/f049bbd4e88ec.svg
     next: https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/arrow/064b95430caf4.svg
