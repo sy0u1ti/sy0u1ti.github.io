@@ -8692,16 +8692,16 @@ details.toc[open] >div.body section .header+.doc_tree {
   background-position: center;
   background-size: cover;
   --inset: 32px;
-  --background-opacity: 0.85;
+  --background-opacity: 0.32;
   background-image: url("https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/mrito_commission_143759824_p2.9gx8zqx8c3.jpg");
   filter: saturate(var(--saturate)) blur(var(--blur-px)) opacity(var(--background-opacity));
 }
 :root[data-theme="dark"] .l_left .sidebg {
-  --background-opacity: 0.6375;
+  --background-opacity: 0.24;
 }
 @media screen and (prefers-color-scheme: dark) {
   :root:not([data-theme]) .l_left .sidebg {
-    --background-opacity: 0.6375;
+    --background-opacity: 0.24;
   }
 }
 .l_left .leftbar-container {
