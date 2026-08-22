@@ -185,7 +185,9 @@ body {
    5. Subtle Ambient Glow Sidebar & Seamless Widgets
    ======================================================= */
 .l_left {
-  /* Keep Stellar's native glass overlay and fade masks in control. */
+  /* Fade the complete sidebar mass so the blurred backdrop cannot expose an inner rectangle. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 82%, rgba(0, 0, 0, 0.45) 93%, transparent 100%) !important;
+  mask-image: linear-gradient(to bottom, #000 82%, rgba(0, 0, 0, 0.45) 93%, transparent 100%) !important;
 }
 
 .l_left .leftbar-container {

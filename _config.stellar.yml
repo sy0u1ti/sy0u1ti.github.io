@@ -23,8 +23,9 @@ canonical:
 
 inject:
   head:
-    - '<script defer src="/js/plugins/card-hover.js?v=20260823b"></script>'
-    - '<link rel="stylesheet" href="/css/stellar-overrides.css?v=20260823c">'
+    - '<style id="stellar-sidebar-fade">.l_left{-webkit-mask-image:linear-gradient(to bottom,#000 82%,rgba(0,0,0,.45) 93%,transparent 100%)!important;mask-image:linear-gradient(to bottom,#000 82%,rgba(0,0,0,.45) 93%,transparent 100%)!important}</style>'
+    - '<script defer src="/js/plugins/card-hover.js?v=20260823e"></script>'
+    - '<link rel="stylesheet" href="/css/stellar-overrides.css?v=20260823e">'
 
 
 ######## Sidebar ########
