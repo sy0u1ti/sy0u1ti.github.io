@@ -278,6 +278,27 @@ body {
   box-sizing: border-box !important;
 }
 
+/* =======================================================
+   5.2 Right Sidebar (TOC) Sticky Fix & Interaction
+   ======================================================= */
+@media screen and (min-width: 1181px) {
+  .l_body .l_right {
+    align-self: start !important;
+    position: sticky !important;
+    position: -webkit-sticky !important;
+    top: var(--gap-page, 32px) !important;
+    height: fit-content !important;
+    max-height: calc(100vh - var(--gap-page, 32px) * 2) !important;
+  }
+
+  .l_body .l_right .widgets {
+    height: auto !important;
+    max-height: calc(100vh - var(--gap-page, 32px) * 2) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+}
+
 /* Right sidebar (TOC) rounded corners */
 .l_right {
   border-radius: var(--border-card-l, 24px) !important;
