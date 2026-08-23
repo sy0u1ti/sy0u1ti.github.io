@@ -8692,16 +8692,16 @@ details.toc[open] >div.body section .header+.doc_tree {
   background-position: center;
   background-size: cover;
   --inset: 32px;
-  --background-opacity: 0.32;
-  background-image: url("https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/mrito_commission_143759824_p2.9gx8zqx8c3.jpg");
+  --background-opacity: 0.8;
+  background-image: url("https://res.xaox.cc/gh/cdn-x/placeholder@1.0.13/image/sidebar-bg1@small.jpg");
   filter: saturate(var(--saturate)) blur(var(--blur-px)) opacity(var(--background-opacity));
 }
 :root[data-theme="dark"] .l_left .sidebg {
-  --background-opacity: 0.24;
+  --background-opacity: 0.6;
 }
 @media screen and (prefers-color-scheme: dark) {
   :root:not([data-theme]) .l_left .sidebg {
-    --background-opacity: 0.24;
+    --background-opacity: 0.6;
   }
 }
 .l_left .leftbar-container {
@@ -11711,4 +11711,66 @@ html.sr-fallback .slide-up {
   z-index: 1;
   margin-right: 1rem;
   border-radius: 10px;
+}
+.card-hover.is-card-hover-ready {
+  position: relative;
+  --card-hover-mouse-x: 50%;
+  --card-hover-mouse-y: 50%;
+  --card-hover-rotate-x: 0deg;
+  --card-hover-rotate-y: 0deg;
+}
+.card-hover.is-card-hover-ready.card-hover--tilt {
+  transform: perspective(900px) translate3d(0, 0, 0) rotateX(var(--card-hover-rotate-x)) rotateY(var(--card-hover-rotate-y));
+  transform-origin: center;
+  transition: transform 0.25s ease-out, box-shadow 0.2s ease-out;
+}
+.card-hover.is-card-hover-ready.card-hover--tilt.is-card-hover-active {
+  transform: perspective(900px) translate3d(0, -2px, 0) rotateX(var(--card-hover-rotate-x)) rotateY(var(--card-hover-rotate-y));
+  transition-duration: 0.08s, 0.2s;
+  will-change: transform;
+}
+.card-hover__spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  corner-shape: inherit;
+  background: radial-gradient(circle at var(--card-hover-mouse-x) var(--card-hover-mouse-y), var(--card-hover-spotlight-color, rgba(255,255,255,0.25)), transparent 80%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease-out;
+}
+.card-hover.is-card-hover-ready.card-hover--spotlight.is-card-hover-active > .card-hover__spotlight,
+.card-hover.is-card-hover-ready.card-hover--spotlight:focus-within > .card-hover__spotlight {
+  opacity: 0.6;
+}
+.post-list:not(.topic) .post-card-wrap {
+  box-shadow: none;
+}
+.post-list:not(.topic) .post-card.card-hover,
+.post-list.wiki .wiki-card.card-hover {
+  box-shadow: 0 1px 2px 0px rgba(0,0,0,0.1);
+}
+.post-list.wiki .post-card-wrap {
+  box-shadow: none;
+}
+.md-text .link-card.card-hover.card-hover--tilt.is-card-hover-ready,
+.tag-plugin.grid[bg='card'] > .cell.card-hover.card-hover--tilt.is-card-hover-ready {
+  transform: perspective(900px) translate3d(0, 0, 0) rotateX(var(--card-hover-rotate-x)) rotateY(var(--card-hover-rotate-y));
+}
+.md-text .link-card.card-hover.card-hover--tilt.is-card-hover-ready.is-card-hover-active,
+.tag-plugin.grid[bg='card'] > .cell.card-hover.card-hover--tilt.is-card-hover-ready.is-card-hover-active {
+  transform: perspective(900px) translate3d(0, -2px, 0) rotateX(var(--card-hover-rotate-x)) rotateY(var(--card-hover-rotate-y));
+}
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .card-hover.is-card-hover-ready.card-hover--tilt,
+  .card-hover.is-card-hover-ready.card-hover--tilt.is-card-hover-active,
+  .md-text .link-card.card-hover.card-hover--tilt.is-card-hover-ready,
+  .tag-plugin.grid[bg='card'] > .cell.card-hover.card-hover--tilt.is-card-hover-ready {
+    transform: none;
+    transition: none;
+  }
+  .card-hover.is-card-hover-ready.card-hover--spotlight > .card-hover__spotlight {
+    opacity: 0;
+  }
 }

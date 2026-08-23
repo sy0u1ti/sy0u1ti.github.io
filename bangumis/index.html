@@ -1,5 +1,5 @@
 
-<!DOCTYPE html><html lang="zh-CN" data-theme="dark">
+<!DOCTYPE html><html lang="zh-CN">
 
 <head>
   <meta charset="utf-8">
@@ -62,7 +62,7 @@
   
 
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Website","@id":"https://blog.syouiti.com","author":{"@type":"Person","name":"白上賞一「しらかみしょういち」","sameAs":[],"image":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png"},"name":"白上賞一","description":"记录 AI、效率工具、网络技术与各种折腾。","url":"https://blog.syouiti.com"}</script>
-  <style id="stellar-sidebar-fade">.l_left{-webkit-mask-image:linear-gradient(to bottom,#000 82%,rgba(0,0,0,.45) 93%,transparent 100%)!important;mask-image:linear-gradient(to bottom,#000 82%,rgba(0,0,0,.45) 93%,transparent 100%)!important}</style><script defer src="/js/plugins/card-hover.js?v=20260823e"></script><link rel="stylesheet" href="/css/stellar-overrides.css?v=20260823e">
+  <link rel="stylesheet" href="/css/stellar-overrides.css?v=20260823j">
 
   <!-- icons.yml 驱动的 CSS 装饰图标 -->
   
@@ -404,7 +404,7 @@
   <span class="sep"></span>
   <a class="cap breadcrumb" href="/bangumis/">アニメ</a>
   </div></div><div class="meta-row">
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-08-23T00:59:17.785Z">2026-08-23</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-08-23T00:59:17.785Z">2026-08-23</time></span></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-08-23T04:49:04.551Z">2026-08-23</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-08-23T04:49:04.551Z">2026-08-23</time></span></div>
 </div></div>
     
     <div class="bottom only-title">
@@ -29576,9 +29576,9 @@ const g=m[b].parentNode.siblings().length;m[b].innerText=`1 / ${0===a(g/10)?1:a(
     }
 
     const slideUp = {
-      distance: `16px`,
-      duration: `800`,
-      interval: `100`,
+      distance: `10px`,
+      duration: `500`,
+      interval: `60`,
       scale: `1`,
       opacity: 0,
       easing: "ease-out"
@@ -29641,8 +29641,26 @@ const g=m[b].parentNode.siblings().length;m[b].innerText=`1 / ${0===a(g/10)?1:a(
   }, 'adaptive-text');
 </script>
 
+<script>
+  stellar.initPlugin(() => {
+    let disposed = false;
+    ctx.card_hover = {"spotlightColor":"rgba(255, 255, 255, 0.2)","maxTilt":3};
+    utils.js('/js/plugins/card-hover.js', { defer: true }).then(() => {
+      if (!disposed && stellar.cardHover && typeof stellar.cardHover.mountAll === 'function') {
+        stellar.cardHover.mountAll(document);
+      }
+    }).catch(() => {});
+    return () => {
+      disposed = true;
+      if (stellar.cardHover && typeof stellar.cardHover.destroy === 'function') {
+        stellar.cardHover.destroy();
+      }
+    };
+  }, 'card-hover');
+</script>
+
 
 
 <!-- inject -->
-
+<script defer src="/js/plugins/reading-progress.js?v=20260823j"></script>
 </div></body></html>
