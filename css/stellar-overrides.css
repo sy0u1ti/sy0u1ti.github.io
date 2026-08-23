@@ -63,8 +63,8 @@ body {
   width: 100%;
   transform: scaleX(0);
   transform-origin: 0 50%;
-  background: linear-gradient(90deg, var(--theme, #3b82f6), var(--accent, #f97316));
-  box-shadow: 0 0 10px var(--theme, #3b82f6);
+  background: linear-gradient(90deg, var(--theme, #f97316), var(--accent, #f97316));
+  box-shadow: 0 0 10px var(--theme, #f97316);
   z-index: 99999;
   pointer-events: none;
   transition: transform var(--duration-micro) var(--ease-out);
@@ -86,7 +86,7 @@ body {
 }
 
 .logo-wrap .avatar .bg {
-  background: linear-gradient(135deg, #3b82f6, #00e1dc, #ec4899, #f97316) !important;
+  background: linear-gradient(135deg, #f97316, #00e1dc, #ec4899, #f97316) !important;
   filter: blur(6px) saturate(160%) !important;
   animation: avatar-spin 12s linear infinite !important;
   opacity: 0.6 !important;
@@ -120,12 +120,12 @@ body {
 
 .post-list .post-card:hover,
 .post-list .post-card.is-card-hover-active {
-  border-color: color-mix(in srgb, var(--theme, #3b82f6) 45%, transparent) !important;
-  box-shadow: 0 10px 28px -4px rgba(0, 0, 0, 0.35), 0 0 18px -2px color-mix(in srgb, var(--theme, #3b82f6) 30%, transparent) !important;
+  border-color: color-mix(in srgb, var(--theme, #f97316) 45%, transparent) !important;
+  box-shadow: 0 10px 28px -4px rgba(0, 0, 0, 0.35), 0 0 18px -2px color-mix(in srgb, var(--theme, #f97316) 30%, transparent) !important;
 }
 
 .post-list .post-card:hover .post-title {
-  color: var(--theme, #3b82f6) !important;
+  color: var(--theme, #f97316) !important;
   transition: color var(--duration-quick) var(--ease-out);
 }
 
@@ -150,8 +150,8 @@ body {
 }
 
 .post-list .post-card:hover .card-tags .tag-chip {
-  background: rgba(59, 130, 246, 0.18);
-  color: var(--theme, #3b82f6);
+  background: rgba(249, 115, 22, 0.18);
+  color: var(--theme, #f97316);
 }
 
 /* Keyboard focus gets a crisp, accessible ring */
@@ -161,7 +161,7 @@ body {
 .l_left .linklist .link:focus-visible,
 .button:focus-visible,
 a.button:focus-visible {
-  outline: 2px solid color-mix(in srgb, var(--theme, #3b82f6) 70%, white);
+  outline: 2px solid color-mix(in srgb, var(--theme, #f97316) 70%, white);
   outline-offset: 3px;
 }
 
@@ -321,7 +321,7 @@ a.button:focus-visible {
 
 .l_left .ui-collection__item:hover .ui-collection__leading {
   transform: scale(1.1);
-  filter: drop-shadow(0 0 8px var(--item-theme, #3b82f6));
+  filter: drop-shadow(0 0 8px var(--item-theme, #f97316));
 }
 
 /* Active State (Current Page) */
@@ -330,7 +330,7 @@ a.button:focus-visible {
   backdrop-filter: blur(16px) saturate(160%) !important;
   -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
   border: 1px solid rgba(255, 255, 255, 0.26) !important;
-  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 0 14px -2px var(--item-theme, rgba(59, 130, 246, 0.35)) !important;
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 0 14px -2px var(--item-theme, rgba(249, 115, 22, 0.35)) !important;
   color: var(--ui-item-title, inherit) !important;
 }
 
@@ -341,7 +341,7 @@ a.button:focus-visible {
 
 .l_left .ui-collection__item.is-active .ui-collection__leading {
   transform: scale(1.08);
-  filter: drop-shadow(0 0 10px var(--item-theme, #3b82f6));
+  filter: drop-shadow(0 0 10px var(--item-theme, #f97316));
 }
 
 /* Physical Press Feedback */
@@ -552,10 +552,10 @@ a.bangumi-tab {
 }
 
 #search-result .search-keyword {
-  color: var(--theme, #3b82f6) !important;
-  border-bottom: 1.5px solid var(--theme, #3b82f6) !important;
+  color: var(--theme, #f97316) !important;
+  border-bottom: 1.5px solid var(--theme, #f97316) !important;
   font-weight: 700;
-  background: rgba(59, 130, 246, 0.15);
+  background: rgba(249, 115, 22, 0.15);
   padding: 0 2px;
   border-radius: 3px;
 }

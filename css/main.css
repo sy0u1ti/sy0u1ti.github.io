@@ -40,17 +40,17 @@
   }
 }
 :root {
-  --hue: 212deg;
-  --sat: 96%;
-  --light: 56%;
+  --hue: 25deg;
+  --sat: 95%;
+  --light: 53%;
   --alpha: 1;
   --theme: hsla(var(--hue) var(--sat) var(--light) / 1);
   --theme-a10: hsla(var(--hue) var(--sat) var(--light) / 0.1);
   --theme-a20: hsla(var(--hue) var(--sat) var(--light) / 0.2);
   --theme-a30: hsla(var(--hue) var(--sat) var(--light) / 0.3);
-  --accent: #fa642e;
-  --link: hsla(210deg 90% 56% / 1);
-  --link-a20: hsla(210deg 90% 56% / 0.2);
+  --accent: #faa819;
+  --link: hsla(25deg 95% 53% / 1);
+  --link-a20: hsla(25deg 95% 53% / 0.2);
   --item-theme: var(--theme);
   --item-theme-light: color-mix(in srgb, var(--item-theme) 50%, #fff);
   --background: hsla(210deg 20% 98% / 1);
@@ -341,50 +341,50 @@
   --link-a20: hsla(291.24087591240874deg 95% 32% / 0.2);
 }
 .colorful[color='theme'] {
-  --hue: 212deg;
-  --sat: 96%;
-  --light: 56%;
+  --hue: 25deg;
+  --sat: 95%;
+  --light: 53%;
   --alpha: 1;
   --theme: hsla(var(--hue) var(--sat) var(--light) / 1);
   --theme-a10: hsla(var(--hue) var(--sat) var(--light) / 0.1);
   --theme-a20: hsla(var(--hue) var(--sat) var(--light) / 0.2);
   --theme-a30: hsla(var(--hue) var(--sat) var(--light) / 0.3);
-  --link: hsla(212deg 96% 56% / 1);
-  --link-a20: hsla(212deg 96% 56% / 0.2);
-  --theme-border: hsla(212deg 50% 80% / var(--alpha));
-  --theme-block: hsla(212deg 90% 92% / var(--alpha));
-  --theme-mark: hsla(212deg 95% 80% / var(--alpha));
-  --theme-codeblock: hsla(212deg 50% 95% / var(--alpha));
-  --text: hsla(212deg 55% 16% / 1);
-  --text-p1: hsla(212deg 90% 20% / 1);
-  --text-p2: hsla(212deg 90% 20% / 0.8);
-  --text-p3: hsla(212deg 90% 20% / 0.6);
-  --text-p4: hsla(212deg 90% 20% / 0.4);
-  --link: hsla(212deg 95% 32% / 1);
-  --link-a20: hsla(212deg 95% 32% / 0.2);
+  --link: hsla(25deg 95% 53% / 1);
+  --link-a20: hsla(25deg 95% 53% / 0.2);
+  --theme-border: hsla(25deg 50% 80% / var(--alpha));
+  --theme-block: hsla(25deg 90% 92% / var(--alpha));
+  --theme-mark: hsla(25deg 95% 80% / var(--alpha));
+  --theme-codeblock: hsla(25deg 50% 95% / var(--alpha));
+  --text: hsla(25deg 55% 16% / 1);
+  --text-p1: hsla(25deg 90% 20% / 1);
+  --text-p2: hsla(25deg 90% 20% / 0.8);
+  --text-p3: hsla(25deg 90% 20% / 0.6);
+  --text-p4: hsla(25deg 90% 20% / 0.4);
+  --link: hsla(25deg 95% 32% / 1);
+  --link-a20: hsla(25deg 95% 32% / 0.2);
 }
 .colorful[color='accent'] {
-  --hue: 16deg;
-  --sat: 95%;
-  --light: 58%;
+  --hue: 38deg;
+  --sat: 96%;
+  --light: 54%;
   --alpha: 1;
   --theme: hsla(var(--hue) var(--sat) var(--light) / 1);
   --theme-a10: hsla(var(--hue) var(--sat) var(--light) / 0.1);
   --theme-a20: hsla(var(--hue) var(--sat) var(--light) / 0.2);
   --theme-a30: hsla(var(--hue) var(--sat) var(--light) / 0.3);
-  --link: hsla(16deg 95% 58% / 1);
-  --link-a20: hsla(16deg 95% 58% / 0.2);
-  --theme-border: hsla(16deg 50% 80% / var(--alpha));
-  --theme-block: hsla(16deg 90% 92% / var(--alpha));
-  --theme-mark: hsla(16deg 95% 80% / var(--alpha));
-  --theme-codeblock: hsla(16deg 50% 95% / var(--alpha));
-  --text: hsla(16deg 55% 16% / 1);
-  --text-p1: hsla(16deg 90% 20% / 1);
-  --text-p2: hsla(16deg 90% 20% / 0.8);
-  --text-p3: hsla(16deg 90% 20% / 0.6);
-  --text-p4: hsla(16deg 90% 20% / 0.4);
-  --link: hsla(16deg 95% 32% / 1);
-  --link-a20: hsla(16deg 95% 32% / 0.2);
+  --link: hsla(38deg 96% 54% / 1);
+  --link-a20: hsla(38deg 96% 54% / 0.2);
+  --theme-border: hsla(38deg 50% 80% / var(--alpha));
+  --theme-block: hsla(38deg 90% 92% / var(--alpha));
+  --theme-mark: hsla(38deg 95% 80% / var(--alpha));
+  --theme-codeblock: hsla(38deg 50% 95% / var(--alpha));
+  --text: hsla(38deg 55% 16% / 1);
+  --text-p1: hsla(38deg 90% 20% / 1);
+  --text-p2: hsla(38deg 90% 20% / 0.8);
+  --text-p3: hsla(38deg 90% 20% / 0.6);
+  --text-p4: hsla(38deg 90% 20% / 0.4);
+  --link: hsla(38deg 95% 32% / 1);
+  --link-a20: hsla(38deg 95% 32% / 0.2);
 }
 .colorful[color='light'] {
   --theme: #fff;
@@ -544,27 +544,27 @@
   }
 }
 :root[data-theme="dark"] .tag-plugin.tag {
-  --hue: 212deg;
-  --sat: 96%;
-  --light: 56%;
+  --hue: 25deg;
+  --sat: 95%;
+  --light: 53%;
   --alpha: 1;
   --theme: hsla(var(--hue) var(--sat) var(--light) / 1);
   --theme-a10: hsla(var(--hue) var(--sat) var(--light) / 0.1);
   --theme-a20: hsla(var(--hue) var(--sat) var(--light) / 0.2);
   --theme-a30: hsla(var(--hue) var(--sat) var(--light) / 0.3);
-  --link: hsla(212deg 96% 56% / 1);
-  --link-a20: hsla(212deg 96% 56% / 0.2);
-  --theme-border: hsla(212deg 40% 24% / var(--alpha));
-  --theme-block: hsla(212deg 24% 24% / var(--alpha));
-  --theme-mark: hsla(212deg 24% 24% / var(--alpha));
-  --theme-codeblock: hsla(212deg 12% 24% / var(--alpha));
-  --text: hsla(212deg 50% 75% / 1);
-  --text-p1: hsla(212deg 80% 80% / 1);
-  --text-p2: hsla(212deg 80% 80% / 0.8);
-  --text-p3: hsla(212deg 80% 80% / 0.6);
-  --text-p4: hsla(212deg 80% 80% / 0.4);
-  --link: hsla(212deg 80% 60% / 1);
-  --link-a20: hsla(212deg 80% 60% / 0.2);
+  --link: hsla(25deg 95% 53% / 1);
+  --link-a20: hsla(25deg 95% 53% / 0.2);
+  --theme-border: hsla(25deg 40% 24% / var(--alpha));
+  --theme-block: hsla(25deg 24% 24% / var(--alpha));
+  --theme-mark: hsla(25deg 24% 24% / var(--alpha));
+  --theme-codeblock: hsla(25deg 12% 24% / var(--alpha));
+  --text: hsla(25deg 50% 75% / 1);
+  --text-p1: hsla(25deg 80% 80% / 1);
+  --text-p2: hsla(25deg 80% 80% / 0.8);
+  --text-p3: hsla(25deg 80% 80% / 0.6);
+  --text-p4: hsla(25deg 80% 80% / 0.4);
+  --link: hsla(25deg 80% 60% / 1);
+  --link-a20: hsla(25deg 80% 60% / 0.2);
 }
 :root[data-theme="dark"] .colorful[color='red'] {
   --hue: 4.105263157894738deg;
@@ -752,27 +752,27 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) .tag-plugin.tag {
-    --hue: 212deg;
-    --sat: 96%;
-    --light: 56%;
+    --hue: 25deg;
+    --sat: 95%;
+    --light: 53%;
     --alpha: 1;
     --theme: hsla(var(--hue) var(--sat) var(--light) / 1);
     --theme-a10: hsla(var(--hue) var(--sat) var(--light) / 0.1);
     --theme-a20: hsla(var(--hue) var(--sat) var(--light) / 0.2);
     --theme-a30: hsla(var(--hue) var(--sat) var(--light) / 0.3);
-    --link: hsla(212deg 96% 56% / 1);
-    --link-a20: hsla(212deg 96% 56% / 0.2);
-    --theme-border: hsla(212deg 40% 24% / var(--alpha));
-    --theme-block: hsla(212deg 24% 24% / var(--alpha));
-    --theme-mark: hsla(212deg 24% 24% / var(--alpha));
-    --theme-codeblock: hsla(212deg 12% 24% / var(--alpha));
-    --text: hsla(212deg 50% 75% / 1);
-    --text-p1: hsla(212deg 80% 80% / 1);
-    --text-p2: hsla(212deg 80% 80% / 0.8);
-    --text-p3: hsla(212deg 80% 80% / 0.6);
-    --text-p4: hsla(212deg 80% 80% / 0.4);
-    --link: hsla(212deg 80% 60% / 1);
-    --link-a20: hsla(212deg 80% 60% / 0.2);
+    --link: hsla(25deg 95% 53% / 1);
+    --link-a20: hsla(25deg 95% 53% / 0.2);
+    --theme-border: hsla(25deg 40% 24% / var(--alpha));
+    --theme-block: hsla(25deg 24% 24% / var(--alpha));
+    --theme-mark: hsla(25deg 24% 24% / var(--alpha));
+    --theme-codeblock: hsla(25deg 12% 24% / var(--alpha));
+    --text: hsla(25deg 50% 75% / 1);
+    --text-p1: hsla(25deg 80% 80% / 1);
+    --text-p2: hsla(25deg 80% 80% / 0.8);
+    --text-p3: hsla(25deg 80% 80% / 0.6);
+    --text-p4: hsla(25deg 80% 80% / 0.4);
+    --link: hsla(25deg 80% 60% / 1);
+    --link-a20: hsla(25deg 80% 60% / 0.2);
   }
   :root:not([data-theme]) .colorful[color='red'] {
     --hue: 4.105263157894738deg;
@@ -9684,7 +9684,7 @@ details.toc[open] >div.body section .header+.doc_tree {
   display: inline-block;
   width: 12px;
   height: 1.2em;
-  background: #fa642e;
+  background: #faa819;
   transform: skewX(-20deg);
   margin: 0 0.5em;
   vertical-align: top;
@@ -10557,7 +10557,7 @@ details.toc[open] >div.body section .header+.doc_tree {
   display: inline-block;
   width: 12px;
   height: 1.2em;
-  background: #fa642e;
+  background: #faa819;
   transform: skewX(-20deg);
   margin: 0 0.5em;
   vertical-align: top;
