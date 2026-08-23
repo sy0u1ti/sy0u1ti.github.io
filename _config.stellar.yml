@@ -615,9 +615,9 @@ style:
     image: 14px # 图片圆角
   color:
     # 主题色配置（不会根据明暗动态调整，请设置为通用的颜色）
-    theme: 'hsl(212 96% 56%)' # 主题色
-    accent: 'hsl(16 95% 58%)' # 强调色
-    link: 'hsl(210 90% 56%)' # 超链接颜色
+    theme: 'hsl(25 95% 53%)' # 主题色
+    accent: 'hsl(38 96% 54%)' # 强调色
+    link: 'hsl(25 95% 53%)' # 超链接颜色
   animated_avatar:
     animate: auto # auto, always
     background: https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp
