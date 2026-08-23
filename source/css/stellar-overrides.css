@@ -1,14 +1,48 @@
-/* =======================================================
-   0. Global Wallpaper & Atmospheric Canvas
+﻿/* =======================================================
+   0. Global Wallpaper & Motion Tokens (transitions-dev)
    ======================================================= */
+:root {
+  /* transitions.dev shared motion scale: one vocabulary for every custom interaction. */
+  --duration-stagger: 40ms;
+  --duration-micro: 80ms;
+  --duration-quick: 150ms;
+  --duration-fast: 250ms;
+  --duration-medium: 350ms;
+  --duration-slow: 400ms;
+  --duration-very-slow: 500ms;
+  --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: ease-in-out;
+  --ease-out: ease-out;
+  --ease-linear: linear;
+  --distance-small: 6px;
+  --distance-base: 8px;
+  --distance-medium: 12px;
+  --blur-small: 2px;
+  --blur-medium: 3px;
+  --tilt-follow: 80ms;
+  --tilt-return: 250ms;
+  --tilt-glare-fade: 250ms;
+}
+
+/* Respect the user's reduced-motion preference across all components */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+  #reading-progress-bar {
+    display: none !important;
+  }
+}
+
 body {
-  background-image: 
-    linear-gradient(rgba(14, 18, 26, 0.68), rgba(14, 18, 26, 0.68)),
-    url('https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/mrito_commission_143759824_p2.9gx8zqx8c3.jpg') !important;
-  background-position: center center !important;
-  background-size: cover !important;
-  background-repeat: no-repeat !important;
-  background-attachment: fixed !important;
+  background: var(--background) !important;
+  background-image: none !important;
 }
 
 @font-face {
@@ -19,19 +53,22 @@ body {
 }
 
 /* =======================================================
-   1. Top Reading Progress Bar
+   1. Top Reading Progress Bar (Hardware Accelerated)
    ======================================================= */
 #reading-progress-bar {
   position: fixed;
   top: 0;
   left: 0;
   height: 3px;
-  width: 0%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
   background: linear-gradient(90deg, var(--theme, #3b82f6), var(--accent, #f97316));
   box-shadow: 0 0 10px var(--theme, #3b82f6);
   z-index: 99999;
   pointer-events: none;
-  transition: width 0.1s ease-out;
+  transition: transform var(--duration-micro) var(--ease-out);
+  will-change: transform;
 }
 
 /* =======================================================
@@ -61,79 +98,20 @@ body {
 }
 
 /* =======================================================
-   3. Real 3D Tilt Physics & Dynamic Spotlight (1:1 Official)
+   3. Native Stellar Card Hover Polish & Focus Rings
    ======================================================= */
 .post-list .post-card-wrap {
   perspective: 1000px !important;
-}
-
-.post-card,
-.card-hover {
-  position: relative !important;
-  --card-hover-mouse-x: 50%;
-  --card-hover-mouse-y: 50%;
-  --card-hover-rotate-x: 0deg;
-  --card-hover-rotate-y: 0deg;
-  transform-style: preserve-3d;
-  transform-origin: center;
-  transition: transform 0.25s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease !important;
-}
-
-.post-card.is-card-hover-active,
-.card-hover.is-card-hover-active {
-  transform: perspective(900px) translate3d(0, -2px, 0) rotateX(var(--card-hover-rotate-x, 0deg)) rotateY(var(--card-hover-rotate-y, 0deg)) !important;
-  transition-duration: 80ms, 0.2s, 0.2s !important;
-  will-change: transform !important;
 }
 
 /* Topic cards are very tall; disable 3D tilt entirely on them. */
 .post-card.topic,
 .post-card.topic:hover {
   transform: none !important;
-  transition: box-shadow 0.2s ease-out, border-color 0.2s ease !important;
+  transition: box-shadow var(--duration-quick) var(--ease-out), border-color var(--duration-quick) var(--ease-out) !important;
 }
 
-[data-theme="dark"] .post-card,
-[data-theme="dark"] .card-hover {
-  background: rgba(22, 28, 38, 0.92) !important;
-  backdrop-filter: blur(30px) saturate(140%) !important;
-  -webkit-backdrop-filter: blur(30px) saturate(140%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-}
 
-[data-theme="dark"] .navbar-blur {
-  background: rgba(22, 28, 38, 0.92) !important;
-  backdrop-filter: blur(30px) saturate(140%) !important;
-  -webkit-backdrop-filter: blur(30px) saturate(140%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-}
-
-[data-theme="dark"] .post-card:hover,
-[data-theme="dark"] .post-card.is-card-hover-active {
-  border-color: rgba(66, 153, 225, 0.35) !important;
-  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
-}
-
-:root[data-theme="light"] .post-card:hover,
-:root[data-theme="light"] .post-card.is-card-hover-active {
-  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04) !important;
-}
-
-.card-hover__spotlight {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  border-radius: inherit;
-  background: radial-gradient(circle at var(--card-hover-mouse-x, 50%) var(--card-hover-mouse-y, 50%), rgba(255, 255, 255, 0.2), transparent 80%);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease-out;
-}
-
-.post-card:hover .card-hover__spotlight,
-.post-card.is-card-hover-active .card-hover__spotlight {
-  opacity: 0.65 !important;
-}
 
 /* Post card tag chips */
 .post-list .post-card .card-tags .tag-chip {
@@ -143,7 +121,7 @@ body {
   font-size: 0.75rem;
   color: var(--text-p2);
   margin-right: 6px;
-  transition: all 0.2s ease;
+  transition: background var(--duration-quick) var(--ease-out), color var(--duration-quick) var(--ease-out);
 }
 
 .post-list .post-card:hover .card-tags .tag-chip {
@@ -151,8 +129,19 @@ body {
   color: var(--theme, #3b82f6);
 }
 
+/* Keyboard focus gets a crisp, accessible ring */
+.post-card:focus-visible,
+.card-hover:focus-visible,
+.l_left .ui-collection__item:focus-visible,
+.l_left .linklist .link:focus-visible,
+.button:focus-visible,
+a.button:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--theme, #3b82f6) 70%, white);
+  outline-offset: 3px;
+}
+
 /* =======================================================
-   4. macOS Traffic Light Codeblock Dots
+   4. macOS Traffic Light Codeblock Dots & Copycode Button
    ======================================================= */
 .highlight {
   position: relative !important;
@@ -181,39 +170,38 @@ body {
   opacity: 0.85;
 }
 
+.highlight .code .copy-btn {
+  visibility: visible !important;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-2px);
+  transition: opacity var(--duration-quick) var(--ease-out),
+              transform var(--duration-quick) var(--ease-smooth-out),
+              background var(--duration-quick) var(--ease-out) !important;
+}
+
+.highlight:hover .code .copy-btn {
+  visibility: visible !important;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
 /* =======================================================
-   5. Subtle Ambient Glow Sidebar & Seamless Widgets
+   5. Native View Transitions (Smooth Page Navigation)
    ======================================================= */
-.l_left {
-  /* Fade the complete sidebar mass so the blurred backdrop cannot expose an inner rectangle. */
-  -webkit-mask-image: linear-gradient(to bottom, #000 82%, rgba(0, 0, 0, 0.45) 93%, transparent 100%) !important;
-  mask-image: linear-gradient(to bottom, #000 82%, rgba(0, 0, 0, 0.45) 93%, transparent 100%) !important;
+::view-transition-group(root),
+::view-transition-old(root),
+::view-transition-new(root),
+::view-transition-group(leftbar),
+::view-transition-old(leftbar),
+::view-transition-new(leftbar) {
+  animation-duration: var(--duration-fast);
+  animation-timing-function: var(--ease-smooth-out);
 }
-
-.l_left .leftbar-container {
-  position: relative !important;
-  z-index: 1 !important;
-  background: transparent !important;
-}
-
-.l_left .widget-wrapper,
-.l_left .widget-wrapper .widget-body,
-.l_left .widget-wrapper.markdown .widget-body,
-.l_left .widget-wrapper.tagcloud .widget-body,
-.l_left .widget-wrapper.recent .widget-body,
-.l_left .widget-wrapper.post-list .widget-body {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-}
-
 
 .menubar .menu-item {
-  transition: all 0.2s ease-in-out;
+  transition: transform var(--duration-quick) var(--ease-smooth-out);
 }
 
 .menubar .menu-item:hover {
@@ -221,17 +209,7 @@ body {
 }
 
 /* =======================================================
-   5.1 VisionOS Frosted Glass Sidebar Interaction (Universal)
-   ======================================================= */
-.l_left .widgets {
-  overflow-x: hidden !important;
-  overflow-y: auto !important;
-  padding: 4px 6px !important;
-  box-sizing: border-box !important;
-}
-
-/* =======================================================
-   5.2 Right Sidebar (TOC) Sticky Fix & Interaction
+   6. Sidebar Widgets, Navigation & Right TOC Sticky
    ======================================================= */
 @media screen and (min-width: 1181px) {
   .l_body .l_right {
@@ -251,7 +229,6 @@ body {
   }
 }
 
-/* Right sidebar (TOC) rounded corners */
 .l_right {
   border-radius: var(--border-card-l, 24px) !important;
   overflow: hidden !important;
@@ -270,7 +247,7 @@ body {
   box-sizing: border-box !important;
 }
 
-/* Universal selector covering menu items, personal links (GitHub, Home), and recent post items */
+/* Sidebar navigation links */
 .l_left .ui-collection__item,
 .l_left .linklist .link {
   border-radius: 12px !important;
@@ -280,26 +257,26 @@ body {
   box-sizing: border-box !important;
   width: 100% !important;
   max-width: 100% !important;
-  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-              background 0.22s ease,
-              border-color 0.22s ease,
-              box-shadow 0.22s ease,
-              color 0.2s ease !important;
+  transition: transform var(--duration-fast) var(--ease-smooth-out),
+              background var(--duration-fast) var(--ease-out),
+              border-color var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out),
+              color var(--duration-quick) var(--ease-out) !important;
   transform: translateY(0) translateZ(0);
 }
 
 .l_left .ui-collection__item .ui-collection__leading,
 .l_left .linklist .link .flex svg,
 .l_left .linklist .link .flex img {
-  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), filter 0.22s ease, opacity 0.2s ease !important;
+  transition: transform var(--duration-fast) var(--ease-smooth-out), filter var(--duration-fast) var(--ease-out), opacity var(--duration-quick) var(--ease-out) !important;
 }
 
 .l_left .ui-collection__item .ui-collection__title,
 .l_left .linklist .link span {
-  transition: color 0.2s ease, text-shadow 0.2s ease !important;
+  transition: color var(--duration-quick) var(--ease-out), text-shadow var(--duration-quick) var(--ease-out) !important;
 }
 
-/* Hover: Frosted Glass & Floating Depth without horizontal clipping */
+/* Hover: Frosted Glass & Floating Depth */
 .l_left .ui-collection__item:hover,
 .l_left .linklist .link:hover {
   background: var(--ui-item-bg-hover, rgba(255, 255, 255, 0.12)) !important;
@@ -342,35 +319,36 @@ body {
   filter: drop-shadow(0 0 10px var(--item-theme, #3b82f6));
 }
 
-/* Press Feedback */
+/* Physical Press Feedback */
 .l_left .ui-collection__item:active,
 .l_left .linklist .link:active {
   transform: translateY(0px) scale(0.985) !important;
-  transition-duration: 80ms !important;
+  transition-duration: var(--duration-micro) !important;
 }
 
 /* =======================================================
-   6. Custom Text Selection (Amber Glow)
+   7. Smooth Interactive Feedback (Buttons, Tabs, Paginator)
    ======================================================= */
-::selection {
-  background: rgba(255, 175, 64, 0.35) !important;
-  color: #ffffff !important;
-  text-shadow: 0 0 10px rgba(255, 175, 64, 0.4);
+.paginator a,
+.button,
+a.button {
+  transition: background var(--duration-quick) var(--ease-out),
+              color var(--duration-quick) var(--ease-out),
+              box-shadow var(--duration-quick) var(--ease-out),
+              transform var(--duration-quick) var(--ease-smooth-out) !important;
 }
 
-::-moz-selection {
-  background: rgba(255, 175, 64, 0.35) !important;
-  color: #ffffff !important;
-  text-shadow: 0 0 10px rgba(255, 175, 64, 0.4);
+.paginator a:hover,
+.button:hover,
+a.button:hover {
+  transform: translateY(-1px);
 }
 
-/* =======================================================
-   7. Tag Plugins (Tabs, Notes, Bangumi, Search)
-   ======================================================= */
-.tag-plugin.note {
-  border-radius: 10px !important;
-  margin: 1.25rem 0 !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+.paginator a:active,
+.button:active,
+a.button:active {
+  transform: translateY(0) scale(0.98);
+  transition-duration: var(--duration-micro) !important;
 }
 
 .tag-plugin.tabs {
@@ -386,9 +364,45 @@ body {
 
 .tag-plugin.tabs .nav-tabs .tab {
   border-radius: 8px !important;
-  transition: all 0.2s ease;
+  transition: background var(--duration-quick) var(--ease-out),
+              color var(--duration-quick) var(--ease-out),
+              box-shadow var(--duration-quick) var(--ease-out),
+              transform var(--duration-quick) var(--ease-smooth-out) !important;
 }
 
+.tag-plugin.tabs .nav-tabs .tab:hover {
+  transform: translateY(-1px);
+}
+
+.tag-plugin.tabs .nav-tabs .tab:active {
+  transform: translateY(0) scale(0.98);
+  transition-duration: var(--duration-micro) !important;
+}
+
+.tag-plugin.note {
+  border-radius: 10px !important;
+  margin: 1.25rem 0 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* =======================================================
+   8. Custom Text Selection (Amber Glow)
+   ======================================================= */
+::selection {
+  background: rgba(255, 175, 64, 0.35) !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 10px rgba(255, 175, 64, 0.4);
+}
+
+::-moz-selection {
+  background: rgba(255, 175, 64, 0.35) !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 10px rgba(255, 175, 64, 0.4);
+}
+
+/* =======================================================
+   9. Bangumi Plugin Styling
+   ======================================================= */
 .bangumi-tab.bangumi-active {
   background: var(--theme);
   border-radius: 10px;
@@ -415,6 +429,9 @@ a.bangumi-tab {
   border-right: 1px solid var(--text-meta);
 }
 
+/* =======================================================
+   10. Scrollbar & Search Results
+   ======================================================= */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -433,7 +450,6 @@ a.bangumi-tab {
   background: rgba(140, 150, 170, 0.6);
 }
 
-/* Codeblock scrollbar matches theme config (4px) */
 .highlight ::-webkit-scrollbar,
 .highlight::-webkit-scrollbar {
   width: 4px;
@@ -483,7 +499,9 @@ a.bangumi-tab {
   border-radius: 10px;
   line-height: 1.4;
   text-decoration: none !important;
-  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+  transition: background var(--duration-quick) var(--ease-out),
+              box-shadow var(--duration-quick) var(--ease-out),
+              transform var(--duration-quick) var(--ease-smooth-out) !important;
 }
 
 #search-result .search-result-card:hover {

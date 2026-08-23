@@ -1,6 +1,6 @@
-######## Stellar info ########
+﻿######## Stellar info ########
 stellar:
-  version: '1.43.1'
+  version: '1.44.0'
   homepage: 'https://xaoxuu.com/wiki/stellar/'
   repo: 'https://github.com/xaoxuu/hexo-theme-stellar'
   main_css: /css/main.css
@@ -23,9 +23,9 @@ canonical:
 
 inject:
   head:
-    - '<style id="stellar-sidebar-fade">.l_left{-webkit-mask-image:linear-gradient(to bottom,#000 82%,rgba(0,0,0,.45) 93%,transparent 100%)!important;mask-image:linear-gradient(to bottom,#000 82%,rgba(0,0,0,.45) 93%,transparent 100%)!important}</style>'
-    - '<script defer src="/js/plugins/card-hover.js?v=20260823e"></script>'
-    - '<link rel="stylesheet" href="/css/stellar-overrides.css?v=20260823e">'
+    - '<link rel="stylesheet" href="/css/stellar-overrides.css?v=20260823j">'
+  script:
+    - '<script defer src="/js/plugins/reading-progress.js?v=20260823j"></script>'
 
 
 ######## Sidebar ########
@@ -510,9 +510,9 @@ plugins:
   scrollreveal:
     enable: true
     js: https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js
-    distance: 16px
-    duration: 800 # ms
-    interval: 100 # ms
+    distance: 10px
+    duration: 500 # ms
+    interval: 60 # ms
     scale: 1 # 0.1~1
   
   # AI 摘要
@@ -582,10 +582,18 @@ plugins:
     css: https://unpkg.com/heti@0.9.2/umd/heti.min.css
     js: https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js
 
+  # 卡片鼠标跟随光斑与 3D 倾斜：使用 Stellar 1.44.0 原生插件
+  card_hover:
+    enable: true
+    spotlight_color: 'rgba(255, 255, 255, 0.2)'
+    max_tilt: 3
+
 
 
 style:
-  prefers_theme: dark # auto / light / dark
+  prefers_theme: auto # auto / light / dark
+  page_transition:
+    enable: true
   smooth_scroll: false # true / false 开启时如果目录过长可能无法准确定位
   font-size:
     root: 16px # 改这个会影响全局所有文字的字号
@@ -625,10 +633,10 @@ style:
     # 启用原生彩色发光背景
     ui-style: glass
     background-color: var(--card)
-    background-image: url(https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/mrito_commission_143759824_p2.9gx8zqx8c3.jpg)
+    background-image: url(https://res.xaox.cc/gh/cdn-x/placeholder@1.0.13/image/sidebar-bg1@small.jpg)
     blur-px: 100px
     blur-bg: var(--bg-a60)
-    background-opacity: 0.32
+    background-opacity: 0.8
   paginator:
     prev: https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/arrow/f049bbd4e88ec.svg
     next: https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/arrow/064b95430caf4.svg
@@ -653,3 +661,7 @@ api_host:
   ghapi: https://api.github.com
   ghraw: https://raw.githubusercontent.com
   gist: https://gist.github.com
+
+# Keep Stellar's generated URLs aligned with the official theme defaults.
+system:
+  override_pretty_urls: true
