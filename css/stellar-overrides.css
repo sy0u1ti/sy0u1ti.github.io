@@ -98,10 +98,35 @@ body {
 }
 
 /* =======================================================
-   3. Native Stellar Card Hover Polish & Focus Rings
+   3. Native Stellar Card Hover Polish & Edge Glow
    ======================================================= */
 .post-list .post-card-wrap {
   perspective: 1000px !important;
+}
+
+/* 移除类似荧光笔的标题下划线遮挡效果 */
+.post-list .post-card .post-title::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* 恢复经典优雅的卡片边缘辉光与主题色浮层 */
+.post-list .post-card {
+  border: 1px solid var(--block-border, rgba(255, 255, 255, 0.08)) !important;
+  transition: transform var(--duration-fast) var(--ease-smooth-out),
+              box-shadow var(--duration-fast) var(--ease-out),
+              border-color var(--duration-fast) var(--ease-out) !important;
+}
+
+.post-list .post-card:hover,
+.post-list .post-card.is-card-hover-active {
+  border-color: color-mix(in srgb, var(--theme, #3b82f6) 45%, transparent) !important;
+  box-shadow: 0 10px 28px -4px rgba(0, 0, 0, 0.35), 0 0 18px -2px color-mix(in srgb, var(--theme, #3b82f6) 30%, transparent) !important;
+}
+
+.post-list .post-card:hover .post-title {
+  color: var(--theme, #3b82f6) !important;
+  transition: color var(--duration-quick) var(--ease-out);
 }
 
 /* Topic cards are very tall; disable 3D tilt entirely on them. */
