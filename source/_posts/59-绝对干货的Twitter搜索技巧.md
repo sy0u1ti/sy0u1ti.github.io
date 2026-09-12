@@ -4,11 +4,10 @@ categories:
 cover: null
 date: '2023-08-26T15:55:31.256047+08:00'
 tags:
-- twitter
-- X
-- x
-- 技巧
-- 干货
+- Twitter/X
+- 搜索技巧
+- 社交媒体
+- 教程
 title: Twitter (X) 搜索技巧与高级语法指南
 updated: 2023-8-27T17:26:54.290+8:0
 ---

@@ -24,9 +24,10 @@ references: null
 rightbar: null
 sticky: null
 tags:
-- openai
-- ai
-- gpt
+- OpenAI
+- AI
+- 大语言模型
+- 模型发布
 title: OpenAI 正式发布 o1-preview 推理模型 (Strawberry)
 topic: null
 type: null

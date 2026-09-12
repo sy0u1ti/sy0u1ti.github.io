@@ -24,9 +24,11 @@ references: null
 rightbar: null
 sticky: null
 tags:
-- proxy
-- https
-- caddy
+- Caddy
+- 代理
+- HTTPS
+- Linux
+- 教程
 title: 使用 Caddy 2 搭建 HTTPS 正向代理
 topic: null
 type: null

@@ -25,9 +25,11 @@ references: null
 rightbar: null
 sticky: null
 tags:
-- 推荐
-- 软件
-- 网站
+- 软件推荐
+- 网站推荐
+- Windows
+- macOS
+- 效率工具
 - 生活好物
 title: 个人常用软件、网站与好物推荐 (sorts-of-things)
 topic: null

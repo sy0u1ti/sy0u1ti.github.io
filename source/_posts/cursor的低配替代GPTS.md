@@ -24,9 +24,11 @@ references: null
 rightbar: null
 sticky: null
 tags:
-- cursor
-- gpts
-- prompt
+- Cursor
+- AI编程
+- GPTs
+- 提示词
+- 教程
 title: Cursor 低配替代方案：编程 GPTs 提示词
 topic: null
 type: null

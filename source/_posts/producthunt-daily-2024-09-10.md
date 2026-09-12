@@ -23,7 +23,12 @@ poster:
 references: null
 rightbar: null
 sticky: null
-tags: []
+tags:
+- Product Hunt
+- AI
+- 开发者工具
+- 生产力
+- 学习教育
 title: PH今日热榜 | 2024-09-10
 topic: producthunt-daily
 type: null

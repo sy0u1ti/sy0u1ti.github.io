@@ -24,7 +24,10 @@ references: null
 rightbar: null
 sticky: null
 tags:
-- ai
+- AI
+- 大语言模型
+- 模型更新
+- 聊天机器人
 title: AI Chat 支持模型更新
 topic: null
 type: null

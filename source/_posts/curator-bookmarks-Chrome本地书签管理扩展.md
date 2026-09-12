@@ -5,12 +5,11 @@ categories:
 cover: null
 date: '2026-04-21T14:00:00.000000+08:00'
 tags:
-- chrome
-- 扩展
-- 书签
-- typescript
-- vite
-- 开源
+- Chrome
+- 浏览器扩展
+- 书签管理
+- AI
+- 开源项目
 title: Curator（策书）：本地优先的 Chrome 书签管理与 AI 整理扩展
 ---
 

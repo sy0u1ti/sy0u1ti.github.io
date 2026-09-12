@@ -12,8 +12,11 @@ poster:
   headline: null
   topic: null
 tags:
-- clash
+- Clash
 - 科学上网
+- 代理工具
+- 开源项目
+- 网络资讯
 title: Clash for Windows 开发者删除 GitHub 仓库并宣布停止更新
 updated: 2023-11-3T18:20:47.517+8:0
 ---

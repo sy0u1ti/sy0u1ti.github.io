@@ -24,8 +24,11 @@ references: null
 rightbar: null
 sticky: null
 tags:
-- mac
-- apple
+- macOS
+- Apple
+- 系统配置
+- Homebrew
+- 教程
 title: Mac 终极配置与装机优化教程
 topic: null
 type: null

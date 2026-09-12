@@ -12,9 +12,11 @@ poster:
   headline: null
   topic: null
 tags:
-- Sam Altman
+- OpenAI
 - AI
-- chatgpt
+- GPT-5
+- Sam Altman
+- 行业观察
 title: Sam Altman 透露关于 GPT-5 的关键信息整理
 updated: '2024-03-19T21:04:14.737+08:00'
 ---

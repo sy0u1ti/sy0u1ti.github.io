@@ -24,9 +24,11 @@ references: null
 rightbar: null
 sticky: null
 tags:
-- ai
-- ollama
-- mac
+- AI
+- Ollama
+- macOS
+- 本地部署
+- 存储管理
 title: 在 macOS 上使用 Ollama 将模型下载保存到外置硬盘
 topic: null
 type: null

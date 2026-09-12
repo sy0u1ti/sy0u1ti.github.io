@@ -24,11 +24,11 @@ references: null
 rightbar: null
 sticky: null
 tags:
-- ai
-- anthropic
-- openai
-- elon musk
-- xai
+- AI
+- 模型发布
+- xAI
+- Anthropic
+- OpenAI
 title: xAI API 上线与 Anthropic 重大更新
 topic: null
 type: null

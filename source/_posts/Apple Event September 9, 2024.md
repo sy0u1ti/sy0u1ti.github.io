@@ -24,10 +24,11 @@ references: null
 rightbar: null
 sticky: null
 tags:
-- apple
-- watch
-- airpods
-- iphone
+- Apple
+- iPhone
+- Apple Watch
+- AirPods
+- 产品发布
 title: Apple 2024 秋季发布会新品汇总 (iPhone 16 / Watch / AirPods)
 topic: null
 type: null

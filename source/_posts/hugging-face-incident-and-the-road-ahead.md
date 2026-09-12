@@ -26,9 +26,9 @@ sticky: null
 tags:
 - OpenAI
 - Hugging Face
-- AI 安全
-- 对齐
-- 智能体
+- AI安全
+- 网络安全
+- AI对齐
 title: Hugging Face 事件与前路
 topic: null
 type: null
