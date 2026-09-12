@@ -23,7 +23,7 @@ canonical:
 
 inject:
   head:
-    - '<link rel="stylesheet" href="/css/stellar-overrides.css?v=20260823j">'
+    - '<link rel="stylesheet" href="/css/stellar-overrides.css?v=20260912-client-catalog">'
   script:
     - '<script defer src="/js/plugins/reading-progress.js?v=20260823j"></script>'
 

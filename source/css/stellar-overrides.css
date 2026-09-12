@@ -559,3 +559,152 @@ a.bangumi-tab {
   padding: 0 2px;
   border-radius: 3px;
 }
+
+/* =======================================================
+   11. Proxy Client Catalog: Wrapping Tables & Narrow Layout
+   ======================================================= */
+.client-catalog {
+  container: client-catalog / inline-size;
+  min-width: 0;
+}
+
+.client-catalog .tab-content,
+.client-catalog .tab-pane,
+.client-catalog .md-table-scroll {
+  width: 100%;
+  min-width: 0;
+}
+
+.client-catalog .tag-plugin.tabs .nav-tabs {
+  box-sizing: border-box;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  overflow: visible;
+}
+
+.client-catalog .tag-plugin.tabs .nav-tabs::after {
+  display: none;
+}
+
+.client-catalog .tag-plugin.tabs .nav-tabs .tab a {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 40px;
+  white-space: normal;
+}
+
+.client-catalog .tag-plugin.tabs .nav-tabs .tab.active a::after {
+  bottom: 0;
+}
+
+.client-catalog .md-table-scroll > table:not([class]) {
+  width: 100%;
+  max-width: 100%;
+  table-layout: fixed;
+}
+
+.client-catalog table tr {
+  white-space: normal;
+  word-break: normal;
+}
+
+.client-catalog .md-table-scroll th,
+.client-catalog .md-table-scroll td {
+  padding: 12px;
+  vertical-align: top;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  line-height: 1.65;
+}
+
+.client-catalog th:nth-child(1) { width: 18%; }
+.client-catalog th:nth-child(2) { width: 20%; }
+.client-catalog th:nth-child(3) { width: 18%; }
+.client-catalog th:nth-child(4) { width: 44%; }
+
+.client-catalog td code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.client-catalog td a {
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: top;
+}
+
+.client-catalog a:focus-visible {
+  outline: 2px solid var(--theme, #f97316);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Use the available article width, including when desktop sidebars are visible. */
+@container client-catalog (max-width: 600px) {
+  .client-catalog .md-table-scroll > table:not([class]) {
+    display: block;
+    border: 0;
+    border-radius: 0;
+    overflow: visible;
+  }
+
+  /* Keep the column headings available to assistive technology. */
+  .client-catalog thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .client-catalog tbody {
+    display: grid;
+    gap: 12px;
+  }
+
+  .client-catalog .md-table-scroll table tbody tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 12px 16px;
+    padding: 16px;
+    border: 1px solid var(--block-border);
+    border-radius: 12px;
+    background: var(--card);
+  }
+
+  .client-catalog .md-table-scroll table td {
+    display: block;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .client-catalog tbody td:first-child {
+    grid-column: 1 / -1;
+    font-size: 1rem;
+    color: var(--text-p1);
+  }
+
+  .client-catalog td:nth-child(2)::before,
+  .client-catalog td:nth-child(3)::before {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--text-p3);
+    font-size: 0.75rem;
+  }
+
+  .client-catalog td:nth-child(2)::before { content: "下载入口"; }
+  .client-catalog td:nth-child(3)::before { content: "社区与文档"; }
+
+  .client-catalog .md-table-scroll table td:last-child {
+    grid-column: 1 / -1;
+    padding-top: 12px;
+    border-top: 1px solid var(--block-border);
+    color: var(--text-p2);
+  }
+}
