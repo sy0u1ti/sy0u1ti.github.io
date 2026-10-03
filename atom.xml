@@ -56,8 +56,8 @@
       <name>白上賞一「しらかみしょういち」</name>
     </author>
     <category term="开源项目" scheme="https://blog.syouiti.com/categories/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
-    <category term="AI" scheme="https://blog.syouiti.com/tags/AI/"/>
     <category term="开源项目" scheme="https://blog.syouiti.com/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
+    <category term="AI" scheme="https://blog.syouiti.com/tags/AI/"/>
     <category term="Chrome" scheme="https://blog.syouiti.com/tags/Chrome/"/>
     <category term="浏览器扩展" scheme="https://blog.syouiti.com/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%A9%E5%B1%95/"/>
     <category term="书签管理" scheme="https://blog.syouiti.com/tags/%E4%B9%A6%E7%AD%BE%E7%AE%A1%E7%90%86/"/>
@@ -72,15 +72,15 @@
 <p>于是我做了一个 Chrome 扩展：<strong>Curator（策书）</stron]]>
     </summary>
     <title>Curator（策书）：本地优先的 Chrome 书签管理与 AI 整理扩展</title>
-    <updated>2026-10-02T03:41:18.877Z</updated>
+    <updated>2026-10-03T03:26:01.564Z</updated>
   </entry>
   <entry>
     <author>
       <name>白上賞一「しらかみしょういち」</name>
     </author>
     <category term="站主的瞎话" scheme="https://blog.syouiti.com/categories/%E7%AB%99%E4%B8%BB%E7%9A%84%E7%9E%8E%E8%AF%9D/"/>
-    <category term="AI" scheme="https://blog.syouiti.com/tags/AI/"/>
     <category term="macOS" scheme="https://blog.syouiti.com/tags/macOS/"/>
+    <category term="AI" scheme="https://blog.syouiti.com/tags/AI/"/>
     <category term="Ollama" scheme="https://blog.syouiti.com/tags/Ollama/"/>
     <category term="本地部署" scheme="https://blog.syouiti.com/tags/%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2/"/>
     <category term="存储管理" scheme="https://blog.syouiti.com/tags/%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/"/>
@@ -101,8 +101,8 @@
       <name>白上賞一「しらかみしょういち」</name>
     </author>
     <category term="科技&amp;产品" scheme="https://blog.syouiti.com/categories/%E7%A7%91%E6%8A%80-%E4%BA%A7%E5%93%81/"/>
-    <category term="AI" scheme="https://blog.syouiti.com/tags/AI/"/>
     <category term="OpenAI" scheme="https://blog.syouiti.com/tags/OpenAI/"/>
+    <category term="AI" scheme="https://blog.syouiti.com/tags/AI/"/>
     <category term="模型发布" scheme="https://blog.syouiti.com/tags/%E6%A8%A1%E5%9E%8B%E5%8F%91%E5%B8%83/"/>
     <category term="xAI" scheme="https://blog.syouiti.com/tags/xAI/"/>
     <category term="Anthropic" scheme="https://blog.syouiti.com/tags/Anthropic/"/>
@@ -147,8 +147,8 @@
       <name>白上賞一「しらかみしょういち」</name>
     </author>
     <category term="站主的瞎话" scheme="https://blog.syouiti.com/categories/%E7%AB%99%E4%B8%BB%E7%9A%84%E7%9E%8E%E8%AF%9D/"/>
-    <category term="AI" scheme="https://blog.syouiti.com/tags/AI/"/>
     <category term="开源项目" scheme="https://blog.syouiti.com/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
+    <category term="AI" scheme="https://blog.syouiti.com/tags/AI/"/>
     <category term="本地部署" scheme="https://blog.syouiti.com/tags/%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2/"/>
     <category term="语音合成" scheme="https://blog.syouiti.com/tags/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90/"/>
     <content>
@@ -256,8 +256,8 @@
       <name>白上賞一「しらかみしょういち」</name>
     </author>
     <category term="站主的瞎话" scheme="https://blog.syouiti.com/categories/%E7%AB%99%E4%B8%BB%E7%9A%84%E7%9E%8E%E8%AF%9D/"/>
-    <category term="网络工具" scheme="https://blog.syouiti.com/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E5%85%B7/"/>
     <category term="教程" scheme="https://blog.syouiti.com/tags/%E6%95%99%E7%A8%8B/"/>
+    <category term="网络工具" scheme="https://blog.syouiti.com/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E5%85%B7/"/>
     <category term="Cloudflare" scheme="https://blog.syouiti.com/tags/Cloudflare/"/>
     <category term="Warp" scheme="https://blog.syouiti.com/tags/Warp/"/>
     <content>
