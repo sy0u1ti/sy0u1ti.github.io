@@ -2,31 +2,18 @@
   --fs-root: 16px;
   --fs-content-base: var(--fs-root);
   --fs-content: var(--fs-content-base);
-  --width-main: 720px;
+  --width-main-article: 800px;
+  --width-main-wiki-list: 1000px;
+  --width-main: var(--width-main-article);
   --fsh2: calc(var(--fs-content) + 11px);
   --fsh3: calc(var(--fs-content) + 7px);
   --fsh4: calc(var(--fs-content) + 4px);
-  --side-content-width: 224px;
+  --side-content-width: 200px;
   --gap-base: 16px;
   --gap-page: 16px;
   --rightbar-width-extra: calc(var(--gap-base) * 2);
   --gap-p: calc(var(--fs-content-base) + 4px);
   --gap-p-compact: calc(var(--fs-content-base) * 0.75);
-}
-@media screen and (min-width: 1180px) {
-  :root {
-    --gap-page: 32px;
-  }
-}
-@media screen and (min-width: 2048px) {
-  :root {
-    --width-main: 780px;
-  }
-}
-@media screen and (min-width: 2560px) {
-  :root {
-    --width-main: 860px;
-  }
 }
 @media screen and (max-width: 768px) {
   :root {
@@ -35,9 +22,12 @@
 }
 @media screen and (max-width: 667px) {
   :root {
-    --fs-root: calc(16px + 2px);
+    --fs-root: calc(16px + 1px);
     --side-content-width: 224px;
   }
+}
+body[data-page-layout='index_wiki'] {
+  --width-main: var(--width-main-wiki-list);
 }
 :root {
   --swiper-theme-color: var(--theme) !important;
@@ -68,6 +58,7 @@ div.swiper-slide {
   width: 50%;
 }
 div.swiper-slide img {
+  height: auto;
   border-radius: 4px;
 }
 .swiper[width='max'] .swiper-slide {

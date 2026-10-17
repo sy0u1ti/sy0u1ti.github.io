@@ -2,31 +2,18 @@
   --fs-root: 16px;
   --fs-content-base: var(--fs-root);
   --fs-content: var(--fs-content-base);
-  --width-main: 720px;
+  --width-main-article: 800px;
+  --width-main-wiki-list: 1000px;
+  --width-main: var(--width-main-article);
   --fsh2: calc(var(--fs-content) + 11px);
   --fsh3: calc(var(--fs-content) + 7px);
   --fsh4: calc(var(--fs-content) + 4px);
-  --side-content-width: 224px;
+  --side-content-width: 200px;
   --gap-base: 16px;
   --gap-page: 16px;
   --rightbar-width-extra: calc(var(--gap-base) * 2);
   --gap-p: calc(var(--fs-content-base) + 4px);
   --gap-p-compact: calc(var(--fs-content-base) * 0.75);
-}
-@media screen and (min-width: 1180px) {
-  :root {
-    --gap-page: 32px;
-  }
-}
-@media screen and (min-width: 2048px) {
-  :root {
-    --width-main: 780px;
-  }
-}
-@media screen and (min-width: 2560px) {
-  :root {
-    --width-main: 860px;
-  }
 }
 @media screen and (max-width: 768px) {
   :root {
@@ -35,9 +22,12 @@
 }
 @media screen and (max-width: 667px) {
   :root {
-    --fs-root: calc(16px + 2px);
+    --fs-root: calc(16px + 1px);
     --side-content-width: 224px;
   }
+}
+body[data-page-layout='index_wiki'] {
+  --width-main: var(--width-main-wiki-list);
 }
 .cmt-body.twikoo {
   --twikoo-theme: var(--theme);
@@ -46,7 +36,7 @@
 .cmt-body.twikoo .tk-content .vemoji,
 .cmt-body.twikoo .tk-content .tk-owo-emotion {
   width: unset;
-  border-radius: 8px;
+  border-radius: 10px;
   max-height: 24px;
   max-width: 100px;
   display: inline;
@@ -55,7 +45,7 @@
 .cmt-body.twikoo .tk-content img {
   max-width: 400px;
   max-height: 400px;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 .OwO .OwO-body {
   background-color: var(--block) !important;

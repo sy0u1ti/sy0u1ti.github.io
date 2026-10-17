@@ -11,29 +11,25 @@
     return target.closest('input, textarea, select, [contenteditable]:not([contenteditable="false"])') !== null;
   }
 
-  function isNarrowLayout() {
-    var leftbarToggle = document.querySelector('.mobile-only.leftbar-toggle');
-    return !!(leftbarToggle && window.getComputedStyle(leftbarToggle).display !== 'none');
+  var roots = new WeakMap();
+  function mount(root) {
+    root = root || document;
+    if (roots.has(root)) return roots.get(root);
+    var handleShortcut = function(event) {
+      if (!isSearchShortcut(event)) return;
+      var trigger = root.querySelector('[data-shell-action="open-search"]');
+      if (!trigger) return;
+      if (isEditableTarget(event.target)) return;
+      event.preventDefault();
+      trigger.click();
+    };
+    root.addEventListener('keydown', handleShortcut);
+    var cleanup = function() {
+      root.removeEventListener('keydown', handleShortcut);
+      roots.delete(root);
+    };
+    roots.set(root, cleanup);
+    return cleanup;
   }
-
-  function handleShortcut(event) {
-    if (!isSearchShortcut(event)) return;
-
-    var input = document.getElementById('search-input');
-    if (!input || isNarrowLayout()) return;
-    if (event.target !== input && isEditableTarget(event.target)) return;
-
-    event.preventDefault();
-    input.focus();
-  }
-
-  function init() {
-    document.addEventListener('keydown', handleShortcut);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init, { once: true });
-  } else {
-    init();
-  }
+  window.stellarSearchShortcut = { mount: mount };
 })();

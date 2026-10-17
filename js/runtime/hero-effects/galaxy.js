@@ -1,13 +1,12 @@
 /*
- * Wiki Galaxy WebGL background.
+ * Wiki Galaxy WebGL renderer.
  * Shader adapted from React Bits Galaxy: https://github.com/DavidHDev/react-bits
  * React Bits is MIT licensed; see THIRD-PARTY-NOTICES.md.
  */
 
-(function () {
-  'use strict';
+'use strict';
 
-  const vertexShader = `
+const vertexShader = `
 attribute vec2 position;
 
 varying vec2 vUv;
@@ -168,23 +167,6 @@ void main() {
 }
 `;
 
-  const defaultParams = {
-    focal: [0.5, 0.5],
-    rotation: [1.0, 0.0],
-    starSpeed: 2.0,
-    density: 2.0,
-    hueShift: 140.0,
-    speed: 0.5,
-    glowIntensity: 0.2,
-    saturation: 0.1,
-    mouseRepulsion: true,
-    twinkleIntensity: 0.1,
-    rotationSpeed: 0.1,
-    repulsionStrength: 0.1,
-    autoCenterRepulsion: 0.0,
-    transparent: true
-  };
-
   function isFiniteNumber(value) {
     return typeof value === 'number' && Number.isFinite(value);
   }
@@ -218,34 +200,26 @@ void main() {
     return ((value % 360) + 360) % 360;
   }
 
-  function normalizeParams(value) {
+  function normalizeParams(value, defaults) {
     const source = value && typeof value === 'object' && !Array.isArray(value) ? value : {};
     return {
-      focal: pairOrDefault(source.focal, defaultParams.focal, true),
-      rotation: pairOrDefault(source.rotation, defaultParams.rotation, false),
-      starSpeed: nonNegativeOrDefault(source.starSpeed, defaultParams.starSpeed),
-      density: nonNegativeOrDefault(source.density, defaultParams.density),
-      hueShift: normalizeHue(source.hueShift, defaultParams.hueShift),
-      speed: nonNegativeOrDefault(source.speed, defaultParams.speed),
-      glowIntensity: nonNegativeOrDefault(source.glowIntensity, defaultParams.glowIntensity),
-      saturation: nonNegativeOrDefault(source.saturation, defaultParams.saturation),
-      mouseRepulsion: booleanOrDefault(source.mouseRepulsion, defaultParams.mouseRepulsion),
-      twinkleIntensity: nonNegativeOrDefault(source.twinkleIntensity, defaultParams.twinkleIntensity),
-      rotationSpeed: finiteOrDefault(source.rotationSpeed, defaultParams.rotationSpeed),
-      repulsionStrength: nonNegativeOrDefault(source.repulsionStrength, defaultParams.repulsionStrength),
-      autoCenterRepulsion: nonNegativeOrDefault(source.autoCenterRepulsion, defaultParams.autoCenterRepulsion),
-      transparent: booleanOrDefault(source.transparent, defaultParams.transparent)
+      focal: pairOrDefault(source.focal, defaults.focal, true),
+      rotation: pairOrDefault(source.rotation, defaults.rotation, false),
+      starSpeed: nonNegativeOrDefault(source.starSpeed, defaults.starSpeed),
+      density: nonNegativeOrDefault(source.density, defaults.density),
+      hueShift: normalizeHue(source.hueShift, defaults.hueShift),
+      disableAnimation: booleanOrDefault(source.disableAnimation, defaults.disableAnimation),
+      speed: nonNegativeOrDefault(source.speed, defaults.speed),
+      mouseInteraction: booleanOrDefault(source.mouseInteraction, defaults.mouseInteraction),
+      glowIntensity: nonNegativeOrDefault(source.glowIntensity, defaults.glowIntensity),
+      saturation: nonNegativeOrDefault(source.saturation, defaults.saturation),
+      mouseRepulsion: booleanOrDefault(source.mouseRepulsion, defaults.mouseRepulsion),
+      twinkleIntensity: nonNegativeOrDefault(source.twinkleIntensity, defaults.twinkleIntensity),
+      rotationSpeed: finiteOrDefault(source.rotationSpeed, defaults.rotationSpeed),
+      repulsionStrength: nonNegativeOrDefault(source.repulsionStrength, defaults.repulsionStrength),
+      autoCenterRepulsion: nonNegativeOrDefault(source.autoCenterRepulsion, defaults.autoCenterRepulsion),
+      transparent: booleanOrDefault(source.transparent, defaults.transparent)
     };
-  }
-
-  function readParams(canvas) {
-    const raw = canvas.getAttribute('data-galaxy-params');
-    if (!raw) return normalizeParams({});
-    try {
-      return normalizeParams(JSON.parse(raw));
-    } catch (e) {
-      return normalizeParams({});
-    }
   }
 
   function createShader(gl, type, source) {
@@ -292,13 +266,9 @@ void main() {
     return result;
   }
 
-  function mount(canvas) {
-    if (!canvas || canvas.dataset.galaxyMounted === 'true') return;
-
-    const background = canvas.parentElement;
-    const interactionTarget = canvas.closest('.wiki-hero') || background;
-    if (!background || !interactionTarget) return;
-    const params = readParams(canvas);
+  export function createRenderer(canvas, options, defaults) {
+    if (!canvas) return null;
+    const params = normalizeParams(options, defaults);
 
     let gl;
     try {
@@ -322,7 +292,6 @@ void main() {
       return;
     }
 
-    canvas.dataset.galaxyMounted = 'true';
     const locations = uniformLocations(gl, program);
     const position = gl.getAttribLocation(program, 'position');
     const buffer = gl.createBuffer();
@@ -354,134 +323,41 @@ void main() {
     gl.uniform1f(locations.uAutoCenterRepulsion, params.autoCenterRepulsion);
     gl.uniform1i(locations.uTransparent, params.transparent ? 1 : 0);
 
-    const targetMouse = { x: 0.5, y: 0.5 };
     const smoothMouse = { x: 0.5, y: 0.5 };
-    let targetMouseActive = 0.0;
     let smoothMouseActive = 0.0;
-    let animationFrame = null;
-    let isInViewport = true;
-    let isDestroyed = false;
-
-    function resize() {
-      const rect = background.getBoundingClientRect();
-      const width = Math.max(1, Math.round(rect.width));
-      const height = Math.max(1, Math.round(rect.height));
-      if (canvas.width !== width || canvas.height !== height) {
+    return Object.freeze({
+      pointer: params.mouseInteraction,
+      resize(rect) {
+        const width = Math.max(1, Math.round(rect.width));
+        const height = Math.max(1, Math.round(rect.height));
+        if (canvas.width === width && canvas.height === height) return;
         canvas.width = width;
         canvas.height = height;
         gl.viewport(0, 0, width, height);
         gl.uniform3f(locations.uResolution, width, height, width / height);
+      },
+      render(time, pointer) {
+        const targetX = pointer?.x ?? 0.5;
+        const targetY = 1 - (pointer?.y ?? 0.5);
+        const targetActive = pointer?.active === true ? 1 : 0;
+        const seconds = params.disableAnimation ? 0 : time * 0.001;
+        const lerpFactor = 0.05;
+        smoothMouse.x += (targetX - smoothMouse.x) * lerpFactor;
+        smoothMouse.y += (targetY - smoothMouse.y) * lerpFactor;
+        smoothMouseActive += (targetActive - smoothMouseActive) * lerpFactor;
+
+        gl.uniform1f(locations.uTime, seconds);
+        gl.uniform1f(locations.uStarSpeed, seconds * params.starSpeed / 10.0);
+        gl.uniform2f(locations.uMouse, smoothMouse.x, smoothMouse.y);
+        gl.uniform1f(locations.uMouseActiveFactor, smoothMouseActive);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+      },
+      destroy() {
+        gl.deleteBuffer(buffer);
+        gl.deleteProgram(program);
+        const loseContext = gl.getExtension('WEBGL_lose_context');
+        if (loseContext) loseContext.loseContext();
       }
-    }
-
-    function shouldRender() {
-      return !isDestroyed && isInViewport && !document.hidden;
-    }
-
-    function render(time) {
-      animationFrame = null;
-      if (!shouldRender()) return;
-
-      const seconds = time * 0.001;
-      const lerpFactor = 0.05;
-      smoothMouse.x += (targetMouse.x - smoothMouse.x) * lerpFactor;
-      smoothMouse.y += (targetMouse.y - smoothMouse.y) * lerpFactor;
-      smoothMouseActive += (targetMouseActive - smoothMouseActive) * lerpFactor;
-
-      gl.uniform1f(locations.uTime, seconds);
-      gl.uniform1f(locations.uStarSpeed, seconds * params.starSpeed / 10.0);
-      gl.uniform2f(locations.uMouse, smoothMouse.x, smoothMouse.y);
-      gl.uniform1f(locations.uMouseActiveFactor, smoothMouseActive);
-      gl.clear(gl.COLOR_BUFFER_BIT);
-      gl.drawArrays(gl.TRIANGLES, 0, 3);
-      animationFrame = window.requestAnimationFrame(render);
-    }
-
-    function start() {
-      if (shouldRender() && animationFrame === null) {
-        animationFrame = window.requestAnimationFrame(render);
-      }
-    }
-
-    function stop() {
-      if (animationFrame !== null) {
-        window.cancelAnimationFrame(animationFrame);
-        animationFrame = null;
-      }
-    }
-
-    function handleMouseMove(event) {
-      const rect = background.getBoundingClientRect();
-      if (rect.width <= 0 || rect.height <= 0) return;
-      targetMouse.x = (event.clientX - rect.left) / rect.width;
-      targetMouse.y = 1.0 - (event.clientY - rect.top) / rect.height;
-      targetMouseActive = 1.0;
-    }
-
-    function handleMouseLeave() {
-      targetMouseActive = 0.0;
-    }
-
-    function handleVisibilityChange() {
-      if (document.hidden) {
-        stop();
-      } else {
-        start();
-      }
-    }
-
-    interactionTarget.addEventListener('mousemove', handleMouseMove);
-    interactionTarget.addEventListener('mouseleave', handleMouseLeave);
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-
-    let resizeObserver = null;
-    if (window.ResizeObserver) {
-      resizeObserver = new window.ResizeObserver(resize);
-      resizeObserver.observe(background);
-    } else {
-      window.addEventListener('resize', resize);
-    }
-
-    let viewportObserver = null;
-    if (window.IntersectionObserver) {
-      viewportObserver = new window.IntersectionObserver(function (entries) {
-        isInViewport = entries[0].isIntersecting;
-        if (isInViewport) {
-          start();
-        } else {
-          stop();
-        }
-      });
-      viewportObserver.observe(background);
-    }
-
-    function destroy() {
-      if (isDestroyed) return;
-      isDestroyed = true;
-      stop();
-      interactionTarget.removeEventListener('mousemove', handleMouseMove);
-      interactionTarget.removeEventListener('mouseleave', handleMouseLeave);
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-      window.removeEventListener('resize', resize);
-      window.removeEventListener('pagehide', destroy);
-      if (resizeObserver) resizeObserver.disconnect();
-      if (viewportObserver) viewportObserver.disconnect();
-      gl.deleteBuffer(buffer);
-      gl.deleteProgram(program);
-      const loseContext = gl.getExtension('WEBGL_lose_context');
-      if (loseContext) loseContext.loseContext();
-      delete canvas.dataset.galaxyMounted;
-    }
-
-    window.addEventListener('pagehide', destroy);
-    resize();
-    start();
+    });
   }
-
-  window.stellar = window.stellar || {};
-  window.stellar.galaxy = {
-    mountAll: function (canvases) {
-      Array.prototype.forEach.call(canvases || [], mount);
-    }
-  };
-})();

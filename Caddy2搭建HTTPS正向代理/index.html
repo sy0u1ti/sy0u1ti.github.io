@@ -1,48 +1,58 @@
-
-<!DOCTYPE html><html lang="zh-CN">
-
-<head><!-- hexo injector head_begin start -->
+<!DOCTYPE html><html lang="zh-CN"><head><!-- hexo injector head_begin start -->
 <link rel="stylesheet" href="/css/bilicard.css">
 <!-- hexo injector head_begin end -->
+  
   <meta charset="utf-8">
-  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.44.0" theme-name="Stellar" theme-version="1.44.0">
-  <link rel="canonical" href="https://blog.syouiti.com/Caddy2%E6%90%AD%E5%BB%BAHTTPS%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86/">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/2.0.0" theme-name="Stellar" theme-version="2.0.0">
+  <link rel="canonical" href="https://blog.syouiti.com/Caddy2搭建HTTPS正向代理/" data-stellar-page-meta="">
   
   <meta name="generator" content="Hexo 8.1.2">
-  <meta http-equiv='x-dns-prefetch-control' content='on' />
-  <link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin><link rel="preconnect" href="https://unpkg.com" crossorigin><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin=""><link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin="">
   <meta name="renderer" content="webkit">
   <meta name="force-rendering" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-  <meta name="HandheldFriendly" content="True" >
+  <meta name="HandheldFriendly" content="True">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
-  <title>使用 Caddy 2 搭建 HTTPS 正向代理 - 白上賞一</title>
+  <title data-stellar-page-meta="">极简与安全：使用 Caddy 2 与 forwardproxy 插件快速搭建 HTTPS 正向代理 - 白上賞一</title>
+  <script data-stellar-script="core">
+    (function () {
+      var key = 'stellar:v2:leftbar-state';
+      var fallback = "expanded";
+      try {
+        var value = localStorage.getItem(key);
+        document.documentElement.dataset.leftbarState = value === 'collapsed' || value === 'expanded' ? value : fallback;
+      } catch (error) {
+        document.documentElement.dataset.leftbarState = fallback;
+      }
+    })();
+  </script>
 
-  <meta name="description" content="使用Caddy v2打入forwardproxy插件快速搭建HTTPS正向代理，毕竟Caddy自动请求SSL证书，能够省下许多不必要的折腾。 添加域名DNS记录添加域名DNS记录，如果没有v6IP的话，就填一个v4IP的A记录，如下：    Name (prefix) Type TTL Target     A 3600 这里填写vps上的v4IP    AAAA 3600 vps上的v6IP，没">
-<meta property="og:type" content="article">
-<meta property="og:title" content="使用 Caddy 2 搭建 HTTPS 正向代理">
-<meta property="og:url" content="https://blog.syouiti.com/Caddy2%E6%90%AD%E5%BB%BAHTTPS%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86/">
-<meta property="og:site_name" content="白上賞一">
-<meta property="og:description" content="使用Caddy v2打入forwardproxy插件快速搭建HTTPS正向代理，毕竟Caddy自动请求SSL证书，能够省下许多不必要的折腾。 添加域名DNS记录添加域名DNS记录，如果没有v6IP的话，就填一个v4IP的A记录，如下：    Name (prefix) Type TTL Target     A 3600 这里填写vps上的v4IP    AAAA 3600 vps上的v6IP，没">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6bh0plu8ni.png">
-<meta property="article:published_time" content="2024-09-07T05:46:59.734Z">
-<meta property="article:modified_time" content="2024-09-07T12:08:42.809Z">
-<meta property="article:author" content="白上賞一「しらかみしょういち」">
-<meta property="article:tag" content="Caddy">
-<meta property="article:tag" content="HTTPS">
-<meta property="article:tag" content="Linux">
-<meta property="article:tag" content="代理">
-<meta property="article:tag" content="教程">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6bh0plu8ni.png">
-<meta name="twitter:creator" content="@Syou1Ti"><meta name="twitter:title" content="使用 Caddy 2 搭建 HTTPS 正向代理">
+  <meta name="description" content="利用 Caddy 2 与 forwardproxy 扩展模块构建高性能 HTTPS 正向代理：全自动申请维护 Let’s Encrypt TLS 证书，搭配伪装站点防主动探测，并附带 SwitchyOmega、小火箭及 QX 客户端配置教程。" data-stellar-page-meta="">
+<meta property="og:type" content="article" data-stellar-page-meta="">
+<meta property="og:title" content="极简与安全：使用 Caddy 2 与 forwardproxy 插件快速搭建 HTTPS 正向代理" data-stellar-page-meta="">
+<meta property="og:url" content="https://blog.syouiti.com/Caddy2%E6%90%AD%E5%BB%BAHTTPS%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86/" data-stellar-page-meta="">
+<meta property="og:site_name" content="白上賞一" data-stellar-page-meta="">
+<meta property="og:description" content="利用 Caddy 2 与 forwardproxy 扩展模块构建高性能 HTTPS 正向代理：全自动申请维护 Let’s Encrypt TLS 证书，搭配伪装站点防主动探测，并附带 SwitchyOmega、小火箭及 QX 客户端配置教程。" data-stellar-page-meta="">
+<meta property="og:locale" content="zh_CN" data-stellar-page-meta="">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6bh0plu8ni.png" data-stellar-page-meta="">
+<meta property="article:author" content="白上賞一「しらかみしょういち」" data-stellar-page-meta="">
+<meta property="article:published_time" content="2024-09-07T05:46:59.000Z" data-stellar-page-meta="">
+<meta property="article:modified_time" content="2024-09-07T12:08:42.000Z" data-stellar-page-meta="">
+<meta property="article:tag" content="Caddy" data-stellar-page-meta="">
+<meta property="article:tag" content="HTTPS" data-stellar-page-meta="">
+<meta property="article:tag" content="Linux" data-stellar-page-meta="">
+<meta property="article:tag" content="代理" data-stellar-page-meta="">
+<meta property="article:tag" content="教程" data-stellar-page-meta="">
+<meta name="twitter:card" content="summary_large_image" data-stellar-page-meta="">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6bh0plu8ni.png" data-stellar-page-meta="">
+<meta name="twitter:creator" content="@Syou1Ti" data-stellar-page-meta=""><meta name="twitter:title" content="极简与安全：使用 Caddy 2 与 forwardproxy 插件快速搭建 HTTPS 正向代理" data-stellar-page-meta="">
   
   
-  <meta name="keywords" content="教程,Caddy,代理,HTTPS,Linux">
+  <meta name="keywords" content="Caddy,代理,HTTPS,Linux,教程" data-stellar-page-meta="">
 
   <!-- feed -->
   
@@ -55,8 +65,9 @@
     
   
 
-  <link rel="preload" href="/css/main.css?v=1.44.0" as="style">
-  <link rel="stylesheet" href="/css/main.css?v=1.44.0">
+  <link rel="preload" href="/css/main.css?v=2.0.0" as="style">
+  <link rel="stylesheet" href="/css/main.css?v=2.0.0">
+  <style>:root{--text-loading:"正在加载";--text-loading-error:"加载失败，请稍后重试。"}</style>
 
 
   
@@ -65,41 +76,58 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"白上賞一「しらかみしょういち」","sameAs":[],"image":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png"},"dateCreated":"2024-09-07T05:46:59+00:00","dateModified":"2024-09-07T12:08:42+00:00","datePublished":"2024-09-07T05:46:59+00:00","description":"使用Caddy v2打入forwardproxy插件快速搭建HTTPS正向代理，毕竟Caddy自动请求SSL证书，能够省下许多不必要的折腾。\n添加域名DNS记录添加域名DNS记录，如果没有v6IP的话，就填一个v4IP的A记录，如下：\n\n\n\nName (prefix)\nType\nTTL\nTarget\n\n\n\n\nA\n3600\n这里填写vps上的v4IP\n\n\n\nAAAA\n3600\nvps上的v6I...","headline":"使用 Caddy 2 搭建 HTTPS 正向代理","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.syouiti.com/Caddy2%E6%90%AD%E5%BB%BAHTTPS%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86/"},"publisher":{"@type":"Organization","name":"白上賞一「しらかみしょういち」","sameAs":[],"image":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png"}},"url":"https://blog.syouiti.com/Caddy2%E6%90%AD%E5%BB%BAHTTPS%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86/","keywords":"教程, Caddy, 代理, HTTPS, Linux","thumbnailUrl":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6bh0plu8ni.png","image":["https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6bh0plu8ni.png"]}</script>
+  <script type="application/ld+json" data-stellar-page-meta="">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"白上賞一「しらかみしょういち」","sameAs":[],"image":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png"},"dateCreated":"2024-09-07T05:46:59+00:00","dateModified":"2024-09-07T12:08:42+00:00","datePublished":"2024-09-07T05:46:59+00:00","description":"HTTPS 正向代理（HTTP/2 over TLS）是一种兼具极高伪装性与低开销的代理方案。通过将代理流量伪装在标准的 TLS 握手与 HTTP/2 多路复用隧道中，外部探测只会看到合法的 Web 握手。\n而 Caddy 2 拥有业内最省心的全自动 SSL/TLS 证书生命周期管理，配合官方社区维护的 forwardproxy 模块，能省去手动申请和维护证书的所有繁琐环节。\n\n前置准备：解...","headline":"极简与安全：使用 Caddy 2 与 forwardproxy 插件快速搭建 HTTPS 正向代理","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.syouiti.com/Caddy2%E6%90%AD%E5%BB%BAHTTPS%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86/"},"publisher":{"@type":"Organization","name":"白上賞一「しらかみしょういち」","sameAs":[],"image":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png"}},"url":"https://blog.syouiti.com/Caddy2%E6%90%AD%E5%BB%BAHTTPS%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86/","image":["https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6bh0plu8ni.png"],"keywords":"Caddy, 代理, HTTPS, Linux, 教程","thumbnailUrl":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6bh0plu8ni.png"}</script>
   <link rel="stylesheet" href="/css/stellar-overrides.css?v=20260912-client-catalog">
 
-  <!-- icons.yml 驱动的 CSS 装饰图标 -->
+  <link rel="stylesheet" href="/css/stellar-icons.css?v=ca746a9b39366bc3">
+  <link rel="preload" as="script" href="/js/stellar-icons.js?v=2a11bebd1b4bc4d3">
   
-  
-  <style>:root {
-  --icon-h3-left: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2024%2024%22%3E%3C!--%20Icon%20from%20Solar%20by%20480%20Design%20-%20https%3A%2F%2Fcreativecommons.org%2Flicenses%2Fby%2F4.0%2F%20--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M17.75%2019a.75.75%200%200%201-1.32.488l-6-7a.75.75%200%200%201%200-.976l6-7A.75.75%200%200%201%2017.75%205z%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20fill%3D%22currentColor%22%20fill-rule%3D%22evenodd%22%20d%3D%22M13.488%2019.57a.75.75%200%200%200%20.081-1.058L7.988%2012l5.581-6.512a.75.75%200%201%200-1.138-.976l-6%207a.75.75%200%200%200%200%20.976l6%207a.75.75%200%200%200%201.057.082%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E");
-  --icon-h3-right: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2024%2024%22%3E%3C!--%20Icon%20from%20Solar%20by%20480%20Design%20-%20https%3A%2F%2Fcreativecommons.org%2Flicenses%2Fby%2F4.0%2F%20--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M6.25%2019a.75.75%200%200%200%201.32.488l6-7a.75.75%200%200%200%200-.976l-6-7A.75.75%200%200%200%206.25%205z%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20fill%3D%22currentColor%22%20fill-rule%3D%22evenodd%22%20d%3D%22M10.512%2019.57a.75.75%200%200%201-.081-1.058L16.012%2012l-5.581-6.512a.75.75%200%201%201%201.139-.976l6%207a.75.75%200%200%201%200%20.976l-6%207a.75.75%200%200%201-1.058.082%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E");
-  --icon-quote-left: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2024%2024%22%3E%3C!--%20Icon%20from%20BoxIcons%20Solid%20by%20Atisa%20-%20https%3A%2F%2Fcreativecommons.org%2Flicenses%2Fby%2F4.0%2F%20--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M3.691%206.292C5.094%204.771%207.217%204%2010%204h1v2.819l-.804.161c-1.37.274-2.323.813-2.833%201.604A2.9%202.9%200%200%200%206.925%2010H10a1%201%200%200%201%201%201v7c0%201.103-.897%202-2%202H3a1%201%200%200%201-1-1v-5l.003-2.919c-.009-.111-.199-2.741%201.688-4.789M20%2020h-6a1%201%200%200%201-1-1v-5l.003-2.919c-.009-.111-.199-2.741%201.688-4.789C16.094%204.771%2018.217%204%2021%204h1v2.819l-.804.161c-1.37.274-2.323.813-2.833%201.604A2.9%202.9%200%200%200%2017.925%2010H21a1%201%200%200%201%201%201v7c0%201.103-.897%202-2%202%22%2F%3E%3C%2Fsvg%3E");
-  --icon-quote-right: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2024%2024%22%3E%3C!--%20Icon%20from%20BoxIcons%20Solid%20by%20Atisa%20-%20https%3A%2F%2Fcreativecommons.org%2Flicenses%2Fby%2F4.0%2F%20--%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M20.309%2017.708C22.196%2015.66%2022.006%2013.03%2022%2013V5a1%201%200%200%200-1-1h-6c-1.103%200-2%20.897-2%202v7a1%201%200%200%200%201%201h3.078a2.9%202.9%200%200%201-.429%201.396c-.508.801-1.465%201.348-2.846%201.624l-.803.16V20h1c2.783%200%204.906-.771%206.309-2.292m-11.007%200C11.19%2015.66%2010.999%2013.03%2010.993%2013V5a1%201%200%200%200-1-1h-6c-1.103%200-2%20.897-2%202v7a1%201%200%200%200%201%201h3.078a2.9%202.9%200%200%201-.429%201.396c-.508.801-1.465%201.348-2.846%201.624l-.803.16V20h1c2.783%200%204.906-.771%206.309-2.292%22%2F%3E%3C%2Fsvg%3E");
-  --icon-loading: url("data:image/svg+xml,%3Csvg%20class%3D%22loading%22%20style%3D%22vertical-align%3Amiddle%3Bfill%3AcurrentColor%3Boverflow%3Ahidden%3B%22%20viewBox%3D%220%200%201024%201024%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20p-id%3D%222709%22%3E%3Cpath%20d%3D%22M832%20512c0-176-144-320-320-320V128c211.2%200%20384%20172.8%20384%20384h-64zM192%20512c0%20176%20144%20320%20320%20320v64C300.8%20896%20128%20723.2%20128%20512h64z%22%20p-id%3D%222710%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E");
-}</style>
   
 </head>
-<body><div id="l_cover"></div><div class="l_body content" id="start" layout="post" type="tech" ><aside class="l_left" data-ui-surface="glass"><div class="sidebg"></div><div class="leftbar-container">
+<body data-page-type="content" data-page-layout="post" data-article-style="tech"><div data-stellar-runtime-region="" id="site-cover" class="site-cover"></div><div class="site-shell" id="start" data-regions="leftbar rightbar"><div class="site-workspace">
+<aside data-stellar-runtime-region="" id="leftbar-region" class="site-region site-region--leftbar" data-region="leftbar" aria-label="Leftbar"><div class="site-region__surface ui-surface"><div class="site-region__decoration" aria-hidden="true"></div><div class="site-region__viewport"><header class="site-region__header site-region__zone site-region__zone--top">
+    <div class="widget-instance widget-instance--brand" data-widget-id="leftbar:fixed:brand" data-presentation="leftbar" data-leftbar-rail="">
+<header class="brand-header brand-header--regular brand-header--site"><div class="brand-wrap"><a class="brand-image brand-image--avatar" href="/"><img no-lazy="" src="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png" alt="" onerror="this.onerror=null;this.src=&quot;/images/stellar-error.491ee870f4940739.svg&quot;"></a><a class="brand-title" href="/"><div class="brand-name">白上賞一</div><div class="brand-tagline cap">运气永在身🎲 | 就爱瞎折腾💯</div></a><div class="brand-stats data-service ds-ghinfo" data-api="https://api.github.com/users/sy0u1ti"><a class="brand-stat ui-interactive card-hover card-hover--spotlight" target="_blank" rel="noopener" href="https://github.com/sy0u1ti?tab=followers"><span class="brand-stat__value" type="text" id="followers"></span><span class="brand-stat__label">followers</span></a><a class="brand-stat ui-interactive card-hover card-hover--spotlight" target="_blank" rel="noopener" href="https://github.com/sy0u1ti?tab=following"><span class="brand-stat__value" type="text" id="following"></span><span class="brand-stat__label">following</span></a><a class="brand-stat ui-interactive card-hover card-hover--spotlight" target="_blank" rel="noopener" href="https://github.com/sy0u1ti?tab=repositories"><span class="brand-stat__value" type="text" id="public_repos"></span><span class="brand-stat__label">repos</span></a></div></div><div class="brand-search">
 
-
-
-<header class="header"><div class="logo-wrap"><a class="avatar" target="_blank" rel="noopener" href="https://home.syouiti.com/#contact"><div class="bg"></div><img no-lazy class="avatar" src="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">白上賞一</div><div class="sub normal cap">运气永在身🎲</div><div class="sub hover cap" style="opacity:0"> 就爱瞎折腾💯</div></a></div></header>
-
-
-<div class="search-wrapper" id="search-wrapper"><div class="search-form" role="search"><label class="search-button" for="search-input" aria-hidden="true"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></label><input type="search" class="search-input" id="search-input" aria-label="站内搜索" placeholder="站内搜索"></div><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
-
-<div class="widgets">
-<svg class="grad-def" width="0" height="0" aria-hidden="true" focusable="false"><defs><linearGradient id="leftbar-active-icon-grad" x1="75%" y1="6.7%" x2="6.7%" y2="125%"><stop offset="20%" style="stop-color:var(--item-theme-light)"/><stop offset="60%" style="stop-color:var(--item-theme)"/></linearGradient></defs></svg>
-<div class="nav-area">
-
-<nav class="menu dis-select">
 <div class="ui-collection" data-layout="list" data-variant="nav" data-density="auto">
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight is-themed" href="/" title="首页" style="--item-theme:#3B82F6;--item-grad:url(#menu-grad-home);">
+<button class="ui-collection__item ui-interactive card-hover card-hover--spotlight search-trigger has-hover-surface" type="button" title="搜索" aria-label="搜索" data-shell-action="open-search" data-search-instance="leftbar-brand-search" data-search-domain="blog" data-search-domain-label="博客" data-search-domain-blog="true">
   
-  <span class="ui-collection__leading"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M9.163 2.819c1.671-1.09 3.864-1.09 5.536 0l5.882 3.839A3.25 3.25 0 0 1 22 9.38v8.87A3.75 3.75 0 0 1 18.25 22h-1.5A2.75 2.75 0 0 1 14 19.25v-3.5a1.75 1.75 0 0 0-1.75-1.75h-1.5A1.75 1.75 0 0 0 9 15.75v3.5A2.75 2.75 0 0 1 6.25 22h-1.5A3.75 3.75 0 0 1 1 18.25V9.38a3.25 3.25 0 0 1 1.419-2.722z" opacity=".5"/><path fill="currentColor" d="M10.25 15.75c0-.414.336-.75.75-.75h2c.414 0 .75.336.75.75v3.5c0 .69.56 1.25 1.25 1.25h1.5c1.243 0 2.25-1.007 2.25-2.25V9.38a1.75 1.75 0 0 0-.764-1.466l-5.882-3.838a2.535 2.535 0 0 0-2.784 0L3.438 7.914A1.75 1.75 0 0 0 2.674 9.38v8.87c0 1.243 1.007 2.25 2.25 2.25h1.5c.69 0 1.25-.56 1.25-1.25z"/></svg></span>
+  <span class="ui-icon"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">搜索</span>
+      
+      
+    </span>
+  
+  <kbd class="search-shortcut" aria-hidden="true">⌘K</kbd>
+
+  
+</button>
+
+  
+</div>
+
+
+</div></header>
+</div>
+  </header>
+  <div class="site-region__body site-region__zone site-region__zone--body">
+    <div class="widget-instance widget-instance--menu" data-widget-id="leftbar:fixed:menu" data-presentation="leftbar" data-leftbar-rail="">
+
+
+<nav class="menu dis-select">
+<div class="ui-collection" data-layout="grid" data-variant="nav" data-density="auto" style="--ui-columns:2">
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-active is-themed" href="/" title="首页" aria-current="page" style="--item-theme:#3B82F6;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M9.163 2.819c1.671-1.09 3.864-1.09 5.536 0l5.882 3.839A3.25 3.25 0 0 1 22 9.38v8.87A3.75 3.75 0 0 1 18.25 22h-1.5A2.75 2.75 0 0 1 14 19.25v-3.5a1.75 1.75 0 0 0-1.75-1.75h-1.5A1.75 1.75 0 0 0 9 15.75v3.5A2.75 2.75 0 0 1 6.25 22h-1.5A3.75 3.75 0 0 1 1 18.25V9.38a3.25 3.25 0 0 1 1.419-2.722z" opacity=".5"></path><path fill="currentColor" d="M10.25 15.75c0-.414.336-.75.75-.75h2c.414 0 .75.336.75.75v3.5c0 .69.56 1.25 1.25 1.25h1.5c1.243 0 2.25-1.007 2.25-2.25V9.38a1.75 1.75 0 0 0-.764-1.466l-5.882-3.838a2.535 2.535 0 0 0-2.784 0L3.438 7.914A1.75 1.75 0 0 0 2.674 9.38v8.87c0 1.243 1.007 2.25 2.25 2.25h1.5c.69 0 1.25-.56 1.25-1.25z"></path></svg></span>
+  
   
     <span class="ui-collection__content">
       
@@ -109,17 +137,15 @@
     </span>
   
   
-  
-  
-<svg class="grad-def" width="0" height="0" aria-hidden="true" focusable="false"><defs><linearGradient id="menu-grad-home" x1="75%" y1="6.7%" x2="6.7%" y2="125%"><stop offset="20%" style="stop-color:var(--item-theme-light)"/><stop offset="60%" style="stop-color:var(--item-theme)"/></linearGradient></defs></svg>
-
+  <span class="ui-collection__indicator"></span>
 </a>
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight is-themed" href="/archives/" title="归档" style="--item-theme:#10B981;--item-grad:url(#menu-grad-archives);">
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="/archives/" title="归档" style="--item-theme:#10B981;">
   
-  <span class="ui-collection__leading"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M3 9h18v10a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3z" opacity=".5"/><path fill="currentColor" d="M2 5a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm7 8a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2z"/></svg></span>
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M3 9h18v10a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3z" opacity=".5"></path><path fill="currentColor" d="M2 5a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm7 8a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2z"></path></svg></span>
+  
   
     <span class="ui-collection__content">
       
@@ -130,16 +156,14 @@
   
   
   
-  
-<svg class="grad-def" width="0" height="0" aria-hidden="true" focusable="false"><defs><linearGradient id="menu-grad-archives" x1="75%" y1="6.7%" x2="6.7%" y2="125%"><stop offset="20%" style="stop-color:var(--item-theme-light)"/><stop offset="60%" style="stop-color:var(--item-theme)"/></linearGradient></defs></svg>
-
 </a>
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight is-themed" href="/categories/" title="分类" style="--item-theme:#F59E0B;--item-grad:url(#menu-grad-categories);">
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="/categories/" title="分类" style="--item-theme:#F59E0B;">
   
-  <span class="ui-collection__leading"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 9.5V18a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4V9.5z" opacity=".5"/><path fill="currentColor" d="M2 7.5A3.5 3.5 0 0 1 5.5 4h3.086a2 2 0 0 1 1.414.586L11.414 6H18.5A3.5 3.5 0 0 1 22 9.5v.5H2z"/></svg></span>
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 9.5V18a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4V9.5z" opacity=".5"></path><path fill="currentColor" d="M2 7.5A3.5 3.5 0 0 1 5.5 4h3.086a2 2 0 0 1 1.414.586L11.414 6H18.5A3.5 3.5 0 0 1 22 9.5v.5H2z"></path></svg></span>
+  
   
     <span class="ui-collection__content">
       
@@ -150,16 +174,14 @@
   
   
   
-  
-<svg class="grad-def" width="0" height="0" aria-hidden="true" focusable="false"><defs><linearGradient id="menu-grad-categories" x1="75%" y1="6.7%" x2="6.7%" y2="125%"><stop offset="20%" style="stop-color:var(--item-theme-light)"/><stop offset="60%" style="stop-color:var(--item-theme)"/></linearGradient></defs></svg>
-
 </a>
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight is-themed" href="/tags/" title="标签" style="--item-theme:#EC4899;--item-grad:url(#menu-grad-tags);">
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="/tags/" title="标签" style="--item-theme:#EC4899;">
   
-  <span class="ui-collection__leading"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"/><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"/></svg></span>
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"></path><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"></path></svg></span>
+  
   
     <span class="ui-collection__content">
       
@@ -170,16 +192,14 @@
   
   
   
-  
-<svg class="grad-def" width="0" height="0" aria-hidden="true" focusable="false"><defs><linearGradient id="menu-grad-tags" x1="75%" y1="6.7%" x2="6.7%" y2="125%"><stop offset="20%" style="stop-color:var(--item-theme-light)"/><stop offset="60%" style="stop-color:var(--item-theme)"/></linearGradient></defs></svg>
-
 </a>
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight is-themed" href="/bangumis/" title="番剧" style="--item-theme:#8B5CF6;--item-grad:url(#menu-grad-bangumis);">
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="/bangumis/" title="番剧" style="--item-theme:#8B5CF6;">
   
-  <span class="ui-collection__leading"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 10.5V18a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4v-7.5z" opacity=".5"/><path fill="currentColor" d="M18 2a4 4 0 0 1 4 4v3H2V6a4 4 0 0 1 4-4zm-9.354 2l-2 3h2.384l2-3zm4.5 0l-2 3h2.384l2-3z"/></svg></span>
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 10.5V18a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4v-7.5z" opacity=".5"></path><path fill="currentColor" d="M18 2a4 4 0 0 1 4 4v3H2V6a4 4 0 0 1 4-4zm-9.354 2l-2 3h2.384l2-3zm4.5 0l-2 3h2.384l2-3z"></path></svg></span>
+  
   
     <span class="ui-collection__content">
       
@@ -190,16 +210,14 @@
   
   
   
-  
-<svg class="grad-def" width="0" height="0" aria-hidden="true" focusable="false"><defs><linearGradient id="menu-grad-bangumis" x1="75%" y1="6.7%" x2="6.7%" y2="125%"><stop offset="20%" style="stop-color:var(--item-theme-light)"/><stop offset="60%" style="stop-color:var(--item-theme)"/></linearGradient></defs></svg>
-
 </a>
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight is-themed" href="/topic/" title="专栏" style="--item-theme:#06B6D4;--item-grad:url(#menu-grad-topic);">
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="/topic/" title="专栏" style="--item-theme:#06B6D4;">
   
-  <span class="ui-collection__leading"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></span>
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"></path><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"></path></svg></span>
+  
   
     <span class="ui-collection__content">
       
@@ -210,18 +228,15 @@
   
   
   
-  
-<svg class="grad-def" width="0" height="0" aria-hidden="true" focusable="false"><defs><linearGradient id="menu-grad-topic" x1="75%" y1="6.7%" x2="6.7%" y2="125%"><stop offset="20%" style="stop-color:var(--item-theme-light)"/><stop offset="60%" style="stop-color:var(--item-theme)"/></linearGradient></defs></svg>
-
 </a>
 
   
 </div>
 
 </nav>
+
 </div>
-
-
+    <div class="widgets widget-stack widget-stack--leftbar widget-stack--body"><div class="widget-instance widget-instance--recent" data-widget-id="leftbar:1:recent_posts" data-presentation="leftbar">
 
 <widget class="widget-wrapper slide-up recent-widget">
   
@@ -233,9 +248,10 @@
   <div class="widget-body"><div class="ui-collection" data-layout="list" data-variant="nav" data-density="compact">
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/curator-bookmarks-Chrome%E6%9C%AC%E5%9C%B0%E4%B9%A6%E7%AD%BE%E7%AE%A1%E7%90%86%E6%89%A9%E5%B1%95/" title="Curator（策书）：本地优先的 Chrome 书签管理与 AI 整理扩展">
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="/curator-bookmarks-Chrome%E6%9C%AC%E5%9C%B0%E4%B9%A6%E7%AD%BE%E7%AE%A1%E7%90%86%E6%89%A9%E5%B1%95/" title="Curator（策书）：本地优先的 Chrome 书签管理与 AI 整理扩展">
   
   
+  <span class="ui-collection__initial" aria-hidden="true">C</span>
   
     <span class="ui-collection__content">
       
@@ -246,40 +262,21 @@
   
   
   
-  
 </a>
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/201-%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%20Microsoft%20%E6%BF%80%E6%B4%BB%E8%84%9A%E6%9C%AC%20(%20%E9%87%87%E7%94%A8%E6%96%B0%E6%96%B9%E6%B3%95%E9%87%8D%E6%96%B0%E6%94%AF%E6%8C%81%20HWID%20%E6%BF%80%E6%B4%BB/" title="Microsoft 激活脚本 (MAS) 采用新方法重新支持 HWID 激活">
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="/202%E4%B8%AD%E5%9B%BD%E5%9B%BD%E5%86%85%E8%87%B3%E5%9B%BD%E9%99%85%E9%AA%A8%E5%B9%B2%E7%BA%BF%E8%B7%AF%E6%95%B4%E7%90%86/" title="中国各大运营商国际出海骨干网全解析 (163 / CN2 / 4837 / 9929 / CMI)">
   
   
-  
-    <span class="ui-collection__content">
-      
-      <span class="ui-collection__title">Microsoft 激活脚本 (MAS) 采用新方法重新支持 HWID 激活</span>
-      
-      
-    </span>
-  
-  
-  
-  
-</a>
-
-  
-    
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/202%E4%B8%AD%E5%9B%BD%E5%9B%BD%E5%86%85%E8%87%B3%E5%9B%BD%E9%99%85%E9%AA%A8%E5%B9%B2%E7%BA%BF%E8%B7%AF%E6%95%B4%E7%90%86/" title="中国国内至国际骨干 ISP 线路整理">
-  
-  
+  <span class="ui-collection__initial" aria-hidden="true">中</span>
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">中国国内至国际骨干 ISP 线路整理</span>
+      <span class="ui-collection__title">中国各大运营商国际出海骨干网全解析 (163 / CN2 / 4837 / 9929 / CMI)</span>
       
       
     </span>
-  
   
   
   
@@ -287,17 +284,17 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/244-Clash%20for%20Windows%20%E5%BC%80%E5%8F%91%E8%80%85%E5%88%A0%E9%99%A4%20Github%20%E5%AF%B9%E5%BA%94%E4%BB%93%E5%BA%93/" title="Clash for Windows 开发者删除 GitHub 仓库并宣布停止更新">
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="/Linus%20%E8%B0%88%20AI%20%E5%B7%A5%E5%85%B7%EF%BC%9A%E7%9C%9F%E6%AD%A3%E8%81%AA%E6%98%8E%E7%9A%84%E4%BA%BA%EF%BC%8C%E4%BB%8E%E4%B8%8D%E6%8A%97%E6%8B%92%E6%96%B0%E5%B7%A5%E5%85%B7/" title="Linus 谈 AI 工具：真正聪明的人，从不抗拒新工具">
   
   
+  <span class="ui-collection__initial" aria-hidden="true">L</span>
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">Clash for Windows 开发者删除 GitHub 仓库并宣布停止更新</span>
+      <span class="ui-collection__title">Linus 谈 AI 工具：真正聪明的人，从不抗拒新工具</span>
       
       
     </span>
-  
   
   
   
@@ -305,17 +302,17 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/59-%E7%BB%9D%E5%AF%B9%E5%B9%B2%E8%B4%A7%E7%9A%84Twitter%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A7/" title="Twitter (X) 搜索技巧与高级语法指南">
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="/263-%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E8%BD%AF%E4%BB%B6App%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B1%87%E6%80%BB/" title="全平台网络代理客户端选型与下载指南 (iOS / Android / Windows / macOS / Linux / 路由器)">
   
   
+  <span class="ui-collection__initial" aria-hidden="true">全</span>
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">Twitter (X) 搜索技巧与高级语法指南</span>
+      <span class="ui-collection__title">全平台网络代理客户端选型与下载指南 (iOS / Android / Windows / macOS / Linux / 路由器)</span>
       
       
     </span>
-  
   
   
   
@@ -323,17 +320,35 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/263-%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E8%BD%AF%E4%BB%B6App%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B1%87%E6%80%BB/" title="科学上网各平台客户端汇总与下载">
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="/hugging-face-incident-and-the-road-ahead/" title="OpenAI 官方深度复盘：内部模型突破沙箱攻陷 Hugging Face 的全过程与安全反思">
   
   
+  <span class="ui-collection__initial" aria-hidden="true">O</span>
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">科学上网各平台客户端汇总与下载</span>
+      <span class="ui-collection__title">OpenAI 官方深度复盘：内部模型突破沙箱攻陷 Hugging Face 的全过程与安全反思</span>
       
       
     </span>
   
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="/%E6%B8%B8%E6%88%8F%E7%A0%B4%E8%A7%A3%E6%8C%87%E5%8D%97/" title="Steam 游戏补丁与联机修复实战指南 (Unsteam 在线联机 / GBE 局域网 / EOS 跨平台)">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">S</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">Steam 游戏补丁与联机修复实战指南 (Unsteam 在线联机 / GBE 局域网 / EOS 跨平台)</span>
+      
+      
+    </span>
   
   
   
@@ -345,848 +360,263 @@
 </widget>
 
 
+</div><div class="widget-instance widget-instance--tagcloud" data-widget-id="leftbar:2:topic_tags" data-presentation="leftbar">
+<widget class="widget-wrapper slide-up tagcloud"><div class="widget-header dis-select"><span class="name">标签索引</span></div><div class="widget-body fs14"><a href="/tags/AI/" style="font-size: 17px;" class="tag -10">AI</a> <a href="/tags/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" style="font-size: 13.25px;" class="tag -3">大语言模型</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%9B%B4%E6%96%B0/" style="font-size: 12px;" class="tag -0">模型更新</a> <a href="/tags/%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA/" style="font-size: 12px;" class="tag -0">聊天机器人</a> <a href="/tags/Microsoft/" style="font-size: 12px;" class="tag -0">Microsoft</a> <a href="/tags/Windows/" style="font-size: 13.25px;" class="tag -3">Windows</a> <a href="/tags/PowerShell/" style="font-size: 12px;" class="tag -0">PowerShell</a> <a href="/tags/HWID/" style="font-size: 12px;" class="tag -0">HWID</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%B7%A5%E5%85%B7/" style="font-size: 12px;" class="tag -0">激活工具</a> <a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 14.5px;" class="tag -5">开源项目</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 13.25px;" class="tag -3">网络</a> <a href="/tags/ISP/" style="font-size: 12px;" class="tag -0">ISP</a> <a href="/tags/BGP/" style="font-size: 12px;" class="tag -0">BGP</a> <a href="/tags/%E7%BA%BF%E8%B7%AF%E7%A7%91%E6%99%AE/" style="font-size: 12px;" class="tag -0">线路科普</a> <a href="/tags/Clash/" style="font-size: 12px;" class="tag -0">Clash</a> <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 13.25px;" class="tag -3">科学上网</a> <a href="/tags/%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/" style="font-size: 13.25px;" class="tag -3">代理工具</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E8%B5%84%E8%AE%AF/" style="font-size: 12px;" class="tag -0">网络资讯</a> <a href="/tags/Twitter-X/" style="font-size: 12px;" class="tag -0">Twitter/X</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A7/" style="font-size: 12px;" class="tag -0">搜索技巧</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" style="font-size: 12px;" class="tag -0">社交媒体</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 15.75px;" class="tag -8">教程</a> <a href="/tags/Caddy/" style="font-size: 12px;" class="tag -0">Caddy</a> <a href="/tags/%E4%BB%A3%E7%90%86/" style="font-size: 12px;" class="tag -0">代理</a></div></widget>
+</div></div>
+  </div>
+  <footer class="site-region__footer">
+    <div class="site-region__footer-actions"><div class="widget-instance widget-instance--actions" data-widget-id="leftbar:fixed:actions" data-presentation="leftbar">
+<div class="region-actions social-wrap ui-collection" data-layout="inline" data-variant="nav" data-density="compact"><button type="button" class="social ui-collection__item ui-interactive card-hover card-hover--spotlight is-icon-only" title="切换明暗主题" aria-label="切换明暗主题" onclick="setColorScheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')"><span class="ui-icon"><svg class="icon" viewBox="0 0 1 1" data-icon="default:theme" aria-hidden="true"></svg></span></button></div>
+</div></div>
+    <div class="site-region__system ui-collection" data-layout="inline" data-variant="nav" data-density="compact">
+      <div class="site-region__settings"><div class="widget-instance widget-instance--settings" data-widget-id="leftbar:fixed:settings" data-presentation="leftbar" data-leftbar-rail="">
+<a class="settings-widget ui-collection__item ui-interactive card-hover card-hover--spotlight" href="/settings/" data-profile-provider="giscus" data-profile-identity-enabled="false" data-profile-fallback-avatar="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg" data-settings-placement="leftbar" data-settings-label="设置" aria-label="设置" title="设置">
+  <span class="settings-widget__avatar" aria-hidden="true">
+    <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><g fill="currentColor"><path fill-rule="evenodd" d="M12.4277 2C11.3139 2 10.2995 2.6007 8.27081 3.80211L7.58466 4.20846C5.55594 5.40987 4.54158 6.01057 3.98466 7C3.42773 7.98943 3.42773 9.19084 3.42773 11.5937V12.4063C3.42773 14.8092 3.42773 16.0106 3.98466 17C4.54158 17.9894 5.55594 18.5901 7.58466 19.7915L8.27081 20.1979C10.2995 21.3993 11.3139 22 12.4277 22C13.5416 22 14.5559 21.3993 16.5847 20.1979L17.2708 19.7915C19.2995 18.5901 20.3139 17.9894 20.8708 17C21.4277 16.0106 21.4277 14.8092 21.4277 12.4063V11.5937C21.4277 9.19084 21.4277 7.98943 20.8708 7C20.3139 6.01057 19.2995 5.40987 17.2708 4.20846L16.5847 3.80211C14.5559 2.6007 13.5416 2 12.4277 2Z" clip-rule="evenodd" opacity=".5"></path><path d="M12.4277 8.25C10.3567 8.25 8.67773 9.92893 8.67773 12C8.67773 14.0711 10.3567 15.75 12.4277 15.75C14.4988 15.75 16.1777 14.0711 16.1777 12C16.1777 9.92893 14.4988 8.25 12.4277 8.25Z"></path></g></svg></span>
+  </span>
+  <span class="settings-widget__name ui-collection__title">设置</span>
+</a>
+</div></div>
+      <button type="button" class="leftbar-state-toggle ui-collection__item ui-interactive card-hover card-hover--spotlight is-icon-only" aria-label="Collapse leftbar" aria-expanded="true" data-shell-action="toggle-leftbar"><span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M3.172 4.172C2 5.343 2 7.229 2 11v2c0 3.771 0 5.657 1.172 6.828S6.229 21 10 21h5V3h-5C6.229 3 4.343 3 3.172 4.172" clip-rule="evenodd" opacity=".5"></path><path fill="currentColor" d="M5.5 9.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zm1 4a.75.75 0 0 0 0 1.5h4a.75.75 0 0 0 0-1.5zM22 13v-2c0-3.771 0-5.657-1.172-6.828c-.974-.975-3.192-1.139-5.828-1.166v17.988c2.636-.027 4.854-.191 5.828-1.166C22 18.657 22 16.771 22 13"></path></svg></span></button>
+    </div>
+  </footer></div></div></aside>
+<main data-stellar-runtime-region="" class="site-main" id="main">
 
-<widget class="widget-wrapper slide-up tagcloud"><div class="widget-header dis-select"><span class="name">标签索引</span></div><div class="widget-body fs14"><a href="/tags/AI/" style="font-size: 17px;" class="tag -10">AI</a> <a href="/tags/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" style="font-size: 13.25px;" class="tag -3">大语言模型</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%9B%B4%E6%96%B0/" style="font-size: 12px;" class="tag -0">模型更新</a> <a href="/tags/%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA/" style="font-size: 12px;" class="tag -0">聊天机器人</a> <a href="/tags/Microsoft/" style="font-size: 12px;" class="tag -0">Microsoft</a> <a href="/tags/Windows/" style="font-size: 13.25px;" class="tag -3">Windows</a> <a href="/tags/PowerShell/" style="font-size: 12px;" class="tag -0">PowerShell</a> <a href="/tags/HWID/" style="font-size: 12px;" class="tag -0">HWID</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%B7%A5%E5%85%B7/" style="font-size: 12px;" class="tag -0">激活工具</a> <a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 14.5px;" class="tag -5">开源项目</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 13.25px;" class="tag -3">网络</a> <a href="/tags/ISP/" style="font-size: 12px;" class="tag -0">ISP</a> <a href="/tags/BGP/" style="font-size: 12px;" class="tag -0">BGP</a> <a href="/tags/%E7%BA%BF%E8%B7%AF%E7%A7%91%E6%99%AE/" style="font-size: 12px;" class="tag -0">线路科普</a> <a href="/tags/Clash/" style="font-size: 12px;" class="tag -0">Clash</a> <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 13.25px;" class="tag -3">科学上网</a> <a href="/tags/%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/" style="font-size: 13.25px;" class="tag -3">代理工具</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E8%B5%84%E8%AE%AF/" style="font-size: 12px;" class="tag -0">网络资讯</a> <a href="/tags/Twitter-X/" style="font-size: 12px;" class="tag -0">Twitter/X</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A7/" style="font-size: 12px;" class="tag -0">搜索技巧</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" style="font-size: 12px;" class="tag -0">社交媒体</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 15.75px;" class="tag -8">教程</a> <a href="/tags/%E5%AE%A2%E6%88%B7%E7%AB%AF/" style="font-size: 12px;" class="tag -0">客户端</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E5%85%B7/" style="font-size: 13.25px;" class="tag -3">网络工具</a></div></widget>
-</div>
-<footer class="footer dis-select"><div class="social-wrap" style="--item-grad:url(#footer-social-icon-grad)">
-<svg class="grad-def" width="0" height="0" aria-hidden="true" focusable="false"><defs><linearGradient id="footer-social-icon-grad" x1="75%" y1="6.7%" x2="6.7%" y2="125%"><stop offset="20%" style="stop-color:var(--item-theme-light)"/><stop offset="60%" style="stop-color:var(--item-theme)"/></linearGradient></defs></svg>
-<a class="social" onclick="switchTheme()"><svg class="icon" data-icon="default:theme" aria-hidden="true"></svg></a></div></footer>
-</div></aside><div class="l_main" id="main" data-ui-surface="content">
 
-
-
-
-
-
-<div class="article-banner-wrap slide-up"><div class="article banner top">
-  <div class="content">
-    
+<div class="article-banner-wrap slide-up"><div class="article banner top" style="--bg-url:url('https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6bh0plu8ni.png')"><img class="lazy bg" data-src="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6bh0plu8ni.png" onerror="this.onerror=null;this.src=&quot;/images/stellar-error.491ee870f4940739.svg&quot;" width="592" height="281" data-stellar-image-dimensions="true" data-stellar-image-color="{&quot;size&quot;:64,&quot;hsla&quot;:[179.9605,78.894,7.8705,1]}" data-stellar-image-source="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6bh0plu8ni.png">
+  <div class="content" data-text-adaptive="split">
+    <div class="banner-mask banner-mask-top" aria-hidden="true"></div><div class="banner-mask banner-mask-bottom" aria-hidden="true"></div>
     <div class="top bread-nav footnote"><div class="top-row"><div class="left" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E7%AB%99%E4%B8%BB%E7%9A%84%E7%9E%8E%E8%AF%9D/">站主的瞎话</a>
 </div></div><div class="meta-row">
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2024-09-07T05:46:59.734Z">2024-09-07</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2024-09-07T12:08:42.809Z">2024-09-07</time></span></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2024-09-07T05:46:59.000Z">2024-09-07</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2024-09-07T12:08:42.000Z">2024-09-07</time></span></div>
 </div></div>
     
     <div class="bottom only-title">
       
       <div class="text-area">
-        <h1 class="text title"><span>使用 Caddy 2 搭建 HTTPS 正向代理</span></h1>
+        <h1 class="text title"><span>极简与安全：使用 Caddy 2 与 forwardproxy 插件快速搭建 HTTPS 正向代理</span></h1>
         
       </div>
     </div>
     
   </div>
   </div></div>
-<article class="md-text content slide-up"><p>使用Caddy v2打入forwardproxy插件快速搭建HTTPS正向代理，毕竟Caddy自动请求SSL证书，能够省下许多不必要的折腾。</p>
-<h3 id="添加域名DNS记录"><a href="#添加域名DNS记录" class="headerlink" title="添加域名DNS记录"></a>添加域名DNS记录</h3><p>添加域名DNS记录，如果没有v6IP的话，就填一个v4IP的A记录，如下：</p>
+<article class="md-text content slide-up"><p>HTTPS 正向代理（HTTP/2 over TLS）是一种兼具极高伪装性与低开销的代理方案。通过将代理流量伪装在标准的 TLS 握手与 HTTP/2 多路复用隧道中，外部探测只会看到合法的 Web 握手。</p>
+<p>而 <strong>Caddy 2</strong> 拥有业内最省心的<strong>全自动 SSL/TLS 证书生命周期管理</strong>，配合官方社区维护的 <code>forwardproxy</code> 模块，能省去手动申请和维护证书的所有繁琐环节。</p>
+<hr>
+<h2 id="前置准备：解析域名-DNS-记录"><a href="#前置准备：解析域名-DNS-记录" class="headerlink" title="前置准备：解析域名 DNS 记录"></a>前置准备：解析域名 DNS 记录</h2><p>在域名解析控制台添加一条 A 记录，将二级域名解析到你的 VPS 公网 IP（不要开启 CDN 代理，保持直连解析）：</p>
 <div class="md-table-scroll"><table>
 <thead>
 <tr>
-<th align="center">Name (prefix)</th>
-<th align="center">Type</th>
-<th align="center">TTL</th>
-<th align="center">Target</th>
+<th align="left">主机记录（子域名）</th>
+<th align="left">记录类型</th>
+<th align="left">TTL</th>
+<th align="left">记录值</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="center"></td>
-<td align="center">A</td>
-<td align="center">3600</td>
-<td align="center">这里填写vps上的v4IP</td>
+<td align="left"><code>proxy</code></td>
+<td align="left">A</td>
+<td align="left">3600</td>
+<td align="left">你的 VPS IPv4 地址</td>
 </tr>
 <tr>
-<td align="center"></td>
-<td align="center">AAAA</td>
-<td align="center">3600</td>
-<td align="center">vps上的v6IP，没有可不填</td>
+<td align="left"><code>proxy</code></td>
+<td align="left">AAAA（可选）</td>
+<td align="left">3600</td>
+<td align="left">你的 VPS IPv6 地址</td>
 </tr>
 </tbody></table></div>
-<p>上面完成后，就开始服务端的配置了。</p>
-<h3 id="服务端编译Caddy2"><a href="#服务端编译Caddy2" class="headerlink" title="服务端编译Caddy2"></a>服务端编译Caddy2</h3><p>为什么要编译caddy2，因为要打入非标准插件forwardproxy才能实现https正向代理，如下，先要配置go环境。</p>
-<h4 id="配置Go"><a href="#配置Go" class="headerlink" title="配置Go"></a>配置Go</h4><p>下载go并解压到<code>/usr/local</code>路径下：</p>
-<p><code>wget https://go.dev/dl/go1.23.0.linux-amd64.tar.gz -O - | tar -xz -C /usr/local/</code></p>
-<p>设置go环境变量，也可以写入到profile中</p>
-<p><code>vi ~/.profile</code> 添加下面内容：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$PATH:/usr/local/go/bin</span><br><span class="line">export PATH=$PATH:$HOME/.cargo/bin</span><br><span class="line">export GOROOT=/usr/local/go</span><br><span class="line">export GOBIN=$GOROOT/bin</span><br><span class="line">export PATH=$PATH:$GOBIN</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<hr>
+<h2 id="服务端部署：编译带插件的-Caddy-2"><a href="#服务端部署：编译带插件的-Caddy-2" class="headerlink" title="服务端部署：编译带插件的 Caddy 2"></a>服务端部署：编译带插件的 Caddy 2</h2><p>由于 <code>forwardproxy</code> 不是 Caddy 的官方内置模块，我们需要使用官方编译构建工具 <strong>xcaddy</strong> 打包编译。</p>
+<h3 id="1-配置-Go-语言编译环境"><a href="#1-配置-Go-语言编译环境" class="headerlink" title="1. 配置 Go 语言编译环境"></a>1. 配置 Go 语言编译环境</h3><p>在 VPS 终端执行以下命令，下载并解压官方 Go 二进制包：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://go.dev/dl/go1.23.0.linux-amd64.tar.gz -O - | tar -xz -C /usr/local/</span><br></pre></td></tr></tbody></table></figure>
 
-<p>保存后，<code>source ~/.profile</code></p>
-<h4 id="下载Xcaddy"><a href="#下载Xcaddy" class="headerlink" title="下载Xcaddy"></a>下载Xcaddy</h4><p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/caddyserver/xcaddy">https://github.com/caddyserver/xcaddy</a></p>
-<p><code>wget https://github.com/caddyserver/xcaddy/releases/download/v0.4.2/xcaddy_0.4.2_linux_amd64.tar.gz -O - | tar -xz -C /usr/bin/</code></p>
-<p>运行xcaddy并打入forwardproxy@caddy2插件</p>
-<p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/caddyserver/forwardproxy">https://github.com/caddyserver/forwardproxy</a></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xcaddy build master \</span><br><span class="line">    --with github.com/caddyserver/forwardproxy@caddy2</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>配置环境变量（可写入 <code>~/.profile</code> 或 <code>~/.bashrc</code>）：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &lt;&lt; <span class="string">'EOF'</span> &gt;&gt; ~/.profile</span><br><span class="line"><span class="built_in">export</span> GOROOT=/usr/local/go</span><br><span class="line"><span class="built_in">export</span> GOBIN=<span class="variable">$GOROOT</span>/bin</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/usr/local/go/bin:<span class="variable">$GOBIN</span></span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line"><span class="built_in">source</span> ~/.profile</span><br></pre></td></tr></tbody></table></figure>
 
-<p>编译完成后caddy二进制文件会在root目录下，俺们可以移到<code>/usr/bin/</code>下运行：</p>
-<p><code>mv caddy /usr/bin</code></p>
-<p>可以用下面命令查看forwardproxy插件有没有加入成功：</p>
-<p><code>caddy list-modules</code></p>
-<h3 id="配置caddyfile文件"><a href="#配置caddyfile文件" class="headerlink" title="配置caddyfile文件"></a>配置caddyfile文件</h3><p>上面安装好caddy2后，现在就来配置caddyfile文件，caddy v2的配置文件改成json后，有点复杂，不过可以沿用caddy v1的caddyfile写法：</p>
-<p>新建一个caddy文件夹，存放caddyfile文件</p>
-<p><code>mkdir -p /etc/caddy</code></p>
-<p><code>vi /etc/caddy/https.caddyfile</code></p>
-<p>编写https.caddyfile文件，添加内容如下：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">:443, proxy.xxxx.com</span><br><span class="line">route {</span><br><span class="line">	forward_proxy {</span><br><span class="line">		basic_auth user1 0NtCL2JPJBgddPMmlPcJ  #用户名和密码</span><br><span class="line">		hide_ip  #隐藏客户端IP</span><br><span class="line">		hide_via</span><br><span class="line">	}</span><br><span class="line">	file_server</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="2-使用-xcaddy-编译集成-forwardproxy"><a href="#2-使用-xcaddy-编译集成-forwardproxy" class="headerlink" title="2. 使用 xcaddy 编译集成 forwardproxy"></a>2. 使用 xcaddy 编译集成 forwardproxy</h3><p>下载安装官方构建工具 <code>xcaddy</code>：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/caddyserver/xcaddy/releases/download/v0.4.2/xcaddy_0.4.2_linux_amd64.tar.gz -O - | tar -xz -C /usr/bin/</span><br></pre></td></tr></tbody></table></figure>
 
-<p>上面需要修改的地方是自己的域名，添加用户名和密码就可以了。注意删除掉上面注释</p>
-<p>如果要把上面配置文件生成caddy v2标准的json文件可用下面命令生成：</p>
-<p><code>caddy adapt --config /etc/caddy/https.caddyfile</code></p>
-<p>检查80端口有没有被其它服务占用，因为caddy需要用80/443端口申请证书，否则会启动失败。下面命令检查端口占用情况：</p>
-<p><code>netstat -lntp</code></p>
-<p>上面配置、检查完就可以启动caddy了，启动命令如下：</p>
-<p><code>caddy run -c /etc/caddy/https.caddyfile</code></p>
-<p>如果启动后，出现申请证书不成功的情况，一般是因为域名已经申请过证书导致的，建议DNS解析页面新建一个子域名，重新配置、启动申请证书。</p>
-<p>启动后会发现，caddy一直在前台运行，很不方便，这个时候俺们就需要注册systemctl服务，用systemctl来启动caddy。</p>
-<h3 id="注册systemd服务"><a href="#注册systemd服务" class="headerlink" title="注册systemd服务"></a>注册systemd服务</h3><p>新建<code>caddy.service</code>文件，命令：</p>
-<p><code>vi /etc/systemd/system/caddy.service</code></p>
-<p>添加如下内容</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Caddy</span><br><span class="line">Documentation=https://caddyserver.com/docs/</span><br><span class="line">After=network.target network-online.target</span><br><span class="line">Requires=network-online.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">User=root</span><br><span class="line">ExecStart=/usr/bin/caddy run --environ --config /etc/caddy/https.caddyfile</span><br><span class="line">ExecReload=/usr/bin/caddy reload --config /etc/caddy/https.caddyfile --force</span><br><span class="line">TimeoutStopSec=5s</span><br><span class="line">LimitNOFILE=1048576</span><br><span class="line">PrivateTmp=true</span><br><span class="line">ProtectSystem=full</span><br><span class="line">AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>一键构建嵌入 <code>forwardproxy</code> 扩展模块的 Caddy 二进制文件：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">xcaddy build master --with github.com/caddyserver/forwardproxy@caddy2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将编译出的 caddy 可执行文件移动到系统路径</span></span><br><span class="line"><span class="built_in">mv</span> caddy /usr/bin/caddy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证模块是否加载成功（列表中应出现 http.handlers.forward_proxy）</span></span><br><span class="line">caddy list-modules | grep forward_proxy</span><br></pre></td></tr></tbody></table></figure>
 
-<p>重载systemctl服务 <code>systemctl daemon-reload</code></p>
-<p>到这也就可以启动caddy了，启动命令</p>
-<p><code>systemctl start caddy</code> #启动</p>
-<p><code>systemctl restart caddy</code> #重启</p>
-<p><code>systemctl status caddy</code> #查看状态</p>
-<p><code>systemctl stop caddy</code> #停止</p>
-<p><code>systemctl enable caddy</code> #添加开机自启动</p>
-<p>服务端到此也就部署完成了，下面来折腾客户端。https正向代理，不必多讲，安全、快捷，电脑端不用另装客户端，移动端大多APP都支持http/https代理。</p>
-<h3 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h3><p>电脑端浏览器安装SwitchyOmega插件，新建一个代理情景模式，代理协议填写HTTPS，代理服务器填写你的域名，端口填写你使用的端口，没有另外设置的话就填443，最后点击右边小锁，填写你的用户名和密码，就可以使用了，如果需要分流的话，可以另建立一个自动切换模式。</p>
-<p><a target="_blank" rel="noopener" href="https://hostalk.net/posts/gost_https_proxy/gost1.png"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://hostalk.net/posts/gost_https_proxy/gost1.png"></a></p>
-<p>在SwitchyOmega插件上设置代理自动分流模式，另新建一个自动切换模式，设置如下图：</p>
-<p><a target="_blank" rel="noopener" href="https://hostalk.net/posts/gost_https_proxy/gost2.png"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://hostalk.net/posts/gost_https_proxy/gost2.png"></a></p>
-<p>AutoProxy：<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt">https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt</a></p>
-<p>移动端，以小火箭和Quantumult X为例，小火箭，选择https代理，服务器填写你的域名，其它看图：</p>
-<p><a target="_blank" rel="noopener" href="https://hostalk.net/posts/gost_https_proxy/gost3.jpg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://hostalk.net/posts/gost_https_proxy/gost3.jpg"></a></p>
-<p>Quantumult X 配置文件/编辑/server_local字头下填写：</p>
-<p><code>http=你的域名:443, username=用户名, password=密码, over-tls=true, tls-verification=true, tls-host=你的域名, fast-open=false, udp-relay=false, tls13=false, tag=caddy2</code></p>
+<hr>
+<h2 id="编写-Caddyfile-配置文件"><a href="#编写-Caddyfile-配置文件" class="headerlink" title="编写 Caddyfile 配置文件"></a>编写 Caddyfile 配置文件</h2><p>创建 Caddy 配置主目录与 Caddyfile：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /etc/caddy</span><br></pre></td></tr></tbody></table></figure>
+
+<p>创建配置文件 <code>/etc/caddy/https.caddyfile</code>：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">:443, proxy.yourdomain.com {</span><br><span class="line">    route {</span><br><span class="line">        forward_proxy {</span><br><span class="line">            basic_auth your_username your_strong_password</span><br><span class="line">            hide_ip</span><br><span class="line">            hide_via</span><br><span class="line">        }</span><br><span class="line">        # 遇到未通过代理认证的常规请求，回退显示静态网页，完美防主动探测</span><br><span class="line">        file_server</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p><strong>注意</strong>：</p>
+<ol>
+<li>将 <code>proxy.yourdomain.com</code> 替换为你的真实解析域名。</li>
+<li>将 <code>your_username</code> 与 <code>your_strong_password</code> 替换为你的强密码。</li>
+<li>确保护理服务器的 80 和 443 端口未被 Nginx 或 Apache 占用，因为 Caddy 首次启动时需要借助 80/443 端口完成 ACME 证书挑战。</li>
+</ol>
+</blockquote>
+<hr>
+<h2 id="注册-Systemd-系统守护进程"><a href="#注册-Systemd-系统守护进程" class="headerlink" title="注册 Systemd 系统守护进程"></a>注册 Systemd 系统守护进程</h2><p>为了让 Caddy 随系统开机自启并具备崩溃自动恢复能力，创建守护进程配置：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &lt;&lt; <span class="string">'EOF'</span> &gt; /etc/systemd/system/caddy.service</span><br><span class="line">[Unit]</span><br><span class="line">Description=Caddy HTTP/2 Reverse &amp; Forward Proxy</span><br><span class="line">Documentation=https://caddyserver.com/docs/</span><br><span class="line">After=network.target network-online.target</span><br><span class="line">Requires=network-online.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">User=root</span><br><span class="line">ExecStart=/usr/bin/caddy run --environ --config /etc/caddy/https.caddyfile</span><br><span class="line">ExecReload=/usr/bin/caddy reload --config /etc/caddy/https.caddyfile --force</span><br><span class="line">TimeoutStopSec=5s</span><br><span class="line">LimitNOFILE=1048576</span><br><span class="line">PrivateTmp=<span class="literal">true</span></span><br><span class="line">ProtectSystem=full</span><br><span class="line">AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE</span><br><span class="line">Restart=on-failure</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line">EOF</span><br></pre></td></tr></tbody></table></figure>
+
+<p>加载配置并启动服务：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl <span class="built_in">enable</span> --now caddy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看运行状态</span></span><br><span class="line">systemctl status caddy</span><br></pre></td></tr></tbody></table></figure>
+
+<p>看到绿色 <code>active (running)</code> 即表示服务端已部署就绪，证书已自动颁发完毕。</p>
+<hr>
+<h2 id="客户端连接配置"><a href="#客户端连接配置" class="headerlink" title="客户端连接配置"></a>客户端连接配置</h2><h3 id="1-电脑端浏览器（Zero-Client-方案）"><a href="#1-电脑端浏览器（Zero-Client-方案）" class="headerlink" title="1. 电脑端浏览器（Zero-Client 方案）"></a>1. 电脑端浏览器（Zero-Client 方案）</h3><p>使用 Chrome / Edge 配合 <strong>SwitchyOmega</strong>（或 ZeroOmega）插件，无需在本地运行任何代理客户端核心：</p>
+<ol>
+<li>新建情景模式，代理协议选择 <strong>HTTPS</strong>。</li>
+<li><strong>代理服务器</strong>填入你的域名，<strong>端口</strong>填写 <code>443</code>。</li>
+<li>点击右侧的“锁”图标，填入刚才设置的账户名和密码。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://hostalk.net/posts/gost_https_proxy/gost1.png"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://hostalk.net/posts/gost_https_proxy/gost1.png" onerror="this.onerror=null;this.src=&quot;/images/stellar-error.491ee870f4940739.svg&quot;" width="828" height="502" data-stellar-image-dimensions="true" data-stellar-image-color="{&quot;size&quot;:64,&quot;hsla&quot;:[209.7374,4.8128,97.5761,0.9995]}" data-stellar-image-source="https://hostalk.net/posts/gost_https_proxy/gost1.png"></a></p>
+<p>如需分流，可在自动切换模式中引入社区规则列表（如 gfwlist）：</p>
+<p><a target="_blank" rel="noopener" href="https://hostalk.net/posts/gost_https_proxy/gost2.png"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://hostalk.net/posts/gost_https_proxy/gost2.png" onerror="this.onerror=null;this.src=&quot;/images/stellar-error.491ee870f4940739.svg&quot;" width="828" height="397" data-stellar-image-dimensions="true" data-stellar-image-color="{&quot;size&quot;:64,&quot;hsla&quot;:[9.0586,3.994,97.2138,0.9992]}" data-stellar-image-source="https://hostalk.net/posts/gost_https_proxy/gost2.png"></a></p>
+<h3 id="2-移动端：Shadowrocket（小火箭）"><a href="#2-移动端：Shadowrocket（小火箭）" class="headerlink" title="2. 移动端：Shadowrocket（小火箭）"></a>2. 移动端：Shadowrocket（小火箭）</h3><p>添加节点类型选择 <strong>HTTPS</strong>：</p>
+<ul>
+<li><strong>服务器</strong>：<code>proxy.yourdomain.com</code></li>
+<li><strong>端口</strong>：<code>443</code></li>
+<li><strong>标志 / 认证</strong>：填写设置的用户名和密码</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://hostalk.net/posts/gost_https_proxy/gost3.jpg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://hostalk.net/posts/gost_https_proxy/gost3.jpg" onerror="this.onerror=null;this.src=&quot;/images/stellar-error.491ee870f4940739.svg&quot;" width="349" height="600" data-stellar-image-dimensions="true" data-stellar-image-color="{&quot;size&quot;:64,&quot;hsla&quot;:[219.6062,28.7088,94.8433,1]}" data-stellar-image-source="https://hostalk.net/posts/gost_https_proxy/gost3.jpg"></a></p>
+<h3 id="3-移动端：Quantumult-X"><a href="#3-移动端：Quantumult-X" class="headerlink" title="3. 移动端：Quantumult X"></a>3. 移动端：Quantumult X</h3><p>在 Quantumult X 配置文件中的 <code>[server_local]</code> 区段追加一条配置：</p>
+<figure class="highlight ini"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">http</span>=proxy.yourdomain.com:<span class="number">443</span>, username=你的账号, password=你的密码, over-tls=<span class="literal">true</span>, tls-verification=<span class="literal">true</span>, tls-host=proxy.yourdomain.com, fast-open=<span class="literal">false</span>, udp-relay=<span class="literal">false</span>, tls13=<span class="literal">true</span>, tag=Caddy2-HTTPS</span><br></pre></td></tr></tbody></table></figure>
 </article>
+<div class="article-tags slide-up"><a class="tag" href="/tags/%E6%95%99%E7%A8%8B/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>教程</a><a class="tag" href="/tags/Caddy/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>Caddy</a><a class="tag" href="/tags/%E4%BB%A3%E7%90%86/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>代理</a><a class="tag" href="/tags/HTTPS/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>HTTPS</a><a class="tag" href="/tags/Linux/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>Linux</a></div>
 
-<div class="article-tags slide-up"><a class="tag" href="/tags/%E6%95%99%E7%A8%8B/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>教程</a><a class="tag" href="/tags/Caddy/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Caddy</a><a class="tag" href="/tags/%E4%BB%A3%E7%90%86/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>代理</a><a class="tag" href="/tags/HTTPS/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>HTTPS</a><a class="tag" href="/tags/Linux/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Linux</a></div>
+
+  <div class="article-share slide-up" id="share">
+    <div class="body">
+      <div class="social-wrap dis-select"><a class="social share-item qrcode ui-interactive is-icon-only" onclick="util.toggle(&quot;share-qrcode&quot;)" aria-label="分享文章: QR Code" title="分享文章: QR Code"><span class="share-item__icon ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="M10.553 13.447c-.424-.424-.95-.596-1.535-.675c-.553-.074-1.25-.074-2.086-.074H5.827c-.58 0-1.065 0-1.459.037c-.411.04-.795.124-1.146.34c-.345.21-.634.5-.845.844c-.216.352-.3.735-.34 1.147C2 15.459 2 15.944 2 16.525v.068c0 .884 0 1.597.055 2.17c.056.592.175 1.108.459 1.571c.288.47.682.864 1.152 1.152c.463.284.979.403 1.57.46C5.81 22 6.524 22 7.407 22h.07c.58 0 1.064 0 1.458-.037c.412-.04.795-.124 1.147-.34c.344-.21.633-.5.844-.844c.216-.352.3-.736.34-1.147c.037-.394.037-.879.037-1.46v-1.104c0-.836 0-1.533-.074-2.086c-.079-.584-.251-1.111-.675-1.535m-1.62-11.41c.412.04.795.124 1.147.34c.344.21.633.5.844.845c.216.351.3.735.34 1.146c.037.394.037.879.037 1.46v1.104c0 .836 0 1.533-.074 2.086c-.079.584-.251 1.111-.675 1.535s-.95.596-1.535.675c-.553.074-1.25.074-2.086.074H5.827c-.58 0-1.065 0-1.459-.037c-.411-.04-.795-.124-1.146-.34a2.56 2.56 0 0 1-.845-.844c-.216-.352-.3-.735-.34-1.147C2 8.54 2 8.056 2 7.475v-.068c0-.884 0-1.597.055-2.17c.056-.592.175-1.108.459-1.571c.288-.47.682-.864 1.152-1.152c.463-.284.979-.403 1.57-.46C5.81 2 6.524 2 7.407 2h.07c.58 0 1.064 0 1.458.037M16.593 2h-.068c-.58 0-1.065 0-1.46.037c-.41.04-.794.124-1.146.34c-.344.21-.633.5-.844.845c-.216.351-.3.735-.34 1.146c-.037.394-.037.879-.037 1.46v1.104c0 .836 0 1.533.074 2.086c.079.584.251 1.111.675 1.535s.95.596 1.535.675c.553.074 1.25.074 2.086.074h1.105c.58 0 1.065 0 1.459-.037c.411-.04.795-.124 1.146-.34c.345-.21.634-.5.845-.844c.216-.352.3-.735.34-1.147C22 8.54 22 8.056 22 7.475v-.068c0-.884 0-1.597-.055-2.17c-.056-.592-.175-1.108-.459-1.571a3.5 3.5 0 0 0-1.152-1.152c-.463-.284-.979-.403-1.57-.46C18.19 2 17.477 2 16.594 2" opacity=".5"></path><path fill="currentColor" d="M14.093 21.302a.698.698 0 1 1-1.396 0v-2.79h1.396z" opacity=".4"></path><path fill="currentColor" d="M21.302 12.698a.7.7 0 0 0-.697.697v3.256H22v-3.256a.7.7 0 0 0-.698-.697" opacity=".5"></path><path fill="currentColor" d="M16.076 16.617c-.076.184-.076.417-.076.883s0 .699.076.883a1 1 0 0 0 .541.54c.184.077.417.077.883.077s.699 0 .883-.076a1 1 0 0 0 .54-.541c.077-.184.077-.417.077-.883s0-.699-.076-.883a1 1 0 0 0-.541-.54C18.199 16 17.966 16 17.5 16s-.699 0-.883.076a1 1 0 0 0-.54.541"></path><path fill="currentColor" d="M22 18.535v-.023h-1.396c0 .443 0 .74-.016.97c-.015.224-.043.333-.073.405a1.16 1.16 0 0 1-.629.63c-.072.029-.18.056-.405.072c-.23.015-.527.016-.97.016h-1.86V22h1.883c.414 0 .759 0 1.042-.02a2.6 2.6 0 0 0 .844-.175a2.56 2.56 0 0 0 1.384-1.384c.112-.27.156-.549.176-.844c.02-.283.02-.628.02-1.042" opacity=".7"></path><path fill="currentColor" d="M12.697 16.616v.035h1.396c0-.668 0-1.116.035-1.458c.034-.33.093-.482.16-.583a1.2 1.2 0 0 1 .321-.32c.101-.068.254-.128.584-.161c.342-.035.79-.036 1.458-.036h1.86v-1.395h-1.896c-.623 0-1.142 0-1.563.043c-.44.044-.85.142-1.218.388c-.28.187-.519.426-.706.706c-.246.368-.343.777-.388 1.217c-.043.421-.043.94-.043 1.564" opacity=".6"></path><path fill="currentColor" d="M5.508 18.69c.219.155.528.155 1.146.155c.619 0 .928 0 1.146-.155a.8.8 0 0 0 .2-.199c.154-.218.154-.527.154-1.146s0-.927-.155-1.146A.8.8 0 0 0 7.8 16c-.218-.155-.527-.155-1.146-.155s-.927 0-1.146.155a.8.8 0 0 0-.199.2c-.155.218-.155.527-.155 1.145c0 .619 0 .928.155 1.146a.8.8 0 0 0 .2.2M6.654 8.155c-.618 0-.927 0-1.146-.155a.8.8 0 0 1-.199-.2c-.155-.217-.155-.527-.155-1.145c0-.619 0-.928.155-1.146a.8.8 0 0 1 .2-.2c.218-.154.527-.154 1.145-.154c.619 0 .928 0 1.146.155a.8.8 0 0 1 .2.199c.154.218.154.527.154 1.146s0 .928-.155 1.146A.8.8 0 0 1 7.8 8c-.218.155-.527.155-1.146.155M16.2 8c.218.155.527.155 1.146.155s.927 0 1.146-.155a.8.8 0 0 0 .199-.199c.155-.218.155-.528.155-1.146c0-.619 0-.928-.155-1.146a.8.8 0 0 0-.2-.2c-.218-.154-.527-.154-1.145-.154c-.619 0-.928 0-1.146.155a.8.8 0 0 0-.2.199c-.154.218-.154.527-.154 1.146s0 .928.155 1.146A.8.8 0 0 0 16.2 8"></path></svg></span></a><a class="social share-item weibo ui-interactive is-icon-only" href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fblog.syouiti.com%2FCaddy2%25E6%2590%25AD%25E5%25BB%25BAHTTPS%25E6%25AD%25A3%25E5%2590%2591%25E4%25BB%25A3%25E7%2590%2586%2F&amp;title=%E6%9E%81%E7%AE%80%E4%B8%8E%E5%AE%89%E5%85%A8%EF%BC%9A%E4%BD%BF%E7%94%A8%20Caddy%202%20%E4%B8%8E%20forwardproxy%20%E6%8F%92%E4%BB%B6%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%20HTTPS%20%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86%20-%20%E7%99%BD%E4%B8%8A%E8%B3%9E%E4%B8%80&amp;pics=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fsy0u1ti%2Fpicx-images-hosting%40master%2Fimage.6bh0plu8ni.png&amp;summary=%E5%88%A9%E7%94%A8%20Caddy%202%20%E4%B8%8E%20forwardproxy%20%E6%89%A9%E5%B1%95%E6%A8%A1%E5%9D%97%E6%9E%84%E5%BB%BA%E9%AB%98%E6%80%A7%E8%83%BD%20HTTPS%20%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86%EF%BC%9A%E5%85%A8%E8%87%AA%E5%8A%A8%E7%94%B3%E8%AF%B7%E7%BB%B4%E6%8A%A4%20Let%E2%80%99s%20Encrypt%20TLS%20%E8%AF%81%E4%B9%A6%EF%BC%8C%E6%90%AD%E9%85%8D%E4%BC%AA%E8%A3%85%E7%AB%99%E7%82%B9%E9%98%B2%E4%B8%BB%E5%8A%A8%E6%8E%A2%E6%B5%8B%EF%BC%8C%E5%B9%B6%E9%99%84%E5%B8%A6%20SwitchyOmega%E3%80%81%E5%B0%8F%E7%81%AB%E7%AE%AD%E5%8F%8A%20QX%20%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D..." target="_blank" rel="external nofollow noopener noreferrer" aria-label="分享文章: Weibo" title="分享文章: Weibo"><span class="share-item__icon ui-icon"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/80c07e4dbb303.svg" onerror="this.onerror=null;this.src=&quot;/images/stellar-error.491ee870f4940739.svg&quot;"></span></a><a class="social share-item email ui-interactive is-icon-only" href="mailto:?subject=%E6%9E%81%E7%AE%80%E4%B8%8E%E5%AE%89%E5%85%A8%EF%BC%9A%E4%BD%BF%E7%94%A8%20Caddy%202%20%E4%B8%8E%20forwardproxy%20%E6%8F%92%E4%BB%B6%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%20HTTPS%20%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86%20-%20%E7%99%BD%E4%B8%8A%E8%B3%9E%E4%B8%80&amp;body=https%3A%2F%2Fblog.syouiti.com%2FCaddy2%25E6%2590%25AD%25E5%25BB%25BAHTTPS%25E6%25AD%25A3%25E5%2590%2591%25E4%25BB%25A3%25E7%2590%2586%2F" aria-label="分享文章: Email" title="分享文章: Email"><span class="share-item__icon ui-icon"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/a1b00e20f425d.svg" onerror="this.onerror=null;this.src=&quot;/images/stellar-error.491ee870f4940739.svg&quot;"></span></a></div>
+      <div class="share-qrcode" id="share-qrcode" style="opacity:0;height:0"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&amp;data=https%3A%2F%2Fblog.syouiti.com%2FCaddy2%25E6%2590%25AD%25E5%25BB%25BAHTTPS%25E6%25AD%25A3%25E5%2590%2591%25E4%25BB%25A3%25E7%2590%2586%2F" onerror="this.onerror=null;this.src=&quot;/images/stellar-error.491ee870f4940739.svg&quot;"></div>
+    </div>
+  </div>
 
 <div class="article-footer slide-up">
     <section id="license">
       <div class="header"><span>许可协议</span></div>
       <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
 </div>
-    </section>
-    
+    </section></div>
 
-
-    <section id="share">
-      <div class="header"><span>分享文章</span></div>
-      <div class="body">
-        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https:&#x2F;&#x2F;blog.syouiti.com&#x2F;Caddy2%E6%90%AD%E5%BB%BAHTTPS%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86&#x2F;" /></div>
-        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fblog.syouiti.com%2FCaddy2%25E6%2590%25AD%25E5%25BB%25BAHTTPS%25E6%25AD%25A3%25E5%2590%2591%25E4%25BB%25A3%25E7%2590%2586%2F&title=%E4%BD%BF%E7%94%A8%20Caddy%202%20%E6%90%AD%E5%BB%BA%20HTTPS%20%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86%20-%20%E7%99%BD%E4%B8%8A%E8%B3%9E%E4%B8%80&pics=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fsy0u1ti%2Fpicx-images-hosting%40master%2Fimage.6bh0plu8ni.png&summary=%E4%BD%BF%E7%94%A8Caddy%20v2%E6%89%93%E5%85%A5forwardproxy%E6%8F%92%E4%BB%B6%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAHTTPS%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86%EF%BC%8C%E6%AF%95%E7%AB%9FCaddy%E8%87%AA%E5%8A%A8%E8%AF%B7%E6%B1%82SSL%E8%AF%81%E4%B9%A6%EF%BC%8C%E8%83%BD%E5%A4%9F%E7%9C%81%E4%B8%8B%E8%AE%B8%E5%A4%9A%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84%E6%8A%98%E8%85%BE%E3%80%82%0A%E6%B7%BB%E5%8A%A0%E5%9F%9F%E5%90%8DDNS%E8%AE%B0%E5%BD%95%E6%B7%BB%E5%8A%A0%E5%9F%9F%E5%90%8DDNS%E8%AE%B0%E5%BD%95%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%B2%A1%E6%9C%89v6IP%E7%9A%84%E8%AF%9D%EF%BC%8C%E5%B0%B1%E5%A1%AB%E4%B8%80%E4%B8%AAv4IP%E7%9A%84A%E8%AE%B0%E5%BD%95%EF%BC%8C%E5%A6%82%E4%B8%8B%EF%BC%9A..."><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/80c07e4dbb303.svg" /></a><a class="social share-item email" href="mailto:?subject=%E4%BD%BF%E7%94%A8%20Caddy%202%20%E6%90%AD%E5%BB%BA%20HTTPS%20%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86%20-%20%E7%99%BD%E4%B8%8A%E8%B3%9E%E4%B8%80&amp;body=https%3A%2F%2Fblog.syouiti.com%2FCaddy2%25E6%2590%25AD%25E5%25BB%25BAHTTPS%25E6%25AD%25A3%25E5%2590%2591%25E4%25BB%25A3%25E7%2590%2586%2F"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/a1b00e20f425d.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
-        
-        <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
-          <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https%3A%2F%2Fblog.syouiti.com%2FCaddy2%25E6%2590%25AD%25E5%25BB%25BAHTTPS%25E6%25AD%25A3%25E5%2590%2591%25E4%25BB%25A3%25E7%2590%2586%2F"/>
-        </div>
-        
-      </div>
-    </section>
-    </div>
-
-<div class="related-wrap slide-up" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/producthunt-daily-2024-09-07/">PH今日热榜 | 2024-09-07</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/producthunt-daily-2024-09-06/">PH今日热榜 | 2024-09-06</a></div></section></div>
+<div class="related-wrap slide-up" id="read-next"><section class="body"><div class="item" id="prev"><div class="note"><svg class="icon" viewBox="0 0 1 1" data-icon="default:arrow-left" aria-hidden="true"></svg> 较新文章</div><a href="/producthunt-daily-2024-09-07/">PH今日热榜 | 2024-09-07</a></div><div class="item" id="next"><div class="note">较早文章 <svg class="icon" viewBox="0 0 1 1" data-icon="default:arrow-right" aria-hidden="true"></svg></div><a href="/producthunt-daily-2024-09-06/">PH今日热榜 | 2024-09-06</a></div></section></div>
 
 
 
 
   <div class="related-wrap md-text slide-up" id="comments">
-    <section class='header cmt-title cap theme'>
+    
+    
+    <section class="header cmt-title cap theme">
       <p>快来参与讨论吧~</p>
 
     </section>
-    <section class='body cmt-body giscus'>
+    
+    <section class="body cmt-body giscus">
       
 
 <div class="lazy-icon"></div>
 
-<div id="giscus" src="https://giscus.app/client.js" data-repo="sy0u1ti/sy0u1ti.github.io" data-repo-id="R_kgDOKbZc8Q" data-category="General" data-category-id="DIC_kwDOKbZc8c4CZ0-1" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="noborder_dark" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+<div id="giscus" data-repo="sy0u1ti/sy0u1ti.github.io" data-repo-id="R_kgDOKbZc8Q" data-category="General" data-category-id="DIC_kwDOKbZc8c4CZ0-1" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="noborder_dark" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
 
     </section>
   </div>
 
 
 
-<footer class="page-footer slide-up footnote"><hr><div class="text"><p>记录 AI、效率工具、网络技术与各种折腾。<br>本站由 <a href="/">白上賞一「しらかみしょういち」</a> 创建 · <a target="_blank" rel="noopener" href="https://icp.gov.moe/?keyword=20244469">萌ICP备20244469号</a></p>
+<footer class="page-footer slide-up footnote"><hr><div class="sitemap" style="column-count:2;"><div class="sitemap-group"><span class="fs15">站内</span><a href="/">首页</a><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="/bangumis/">番剧</a></div><div class="sitemap-group"><span class="fs15">站外</span><a target="_blank" rel="noopener" href="https://home.syouiti.com">Home</a><a target="_blank" rel="noopener" href="https://github.com/sy0u1ti">GitHub</a></div></div><div class="text"><p>记录 AI、效率工具、网络技术与各种折腾。<br>本站由 <a href="/">白上賞一「しらかみしょういち」</a> 创建 · <a target="_blank" rel="noopener" href="https://icp.gov.moe/?keyword=20244469">萌ICP备20244469号</a></p>
 </div></footer>
-<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right" data-ui-surface="sidebar"><div class="widgets">
+</main>
+<aside data-stellar-runtime-region="" id="rightbar-region" class="site-region site-region--rightbar" data-region="rightbar" aria-label="Rightbar"><div class="site-region__surface ui-drawer-surface"><div class="site-region__viewport"><div class="widgets widget-stack widget-stack--rightbar widget-stack--rightbar"><div class="widget-instance widget-instance--toc" data-widget-id="rightbar:0:toc" data-presentation="rightbar">
 
 
 <widget class="widget-wrapper slide-up toc" id="data-toc" collapse="false">
   
     <div class="widget-header dis-select">
       <span class="name">本文目录</span>
-      <a class="cap-action" onclick="sidebar.toggleTOC()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a>
+      <button type="button" class="cap-action ui-interactive card-hover card-hover--spotlight" data-shell-action="toggle-toc" aria-label="Toggle table of contents" aria-pressed="false"><span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"></path></svg></span></button>
     </div>
   
-  <div class="widget-body"><ol class="toc ui-collection-adapter"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%9F%9F%E5%90%8DDNS%E8%AE%B0%E5%BD%95"><span class="toc-text">添加域名DNS记录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E8%AF%91Caddy2"><span class="toc-text">服务端编译Caddy2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEGo"><span class="toc-text">配置Go</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDXcaddy"><span class="toc-text">下载Xcaddy</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEcaddyfile%E6%96%87%E4%BB%B6"><span class="toc-text">配置caddyfile文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8Csystemd%E6%9C%8D%E5%8A%A1"><span class="toc-text">注册systemd服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D%E7%BD%AE"><span class="toc-text">客户端配置</span></a></li></ol></div>
-  <div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M8 10.5h8M8 14h5.5M17 3.338A9.95 9.95 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.63 1.63 0 0 1 1.149.133A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"/></svg><span>参与讨论</span></a></div>
+  <div class="widget-body"><ol class="toc ui-collection-adapter"><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E5%89%8D%E7%BD%AE%E5%87%86%E5%A4%87%EF%BC%9A%E8%A7%A3%E6%9E%90%E5%9F%9F%E5%90%8D-DNS-%E8%AE%B0%E5%BD%95"><span class="toc-text">前置准备：解析域名 DNS 记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%83%A8%E7%BD%B2%EF%BC%9A%E7%BC%96%E8%AF%91%E5%B8%A6%E6%8F%92%E4%BB%B6%E7%9A%84-Caddy-2"><span class="toc-text">服务端部署：编译带插件的 Caddy 2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#1-%E9%85%8D%E7%BD%AE-Go-%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83"><span class="toc-text">1. 配置 Go 语言编译环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#2-%E4%BD%BF%E7%94%A8-xcaddy-%E7%BC%96%E8%AF%91%E9%9B%86%E6%88%90-forwardproxy"><span class="toc-text">2. 使用 xcaddy 编译集成 forwardproxy</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E7%BC%96%E5%86%99-Caddyfile-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">编写 Caddyfile 配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E6%B3%A8%E5%86%8C-Systemd-%E7%B3%BB%E7%BB%9F%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B"><span class="toc-text">注册 Systemd 系统守护进程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BF%9E%E6%8E%A5%E9%85%8D%E7%BD%AE"><span class="toc-text">客户端连接配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#1-%E7%94%B5%E8%84%91%E7%AB%AF%E6%B5%8F%E8%A7%88%E5%99%A8%EF%BC%88Zero-Client-%E6%96%B9%E6%A1%88%EF%BC%89"><span class="toc-text">1. 电脑端浏览器（Zero-Client 方案）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#2-%E7%A7%BB%E5%8A%A8%E7%AB%AF%EF%BC%9AShadowrocket%EF%BC%88%E5%B0%8F%E7%81%AB%E7%AE%AD%EF%BC%89"><span class="toc-text">2. 移动端：Shadowrocket（小火箭）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#3-%E7%A7%BB%E5%8A%A8%E7%AB%AF%EF%BC%9AQuantumult-X"><span class="toc-text">3. 移动端：Quantumult X</span></a></li></ol></li></ol></div>
+  <div class="widget-footer"><a class="top ui-interactive" onclick="util.scrollTop()"><span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="M20.536 3.464C22 4.93 22 7.286 22 12s0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12s0-7.071 1.464-8.536C4.93 2 7.286 2 12 2s7.071 0 8.535 1.464" opacity=".5"></path><path fill="currentColor" d="M9.53 12.03a.75.75 0 0 1-1.06-1.06l3-3a.75.75 0 0 1 1.06 0l3 3a.75.75 0 1 1-1.06 1.06L12 9.56z"></path><path fill="currentColor" d="M9.53 16.03a.75.75 0 0 1-1.06-1.06l3-3a.75.75 0 0 1 1.06 0l3 3a.75.75 0 1 1-1.06 1.06L12 13.56z"></path></svg></span><span>回到顶部</span></a><a class="buttom ui-interactive" onclick="util.scrollComment()"><span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"></path><path fill="currentColor" d="M7.25 9A.75.75 0 0 1 8 8.25h8a.75.75 0 0 1 0 1.5H8A.75.75 0 0 1 7.25 9m0 3.5a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 0 1.5H8a.75.75 0 0 1-.75-.75"></path></svg></span><span>参与讨论</span></a></div>
 </widget>
 
 
-</div></aside><div class='float-panel'>
-  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
-    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+</div></div></div></div></aside>
+</div><button type="button" class="site-scrim" data-shell-action="dismiss-drawer" aria-label="Close navigation" tabindex="-1"></button><div data-stellar-runtime-region="" class="site-dock" role="group" aria-label="Layout panels">
+  <button type="button" class="site-dock__button site-dock__button--rightbar ui-interactive" aria-label="Open rightbar" aria-controls="rightbar-region" aria-expanded="false" data-shell-action="toggle-rightbar-drawer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"></path></svg>
   </button>
-  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
-    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  <button type="button" class="site-dock__button site-dock__button--leftbar ui-interactive" aria-label="Open leftbar" aria-controls="leftbar-region" aria-expanded="false" data-shell-action="toggle-leftbar-drawer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"></path><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"></path></g></svg>
   </button>
 </div>
-</div><div class="scripts">
 
-
-<script type="text/javascript">
-  window.canonical = {"originalHost":"blog.syouiti.com","officialHosts":["localhost"],"encoded":"YmxvZy5zeW91aXRpLmNvbQ=="};
-  window.canonical["param"] = {"permalink":"https://blog.syouiti.com/Caddy2%E6%90%AD%E5%BB%BAHTTPS%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86/","checklink":"/js/plugins/video.js"};
-  // Fix: Ensure page is at the correct top position on data load
-  if (history.scrollRestoration) {
-    history.scrollRestoration = 'auto';
-  }
-  (function() {
-    const scrollHandler = () => {
-      // 存在有效锚点时，等待布局稳定后滚动到目标
-      // （浏览器原生锚点滚动发生在布局完成前，长文章的懒加载图片/异步组件会把目标顶偏）
-      const hash = window.location.hash;
-      if (hash.length > 1) {
-        let anchorId = hash.slice(1);
-        try {
-          anchorId = decodeURIComponent(anchorId);
-        } catch (e) {
-          // 片段含非法编码时按原样查找
-        }
-        const anchor = document.getElementById(anchorId);
-        if (anchor) {
-          // #start 锚点贴顶，不预留 offset；其余锚点与 TOC 点击滚动保持一致
-          const offset = anchorId === 'start' ? 0 : 32;
-          const targetY = () => anchor.getBoundingClientRect().top + window.scrollY - offset;
-          let timer = null;
-          let lastY = null;
-          let quiet = 0;
-          let attempts = 0;
-          // 记录最近一次资源加载完成时间，判断异步数据/图片是否仍在改变布局
-          let lastResourceTime = performance.now();
-          let observer = null;
-          try {
-            observer = new PerformanceObserver(function (list) {
-              lastResourceTime = performance.now();
-            });
-            observer.observe({ entryTypes: ['resource'] });
-          } catch (e) {}
-          // 统计进行中的 fetch/XHR 请求，异步组件（timeline 等）未完成前不判定布局稳定
-          let pendingRequests = 0;
-          const trackRequest = (fn) => {
-            pendingRequests++;
-            try {
-              const result = fn();
-              if (result && typeof result.finally === 'function') {
-                result.finally(function () {
-                  pendingRequests = Math.max(0, pendingRequests - 1);
-                });
-              } else {
-                pendingRequests = Math.max(0, pendingRequests - 1);
-              }
-              return result;
-            } catch (e) {
-              pendingRequests = Math.max(0, pendingRequests - 1);
-              throw e;
-            }
-          };
-          if (typeof window.fetch === 'function') {
-            const origFetch = window.fetch.bind(window);
-            window.fetch = function () {
-              const args = arguments;
-              return trackRequest(function () {
-                return origFetch.apply(window, args);
-              });
-            };
-          }
-          if (window.XMLHttpRequest) {
-            const origOpen = window.XMLHttpRequest.prototype.open;
-            const origSend = window.XMLHttpRequest.prototype.send;
-            window.XMLHttpRequest.prototype.open = function () {
-              this.__anchorTracked = true;
-              return origOpen.apply(this, arguments);
-            };
-            window.XMLHttpRequest.prototype.send = function () {
-              if (this.__anchorTracked) {
-                pendingRequests++;
-                const done = () => {
-                  if (this.__anchorTracked) {
-                    this.__anchorTracked = false;
-                    pendingRequests = Math.max(0, pendingRequests - 1);
-                  }
-                };
-                this.addEventListener('loadend', done);
-              }
-              return origSend.apply(this, arguments);
-            };
-          }
-          const cancel = () => {
-            if (timer !== null) {
-              clearInterval(timer);
-              timer = null;
-            }
-            if (observer !== null) {
-              try {
-                observer.disconnect();
-              } catch (e) {}
-            }
-          };
-          const adjust = () => {
-            const y = targetY();
-            const atTarget = Math.abs(window.scrollY - y) <= 2;
-            if (!atTarget || lastY === null || Math.abs(y - lastY) > 2) {
-              window.scrollTo({ top: y, behavior: 'instant' });
-              lastY = y;
-              quiet = 0;
-            } else {
-              quiet++;
-            }
-            attempts++;
-            const resourceQuiet = performance.now() - lastResourceTime > 3000;
-            // 位置连续 1.8 秒无变化、无进行中的请求且最近 3 秒无资源加载才视为稳定；最长等待 30 秒
-            if ((quiet >= 3 && pendingRequests === 0 && resourceQuiet) || attempts >= 50) {
-              cancel();
-            }
-          };
-          requestAnimationFrame(() => {
-            // 锚点链接打开时直接定位，不做动画；用户主动点击（如 TOC）仍走平滑滚动
-            window.scrollTo({ top: targetY(), behavior: 'instant' });
-            timer = setInterval(adjust, 600);
-          });
-          // 用户主动滚动时停止自动校正
-          window.addEventListener('wheel', cancel, { passive: true });
-          window.addEventListener('touchstart', cancel, { passive: true });
-          window.addEventListener('mousedown', cancel, { passive: true });
-          window.addEventListener('keydown', cancel, { passive: true });
-          return;
-        }
-      }
-      // 没有锚点时始终保持页面顶部；Wiki Hero 只在用户显式访问 #start 时定位正文。
-      window.scrollTo(0, 0);
-    };
-    if (document.readyState !== 'loading') scrollHandler();
-    else document.addEventListener('DOMContentLoaded', scrollHandler);
-  })();
-  const ctx = {
-    date_suffix: {
-      just: `刚刚`,
-      min: `分钟前`,
-      hour: `小时前`,
-      day: `天前`,
-    },
-    root : `/`,
-    tag_plugins: {
-      chat: Object.assign({"api":"https://siteinfo.listentothewind.cn/api/v1"}),
-    },
-    // 图标由构建期生成的 /js/stellar-icons.js 填充（defer，早于 DOMContentLoaded 就绪）
-    icons: {},
-    services: {"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"rating":{"js":"/js/services/rating.js","api":"https://star-vote.xaox.cc/api/rating"},"vote":{"js":"/js/services/vote.js","api":"https://star-vote.xaox.cc/api/vote"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"friends_and_posts":{"js":"/js/services/friends_and_posts.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"},"voice":{"js":"/js/plugins/voice.js"},"video":{"js":"/js/plugins/video.js"},"download-file":{"js":"/js/plugins/download-file.js"},"twikoo":{"js":"/js/services/twikoo_latest_comment.js"},"waline":{"js":"/js/services/waline_latest_comment.js"},"artalk":{"js":"/js/services/artalk_latest_comment.js"},"giscus":{"js":"/js/services/giscus_latest_comment.js"},"contributors":{"edit_this_page":{"_posts/":null,"wiki/stellar/":"https://github.com/xaoxuu/hexo-theme-stellar-docs/blob/main/"},"js":"/js/services/contributors.js"},"rss":{"js":"/js/services/rss.js"}},
-  };
-
-  // required plugins (only load if needs)
-  if (`local_search`) {
-    ctx.search = {};
-    ctx.search.service = `local_search`;
-    if (ctx.search.service == 'local_search') {
-      let service_obj = Object.assign({}, `{"field":"post","path":"/search.json","content":true,"lazy_load":true,"cache_ttl":86400,"skip_search":null,"sort":"-date"}`);
-      ctx.search[ctx.search.service] = service_obj;
-    }
-  }
-  const def = {
-    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
-    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
-    data_cache: {"enable":true,"default_ttl":3600,"ttl":{"giscus":600,"waline":600,"artalk":600,"memos":600,"memos-user":86400,"sites":86400,"friends":86400,"friends_and_posts":86400,"siteinfo":86400},"max_entries":200},
-  };
-  const deps = {
-    marked: `https://cdn.jsdelivr.net/npm/marked@13.0.1/lib/marked.umd.min.js`,
-    lazyload: `https://gcore.jsdelivr.net/npm/vanilla-lazyload@19.1/dist/lazyload.min.js`
-  }
-
-  // 主题切换提示文案（供 /js/theme.js 使用）
-  window.__STELLAR_I18N__ = {
-    light: `切换到浅色模式`,
-    dark: `切换到深色模式`,
-    auto: `切换到跟随系统配色`,
-  };
-
-  // 搜索跳转高亮：URL 带 ?kw= 时按需加载，定位正文中的匹配词
-  (function () {
-    try {
-      if (!window.location.search) return;
-      if (!new URLSearchParams(window.location.search).has('kw')) return;
-      document.addEventListener('DOMContentLoaded', function () {
-        // utils 由 /js/utils.js 定义（同时暴露 window.utils）；
-        // 未就绪时由 bootstrap 队列兜底，此处按就绪状态判断
-        if (typeof utils === 'object' && typeof utils.js === 'function') {
-          utils.js('/js/search/highlight.js', { defer: true }).catch(function () {});
-        }
-      });
-    } catch (e) {}
-  })();
-</script>
-
-
-<script>
-  // 插件注册队列：utils.js 尚未就绪时先缓存注册请求，就绪后统一补跑，
-  // 保证解析期注册的插件不因加载时序丢失。
-  window.stellar = window.stellar || {};
-  window.stellar._pluginQueue = window.stellar._pluginQueue || [];
-  window.stellar.initPlugin = function (fn, name, options) {
-    if (typeof utils === 'object' && typeof utils.initPlugin === 'function') {
-      return utils.initPlugin(fn, name, options);
-    }
-    window.stellar._pluginQueue.push({ fn: fn, name: name, options: options || {} });
-  };
-  window.stellar._flushPlugins = function () {
-    var pending = window.stellar._pluginQueue.splice(0);
-    if (typeof utils !== 'object' || typeof utils.initPlugin !== 'function') return;
-    for (var i = 0; i < pending.length; i++) {
-      try {
-        utils.initPlugin(pending[i].fn, pending[i].name, pending[i].options);
-      } catch (e) {
-        console.error('[Stellar] 插件补注册失败:', e);
-      }
-    }
-  };
-  document.addEventListener('DOMContentLoaded', function () {
-    if (typeof utils === 'object') return;
-    // utils 未就绪时补载；加载成功后由 utils.js 内部补跑插件队列
-    var s = document.createElement('script');
-    // 用 setAttribute 赋值 src，避免被基于 `s.src = "..."` 的正则
-    // （图片懒加载 / 脚本延迟优化器）误改写
-    s.setAttribute('src', '/js/utils.js?v=1.44.0');
-    s.async = false;
-    s.onerror = function () {
-      console.error('[Stellar] 无法加载 /js/utils.js，已启用内容兜底显示（sr-fallback）');
-      document.documentElement.classList.add('sr-fallback');
-    };
-    document.head.appendChild(s);
-  });
-</script>
-
-
-<!-- core: utils 必须同步加载（页尾内联插件片段在解析期即调用 utils.initPlugin） -->
-<script src="/js/utils.js?v=1.44.0"></script>
-<script>
-  // 解析期检测 utils 是否已就绪；未就绪时同步补载，
-  // 保证「utils 先于页尾插件片段定义」的不变量。
-  if (typeof utils === 'undefined') {
-    document.write('<script src="/js/utils.js?v=1.44.0"><\/script>');
-  }
-</script>
-<script defer src="/js/stellar-icons.js?v=1.44.0"></script>
-<!-- 非首屏图标异步加载：占位符替换依赖构建期生成的 js/icons/{ns}.json -->
-<script defer src="/js/icons.js?v=1.44.0" data-version="1.44.0"></script>
-<script defer src="/js/plugins/dropdown.js?v=1.44.0"></script>
-<script src="/js/main.js?v=1.44.0" defer></script>
-<script defer src="/js/theme.js?v=1.44.0"></script>
-
-
-
-<script>
-  // 先声明配置与初始化监听，再异步加载库：
-  // 保证库执行时 lazyLoadOptions 已就绪，避免 async 脚本抢先执行导致自初始化失败
-  // https://www.npmjs.com/package/vanilla-lazyload
-  // Set the options globally
-  // to make LazyLoad self-initialize
-  window.lazyLoadOptions = {
-    elements_selector: ".lazy",
-    callback_loaded: (el) => {
-      el.classList.add('loaded');
-      // {% image %} 没有 .lazy-box 包裹，回退到父元素查找加载图标
-      const wrapper = el.closest('.lazy-box') || el.parentElement;
-      const icon = wrapper?.querySelector('.lazy-icon');
-      if (icon) icon.remove();
-    }
-  };
-  // 监听初始化事件，获取 LazyLoad 实例
-  window.addEventListener(
-    "LazyLoad::Initialized",
-    function (event) {
-      window.lazyLoadInstance = event.detail.instance;
-    },
-    false
-  );
-  document.addEventListener('DOMContentLoaded', function () {
-    window.lazyLoadInstance?.update();
-  });
-
-  // 兜底：动态插入的 .lazy 元素（如站点自定义脚本在 update() 之后追加的图片）
-  // 不会被 vanilla-lazyload 自动扫描，未注册的 img.lazy 会被 CSS opacity:0 永久隐藏。
-  // MutationObserver 检测到新增 .lazy 元素后自动调用 update() 重新注册。
-  if (window.MutationObserver) {
-    window.lazyMutationObserver = new MutationObserver((mutations) => {
-      if (window.lazyMutationObserver._pending) return;
-      const hasLazy = mutations.some((m) =>
-        Array.prototype.some.call(m.addedNodes, (node) =>
-          node.nodeType === 1 &&
-          (node.matches?.('.lazy') || !!node.querySelector?.('.lazy'))
-        )
-      );
-      if (!hasLazy) return;
-      window.lazyMutationObserver._pending = requestAnimationFrame(() => {
-        window.lazyMutationObserver._pending = null;
-        window.lazyLoadInstance?.update();
-      });
-    });
-    window.lazyMutationObserver.observe(document.documentElement, {
-      childList: true,
-      subtree: true
-    });
-  }
-
-  window.wrapLazyloadImages = (container) => {
-    if (typeof container === 'string') {
-      container = document.querySelector(container);
-    }
-    if (!container) return;
-
-    const images = container.querySelectorAll('img');
-    images.forEach((img) => {
-      if (img.classList.contains('lazy')) return;
-
-      const src = img.getAttribute('src');
-      if (!src) return;
-
-      const wrapper = document.createElement('div');
-      wrapper.className = 'lazy-box';
-
-      const newImg = img.cloneNode();
-      newImg.removeAttribute('src');
-      newImg.setAttribute('data-src', src);
-      newImg.classList.add('lazy');
-
-      const icon = document.createElement('div');
-      icon.className = 'lazy-icon';
-
-      wrapper.appendChild(newImg);
-      wrapper.appendChild(icon);
-
-      img.replaceWith(wrapper);
-    });
-
-    // 通知 LazyLoad 更新
-    if (window.lazyLoadInstance?.update) {
-      window.lazyLoadInstance.update();
-    }
-  }
-</script>
-<script async src="https://gcore.jsdelivr.net/npm/vanilla-lazyload@19.1/dist/lazyload.min.js"></script>
-
-
-<!-- optional -->
-
-  <script type="module">
-  (function() {
+<dialog data-stellar-runtime-region="" class="search-dialog" id="site-search-dialog" aria-labelledby="site-search-title">
+  <div class="search-dialog__panel search-wrapper" id="site-search-wrapper" searching="false">
+    <div class="search-dialog__header">
+      <div class="search-form" role="search">
+        <span class="search-button" aria-hidden="true"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></span>
+        <input type="search" class="search-input" id="site-search-input" aria-labelledby="site-search-title" placeholder="搜索">
+      </div>
+      <button type="button" class="search-dialog__close" data-shell-action="close-search" aria-label="关闭搜索">×</button>
+    </div>
     
-    function initGiscus() {
-      const el = document.querySelector('#comments #giscus');
-      if (!el) return;
-      
-      function load_giscus() {
-        try {
-          el.innerHTML = '';
-        } catch (error) {
-          console.error(error);
-        }
-        const script = document.createElement('script');
-        script.async = true;
-        for (const key of Object.keys(el.attributes)) {
-          const attr = el.attributes[key];
-          if (['class', 'id'].includes(attr.name) === false) {
-            script.setAttribute(attr.name, attr.value);
-          }
-        }
-        el.appendChild(script);
-      }
-      
-      util.viewportLazyload(el, load_giscus);
-    }
+      <div class="search-dialog__scope" role="radiogroup" aria-labelledby="site-search-title" hidden="">
+        <label class="search-dialog__scope-option" data-search-scope-option="all">
+          <input class="ui-radio" type="radio" name="site-search-scope" value="all">
+          <span>全站</span>
+        </label>
+        <label class="search-dialog__scope-option" data-search-scope-option="blog" hidden="">
+          <input class="ui-radio" type="radio" name="site-search-scope" value="blog">
+          <span>博客</span>
+        </label>
+        <label class="search-dialog__scope-option" data-search-scope-option="current" hidden="">
+          <input class="ui-radio" type="radio" name="site-search-scope" value="current">
+          <span data-search-scope-current-label=""></span>
+        </label>
+      </div>
     
-    // Initialize on page load
-    initGiscus();
-  })();
+    <h2 class="search-dialog__title" id="site-search-title">站内搜索</h2>
+    <div class="search-result" id="site-search-result"></div>
+    <div class="search-no-result">没有找到内容！</div>
+  </div>
+</dialog>
+</div><div class="site-scripts">
+<script data-stellar-script="core" src="/js/stellar-icons.js?v=2a11bebd1b4bc4d3"></script>
+
+<script data-stellar-script="defines">
+  window.canonical = window.stellarClientData.canonical;
+  const ctx = window.stellarClientData.ctx;
+  window.canonical.param = {permalink: "https://blog.syouiti.com/Caddy2%E6%90%AD%E5%BB%BAHTTPS%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86/", checklink: ctx.services.video.js};
+  ctx.date_suffix = {"just":"刚刚","min":"分钟前","hour":"小时前","day":"天前"};
+  if (ctx.search) Object.assign(ctx.search, {"more":"更多","no_more":"没有更多了"});
+  const def = window.stellarClientData.def;
+  window.ctx = ctx;
+  window.def = def;
 </script>
 
 
+<!-- core: 迁移期 DOM/资源兼容工具；Extension 注册与生命周期由 ESM runtime 所有 -->
+<script data-stellar-script="core" src="/js/utils.js?v=2.0.0"></script>
+<script data-stellar-script="core" src="/js/main.js?v=2.0.0" defer=""></script>
+<script data-stellar-script="core" defer="" src="/js/profile.js?v=2.0.0"></script>
 
 
-<script defer src="/js/services.js?v=1.44.0"></script>
-<script>
-  // 防御：bootstrap 被第三方优化器改写/移除导致 window.stellar.initPlugin 缺失时，
-  // 在此补一个等价注册点：utils 就绪时直接委托，未就绪时入队，utils 加载后自动补跑。
-  if (typeof window.stellar === 'undefined' || typeof window.stellar.initPlugin !== 'function') {
-    window.stellar = window.stellar || {};
-    window.stellar._pluginQueue = window.stellar._pluginQueue || [];
-    window.stellar.initPlugin = function (fn, name, options) {
-      if (typeof utils === 'object' && typeof utils.initPlugin === 'function') {
-        return utils.initPlugin(fn, name, options);
-      }
-      window.stellar._pluginQueue.push({ fn: fn, name: name, options: options || {} });
-    };
-    window.stellar._flushPlugins = function () {
-      var pending = window.stellar._pluginQueue.splice(0);
-      if (typeof utils !== 'object' || typeof utils.initPlugin !== 'function') return;
-      for (var i = 0; i < pending.length; i++) {
-        try {
-          utils.initPlugin(pending[i].fn, pending[i].name, pending[i].options);
-        } catch (e) {
-          console.error('[Stellar] 插件补注册失败:', e);
-        }
-      }
-    };
-  }
-</script>
 
-<script>window.addEventListener('DOMContentLoaded', function () { utils.js('/js/search/shortcut.js', { defer: true }); });</script><script>
-  window.addEventListener('DOMContentLoaded', (event) => {
-    ctx.search = Object.assign({}, ctx.search, {
-      path: `/search.json`,
-      local_search: {"field":"post","path":"/search.json","content":true,"lazy_load":true,"cache_ttl":86400,"skip_search":null,"sort":"-date"},
-    });
-    utils.js('/js/search/local-search.js', { defer: true });
-  });
-</script>
-<script>
-  window.FPConfig = {
-    delay: 0,
-    ignoreKeywords: [],
-    maxRPS: 5,
-    hoverDelay: 25
-  };
-</script>
-<script defer src="https://cdn.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"></script><script>
-  ctx.fancybox = {
-    mode: `auto`,
-    selector: `.md-text img:not(.inline):not([class*="avatar"]), .post-cover img, .cover img`,
-    css: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
-    js: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
-  };
-  // auto=按需：页面存在可弹窗图片才加载；global=全局：所有页面加载
-  const isGlobal = ctx.fancybox.mode === 'global';
-  // 评论区图片（artalk/twikoo/waline）显示较小，自动支持放大；
-  // 仅绑定各评论服务的评论内容区，编辑器、表情面板等非内容区图片不弹窗
-  var selector = '[data-fancybox]:not(.error), .with-fancybox .atk-content img:not([atk-emoticon]):not([class*="emo"]), .with-fancybox .tk-content img:not([atk-emoticon]):not([class*="emo"]), .with-fancybox .wl-content img:not([atk-emoticon]):not([class*="emo"])';
-  if (ctx.fancybox.selector) {
-    selector += `, ${ctx.fancybox.selector}`
-  }
-  var needFancybox = isGlobal;
-  if (!needFancybox) {
-    needFancybox = document.querySelectorAll(selector).length !== 0;
-    if (!needFancybox) {
-      // 图片型评论系统容器：评论区图片小图需要 fancybox
-      const withFancybox = document.getElementsByClassName('with-fancybox');
-      if (withFancybox != undefined && withFancybox.length > 0) {
-        needFancybox = true;
-      }
-    }
-    if (!needFancybox) {
-      // 动态数据服务：memos 渲染的图片需要 fancybox
-      const memos = document.getElementsByClassName('ds-memos');
-      if (memos != undefined && memos.length > 0) {
-        needFancybox = true;
-      }
-    }
-  }
-  if (needFancybox) {
-    utils.css(`/css/plugins/fancybox.css?v=1.44.0`);
-    utils.css(ctx.fancybox.css);
-    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
-      if (isGlobal) {
-        // 全局模式：正文所有非内联图片均可弹窗
-        selector += ', .md-text img:not(.inline):not([atk-emoticon])';
-      }
-      Fancybox.bind(selector, {
-        hideScrollbar: false,
-        Thumbs: {
-          autoStart: false,
-        },
-        caption: (fancybox, slide) => {
-          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
-        }
-      });
-    })
-  }
-</script>
-<script>
-  stellar.initPlugin(() => {
-    const swiper_api = document.getElementById('swiper-api');
-    if (swiper_api != undefined) {
-      utils.css(`/css/plugins/swiper.css?v=1.44.0`);
-      utils.css(`https://cdn.jsdelivr.net/npm/swiper@10.3.1/swiper-bundle.min.css`);
-      utils.js(`https://cdn.jsdelivr.net/npm/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
-        const effect = swiper_api.getAttribute('effect') || '';
-        var swiper = new Swiper('.swiper#swiper-api', {
-          slidesPerView: 'auto',
-          spaceBetween: 8,
-          centeredSlides: true,
-          effect: effect,
-          rewind: true,
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-          },
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
-        });
-      })
-    }
-  }, 'swiper');
-</script>
-<script>
-  (function () {
-    // 兜底看门狗独立于插件初始化：3 秒内未完成 reveal 时强制显示 .slide-up 内容
-    let fallbackApplied = false;
-    const revealFallback = () => {
-      if (fallbackApplied) return;
-      fallbackApplied = true;
-      document.documentElement.classList.add('sr-fallback');
-    };
-    const watchdog = setTimeout(() => revealFallback(), 3000);
 
-    stellar.initPlugin(() => {
-      const els = Array.prototype.slice.call(document.querySelectorAll('.slide-up'));
-      if (els.length === 0) {
-        clearTimeout(watchdog);
-        return;
-      }
 
-    // 吸顶/固定定位容器内的元素始终在视口内（或由容器控制显隐），
-    // 但 ScrollReveal 按文档坐标判断可见性，会误判这类元素为不可见，
-    // 导致带锚点/恢复滚动位置打开页面时组件一直不显示。
-    // 解决方式：以最近的吸顶/固定祖先作为该组元素的容器，
-    // 使可见性判断恒成立，入场动画保留且不再依赖主文档滚动。
-    const findPinnedContainer = (el) => {
-      let node = el;
-      while (node && node.nodeType === 1) {
-        const pos = window.getComputedStyle(node).position;
-        if (pos === 'sticky' || pos === 'fixed') return node;
-        node = node.parentElement;
-      }
-      return null;
-    };
-
-    // 最近的滚动容器（overflow-y: auto/scroll）
-    // 吸顶容器内可能存在内部滚动容器（如侧栏 .widgets），
-    // 若直接用吸顶容器做 reveal 容器，折叠区下方的元素永远不会进入视口，导致一直不显示。
-    const findScrollContainer = (el) => {
-      let node = el.parentElement;
-      while (node && node.nodeType === 1) {
-        const oy = window.getComputedStyle(node).overflowY;
-        if (oy === 'auto' || oy === 'scroll') return node;
-        node = node.parentElement;
-      }
-      return null;
-    };
-
-    const pinnedGroups = new Map(); // 容器 -> 元素列表
-    const targets = [];
-    els.forEach((el) => {
-      const pinned = findPinnedContainer(el);
-      if (pinned) {
-        // 优先使用最近的滚动容器，其次才用吸顶容器
-        const container = findScrollContainer(el) || pinned;
-        const group = pinnedGroups.get(container) || [];
-        group.push(el);
-        pinnedGroups.set(container, group);
-      } else {
-        targets.push(el);
-      }
-    });
-    if (pinnedGroups.size === 0 && targets.length === 0) {
-      clearTimeout(watchdog);
-      return;
-    }
-
-    const slideUp = {
-      distance: `10px`,
-      duration: `500`,
-      interval: `60`,
-      scale: `1`,
-      opacity: 0,
-      easing: "ease-out"
-    };
-
-    utils.js(`https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js`, { defer: true })
-      .then(() => {
-        if (fallbackApplied) return;
-        if (typeof ScrollReveal !== 'function') {
-          revealFallback();
-          return;
-        }
-        try {
-          const sr = ScrollReveal();
-          if (targets.length > 0) {
-            sr.reveal(targets, { ...slideUp });
-          }
-          pinnedGroups.forEach((group, container) => {
-            sr.reveal(group, { ...slideUp, container: container });
-          });
-          clearTimeout(watchdog);
-        } catch (err) {
-          console.error('[Plugin scrollreveal] 初始化失败:', err);
-          revealFallback();
-        }
-      })
-      .catch((err) => {
-        console.error('[Plugin scrollreveal] 加载失败:', err);
-        revealFallback();
-      });
-    }, 'scrollreveal');
-  })();
-</script>
-<script>
-  stellar.initPlugin(() => {
-    const codeElements = document.querySelectorAll('.code');
-    if (codeElements.length > 0) {
-      ctx.copycode = {
-        default_text: `Copy`,
-        success_text: `Copied`,
-        toast: `复制成功`,
-      };
-      utils.js('/js/plugins/copycode.js', { defer: true }).then(() => {
-        if (typeof createCopyButtons === 'function') {
-          createCopyButtons(codeElements);
-        }
-      });
-    }
-  }, 'copycode');
-</script>
-<script>
-  stellar.initPlugin(() => {
-    const els = Array.prototype.slice.call(document.querySelectorAll('[data-text-adaptive]'));
-    if (els.length === 0) return;
-    utils.js('/js/color.js').then(() => utils.js('/js/plugins/adaptive-text.js')).then(() => {
-      if (typeof applyAdaptiveText === 'function') {
-        applyAdaptiveText(els);
-      }
-    });
-  }, 'adaptive-text');
-</script>
-
-<script>
-  stellar.initPlugin(() => {
-    let disposed = false;
-    ctx.card_hover = {"spotlightColor":"rgba(255, 255, 255, 0.2)","maxTilt":3};
-    utils.js('/js/plugins/card-hover.js', { defer: true }).then(() => {
-      if (!disposed && stellar.cardHover && typeof stellar.cardHover.mountAll === 'function') {
-        stellar.cardHover.mountAll(document);
-      }
-    }).catch(() => {});
-    return () => {
-      disposed = true;
-      if (stellar.cardHover && typeof stellar.cardHover.destroy === 'function') {
-        stellar.cardHover.destroy();
-      }
-    };
-  }, 'card-hover');
-</script>
-
+<script data-stellar-script="core" type="application/json" id="stellar-runtime-config">{"version":1,"root":"/","policy":{"cache":{"enabled":true,"defaultTtl":3600,"ttl":{"giscus":600,"waline":600,"artalk":600,"memos":600,"memos-user":86400,"sites":86400,"friends":86400,"friends_and_posts":86400,"siteinfo":86400},"maxEntries":200},"request":{"retries":2,"timeoutMs":5000,"idleTimeoutMs":3000,"maxCacheEntryBytes":204800},"features":{"codeCopyToastMs":2500},"providers":{"linkPrefetch":"flying_pages","lightbox":"fancybox","diagrams":"mermaid"}},"extensions":[{"id":"pin-slider","module":"/js/runtime/extensions/pin-slider.js","scope":"region","when":{"selector":".pin-slider"},"config":{}},{"id":"page-controls","module":"/js/runtime/extensions/page-controls.js","scope":"region","when":{"always":true},"config":{"highlight":"/js/search/highlight.js","tagtree":"/js/tagtree.js"}},{"id":"partial-navigation","module":"/js/runtime/extensions/partial-navigation.js","scope":"document","when":{"always":true},"config":{}},{"id":"color-scheme-switch","module":"/js/runtime/extensions/color-scheme-switch.js","scope":"document","when":{"always":true},"config":{"messages":{"light":"切换到浅色模式","dark":"切换到深色模式","auto":"切换到跟随系统配色"}}},{"id":"search","module":"/js/runtime/extensions/search.js","scope":"document","when":{"selector":".search-input"},"config":{"provider":"local","options":{"scope":"post","includeContent":true,"cacheTtlSeconds":86400},"assets":{"client":null,"provider":"/js/search/local-search.js","shortcut":"/js/search/shortcut.js"}}},{"id":"hero-parallax","module":"/js/runtime/extensions/hero-parallax.js","scope":"region","when":{"selector":".wiki-hero"},"config":{}},{"id":"hero-effect","module":"/js/runtime/extensions/hero-effect.js","scope":"region","when":{"selector":"canvas[data-hero-effect]"},"config":{}},{"id":"lazy-loading","module":"/js/runtime/extensions/lazy-loading.js","scope":"document","when":{"always":true},"config":{"asset":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@19.1/dist/lazyload.min.js"}},{"id":"deferred-icons","module":"/js/runtime/extensions/deferred-icons.js","scope":"region","when":{"selector":"svg.icon[data-icon]"},"config":{}},{"id":"dropdown","module":"/js/runtime/extensions/dropdown.js","scope":"region","when":{"selector":"details.dropdown"},"config":{}},{"id":"services","module":"/js/runtime/extensions/services.js","scope":"region","when":{"selector":"#artalk_container, #twikoo_container, #waline_container, .data-service, [class*='ds-'], a[cardlink], a[data-md-link][data-siteinfo-api], .site-card [data-siteinfo-api], .voice\u003eaudio, .video\u003evideo, .chat-file"},"config":{"marked":"https://cdn.jsdelivr.net/npm/marked@13.0.1/lib/marked.umd.min.js"}},{"id":"comments","module":"/js/runtime/extensions/comments.js","scope":"region","when":{"selector":"#comments"},"config":{"provider":"giscus","options":{"data-repo":"sy0u1ti/sy0u1ti.github.io","data-repo-id":"R_kgDOKbZc8Q","data-category":"General","data-category-id":"DIC_kwDOKbZc8c4CZ0-1","data-mapping":"pathname","data-strict":0,"data-reactions-enabled":1,"data-emit-metadata":0,"data-input-position":"bottom","data-theme":"noborder_dark","data-lang":"zh-CN","data-loading":"lazy","crossorigin":"anonymous"},"pageTitle":"极简与安全：使用 Caddy 2 与 forwardproxy 插件快速搭建 HTTPS 正向代理","assets":{"js":"https://giscus.app/client.js"}}},{"id":"settings","module":"/js/runtime/extensions/settings.js","scope":"region","when":{"selector":".settings-page"},"config":{}},{"id":"link-prefetch","module":"/js/runtime/extensions/link-prefetch.js","scope":"document","when":{"always":true},"config":{"asset":"https://gcore.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"}},{"id":"lightbox","module":"/js/runtime/extensions/lightbox.js","scope":"region","when":{"selector":"[data-fancybox]:not(.error), .with-fancybox, .ds-memos, .md-text img:not(.inline):not([class*=\"avatar\"]), .post-cover img, .cover img"},"config":{"enabled":true,"selector":".md-text img:not(.inline):not([class*=\"avatar\"]), .post-cover img, .cover img","assets":{"localCss":"/css/plugins/fancybox.css","js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"}}},{"id":"reveal","module":"/js/runtime/extensions/reveal.js","scope":"region","when":{"selector":".slide-up"},"config":{"enabled":true,"duration":500,"interval":60,"distance":10,"blur":4}},{"id":"code-copy","module":"/js/runtime/extensions/code-copy.js","scope":"region","when":{"selector":".code"},"config":{"assets":{"js":"/js/plugins/copycode.js"},"messages":{"label":"复制","copied":"复制成功","denied":"未获得剪贴板权限","unsupported":"当前浏览器不支持剪贴板或页面不是 HTTPS"}}},{"id":"adaptive-text","module":"/js/runtime/extensions/adaptive-text.js","scope":"region","when":{"selector":"[data-text-adaptive]"},"config":{"assets":{"colorJs":"/js/color.js","js":"/js/plugins/adaptive-text.js"}}},{"id":"card-hover","module":"/js/runtime/extensions/card-hover.js","scope":"region","when":{"selector":".card-hover"},"config":{"spotlight":true,"tilt":true,"assets":{"js":"/js/plugins/card-hover.js"}}},{"id":"swiper","module":"/js/runtime/extensions/swiper.js","scope":"region","when":{"selector":"#swiper-api"},"config":{"assets":{"localCss":"/css/plugins/swiper.css","js":"https://unpkg.com/swiper@10.3/swiper-bundle.min.js","css":"https://unpkg.com/swiper@10.3/swiper-bundle.min.css"}}}]}</script>
+<script data-stellar-script="core" type="module" src="/js/runtime/index.js?v=2.0.0&amp;runtime=1"></script>
 
 
 <!-- inject -->
-<script defer src="/js/plugins/reading-progress.js?v=20260823j"></script>
-</div></body></html>
+<script defer="" src="/js/plugins/reading-progress.js?v=20260823j"></script>
+
+<script data-stellar-script="core" defer="" src="/js/navigation-init.js?v=2.0.0"></script>
+</div>
+
+</body></html>

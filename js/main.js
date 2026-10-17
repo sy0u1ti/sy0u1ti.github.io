@@ -95,30 +95,318 @@ const hud = {
 
 // defines
 
-const l_body = document.querySelector('.l_body');
+const siteShell = document.querySelector('.site-shell');
+const leftbarStateKey = 'stellar:v2:leftbar-state';
+const leftbarDrawerQuery = '(max-width: 768px)';
+const leftbarHiddenQuery = '(max-width: 768px)';
+const rightbarDrawerQuery = '(max-width: 1180px)';
+let shellDrawerTrigger = null;
+let searchDialogTrigger = null;
+let searchDialogRestoreFocus = true;
+// 退场动画的安全兜底时长，需大于 search.styl 中 search-dialog-out 的 0.18s
+const searchCloseFallbackDelay = 260;
+let searchCloseTimer = null;
+let searchCloseListener = null;
+let shellInputModality = 'pointer';
 
-const sidebar = {
-  leftbar: () => {
-    if (l_body) {
-      l_body.toggleAttribute('leftbar');
-      l_body.removeAttribute('rightbar');
-    }
-  },
-  rightbar: () => {
-    if (l_body) {
-      l_body.toggleAttribute('rightbar');
-      l_body.removeAttribute('leftbar');
-    }
-  },
-  dismiss: () => {
-    if (l_body) {
-      l_body.removeAttribute('leftbar');
-      l_body.removeAttribute('rightbar');
-    }
-  },
-  toggleTOC: () => {
-    document.querySelector('#data-toc').classList.toggle('collapse');
+function regionElement(region) {
+  return document.getElementById(region + '-region');
+}
+
+function regionUsesDrawer(region) {
+  if (typeof window.matchMedia !== 'function') return false;
+  return window.matchMedia(region === 'leftbar' ? leftbarDrawerQuery : rightbarDrawerQuery).matches;
+}
+
+function regionHiddenWhenClosed(region) {
+  if (typeof window.matchMedia !== 'function') return false;
+  if (region === 'leftbar') return window.matchMedia(leftbarHiddenQuery).matches;
+  return regionUsesDrawer(region);
+}
+
+function setRegionInteractive(region, interactive) {
+  const element = regionElement(region);
+  if (!element) return;
+  const hidden = regionHiddenWhenClosed(region);
+  element.inert = hidden && !interactive;
+  if (hidden && !interactive) {
+    element.setAttribute('aria-hidden', 'true');
+  } else {
+    element.removeAttribute('aria-hidden');
   }
+}
+
+function syncLeftbarControls() {
+  syncRightbarFocus();
+  const drawer = regionUsesDrawer('leftbar');
+  const expanded = drawer
+    ? siteShell?.dataset.drawer === 'leftbar'
+    : document.documentElement.dataset.leftbarState !== 'collapsed';
+  document.querySelectorAll('[data-shell-action="toggle-leftbar"]').forEach(function (button) {
+    button.setAttribute('aria-expanded', String(expanded));
+    button.setAttribute('aria-label', drawer
+      ? (expanded ? 'Close leftbar' : 'Open leftbar')
+      : (expanded ? 'Collapse leftbar' : 'Expand leftbar'));
+  });
+}
+
+function syncRightbarFocus() {
+  const rightbar = regionElement('rightbar');
+  if (!rightbar) return;
+  const compact = !regionUsesDrawer('rightbar') && regionElement('leftbar')
+    && document.documentElement.dataset.leftbarState === 'collapsed';
+  if (compact) rightbar.setAttribute('tabindex', '0');
+  else rightbar.removeAttribute('tabindex');
+}
+
+function syncDrawerControls() {
+  syncRightbarFocus();
+  const openRegion = siteShell?.dataset.drawer || '';
+  ['leftbar', 'rightbar'].forEach(function (region) {
+    const open = openRegion === region && regionUsesDrawer(region);
+    document.querySelectorAll('[data-shell-action="toggle-' + region + '-drawer"]').forEach(function (button) {
+      button.setAttribute('aria-expanded', String(open));
+      button.setAttribute('aria-label', (open ? 'Close ' : 'Open ') + region);
+    });
+    setRegionInteractive(region, open || !regionUsesDrawer(region));
+  });
+}
+
+function focusRegion(region) {
+  const element = regionElement(region);
+  element?.querySelector('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')?.focus();
+}
+
+function dismissDrawer(options) {
+  if (!siteShell) return;
+  const restoreFocus = options?.restoreFocus !== false;
+  const wasOpen = !!siteShell.dataset.drawer;
+  delete siteShell.dataset.drawer;
+  syncDrawerControls();
+  syncLeftbarControls();
+  if (wasOpen && restoreFocus && shellDrawerTrigger?.focus) shellDrawerTrigger.focus();
+  if (wasOpen) shellDrawerTrigger = null;
+}
+
+function toggleDrawer(region, trigger) {
+  if (!siteShell || !regionUsesDrawer(region) || !regionElement(region)) return;
+  const open = siteShell.dataset.drawer === region;
+  if (open) {
+    dismissDrawer();
+    return;
+  }
+  shellDrawerTrigger = trigger || document.activeElement;
+  siteShell.dataset.drawer = region;
+  syncDrawerControls();
+  syncLeftbarControls();
+  focusRegion(region);
+}
+
+function toggleLeftbarState() {
+  const root = document.documentElement;
+  const state = root.dataset.leftbarState === 'collapsed' ? 'expanded' : 'collapsed';
+  root.dataset.leftbarState = state;
+  try { localStorage.setItem(leftbarStateKey, state); } catch (error) {}
+  syncLeftbarControls();
+}
+
+function toggleLeftbar(trigger) {
+  if (regionUsesDrawer('leftbar')) {
+    toggleDrawer('leftbar', trigger);
+    return;
+  }
+  toggleLeftbarState();
+}
+
+function searchDialogElement() {
+  return document.getElementById('site-search-dialog');
+}
+
+function searchScopeOption(dialog, value) {
+  return dialog?.querySelector('[data-search-scope-option="' + value + '"]');
+}
+
+function applySearchScope(dialog, value, refresh = true) {
+  const input = dialog?.querySelector('.search-input');
+  const group = dialog?.querySelector('.search-dialog__scope');
+  if (!input || !group) return;
+  const selected = ['all', 'blog', 'current'].includes(value) ? value : 'all';
+  const option = searchScopeOption(dialog, selected);
+  const radio = option?.querySelector('input[type="radio"]');
+  if (!option || option.hidden || !radio) return;
+
+  if (selected === 'current') {
+    input.dataset.domain = group.dataset.currentDomain || '';
+  } else if (selected === 'blog') {
+    input.dataset.domain = 'blog';
+  } else {
+    input.dataset.domain = '';
+  }
+  radio.checked = true;
+  if (refresh && input.value.trim().length > 0) {
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+  }
+}
+
+function searchMotionEnabled() {
+  if (typeof window.matchMedia !== 'function') return true;
+  return !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+function configureSearchScope(dialog, trigger) {
+  const group = dialog?.querySelector('.search-dialog__scope');
+  if (!group) return false;
+  const blogOption = searchScopeOption(dialog, 'blog');
+  const currentOption = searchScopeOption(dialog, 'current');
+  const currentLabel = currentOption?.querySelector('[data-search-scope-current-label]');
+  const currentDomain = trigger?.dataset?.searchDomain || '';
+  const hasBlog = trigger?.dataset?.searchDomainBlog === 'true';
+  const hasCurrent = currentDomain.length > 0 && currentDomain !== 'blog';
+
+  blogOption.hidden = !hasBlog;
+  currentOption.hidden = !hasCurrent;
+  if (currentLabel) currentLabel.textContent = trigger?.dataset?.searchDomainLabel || '';
+  group.dataset.currentDomain = currentDomain;
+  group.hidden = 1 + Number(hasBlog) + Number(hasCurrent) < 2;
+
+  const selected = hasCurrent ? 'current' : (hasBlog ? 'blog' : 'all');
+  applySearchScope(dialog, selected, false);
+  return true;
+}
+
+function clearSearchClosePending(dialog) {
+  if (searchCloseTimer !== null) {
+    clearTimeout(searchCloseTimer);
+    searchCloseTimer = null;
+  }
+  if (searchCloseListener) {
+    dialog.removeEventListener('animationend', searchCloseListener);
+    searchCloseListener = null;
+  }
+  dialog.classList.remove('is-closing');
+}
+
+// 锁定页面滚动会移除常驻滚动条，先把槽位宽度写进 CSS 变量供补位使用
+function syncSearchScrollbarGutter() {
+  const root = document.documentElement;
+  if (root.hasAttribute('data-search-open')) return;
+  const gutter = Math.max(0, window.innerWidth - root.clientWidth);
+  root.style.setProperty('--stellar-scrollbar-gutter', gutter + 'px');
+}
+
+// 关闭动画播放期间浮层仍处于打开状态，退出动画结束或兜底超时后才真正 close 并恢复焦点
+function finishSearchClose(dialog) {
+  clearSearchClosePending(dialog);
+  if (dialog.open) dialog.close();
+  document.documentElement.removeAttribute('data-search-open');
+  if (searchDialogRestoreFocus && searchDialogTrigger?.focus) searchDialogTrigger.focus();
+  else if (searchDialogTrigger?.blur) searchDialogTrigger.blur();
+  searchDialogTrigger = null;
+  searchDialogRestoreFocus = true;
+}
+
+function closeSearch() {
+  const dialog = searchDialogElement();
+  if (!dialog?.open || searchCloseTimer !== null) return;
+  if (!searchMotionEnabled()) {
+    finishSearchClose(dialog);
+    return;
+  }
+  searchCloseListener = function (event) {
+    if (event.animationName !== 'search-dialog-out') return;
+    finishSearchClose(dialog);
+  };
+  dialog.classList.add('is-closing');
+  dialog.addEventListener('animationend', searchCloseListener);
+  searchCloseTimer = setTimeout(function () { finishSearchClose(dialog); }, searchCloseFallbackDelay);
+}
+
+function openSearch(trigger, restoreFocus = true) {
+  const dialog = searchDialogElement();
+  const input = dialog?.querySelector('.search-input');
+  const wrapper = dialog?.querySelector('.search-wrapper');
+  const result = dialog?.querySelector('.search-result');
+  if (!dialog || !input) return;
+  clearSearchClosePending(dialog);
+  searchDialogTrigger = trigger || document.activeElement;
+  searchDialogRestoreFocus = restoreFocus;
+  input.value = '';
+  if (!configureSearchScope(dialog, trigger)) {
+    input.dataset.algoliaFilterPath = trigger?.dataset?.algoliaFilterPath || '';
+  }
+  if (wrapper) {
+    wrapper.setAttribute('searching', 'false');
+    wrapper.classList.remove('noresult');
+  }
+  result?.replaceChildren();
+  if (!dialog.open) dialog.showModal();
+  syncSearchScrollbarGutter();
+  document.documentElement.setAttribute('data-search-open', '');
+  input.focus();
+}
+
+function toggleToc(trigger) {
+  const widget = document.querySelector('#data-toc');
+  if (!widget) return;
+  const collapsed = widget.classList.toggle('collapse');
+  trigger?.classList.toggle('is-active', collapsed);
+  trigger?.setAttribute('aria-pressed', String(collapsed));
+}
+
+const shellActions = {
+  'toggle-leftbar-drawer': function (trigger) { toggleDrawer('leftbar', trigger); },
+  'toggle-rightbar-drawer': function (trigger) { toggleDrawer('rightbar', trigger); },
+  'dismiss-drawer': function () { dismissDrawer(); },
+  'toggle-leftbar': function (trigger) { toggleLeftbar(trigger); },
+  'open-search': function (trigger) { openSearch(trigger, shellInputModality !== 'pointer'); },
+  'close-search': function () { closeSearch(); },
+  'toggle-toc': function (trigger) { toggleToc(trigger); }
+};
+
+syncLeftbarControls();
+syncDrawerControls();
+document.addEventListener('pointerdown', function () {
+  shellInputModality = 'pointer';
+});
+document.addEventListener('click', function (event) {
+  const trigger = event.target?.closest?.('[data-shell-action]');
+  const action = trigger?.dataset?.shellAction;
+  if (!action || typeof shellActions[action] !== 'function') return;
+  event.preventDefault();
+  shellActions[action](trigger);
+});
+document.addEventListener('keydown', function (event) {
+  shellInputModality = 'keyboard';
+  if (event.key === 'Escape') {
+    if (searchDialogElement()?.open) closeSearch();
+    else dismissDrawer();
+  }
+});
+const searchDialog = searchDialogElement();
+searchDialog?.addEventListener('cancel', function (event) {
+  event.preventDefault();
+  closeSearch();
+});
+searchDialog?.addEventListener('click', function (event) {
+  if (event.target === searchDialog) closeSearch();
+});
+searchDialog?.addEventListener('change', function (event) {
+  if (event.target?.name !== 'site-search-scope') return;
+  applySearchScope(searchDialog, event.target.value);
+});
+if (typeof window.matchMedia === 'function') {
+  [leftbarDrawerQuery, leftbarHiddenQuery, rightbarDrawerQuery].filter(function (query, index, queries) {
+    return queries.indexOf(query) === index;
+  }).map(function (query) {
+    return window.matchMedia(query);
+  }).forEach(function (media) {
+    const handleChange = function () {
+      dismissDrawer({ restoreFocus: false });
+      syncDrawerControls();
+    };
+    if (typeof media.addEventListener === 'function') media.addEventListener('change', handleChange);
+    else if (typeof media.addListener === 'function') media.addListener(handleChange);
+  });
 }
 
 // 通用平滑滚动（自定义动画，TOC / 回到顶部 / 参与讨论共用）
@@ -157,7 +445,7 @@ window.addEventListener('wheel', cancelSmoothScroll, { passive: true });
 window.addEventListener('touchstart', cancelSmoothScroll, { passive: true });
 
 // 远程 md（mdrender 服务）渲染完成后重建右栏 TOC：结构与服务端 toc() 输出一致
-let tocClickBound = false;
+const tocClickBound = new WeakMap();
 function rebuildToc(scope) {
   const widget = document.querySelector('#data-toc');
   if (!widget) {
@@ -188,7 +476,7 @@ function rebuildToc(scope) {
     const li = document.createElement('li');
     li.className = 'toc-item toc-level-' + level;
     const a = document.createElement('a');
-    a.className = 'toc-link';
+    a.className = 'toc-link ' + ctx.ui.classes.interactive;
     a.href = '#' + encodeURIComponent(id);
     const span = document.createElement('span');
     span.className = 'toc-text';
@@ -216,12 +504,50 @@ function rebuildToc(scope) {
   bindTocClick(widget);
 }
 
+// 指示条跟随目录自身坐标，目录滚动无需重复测量。
+function bindTocIndicator(widget) {
+  let frame = null;
+  const update = () => {
+    frame = null;
+    const toc = widget.querySelector('.toc');
+    if (!toc) return;
+    const active = toc.querySelector('a.toc-link.active');
+    if (!active || !active.getClientRects().length) {
+      toc.style.removeProperty('--toc-active-height');
+      toc.style.setProperty('--toc-active-opacity', '0');
+      return;
+    }
+    const bounds = active.getBoundingClientRect();
+    toc.style.setProperty('--toc-active-y', (bounds.top - toc.getBoundingClientRect().top) + 'px');
+    toc.style.setProperty('--toc-active-height', bounds.height + 'px');
+    toc.style.setProperty('--toc-active-opacity', '1');
+  };
+  const schedule = () => {
+    if (frame === null) frame = requestAnimationFrame(update);
+  };
+  const mutations = new MutationObserver(schedule);
+  mutations.observe(widget, { subtree: true, childList: true, attributes: true, attributeFilter: ['class', 'collapse'] });
+  mutations.observe(document.documentElement, { attributes: true, attributeFilter: ['data-leftbar-state'] });
+  const resize = new ResizeObserver(schedule);
+  resize.observe(widget);
+  const events = ['mouseenter', 'mouseleave', 'focusin', 'focusout', 'transitionend'];
+  events.forEach(type => widget.addEventListener(type, schedule));
+  window.addEventListener('resize', schedule);
+  schedule();
+  return () => {
+    mutations.disconnect();
+    resize.disconnect();
+    events.forEach(type => widget.removeEventListener(type, schedule));
+    window.removeEventListener('resize', schedule);
+    if (frame !== null) cancelAnimationFrame(frame);
+  };
+}
+
 function bindTocClick(widget) {
-  if (tocClickBound) {
-    return;
+  if (tocClickBound.has(widget)) {
+    return tocClickBound.get(widget);
   }
-  tocClickBound = true;
-  widget.addEventListener('click', function (e) {
+  const handler = function (e) {
     const link = e.target.closest('a.toc-link');
     if (!link) {
       return;
@@ -234,11 +560,21 @@ function bindTocClick(widget) {
       const offset = 32;
       const targetY = target.getBoundingClientRect().top + window.scrollY - offset;
       smoothScrollTo(targetY);
+      dismissDrawer();
       if (window.history && window.history.pushState) {
-        window.history.pushState(null, '', href);
+        window.history.pushState(window.history.state, '', href);
       }
     }
-  });
+  };
+  widget.addEventListener('click', handler);
+  const cleanupIndicator = bindTocIndicator(widget);
+  const cleanup = () => {
+    cleanupIndicator();
+    widget.removeEventListener('click', handler);
+    tocClickBound.delete(widget);
+  };
+  tocClickBound.set(widget, cleanup);
+  return cleanup;
 }
 
 // 通用页内锚点平滑滚动（标题左侧 headerlink、{% navbar %} 页内导航、脚注回链等）
@@ -269,7 +605,7 @@ function bindAnchorClick() {
     const targetY = target.getBoundingClientRect().top + window.scrollY - offset;
     smoothScrollTo(targetY);
     if (window.history && window.history.pushState) {
-      window.history.pushState(null, '', href);
+      window.history.pushState(window.history.state, '', href);
     }
   });
 }
@@ -316,17 +652,26 @@ const init = {
       }
     }
     function scrollTOC() {
-      const e0 = document.querySelector('#data-toc .toc');
-      const e1 = document.querySelector('#data-toc .toc a.toc-link.active');
-      if (e0 == null || e1 == null) {
+      const active = document.querySelector('#data-toc .toc a.toc-link.active');
+      if (!active || !active.getClientRects().length) return;
+      // 桌面 TOC 与抽屉的滚动容器不同，只滚动实际承载目录的容器。
+      for (let container = active.parentElement; container && container !== document.body; container = container.parentElement) {
+        if (!/^(auto|scroll)$/.test(getComputedStyle(container).overflowY)
+          || container.scrollHeight <= container.clientHeight) continue;
+        const bounds = container.getBoundingClientRect();
+        const top = Math.max(0, bounds.top + container.clientTop);
+        const bottom = Math.min(window.innerHeight, bounds.top + container.clientTop + container.clientHeight);
+        if (bottom <= top || bounds.right <= 0 || bounds.left >= window.innerWidth) return;
+        const item = active.getBoundingClientRect();
+        // 小视口按可用空间收窄缓冲，避免上下边界互相触发滚动。
+        const margin = Math.min(100, Math.max(0, (bottom - top - item.height) / 2));
+        const safeTop = top + margin;
+        const safeBottom = bottom - margin;
+        let offset = 0;
+        if (item.top < safeTop) offset = item.top - safeTop;
+        else if (item.bottom > safeBottom) offset = Math.min(item.bottom - safeBottom, item.top - safeTop);
+        if (offset) container.scrollBy({ top: offset, behavior: 'smooth' });
         return;
-      }
-      const offsetBottom = e1.getBoundingClientRect().bottom - e0.getBoundingClientRect().bottom + 100;
-      const offsetTop = e1.getBoundingClientRect().top - e0.getBoundingClientRect().top - 64;
-      if (offsetTop < 0) {
-        e0.scrollBy({ top: offsetTop, behavior: "smooth" });
-      } else if (offsetBottom > 0) {
-        e0.scrollBy({ top: offsetBottom, behavior: "smooth" });
       }
     }
 
@@ -339,25 +684,12 @@ const init = {
       }, 50);
     });
   },
-  sidebar: () => {
-    utils.dom("#data-toc a.toc-link").click(function (e) {
-      const href = this.getAttribute("href");
-      const id = href && href.indexOf("#") === 0 ? decodeURIComponent(href.slice(1)) : null;
-      const target = id && document.getElementById(id);
-      if (target) {
-        e.preventDefault();
-        const offset = 32; // 与 activeTOC 的 scrollOffset 保持一致
-        const targetY = target.getBoundingClientRect().top + window.scrollY - offset;
-        smoothScrollTo(targetY);
-        if (window.history && window.history.pushState) {
-          window.history.pushState(null, "", href);
-        }
-      }
-      window.sidebar.dismiss();
-    });
+  tocLinks: (root) => {
+    const widget = root.id === 'data-toc' ? root : root.querySelector('#data-toc');
+    if (widget) return bindTocClick(widget);
   },
   wikiStart: () => {
-    utils.dom('#l_cover .l_cover.wiki .start-wrap a.button.start').click(function (e) {
+    utils.dom('#site-cover .cover-content.wiki .start-wrap a.button.start').click(function (e) {
       const href = this.getAttribute("href");
       const id = href && href.indexOf("#") === 0 ? decodeURIComponent(href.slice(1)) : null;
       const target = id && document.getElementById(id);
@@ -367,7 +699,7 @@ const init = {
         const offset = 0;
         smoothScrollTo(target.getBoundingClientRect().top + window.scrollY - offset);
         if (window.history && window.history.pushState) {
-          window.history.pushState(null, "", href);
+          window.history.pushState(window.history.state, "", href);
         }
       }
     });
@@ -413,17 +745,9 @@ const init = {
       }
     });
 
-    const galaxyCanvases = document.querySelectorAll('.wiki-cover-background.galaxy canvas');
-    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion || galaxyCanvases.length === 0) return;
-    utils.js('/js/plugins/galaxy.js').then(function () {
-      if (stellar.galaxy && typeof stellar.galaxy.mountAll === 'function') {
-        stellar.galaxy.mountAll(galaxyCanvases);
-      }
-    }).catch(function () {});
   },
   leftbarScroll: () => {
-    const container = document.querySelector('.l_left .widgets');
+    const container = document.querySelector('.site-region--leftbar .site-region__body');
     if (container == null) {
       return;
     }
@@ -438,8 +762,8 @@ const init = {
       if (notebookEl != null) {
         return 'notebook:' + encode(notebookEl.getAttribute('data-notebook'));
       }
-      const body = document.querySelector('.l_body');
-      return 'layout:' + encode((body && body.getAttribute('layout')) || 'default');
+      const body = document.body;
+      return 'layout:' + encode((body && body.dataset.pageLayout) || 'default');
     }
     window.addEventListener('pagehide', function () {
       try {
@@ -475,16 +799,16 @@ const init = {
       }
     } catch (e) {}
   },
-  navbarPin: () => {
-    // 列表页 navbar top 背景条状态切换：未滚动/未吸顶为卡片样式（var(--card) + 文章卡片同款阴影），
-    // 页面滚动达到阈值且吸顶后恢复玻璃效果。在吸顶边界切换 .pinned 类，视觉由 CSS 控制。
-    // 吸顶判定直接测 navbar 的实际视口位置，而非用 scrollY 推算：
+  listingNavPin: (root, signal) => {
+    // Listing Nav 在吸顶边界切换 .is-pinned 类，视觉由 CSS 控制。
+    // 页面有 Topbar 时，pinned Listing Nav 进入 Topbar 内并复用其表面；无 Topbar 时保持独立容器外观。
+    // 吸顶判定直接测 Listing Nav 的实际视口位置，而非用 scrollY 推算：
     // 移动端浏览器顶栏伸缩会改变 scrollY（展开顶栏时 scrollY 减小），
-    // 即使 navbar 仍吸顶也可能跌破阈值，导致玻璃效果误消失。
-    // 无轮播区页面（如 wiki）的 navbar 在页面顶部即已吸顶，需额外要求页面实际滚动达到阈值，
+    // 即使 Listing Nav 仍吸顶也可能跌破阈值，导致玻璃效果误消失。
+    // 无轮播区页面（如 wiki）的 Listing Nav 在页面顶部即已吸顶，需额外要求页面实际滚动达到阈值，
     // 否则默认保持卡片样式；回到顶部（滚动小于阈值）恢复卡片。
-    const navbars = document.querySelectorAll('.navbar.top');
-    if (navbars.length === 0) {
+    const listingNavs = root.querySelectorAll('.listing-nav');
+    if (listingNavs.length === 0) {
       return;
     }
     // 视口顶部允许的偏差（px），吸收亚像素/取整误差
@@ -495,22 +819,22 @@ const init = {
     function update() {
       const scrolled = window.scrollY >= SCROLL_THRESHOLD;
       states.forEach((state) => {
-        const top = state.navbar.getBoundingClientRect().top;
-        state.bar.classList.toggle('pinned', scrolled && top <= state.stickyTop + TOLERANCE);
+        const top = state.listingNav.getBoundingClientRect().top;
+        state.surface.classList.toggle('is-pinned', scrolled && top <= state.stickyTop + TOLERANCE);
       });
     }
     function measure() {
       states = [];
-      navbars.forEach((navbar) => {
-        const bar = navbar.querySelector('.navbar-blur');
-        if (bar == null) {
+      listingNavs.forEach((listingNav) => {
+        const surface = listingNav.querySelector('.listing-nav__surface');
+        if (surface == null) {
           return;
         }
         // getComputedStyle().top 自动兼容桌面 var(--gap-page) 与移动端 8pt
-        const stickyTop = parseFloat(getComputedStyle(navbar).top) || 16;
+        const stickyTop = parseFloat(getComputedStyle(listingNav).top) || 16;
         states.push({
-          navbar: navbar,
-          bar: bar,
+          listingNav: listingNav,
+          surface: surface,
           stickyTop: stickyTop
         });
       });
@@ -523,16 +847,16 @@ const init = {
       }
       ticking = true;
       utils.requestAnimationFrame(() => {
-        update();
+        if (!signal.aborted) update();
         ticking = false;
       });
-    }, { passive: true });
+    }, { passive: true, signal });
     // 顶栏伸缩不一定触发 scroll，兜底监听 visualViewport 尺寸变化
     if (window.visualViewport) {
-      window.visualViewport.addEventListener('resize', update);
+      window.visualViewport.addEventListener('resize', update, { signal });
     }
-    window.addEventListener('resize', measure);
-    window.addEventListener('pageshow', measure);
+    window.addEventListener('resize', measure, { signal });
+    window.addEventListener('pageshow', measure, { signal });
     measure();
   },
   relativeDate: (selector) => {
@@ -548,9 +872,11 @@ const init = {
   /**
    * Tabs tag listener (without twitter bootstrap).
    */
-  registerTabsTag: function () {
+  registerTabsTag: function (root, signal) {
     // Binding `nav-tabs` & `tab-content` by real time permalink changing.
-    document.querySelectorAll('.tabs .nav-tabs .tab').forEach(element => {
+    const tabs = root.querySelectorAll('.tabs .nav-tabs .tab');
+    if (!tabs.length) return;
+    tabs.forEach(element => {
       element.addEventListener('click', event => {
         event.preventDefault();
         // Prevent selected tab to select again.
@@ -568,7 +894,7 @@ const init = {
         tActive.dispatchEvent(new Event('tabs:click', {
           bubbles: true
         }));
-      });
+      }, { signal });
     });
 
     window.dispatchEvent(new Event('tabs:register'));
@@ -579,9 +905,9 @@ const init = {
     // 真实主站域名优先从 encoded（base64）反解，避免被「批量替换域名」的克隆站把提示指向自己
     const getOriginalHost = () => {
       try {
-        return atob(canonical.encoded || '') || canonical.originalHost || '';
+        return atob(canonical.encoded || '') || canonical.host || '';
       } catch (e) {
-        return canonical.originalHost || '';
+        return canonical.host || '';
       }
     };
     function originStatusCheck() {
@@ -646,7 +972,7 @@ const init = {
       if (isCurrentHostValid) {
         return;
       }
-      if (canonical.officialHosts?.includes(currentHost)) {
+      if (canonical.allowedHosts?.includes(currentHost)) {
         showTip(true);
         return;
       }
@@ -660,7 +986,7 @@ const init = {
     if (isCanonicalHostValid && isCurrentHostValid) {
       return;
     }
-    showTip(canonical.officialHosts?.includes(currentHost));
+    showTip(canonical.allowedHosts?.includes(currentHost));
   }
 
 }
@@ -668,21 +994,27 @@ const init = {
 
 // Stellar namespace
 window.stellar = window.stellar || {};
+stellar.toast = hud.toast;
 
 /**
  * Initialize page components
  */
-stellar.initPage = function () {
-  init.toc();
-  init.sidebar();
-  init.wikiStart();
-  init.wikiCover();
-  init.leftbarScroll();
-  init.navbarPin();
-  init.relativeDate(document.querySelectorAll('#post-meta time'));
-  init.registerTabsTag();
+stellar.initPage = function (root = document) {
+  const controller = new AbortController();
+  const cleanupToc = init.tocLinks(root);
+  init.listingNavPin(root, controller.signal);
+  init.relativeDate(root.querySelectorAll('#post-meta time'));
+  init.registerTabsTag(root, controller.signal);
+  return () => { controller.abort(); cleanupToc?.(); };
+};
+stellar.syncPageShell = function () {
+  dismissDrawer();
+  syncDrawerControls();
 };
 
-// Initial page load
-stellar.initPage();
+// Document-owned controls survive regional navigation.
+init.toc();
+init.wikiStart();
+init.wikiCover();
+init.leftbarScroll();
 init.canonicalCheck();

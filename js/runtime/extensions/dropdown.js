@@ -1,5 +1,4 @@
 // 通用 dropdown 浮层：把打开的菜单挂到 body 下，避免被任意祖先容器裁剪。
-(() => {
   const selector = 'details.dropdown'
   const gap = 8
   const viewportPadding = 8
@@ -7,6 +6,7 @@
   let active = null
   let frame = null
   let menuId = 0
+  let mounts = 0
 
   function getLayer() {
     if (layer && document.documentElement.contains(layer)) {
@@ -303,12 +303,18 @@
     })
   }
 
-  function bind(dropdown) {
+  function listen(state, target, type, handler, options) {
+    target.addEventListener(type, handler, options)
+    state.cleanups.push(() => target.removeEventListener(type, handler, options))
+  }
+
+  function bind(dropdown, state) {
     if (dropdown.__stellarDropdownBound) {
       return
     }
     dropdown.__stellarDropdownBound = true
-    dropdown.addEventListener('mouseenter', () => {
+    state.bound.add(dropdown)
+    listen(state, dropdown, 'mouseenter', () => {
       dropdown.__stellarDropdownHovering = true
       if (active && active.dropdown === dropdown) {
         active.hoverMode = true
@@ -319,13 +325,13 @@
     })
     const trigger = getDirectChild(dropdown, '.dropdown-trigger')
     if (trigger) {
-      trigger.addEventListener('click', event => {
+      listen(state, trigger, 'click', event => {
         event.preventDefault()
         if (!active || active.dropdown !== dropdown) {
           openDropdown(dropdown)
         }
       })
-      trigger.addEventListener('keydown', event => {
+      listen(state, trigger, 'keydown', event => {
         if (event.key === 'Enter' || event.key === ' ') {
           event.preventDefault()
           if (active && active.dropdown === dropdown) {
@@ -336,10 +342,18 @@
         }
       })
     }
-    dropdown.addEventListener('mouseleave', () => {
+    const menu = getDirectChild(dropdown, '.dropdown-menu')
+    if (menu) {
+      listen(state, menu, 'click', event => {
+        if (event.target.closest('.dropdown-item') && active?.dropdown === dropdown) {
+          closeState(active, false)
+        }
+      })
+    }
+    listen(state, dropdown, 'mouseleave', () => {
       dropdown.__stellarDropdownHovering = false
     })
-    dropdown.addEventListener('toggle', () => {
+    listen(state, dropdown, 'toggle', () => {
       if (dropdown.open) {
         if (!active || active.dropdown !== dropdown) {
           hideMenuBeforeOpen(dropdown)
@@ -357,24 +371,27 @@
     dropdown.__stellarDropdownHovering = false
   }
 
-  function bindTree(root) {
+  function bindTree(root, state) {
     if (root.nodeType !== 1) {
       return
     }
     if (root.matches(selector)) {
-      bind(root)
+      bind(root, state)
     }
-    root.querySelectorAll(selector).forEach(bind)
+    root.querySelectorAll(selector).forEach(dropdown => bind(dropdown, state))
   }
 
-  function init() {
-    if (!document.body || !window.MutationObserver) {
-      return
+  export function mount(root) {
+    const scope = root && root.nodeType === 9 ? root.body : root
+    if (!scope || scope.nodeType !== 1 || !window.MutationObserver) {
+      return () => {}
     }
-    bindTree(document.body)
+    const state = { bound: new Set(), cleanups: [], observer: null, cleaned: false }
+    mounts += 1
+    bindTree(scope, state)
     const observer = new MutationObserver(records => {
       records.forEach(record => {
-        record.addedNodes.forEach(bindTree)
+        record.addedNodes.forEach(node => bindTree(node, state))
         record.removedNodes.forEach(node => {
           if (active && node.nodeType === 1 && (node === active.dropdown || node.contains(active.dropdown))) {
             closeState(active, false)
@@ -382,9 +399,10 @@
         })
       })
     })
-    observer.observe(document.body, { childList: true, subtree: true })
+    observer.observe(scope, { childList: true, subtree: true })
+    state.observer = observer
 
-    document.addEventListener('click', event => {
+    listen(state, document, 'click', event => {
       if (!active) {
         return
       }
@@ -394,14 +412,14 @@
       closeState(active, false)
     }, true)
 
-    document.addEventListener('mousemove', event => {
+    listen(state, document, 'mousemove', event => {
       if (!active || !active.hoverMode || isPointerInsideState(active, event)) {
         return
       }
       closeState(active, false)
     }, true)
 
-    document.addEventListener('keydown', event => {
+    listen(state, document, 'keydown', event => {
       if (!active) {
         return
       }
@@ -419,17 +437,38 @@
       }
     })
 
-    window.addEventListener('resize', schedulePosition)
-    window.addEventListener('scroll', schedulePosition, true)
+    listen(state, window, 'resize', schedulePosition)
+    listen(state, window, 'scroll', schedulePosition, true)
     if (window.visualViewport) {
-      window.visualViewport.addEventListener('resize', schedulePosition)
-      window.visualViewport.addEventListener('scroll', schedulePosition)
+      listen(state, window.visualViewport, 'resize', schedulePosition)
+      listen(state, window.visualViewport, 'scroll', schedulePosition)
+    }
+
+    return function cleanup() {
+      if (state.cleaned) {
+        return
+      }
+      state.cleaned = true
+      state.observer.disconnect()
+      if (active && state.bound.has(active.dropdown)) {
+        closeState(active, false)
+      }
+      if (frame !== null) {
+        window.cancelAnimationFrame(frame)
+        frame = null
+      }
+      for (let index = state.cleanups.length - 1; index >= 0; index -= 1) {
+        state.cleanups[index]()
+      }
+      state.bound.forEach(dropdown => {
+        delete dropdown.__stellarDropdownBound
+        delete dropdown.__stellarDropdownHovering
+      })
+      state.bound.clear()
+      mounts = Math.max(0, mounts - 1)
+      if (mounts === 0 && layer) {
+        layer.remove()
+        layer = null
+      }
     }
   }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init, { once: true })
-  } else {
-    init()
-  }
-})()

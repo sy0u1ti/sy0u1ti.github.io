@@ -1,5 +1,7 @@
-(function () {
-  const els = document.getElementsByClassName('ds-weibo');
+document.currentScript.stellarMount = function (root, context) {
+  const utils = context.serviceUtils;
+
+  const els = root.getElementsByClassName('ds-weibo');
     for (var i = 0; i < els.length; i++) {
       const el = els[i];
       const api = el.dataset.api;
@@ -40,7 +42,7 @@
           cell += '</a>';
           cell += '</div>';
           cell += '<a class="item comments last" href="' + item.url + '#issuecomment-new" target="_blank" rel="external nofollow noopener noreferrer">';
-          cell += '<span>' + ctx.icons['default:tocomment'] + ' '
+          cell += '<span>' + ctx.icons['default:to-comment'] + ' '
           + (item.comments_count || 0) + '</span>';
           cell += '</a>';
           cell += '<div class="item reaction attitudes">';
@@ -56,4 +58,5 @@
         });
       });
     }
-})();
+
+};

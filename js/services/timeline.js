@@ -1,4 +1,6 @@
-(function () {
+document.currentScript.stellarMount = function (root, context) {
+  const utils = context.serviceUtils;
+
   const reactions = {
       '+1': '👍',
       '-1': '👎', 
@@ -9,7 +11,7 @@
       'rocket': '🚀', 
       'eyes': '👀'
     }
-    const timelines = document.getElementsByClassName('ds-timeline');
+    const timelines = root.getElementsByClassName('ds-timeline');
     for (var i = 0; i < timelines.length; i++) {
       const el = timelines[i];
       const api = el.dataset.api;
@@ -88,7 +90,7 @@
             }
             if (item.comments != null) {
               cell += '<a class="item comments last" href="' + item.html_url + '#issuecomment-new" target="_blank" rel="external nofollow noopener noreferrer">';
-              cell += '<span>' + ctx.icons['default:tocomment'] + ' ' + (item.comments || 0) + '</span>';
+              cell += '<span>' + ctx.icons['default:to-comment'] + ' ' + (item.comments || 0) + '</span>';
               cell += '</a>';
             }
             
@@ -103,4 +105,5 @@
         window.wrapLazyloadImages(el);
       });
     }
-})();
+
+};
