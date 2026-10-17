@@ -1,18 +1,28 @@
 'use strict';
 
+// 站点列表策略：专栏（topic Collection）的成员只在专栏页和归档中展示，
+// 不进入博客首页、分类与标签的列表分页。v1 使用 front matter 的 indexing:false
+// 实现同样的效果；v2 中 visibility.listed 会同时把成员移出专栏目录，因此改用
+// collection 归属判断。
+
 const pagination = require('hexo-pagination');
 
-function visiblePosts(posts) {
-  return posts.filter(post => post.indexing !== false);
+function isCollectionMember(post) {
+  const collection = post && post.collection;
+  return Boolean(collection && typeof collection === 'object' && collection.profile && collection.id);
 }
 
-function sortVisiblePosts(posts, orderBy) {
+function visiblePosts(posts) {
+  return posts.filter(post => !isCollectionMember(post));
+}
+
+function sortPosts(posts, orderBy) {
   return visiblePosts(posts).sort(orderBy);
 }
 
 hexo.extend.generator.register('index', function(locals) {
   const config = this.config;
-  const posts = sortVisiblePosts(locals.posts, config.index_generator.order_by);
+  const posts = sortPosts(locals.posts, config.index_generator.order_by);
 
   posts.data.sort((a, b) => (b.sticky || 0) - (a.sticky || 0));
 
@@ -36,19 +46,17 @@ hexo.extend.generator.register('category', function(locals) {
   const orderBy = config.category_generator.order_by || '-date';
 
   return locals.categories.reduce((result, category) => {
-    const posts = sortVisiblePosts(category.posts, orderBy);
+    const posts = sortPosts(category.posts, orderBy);
     if (!posts.length) return result;
 
-    const data = pagination(category.path, posts, {
+    return result.concat(pagination(category.path, posts, {
       perPage,
       layout: ['category', 'archive', 'index'],
       format: `${paginationDir}/%d/`,
       data: {
         category: category.name
       }
-    });
-
-    return result.concat(data);
+    }));
   }, []);
 });
 
@@ -61,19 +69,17 @@ hexo.extend.generator.register('tag', function(locals) {
   let tagDir;
 
   const pages = tags.reduce((result, tag) => {
-    const posts = sortVisiblePosts(tag.posts, orderBy);
+    const posts = sortPosts(tag.posts, orderBy);
     if (!posts.length) return result;
 
-    const data = pagination(tag.path, posts, {
+    return result.concat(pagination(tag.path, posts, {
       perPage,
       layout: ['tag', 'archive', 'index'],
       format: `${paginationDir}/%d/`,
       data: {
         tag: tag.name
       }
-    });
-
-    return result.concat(data);
+    }));
   }, []);
 
   if (config.tag_generator.enable_index_page) {
@@ -104,11 +110,12 @@ hexo.extend.generator.register('tag', function(locals) {
   return pages;
 });
 
+// 归档保留全部文章（与 v1 站点行为一致）。
 hexo.extend.generator.register('archive', function(locals) {
   const { config } = this;
   let archiveDir = config.archive_dir;
   const paginationDir = config.pagination_dir || 'page';
-  const allPosts = sortVisiblePosts(locals.posts, config.archive_generator.order_by || '-date');
+  const allPosts = locals.posts.sort(config.archive_generator.order_by || '-date');
   const perPage = config.archive_generator.per_page;
   const result = [];
 
@@ -132,6 +139,7 @@ hexo.extend.generator.register('archive', function(locals) {
   if (!config.archive_generator.yearly) return result;
 
   const posts = {};
+  const { Query } = this.model('Post');
 
   allPosts.forEach(post => {
     const date = post.date;
@@ -139,40 +147,14 @@ hexo.extend.generator.register('archive', function(locals) {
     const month = date.month() + 1;
 
     if (!Object.prototype.hasOwnProperty.call(posts, year)) {
-      posts[year] = [
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        []
-      ];
+      posts[year] = Array.from({ length: 13 }, () => []);
     }
 
     posts[year][0].push(post);
     posts[year][month].push(post);
-
-    if (config.archive_generator.daily) {
-      const day = date.date();
-      if (!Object.prototype.hasOwnProperty.call(posts[year][month], 'day')) {
-        posts[year][month].day = {};
-      }
-
-      (posts[year][month].day[day] || (posts[year][month].day[day] = [])).push(post);
-    }
   });
 
-  const { Query } = this.model('Post');
-  const years = Object.keys(posts);
-
-  for (const yearKey of years) {
+  for (const yearKey of Object.keys(posts)) {
     const year = +yearKey;
     const data = posts[year];
     const yearPath = `${archiveDir}${year}/`;
@@ -180,30 +162,11 @@ hexo.extend.generator.register('archive', function(locals) {
 
     generate(yearPath, new Query(data[0]), { year });
 
-    if (!config.archive_generator.monthly && !config.archive_generator.daily) continue;
+    if (!config.archive_generator.monthly) continue;
 
     for (let month = 1; month <= 12; month++) {
-      const monthData = data[month];
-      if (!monthData.length) continue;
-
-      if (config.archive_generator.monthly) {
-        generate(`${yearPath}${month.toString().padStart(2, '0')}/`, new Query(monthData), {
-          year,
-          month
-        });
-      }
-
-      if (!config.archive_generator.daily) continue;
-
-      for (let day = 1; day <= 31; day++) {
-        const dayData = monthData.day[day];
-        if (!dayData || !dayData.length) continue;
-        generate(
-          `${yearPath}${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}/`,
-          new Query(dayData),
-          { year, month, day }
-        );
-      }
+      if (!data[month].length) continue;
+      generate(`${yearPath}${month.toString().padStart(2, '0')}/`, new Query(data[month]), { year, month });
     }
   }
 

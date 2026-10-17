@@ -1,28 +1,9 @@
 ---
-abbrlink: ''
-author: null
-banner: null
-breadcrumb: null
 categories:
 - - 科技&产品
-comments: null
 cover: https://ph-files.imgix.net/1182f33f-686e-4cc3-9d16-c690ec5e116f.png?auto=format&fit=crop&frame=1&h=512&w=1024
 date: '2024-10-06T15:25:24.095766+08:00'
 description: null
-h1: null
-indexing: false
-katex: null
-leftbar: null
-mathjax: null
-mermaid: null
-poster:
-  caption: null
-  color: null
-  headline: null
-  topic: null
-references: null
-rightbar: null
-sticky: null
 tags:
 - Product Hunt
 - AI
@@ -30,9 +11,12 @@ tags:
 - 设计创意
 - 营销增长
 title: PH今日热榜 | 2024-10-06
-topic: producthunt-daily
-type: null
 updated: '2024-10-06T15:25:25.873+08:00'
+visibility:
+  searchable: false
+collection:
+  profile: topic
+  id: producthunt-daily
 ---
 ## [1. Savvyshot](https://www.producthunt.com/posts/savvyshot?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+decohack+%28ID%3A+131684%29)
 

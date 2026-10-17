@@ -1,9 +1,9 @@
 ---
-abbrlink: ''
 categories:
 - - 开源项目
 cover: null
 date: '2026-04-21T14:00:00.000000+08:00'
+description: '针对 Chrome 原生书签管理痛点自研的本地优先浏览器扩展：支持毫秒级检索、智能收藏夹推荐、批量死链巡检与重定向自动纠正，并打通自定义 OpenAI 兼容接口实现本地 AI 分类整理。'
 tags:
 - Chrome
 - 浏览器扩展

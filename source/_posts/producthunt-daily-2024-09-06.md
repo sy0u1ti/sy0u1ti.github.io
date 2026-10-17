@@ -1,29 +1,10 @@
 ---
-abbrlink: ''
-author: null
-banner: null
-breadcrumb: null
 categories:
 - - 科技&产品
-comments: null
 cover: https://ph-files.imgix.net/90998043-c774-466b-8c44-9632abe85e54.png?auto=format&fit=crop&frame=1&h=512&w=1024
 date: '2024-09-07T00:48:19.536060+08:00'
 description: null
-h1: null
-indexing: false
-katex: null
-leftbar: null
-mathjax: null
-mermaid: null
 permalink: producthunt-daily-2024-09-06/
-poster:
-  caption: null
-  color: null
-  headline: null
-  topic: null
-references: null
-rightbar: null
-sticky: null
 tags:
 - Product Hunt
 - 开源项目
@@ -31,9 +12,12 @@ tags:
 - 开发者工具
 - 营销增长
 title: PH今日热榜 | 2024-09-06
-topic: producthunt-daily
-type: null
 updated: '2024-09-07T00:48:19.962+08:00'
+visibility:
+  searchable: false
+collection:
+  profile: topic
+  id: producthunt-daily
 ---
 # PH今日热榜 | 2024-09-06
 

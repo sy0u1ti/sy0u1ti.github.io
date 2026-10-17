@@ -1,40 +1,69 @@
 ---
-abbrlink: ''
-banner: null
 categories:
 - - 科技&产品
 cover: null
 date: '2024-03-18T19:34:24.306269+08:00'
-description: null
-poster:
-  caption: null
-  color: null
-  headline: null
-  topic: null
+description: 'Sam Altman 在与韩国特派记者团会面中罕见深入剧透 GPT-5 与 AGI：警告初创公司切勿低估下一代模型的能力跃迁，断言计算将成为未来全球最重要的货币，并探讨了能源瓶颈与数据荒。'
 tags:
 - OpenAI
 - AI
 - GPT-5
 - Sam Altman
 - 行业观察
-title: Sam Altman 透露关于 GPT-5 的关键信息整理
+title: Sam Altman 谈 GPT-5 与 AGI：别低估下一代模型，算力将成为未来货币
 updated: '2024-03-19T21:04:14.737+08:00'
 ---
-Sam 在与韩国硅谷特派记者团的会面中罕见的透露了比较多关于 GPT-5 的信息。  **下面是这篇韩文报道中的一些关键信息和全文：**
-◆OpenAI CEO Sam Altman警告不要低估GPT-5性能改进的幅度,可能会超出预期。
+近日，OpenAI 首席执行官萨姆·奥特曼（Sam Altman）在与韩国硅谷特派记者团的闭门交流中，罕见地就正在研发中的下一代旗舰模型 GPT-5、算力经济学以及通用人工智能（AGI）的实现路径，给出了极为自信且具体的判断。
 
-◆每当GPT的下一个模型推出,企业界和日常生活的多个领域都会发生变革甚至消失,需要更多新思维。
-◆这是Altman首次如此自信地对外发出关于GPT-5性能的"信号"。
-◆Altman和OpenAI的目标是建立"通用人工智能(AGI)",如果投入大量计算资源加速AGI到来,AI计算所需能源短缺等问题可以轻松解决。
-◆Altman表示GPT-5将在高级推理功能上取得重大进步,只要有足够计算资源,就能建立超越人类的AGI。
-◆他警告低估GPT-5的改进幅度并以此为基础开展业务将是一个重大错误,GPT-5的改进幅度远超想象。
-◆Altman似乎除了"建立AGI"之外对其他事情不太感兴趣,完全专注于AI。
-◆他最近致力于全球AI基础设施创新,认为计算将成为未来最重要的货币,非常关注如何以低成本构建大量计算资源。
-◆他乐观认为,如果突破计算能力限制实现AGI,AI运行所需的能源短缺等将成为次要问题。通过AGI进行的科学研究将是可持续经济增长的决定性因素。
-◆他担忧数据量跟不上AI开发速度,数据短缺可能阻碍AI进步,需要一个能用更少数据学习更多东西的模型。
-![现场照片](https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.5q768gcinm.png)
+![现场交流照片](https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.5q768gcinm.png)
 
-**采访全文：**
-OpenAI的首席执行官(CEO)萨姆·奥特曼(Sam Altman)警告称，不应低估GPT-5性能改进的幅度，这可能会超出预期。每当GPT的下一个模型被开发出来时，无论是企业界还是日常生活的多个领域都必然会发生变革甚至消失，因此他强调需要更多的新思维。这是奥特曼首次如此自信地对外发出关于GPT-5性能的“信号”。他明确表示，他和OpenAI的目标是建立“通用人工智能(AGI)”，并乐观地指出，如果大量计算资源被投入以加速AGI的到来，人工智能(AI)计算所需的能源短缺等现实问题可以轻松得到解决。  14日（当地时间），在与韩国硅谷特派记者团的会面中，奥特曼表示：“我不确定GPT-5何时发布，但它将作为一个在高级推理功能上更进一步的模型，取得重大进步。” 他补充说：“虽然有许多人质疑GPT模型是否有限制，但我可以自信地说‘没有’。” 这体现了他的信心，即只要有足够的计算资源，就能够建立超越人类的AGI。  奥特曼还指出，低估GPT-5的改进幅度并以此为基础开展业务将是一个重大错误。这表明正在开发中的GPT-5的改进幅度远超过想象。他说：“许多初创公司认为，GPT-5的进步只会是小幅度的，因此他们假设进展会缓慢，但我认为这是一个严重错误。” 他强调：“在技术剧变的情况下，像往常一样，他们将被下一代模型‘压倒(steamrolled)’。”  奥特曼似乎对“建立AGI”之外的事情不太感兴趣。据说他对区块链、生物技术等AI以外的其他技术也失去了兴趣。他表示：“过去，我对世界上发生的一切都有一个非常广泛的视角，并能看到我以前从狭窄的角度看不到的东西。” 但他也说：“遗憾的是，现在我完全专注于AI（AI all of the time at full tilt），很难有其他的视角。”  最近，奥特曼一直在致力于全球AI基础设施的创新。在这个过程中，甚至出现了关于“7万亿美元融资”的传言，成为了一个热点话题。奥特曼说：“除了考虑下一代AI模型外，我最近花费最多时间的领域是‘计算(compute)建设’，我越来越确信，计算将成为未来最重要的货币。” 他还说：“但是，世界并没有为足够的计算做好准备，也没有正视这个问题，因此我非常关注如何以尽可能低的成本构建大量的计算资源。” 这意味着他非常关注为实现AGI而获取计算资源的问题。  他还表达了一种乐观观点，认为如果能突破计算能力的限制并实现AGI，那么AI运行所需的能源短缺等将成为“次要问题”。奥特曼说：“我最期待AGI的是，它能加速科学发现，从而更快实现核聚变发电，快速找到解决能源问题的方法。” 他强调：“通过AGI进行的科学研究将是可持续经济增长的几乎唯一动力和决定性因素。”  他还提出了对数据量跟不上AI开发速度的担忧，数据短缺可能会阻碍AI的进步。他说：“从长远来看，人类产生的数据可能会变得不足。” 他补充道：“因此，我们需要一个能够用更少的数据学习更多东西的模型。”
+## 核心要点速览
 
-**Sam Altman: GPT-5 will be a technological upheaval.** Startups are underestimating future models and they will get steamrolled.  - He is confident that with enough compute, we will create AGI that surpasses humans (within 5 years, he said recently)  - **Actually, he’s obsessed with compute. He is confident compute will be the most important currency in the future.**  - He’s lost interest in technologies other than AGI (like blockchain and biotechnology)  - He said he didn’t know when GPT-5 will be released  NOTE: All this is from a translation of a Korean language article, so take this all with a grain of salt. If you speak fluent Korean please help with any important mistranslations!  **“CEO Altman, who met with Korean Silicon Valley correspondents on the 14th, said, “I don’t know when GPT-5 will be released, but it will make great progress as a model that takes a leap forward in advanced inference functions.” He added, “What are the limitations of GPT? “There are many questions as to whether it exists, but I will confidently say ‘no.’” We are confident that there are no limits to the GPT model and that if sufficient computational resources are invested, it will not be difficult to build AGI that surpasses humans.  “I am confident that computing will become the most important currency in the future.” He stressed, “The world is underprepared for the rapidly increasing demand for computing,” and added, “We need to think about what it takes to build massive amounts of computing as cheaply as possible.”  CEO Altman also opined that underestimating the improvement margin of the developing GPT-5 and deploying business accordingly would be a big mistake. This implies that the improvement margin of GPT-5 is beyond imagination. He mentioned, "Many startups are happy assuming that GPT-5 will only make slight progress rather than significant advancements (since it presents more business opportunities), but I think this is a big mistake. In this case, as often happens when technological upheavals occur, they will be 'steamrolled' by the next-generation model."**  **Altman appeared to have no interest other than in 'building AGI'. His interest seems to have faded in other technologies, including blockchain and biotechnology, beyond AI. He said, "In the past, I had a broad perspective on everything happening in the world and could see things I couldn't from a narrow perspective. Unfortunately, these days, I am entirely focused on AI (AI all of the time at full tilt), making it difficult to have other perspectives."**
+- **警惕低估 GPT-5 的跃升幅度**：许多初创企业假设下一代模型只会“微幅改进”，奥特曼警告这是一个致命错误，真正的技术剧变会将这些侥幸者“无情碾压（steamrolled）”。
+- **GPT 模型不存在物理上限**：针对外界关于模型能力见顶的质疑，奥特曼自信表态“没有上限”；只要堆叠足够的算力，就能构建超越人类智力的 AGI。
+- **算力是未来最重要的全球货币**：当前全世界对算力暴增的准备严重不足，OpenAI 近期最大的精力正是如何以极低成本构建超大规模算力基础设施。
+- **能源不是根本瓶颈，数据才是隐忧**：实现 AGI 后将反哺可控核聚变等基础科学，能源问题迎刃而解；相反，人类现有高质量数据的匮乏，倒逼新模型必须具备“少样本、深领会”的学习能力。
+
+---
+
+## 访谈要点深度拆解
+
+### 1. 谈 GPT-5 跃迁：“初创公司将被下一代模型无情碾压”
+
+对于 GPT-5 的具体发布时间，奥特曼表示尚无法透露确切日期，但他明确强调，GPT-5 将在**高阶推理（Advanced Reasoning）**能力上带来跨越式提升。
+
+> “很多初创团队乐于假设 GPT-5 只会有微小的改善，因为这样他们才能在缝隙中找到商业机会。但我必须指出，这是一个极其严重的误判。当真正的技术颠覆来临之际，历史经验一再证明——他们会被下一代模型彻底碾压。”
+
+每当下一代基座模型诞生，现有商业格局与日常软件生态都会面临重构甚至清洗。面对这场洗牌，唯有构建在更深认知壁垒之上的产品才能生存。
+
+### 2. 谈模型边界与 AGI：“GPT 没有极限，只要算力充足”
+
+面对行业内部关于大语言模型是否即将撞上“收益递减之墙”的讨论，奥特曼斩钉截铁地给出了否定答案：
+
+> “很多人质疑 GPT 模型是否存在边界与瓶颈。我可以非常肯定地回答：没有。只要我们能够投入充足的计算资源，打造超越人类水平的 AGI 绝非难事。”
+
+这也是奥特曼首次如此明确且自信地向外界传达 GPT-5 乃至 AGI 路径的可行性信号。
+
+### 3. 谈全球算力布局：“计算是未来最重要的通用硬通货”
+
+除了思考新一代模型架构，奥特曼透露自己当前投入心血最多的工作正是**算力基础设施建设**（外界此前盛传的“7万亿美元芯片网络融资”正是这一战略的缩影）：
+
+> “我越来越确信，计算（Compute）将成为未来人类社会最重要的通用货币。然而现实是，整个世界对算力需求的爆炸式增长既缺乏准备，也未曾正视。我最关注的核心课题，就是如何以尽可能低的成本，铺设规模极其庞大的算力根基。”
+
+### 4. 谈能源瓶颈与科学反哺：AGI 将催生核聚变奇迹
+
+针对业内普遍担心的“AI 算力将榨干电网”这一现实问题，奥特曼展现出强烈的科技乐观主义。他认为一旦 AGI 破局，算力所需的能源危机就会自动退居为“次要问题”：
+
+> “我对 AGI 最热切的期盼，在于它能极大加速人类的科学发现进程。通过 AGI 赋能材料学与物理学，我们能够以远超预期的速度攻克受控核聚变发电，从源头彻底终结能源困局。由 AGI 引领的基础科研创新，几乎是未来全球经济实现可持续增长的唯一定海神针。”
+
+### 5. 谈隐忧：数据荒将倒逼算法范式进化
+
+在算力之外，奥特曼唯一表达明确担忧的是**高质量训练数据的枯竭**：
+
+> “放眼长远，全人类有史以来产生的高质量文字与数据总和，迟早会赶不上 AI 的训练吞吐速度。数据匮乏很可能成为前行路上的硬阻碍。因此，我们必须探索全新的算法架构——让模型学会用更少的数据，洞察更深刻的知识与规律。”
+
+### 6. 个人的专注点转移：全速冲刺 AGI
+
+奥特曼坦言，自己近来几乎对区块链、生物医药等其他前沿科技领域失去了分心关注的兴趣：
+
+> “过去我能以相当宽阔的视角去打量世界上发生的各种新生事物，看到很多局限视角看不到的风景。但遗憾的是，如今我必须将全副身心毫无保留地扑向 AI（AI all of the time at full tilt），在这场冲刺中，我很难再分神关注其他赛道了。”

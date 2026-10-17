@@ -3,90 +3,100 @@ categories:
 - - 站主的瞎话
 cover: null
 date: '2023-08-26T15:55:31.256047+08:00'
+description: '从基础布尔逻辑、用户定向、多媒体过滤到互动阈值（点赞/转推量）与时间跨度约束：全面拆解 Twitter (X) 高级搜索指令语法与实战情报挖掘组合技。'
 tags:
 - Twitter/X
 - 搜索技巧
 - 社交媒体
 - 教程
-title: Twitter (X) 搜索技巧与高级语法指南
-updated: 2023-8-27T17:26:54.290+8:0
+title: Twitter (X) 高级搜索技巧与精准情报检索全指南
+updated: '2023-08-27T17:26:54.290+08:00'
 ---
-### 搜索词
+Twitter (X) 拥有海量的实时信息流，但默认的全局关键字搜索往往充斥着垃圾广告、转推搬运和无关噪声。
 
-搜索词，即我们想要获得什么样的推文。这个搜索词可以是一个词语，也可以是一个条件。Twitter搜索中支持的搜索词类型如下：
+熟练掌握 Twitter 官方支持的原生**高级检索运算符（Search Operators）**，你可以像编写数据库查询语句一样，精准挖掘高价值的干货推文、定位行业大 V 的历史言论或过滤噪音。
 
+---
 
-| **搜索词**                        | **搜索结果**                                                 |
-| --------------------------------- | ------------------------------------------------------------ |
-| watching now                      | 同时包含“watching”和“now”的推文（默认搜索模式）          |
-| “happy hour”                    | 包含完整的短语”happy hour”的推文                           |
-| love OR hate                      | 包含”love”或”hate”，或同时包含两个词的推文               |
-| beer -root                        | 包含”beer”，但不包含”root”的推文                         |
-| #haiku                            | 包含Twitter话题”haiku”的推文                               |
-| from:shangy1yi                    | 由推特账户“shangy1yi”发布的推文（用于抓取指定用户的推文）  |
-| list:NASA/astronauts-in-space-now | 由NASA列表astronauts-in-space-now中的Twitter账户发布的推文   |
-| to:shangy1yi                      | 回复Twitter账户”shangy1yi”的推文                           |
-| @shangy1yi                        | 提到Twitter账户”shangy1yi”的推文(即@指定Twitter账户的推文) |
+## 一、基础逻辑与关键词匹配
 
-### 内容筛选
+| 搜索语法 | 作用与示例 | 检索说明 |
+| :--- | :--- | :--- |
+| `apple banana` | `apple banana` | **与（AND）**：必须同时包含这两个词（默认模式） |
+| `"exact phrase"` | `"deep learning"` | **精准完全匹配**：短语词序与内容不可变 |
+| `A OR B` | `claude OR gpt` | **或（OR）**：包含 A 或 B，或两者皆有（OR 须大写） |
+| `-keyword` | `python -snake` | **排除（NOT）**：包含 python，但坚决剔除含有 snake 的推文 |
+| `#hashtag` | `#OpenAI` | 检索打上指定标签（Hashtag）的话题推文 |
 
-内容筛选是指在搜索词的基础上，我们可以依据Twitter推文的内容进行筛选。常用的筛选条件如下：
+---
 
+## 二、账号与人际关系定向
 
-| **搜索词**                   | **搜索结果**                                         |
-| ---------------------------- | ---------------------------------------------------- |
-| politics filter:safe         | 包含”puppy”，且过滤被可能包含潜在敏感信息的推文    |
-| puppy filter:media           | 包含”puppy”，且包含图片或视频                      |
-| puppy -filter:retweets       | 包含“puppy”，且不包含转推（用于过滤转推推文）      |
-| puppy filter:native\\\_video | 包含”puppy”，且包含一个上传的视频                  |
-| puppy filter:periscope       | 包含”puppy”，且包含一个可展示为视频的链接          |
-| puppy filter:images          | 包含”puppy”，且包含一个图片                        |
-| puppy filter:links           | 包含”puppy”，且包含一个链接                        |
-| puppy url:amazon             | 包含”puppy”，且包含一个内容包括”amazon”的Url链接 |
+| 搜索语法 | 作用与示例 | 检索说明 |
+| :--- | :--- | :--- |
+| `from:username` | `from:sama` | 检索由该用户**主动发出**的原创或转推内容 |
+| `to:username` | `to:elonmusk` | 检索其他人**发给或回复**给该用户的推文 |
+| `@username` | `@OpenAI` | 检索正文中 `@` 提及（Mention）该用户的推文 |
+| `list:ID` | `list:1234567` | 仅在指定的推特公开列表（List）成员中进行搜索 |
 
-### 时间筛选
+---
 
-除了依据推文内容进行筛选外，我们也可以依据推文的发布时间进行筛选。依据时间筛选的标准如下：
+## 三、推文类型与多媒体过滤
 
+| 搜索语法 | 作用与示例 | 检索说明 |
+| :--- | :--- | :--- |
+| `filter:media` | `AI filter:media` | 仅筛选包含多媒体（图片或视频）的推文 |
+| `filter:images` | `midjourney filter:images` | 仅筛选包含静态图片的推文 |
+| `filter:videos` | `tutorial filter:videos` | 仅筛选包含上传视频的推文 |
+| `filter:links` | `paper filter:links` | 仅筛选正文中附带外部 URL 链接的推文 |
+| `-filter:retweets` | `cursor -filter:retweets` | **排除所有转推**（抓取原创推文的神级参数） |
+| `-filter:replies` | `crypto -filter:replies` | 排除评论回复，仅保留主楼首推（Thread 首条） |
+| `filter:verified` | `security filter:verified` | 仅筛选认证用户（蓝标/金标）发布的推文 |
+| `url:github` | `llm url:github.com` | 检索包含特定域名链接的推文（如开源项目） |
 
-| **Operator**         | **Finds Tweets…**                                      |
-| -------------------- | ------------------------------------------------------- |
-| puppy since:2020-6-4 | 包含”puppy”且发布时间晚于2020.06.04(包含2020.06.04)   |
-| puppy until:2020-6-4 | 包含”puppy”且发布时间早于2020.06.04(不包含2020.06.04) |
+---
 
-内容筛选的条件和时间筛选的条件可以任意叠加，例如我们如果想要获取Twitter账户”NASA”在2020年5月所有发布的不是转推的推文，用如下搜索语句即可：
+## 四、热度指标过滤（筛选爆款与高赞干货）
 
-<pre></ul><code class="has-numbering hljs css">from:NASA -filter:retweets since:2020-5-1 until:2020-6-1</code></pre>
+利用点赞、转发和回复阈值，可以瞬间过滤掉 99% 的水贴和低质推文：
 
-### 附 Twitter 开发者文档中的列表
+| 搜索语法 | 作用与示例 | 检索说明 |
+| :--- | :--- | :--- |
+| `min_faves:N` | `agent min_faves:500` | 筛选**点赞量 ≥ 500** 的高赞推文 |
+| `min_retweets:N` | `AI min_retweets:100` | 筛选**转推量 ≥ 100** 的广泛传播推文 |
+| `min_replies:N` | `discussion min_replies:50` | 筛选**讨论评论数 ≥ 50** 的高互动争议/讨论帖 |
 
+---
 
-| **Operator**                      | **Finds Tweets…**                                                                              |
-| --------------------------------- | ----------------------------------------------------------------------------------------------- |
-| watching now                      | containing both “watching” and “now”. This is the default operator.                         |
-| “happy hour”                    | containing the exact phrase “happy hour”.                                                     |
-| love OR hate                      | containing either “love” or “hate” (or both).                                               |
-| beer -root                        | containing “beer” but not “root”.                                                           |
-| #haiku                            | containing the hashtag “haiku”.                                                               |
-| from:interior                     | sent from Twitter account “interior”.                                                         |
-| list:NASA/astronauts-in-space-now | sent from a Twitter account in the NASA list astronauts-in-space-now                            |
-| to:NASA                           | a Tweet authored in reply to Twitter account “NASA”.                                          |
-| @NASA                             | mentioning Twitter account “NASA”.                                                            |
-| politics filter:safe              | containing “politics” with Tweets marked as potentially sensitive removed.                    |
-| puppy filter:media                | containing “puppy” and an image or video.                                                     |
-| puppy -filter:retweets            | containing “puppy”, filtering out retweets                                                    |
-| puppy filter:native\\\_video      | containing “puppy” and an uploaded video, Amplify video, Periscope, or Vine.                  |
-| puppy filter:periscope            | containing “puppy” and a Periscope video URL.                                                 |
-| puppy filter:vine                 | containing “puppy” and a Vine.                                                                |
-| puppy filter:images               | containing “puppy” and links identified as photos, including third parties such as Instagram. |
-| puppy filter:twimg                | containing “puppy” and a pic.twitter.com link representing one or more photos.                |
-| hilarious filter:links            | containing “hilarious” and linking to URL.                                                    |
-| puppy url:amazon                  | containing “puppy” and a URL with the word “amazon” anywhere within it.                     |
-| superhero since:2015-12-21        | containing “superhero” and sent since date “2015-12-21” (year-month-day).                   |
-| puppy until:2015-12-21            | containing “puppy” and sent before the date “2015-12-21”.                                   |
-| movie -scary ?                    | containing “movie”, but not “scary”, and with a positive attitude.                          |
-| flight ?                          | containing “flight” and with a negative attitude.                                             |
-| traffic ?                         | containing “traffic” and asking a question.                                                   |
+## 五、精准时间跨度定位
 
-开发者文档地址：[https://developer.twitter.com/en/docs/twitter-api/v1/tweets/search/overview](https://xding.top/go/aHR0cHM6Ly9kZXZlbG9wZXIudHdpdHRlci5jb20vZW4vZG9jcy90d2l0dGVyLWFwaS92MS90d2VldHMvc2VhcmNoL292ZXJ2aWV3)
-原文链接：[https://blog.csdn.net/Changxing\_J/article/details/106611387](https://xding.top/go/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NoYW5neGluZ19KL2FydGljbGUvZGV0YWlscy8xMDY2MTEzODc=)
+时间格式统一遵循 `YYYY-MM-DD`（基于 UTC 时区）：
+
+- **`since:2024-01-01`**：检索该日期之后（包含当天）发布的推文。
+- **`until:2024-06-30`**：检索该日期之前发布的推文。
+
+---
+
+## 六、高阶实战组合公式推荐
+
+所有上述指令可以任意自由空格叠加，以下是几个极具实用价值的检索模板：
+
+### 1. 查找某领域近期高质量干货长推（排除转推与广告水军）
+```text
+"system prompt" -filter:retweets -filter:replies min_faves:200 since:2024-01-01
+```
+*含义：搜索 2024 年以来，包含精确短语 "system prompt"、非转推、非回复、且点赞量超过 200 的硬核推文。*
+
+### 2. 查阅某个大佬的历史早期原创言论
+```text
+from:sama "AGI" until:2020-01-01 -filter:retweets
+```
+*含义：精准翻看 Sam Altman 在 2020 年之前关于 AGI 的所有原创发言。*
+
+### 3. 寻找开源代码与工具推荐
+```text
+Claude "prompt" url:github.com min_faves:100
+```
+*含义：挖掘包含 GitHub 开源仓库、附带 Prompt、且点赞破百的高质量项目分享。*
+
+> 参考官方标准：[Twitter Developer API Search Syntax](https://developer.twitter.com/en/docs/twitter-api/v1/tweets/search/overview)

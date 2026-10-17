@@ -1,29 +1,10 @@
 ---
-abbrlink: ''
-author: null
-banner: null
-breadcrumb: null
 categories:
 - - 站主的瞎话
 - - 科技&产品
-comments: null
 cover: null
 date: '2024-09-11T16:39:41.715695+08:00'
-description: null
-h1: null
-indexing: null
-katex: null
-leftbar: null
-mathjax: null
-mermaid: null
-poster:
-  caption: null
-  color: null
-  headline: null
-  topic: null
-references: null
-rightbar: null
-sticky: null
+description: '站长私藏日常数字工具箱：精选 Windows / macOS 双平台高频效率软件、实用在线网站、浏览器扩展及提升幸福感的生活好物真实使用体验。'
 tags:
 - 软件推荐
 - 网站推荐
@@ -32,22 +13,21 @@ tags:
 - 效率工具
 - 生活好物
 title: 个人常用软件、网站与好物推荐 (sorts-of-things)
-topic: null
-type: null
 updated: '2026-04-21T01:34:54.566+08:00'
 ---
 将自己使用的比较不错的 Win/Mac软件、网站、生活好物给整理了一下，给未来的自己留个档，期待也给你一些帮助。
 
+---
 
-# 软件
+## 常用软件
 
-## Windows
+### Windows 平台
 
-### 美化
+#### 桌面美化
 
 * [**Fences**](https://www.stardock.com/products/fences/):（付费）桌面整理工具
 
-### 工具
+#### 效率工具
 
 * [**PixPin**](https://pixpinapp.com/start/quick-start)：（免费）拥有强大的截图功能，但不只是一款截图工具。*Win上最好用的截图软件*
 * [**有道词典**](https://fanyi.youdao.com/download-Windows?keyfrom=fanyiweb_navigation)：（免费）*只推荐截图翻译功能，放在后台隐藏图标眼不见心不烦，要用的时候按快捷键就可以截图翻译，也可以当orc软件用，ocr识别率很高*
@@ -59,7 +39,7 @@ updated: '2026-04-21T01:34:54.566+08:00'
 * [**AudioRelay**](https://audiorelay.net/)：（免费）设备间音频串流工具。*当你没有音响，但有个音质很好的笔记本或者平板电脑时，可以用这个工具串流音频，很方便*
 * [**localsend**](https://localsend.org/zh-CN)：（免费）多设备文件传输工具。*苹果设备用AirDrop，其他设备用localsend*
 
-### 网络
+#### 网络工具
 
 * [**finalshell**](https://finalshell.net/)：（免费）强大的SSH客户端*伟大无需多言*
 * [**Nekobox**](https://getnekobox.com/en/)：（免费）代理工具。*我们二次元太牛啦*
@@ -114,7 +94,9 @@ updated: '2026-04-21T01:34:54.566+08:00'
 <br>
 <br>
 
-# 网站
+---
+
+## 宝藏网站
 
 ## 工具类
 
@@ -136,7 +118,9 @@ updated: '2026-04-21T01:34:54.566+08:00'
   <br>
   <br>
 
-# 浏览器插件
+---
+
+## 浏览器扩展
 
 * [**b站空降助手**](https://chromewebstore.google.com/detail/b%E7%AB%99%E7%A9%BA%E9%99%8D%E5%8A%A9%E6%89%8B/eaoelafamejbnggahofapllmfhlhajdd)：自动跳过视频中的赞助广告、订阅提醒等片段
 * [**control-panel-for-twitter**](https://github.com/insin/control-panel-for-twitter)：X的优化工具，ios版需要付费，但功能对得起价格

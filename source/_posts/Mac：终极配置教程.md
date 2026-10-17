@@ -1,40 +1,19 @@
 ---
-abbrlink: ''
-author: null
-banner: null
-breadcrumb: null
 categories:
 - - 站主的瞎话
-comments: null
 cover: null
 date: '2024-10-06T20:13:45.885767+08:00'
-description: null
-h1: null
-indexing: null
-katex: null
-leftbar: null
-mathjax: null
-mermaid: null
-poster:
-  caption: null
-  color: null
-  headline: null
-  topic: null
-references: null
-rightbar: null
-sticky: null
+description: '涵盖全新 Mac 开箱必做设置、Homebrew 生态、终端利器（iTerm2/Zsh/Tmux）、多语言版本隔离（pyenv/jenv/nvm）及开发安全工具链的 2.8 万字全流程装机指南。'
 tags:
 - macOS
 - Apple
 - 系统配置
 - Homebrew
 - 教程
-title: Mac 终极配置与装机优化教程
-topic: null
-type: null
+title: Mac 终极开箱配置与高效开发环境搭建全指南
 updated: '2024-10-06T20:40:13.418+08:00'
 ---
-# 日常软件
+## 一、日常软件与系统基础配置
 
 ## 前置工作
 
@@ -442,8 +421,7 @@ cd rime-auto-deploy
 <br>
 <br>
 <br>
-
-# 渗透工具
+## 二、网络安全与测试工具链
 
 > 注意因为渗透测试考虑到安全性，工具配置在虚拟机中更加合适，所以本文只介绍少数工具
 
@@ -578,8 +556,7 @@ brew install hashcat
 <br>
 <br>
 <br>
-
-# 开发配置
+## 三、现代开发与多语言环境配置
 
 ## iTerm2
 
@@ -1190,8 +1167,7 @@ pip install pandas matplotlib glob2 tqdm opencv-python scipy scikit-learn mlx
 <br>
 <br>
 <br>
-
-# 常见问题
+## 四、常见问题排查与技巧
 
 ## xxx.app 已损坏，无法打开，你应该将它移到废纸篓/打不开 xxx，因为它来自身份不明的开发者解决方法
 

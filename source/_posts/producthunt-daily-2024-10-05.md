@@ -1,28 +1,9 @@
 ---
-abbrlink: ''
-author: null
-banner: null
-breadcrumb: null
 categories:
 - - 科技&产品
-comments: null
 cover: https://ph-files.imgix.net/990b7043-9cf5-4fee-8b58-452aab40565f.png?auto=format&fit=crop&frame=1&h=512&w=1024
 date: '2024-10-05T15:29:16.157077+08:00'
 description: null
-h1: null
-indexing: false
-katex: null
-leftbar: null
-mathjax: null
-mermaid: null
-poster:
-  caption: null
-  color: null
-  headline: null
-  topic: null
-references: null
-rightbar: null
-sticky: null
 tags:
 - Product Hunt
 - AI
@@ -30,9 +11,12 @@ tags:
 - 营销增长
 - 生产力
 title: PH今日热榜 | 2024-10-05
-topic: producthunt-daily
-type: null
 updated: '2024-10-05T15:29:17.277+08:00'
+visibility:
+  searchable: false
+collection:
+  profile: topic
+  id: producthunt-daily
 ---
 ## [1. JoggAI](https://www.producthunt.com/posts/joggai-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+decohack+%28ID%3A+131684%29)
 

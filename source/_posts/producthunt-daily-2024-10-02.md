@@ -1,28 +1,9 @@
 ---
-abbrlink: ''
-author: null
-banner: null
-breadcrumb: null
 categories:
 - - 科技&产品
-comments: null
 cover: https://ph-files.imgix.net/a0557552-6552-4dd5-ab85-2093943fc85b.png?auto=format&fit=crop&frame=1&h=512&w=1024
 date: '2024-10-02T15:59:05.305753+08:00'
 description: null
-h1: null
-indexing: false
-katex: null
-leftbar: null
-mathjax: null
-mermaid: null
-poster:
-  caption: null
-  color: null
-  headline: null
-  topic: null
-references: null
-rightbar: null
-sticky: null
 tags:
 - Product Hunt
 - AI
@@ -30,9 +11,12 @@ tags:
 - 生产力
 - 内容创作
 title: PH今日热榜 | 2024-10-02
-topic: producthunt-daily
-type: null
 updated: '2024-10-02T15:59:41.536+08:00'
+visibility:
+  searchable: false
+collection:
+  profile: topic
+  id: producthunt-daily
 ---
 ## [1. Video SDK 3.0](https://www.producthunt.com/posts/video-sdk-3-0?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+decohack+%28ID%3A+131684%29)
 

@@ -1,28 +1,9 @@
 ---
-abbrlink: ''
-author: null
-banner: null
-breadcrumb: null
 categories:
 - - 科技&产品
-comments: null
 cover: https://ph-files.imgix.net/cc3a39e6-b71c-48e4-a9cb-36a9afffd022.png?auto=format&fit=crop&frame=1&h=512&w=1024
 date: '2024-09-16T22:25:44.743540+08:00'
 description: null
-h1: null
-indexing: false
-katex: null
-leftbar: null
-mathjax: null
-mermaid: null
-poster:
-  caption: null
-  color: null
-  headline: null
-  topic: null
-references: null
-rightbar: null
-sticky: null
 tags:
 - Product Hunt
 - AI
@@ -30,9 +11,12 @@ tags:
 - 开发者工具
 - 财务投资
 title: PH今日热榜 | 2024-09-16
-topic: producthunt-daily
-type: null
 updated: '2024-09-16T22:25:45.523+08:00'
+visibility:
+  searchable: false
+collection:
+  profile: topic
+  id: producthunt-daily
 ---
 # PH今日热榜 | 2024-09-16
 

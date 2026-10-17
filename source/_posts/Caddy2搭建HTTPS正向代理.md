@@ -1,155 +1,120 @@
 ---
-abbrlink: ''
-author: null
-banner: null
-breadcrumb: null
 categories:
 - - 站主的瞎话
-comments: null
 cover: https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6bh0plu8ni.png
 date: '2024-09-07T13:46:59.734481+08:00'
-description: null
-h1: null
-indexing: null
-katex: null
-leftbar: null
-mathjax: null
-mermaid: null
-poster:
-  caption: null
-  color: null
-  headline: null
-  topic: null
-references: null
-rightbar: null
-sticky: null
+description: '利用 Caddy 2 与 forwardproxy 扩展模块构建高性能 HTTPS 正向代理：全自动申请维护 Let’s Encrypt TLS 证书，搭配伪装站点防主动探测，并附带 SwitchyOmega、小火箭及 QX 客户端配置教程。'
 tags:
 - Caddy
 - 代理
 - HTTPS
 - Linux
 - 教程
-title: 使用 Caddy 2 搭建 HTTPS 正向代理
-topic: null
-type: null
+title: 极简与安全：使用 Caddy 2 与 forwardproxy 插件快速搭建 HTTPS 正向代理
 updated: '2024-09-07T20:08:42.809+08:00'
 ---
-使用Caddy v2打入forwardproxy插件快速搭建HTTPS正向代理，毕竟Caddy自动请求SSL证书，能够省下许多不必要的折腾。
+HTTPS 正向代理（HTTP/2 over TLS）是一种兼具极高伪装性与低开销的代理方案。通过将代理流量伪装在标准的 TLS 握手与 HTTP/2 多路复用隧道中，外部探测只会看到合法的 Web 握手。
 
-### 添加域名DNS记录
+而 **Caddy 2** 拥有业内最省心的**全自动 SSL/TLS 证书生命周期管理**，配合官方社区维护的 `forwardproxy` 模块，能省去手动申请和维护证书的所有繁琐环节。
 
-添加域名DNS记录，如果没有v6IP的话，就填一个v4IP的A记录，如下：
+---
 
-| Name (prefix) | Type | TTL |         Target         |
-| :-----------: | :--: | :--: | :---------------------: |
-|              |  A  | 3600 |   这里填写vps上的v4IP   |
-|              | AAAA | 3600 | vps上的v6IP，没有可不填 |
+## 前置准备：解析域名 DNS 记录
 
-上面完成后，就开始服务端的配置了。
+在域名解析控制台添加一条 A 记录，将二级域名解析到你的 VPS 公网 IP（不要开启 CDN 代理，保持直连解析）：
 
-### 服务端编译Caddy2
+| 主机记录（子域名） | 记录类型 | TTL | 记录值 |
+| :--- | :--- | :--- | :--- |
+| `proxy` | A | 3600 | 你的 VPS IPv4 地址 |
+| `proxy` | AAAA（可选） | 3600 | 你的 VPS IPv6 地址 |
 
-为什么要编译caddy2，因为要打入非标准插件forwardproxy才能实现https正向代理，如下，先要配置go环境。
+---
 
-#### 配置Go
+## 服务端部署：编译带插件的 Caddy 2
 
-下载go并解压到`/usr/local`路径下：
+由于 `forwardproxy` 不是 Caddy 的官方内置模块，我们需要使用官方编译构建工具 **xcaddy** 打包编译。
 
-`wget https://go.dev/dl/go1.23.0.linux-amd64.tar.gz -O - | tar -xz -C /usr/local/`
+### 1. 配置 Go 语言编译环境
 
-设置go环境变量，也可以写入到profile中
+在 VPS 终端执行以下命令，下载并解压官方 Go 二进制包：
 
-`vi ~/.profile` 添加下面内容：
-
+```bash
+wget https://go.dev/dl/go1.23.0.linux-amd64.tar.gz -O - | tar -xz -C /usr/local/
 ```
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$HOME/.cargo/bin
+
+配置环境变量（可写入 `~/.profile` 或 `~/.bashrc`）：
+
+```bash
+cat << 'EOF' >> ~/.profile
 export GOROOT=/usr/local/go
 export GOBIN=$GOROOT/bin
-export PATH=$PATH:$GOBIN
+export PATH=$PATH:/usr/local/go/bin:$GOBIN
+EOF
 
+source ~/.profile
 ```
 
-保存后，`source ~/.profile`
+### 2. 使用 xcaddy 编译集成 forwardproxy
 
-#### 下载Xcaddy
+下载安装官方构建工具 `xcaddy`：
 
-项目地址：[https://github.com/caddyserver/xcaddy](https://github.com/caddyserver/xcaddy)
-
-`wget https://github.com/caddyserver/xcaddy/releases/download/v0.4.2/xcaddy_0.4.2_linux_amd64.tar.gz -O - | tar -xz -C /usr/bin/`
-
-运行xcaddy并打入forwardproxy@caddy2插件
-
-项目地址：[https://github.com/caddyserver/forwardproxy](https://github.com/caddyserver/forwardproxy)
-
-```
-xcaddy build master \
-    --with github.com/caddyserver/forwardproxy@caddy2
-
+```bash
+wget https://github.com/caddyserver/xcaddy/releases/download/v0.4.2/xcaddy_0.4.2_linux_amd64.tar.gz -O - | tar -xz -C /usr/bin/
 ```
 
-编译完成后caddy二进制文件会在root目录下，俺们可以移到`/usr/bin/`下运行：
+一键构建嵌入 `forwardproxy` 扩展模块的 Caddy 二进制文件：
 
-`mv caddy /usr/bin`
+```bash
+xcaddy build master --with github.com/caddyserver/forwardproxy@caddy2
 
-可以用下面命令查看forwardproxy插件有没有加入成功：
+# 将编译出的 caddy 可执行文件移动到系统路径
+mv caddy /usr/bin/caddy
 
-`caddy list-modules`
-
-### 配置caddyfile文件
-
-上面安装好caddy2后，现在就来配置caddyfile文件，caddy v2的配置文件改成json后，有点复杂，不过可以沿用caddy v1的caddyfile写法：
-
-新建一个caddy文件夹，存放caddyfile文件
-
-`mkdir -p /etc/caddy`
-
-`vi /etc/caddy/https.caddyfile`
-
-编写https.caddyfile文件，添加内容如下：
-
+# 验证模块是否加载成功（列表中应出现 http.handlers.forward_proxy）
+caddy list-modules | grep forward_proxy
 ```
-:443, proxy.xxxx.com
-route {
-	forward_proxy {
-		basic_auth user1 0NtCL2JPJBgddPMmlPcJ  #用户名和密码
-		hide_ip  #隐藏客户端IP
-		hide_via
-	}
-	file_server
+
+---
+
+## 编写 Caddyfile 配置文件
+
+创建 Caddy 配置主目录与 Caddyfile：
+
+```bash
+mkdir -p /etc/caddy
+```
+
+创建配置文件 `/etc/caddy/https.caddyfile`：
+
+```text
+:443, proxy.yourdomain.com {
+    route {
+        forward_proxy {
+            basic_auth your_username your_strong_password
+            hide_ip
+            hide_via
+        }
+        # 遇到未通过代理认证的常规请求，回退显示静态网页，完美防主动探测
+        file_server
+    }
 }
-
 ```
 
-上面需要修改的地方是自己的域名，添加用户名和密码就可以了。注意删除掉上面注释
+> **注意**：
+> 1. 将 `proxy.yourdomain.com` 替换为你的真实解析域名。
+> 2. 将 `your_username` 与 `your_strong_password` 替换为你的强密码。
+> 3. 确保护理服务器的 80 和 443 端口未被 Nginx 或 Apache 占用，因为 Caddy 首次启动时需要借助 80/443 端口完成 ACME 证书挑战。
 
-如果要把上面配置文件生成caddy v2标准的json文件可用下面命令生成：
+---
 
-`caddy adapt --config /etc/caddy/https.caddyfile`
+## 注册 Systemd 系统守护进程
 
-检查80端口有没有被其它服务占用，因为caddy需要用80/443端口申请证书，否则会启动失败。下面命令检查端口占用情况：
+为了让 Caddy 随系统开机自启并具备崩溃自动恢复能力，创建守护进程配置：
 
-`netstat -lntp`
-
-上面配置、检查完就可以启动caddy了，启动命令如下：
-
-`caddy run -c /etc/caddy/https.caddyfile`
-
-如果启动后，出现申请证书不成功的情况，一般是因为域名已经申请过证书导致的，建议DNS解析页面新建一个子域名，重新配置、启动申请证书。
-
-启动后会发现，caddy一直在前台运行，很不方便，这个时候俺们就需要注册systemctl服务，用systemctl来启动caddy。
-
-### 注册systemd服务
-
-新建`caddy.service`文件，命令：
-
-`vi /etc/systemd/system/caddy.service`
-
-添加如下内容
-
-```
+```bash
+cat << 'EOF' > /etc/systemd/system/caddy.service
 [Unit]
-Description=Caddy
+Description=Caddy HTTP/2 Reverse & Forward Proxy
 Documentation=https://caddyserver.com/docs/
 After=network.target network-online.target
 Requires=network-online.target
@@ -163,44 +128,56 @@ LimitNOFILE=1048576
 PrivateTmp=true
 ProtectSystem=full
 AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
-
+EOF
 ```
 
-重载systemctl服务 `systemctl daemon-reload`
+加载配置并启动服务：
 
-到这也就可以启动caddy了，启动命令
+```bash
+systemctl daemon-reload
+systemctl enable --now caddy
 
-`systemctl start caddy` #启动
+# 查看运行状态
+systemctl status caddy
+```
 
-`systemctl restart caddy` #重启
+看到绿色 `active (running)` 即表示服务端已部署就绪，证书已自动颁发完毕。
 
-`systemctl status caddy` #查看状态
+---
 
-`systemctl stop caddy` #停止
+## 客户端连接配置
 
-`systemctl enable caddy` #添加开机自启动
+### 1. 电脑端浏览器（Zero-Client 方案）
 
-服务端到此也就部署完成了，下面来折腾客户端。https正向代理，不必多讲，安全、快捷，电脑端不用另装客户端，移动端大多APP都支持http/https代理。
+使用 Chrome / Edge 配合 **SwitchyOmega**（或 ZeroOmega）插件，无需在本地运行任何代理客户端核心：
 
-### 客户端配置
-
-电脑端浏览器安装SwitchyOmega插件，新建一个代理情景模式，代理协议填写HTTPS，代理服务器填写你的域名，端口填写你使用的端口，没有另外设置的话就填443，最后点击右边小锁，填写你的用户名和密码，就可以使用了，如果需要分流的话，可以另建立一个自动切换模式。
+1. 新建情景模式，代理协议选择 **HTTPS**。
+2. **代理服务器**填入你的域名，**端口**填写 `443`。
+3. 点击右侧的“锁”图标，填入刚才设置的账户名和密码。
 
 [![](https://hostalk.net/posts/gost_https_proxy/gost1.png)](https://hostalk.net/posts/gost_https_proxy/gost1.png)
 
-在SwitchyOmega插件上设置代理自动分流模式，另新建一个自动切换模式，设置如下图：
+如需分流，可在自动切换模式中引入社区规则列表（如 gfwlist）：
 
 [![](https://hostalk.net/posts/gost_https_proxy/gost2.png)](https://hostalk.net/posts/gost_https_proxy/gost2.png)
 
-AutoProxy：[https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt](https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt)
+### 2. 移动端：Shadowrocket（小火箭）
 
-移动端，以小火箭和Quantumult X为例，小火箭，选择https代理，服务器填写你的域名，其它看图：
+添加节点类型选择 **HTTPS**：
+- **服务器**：`proxy.yourdomain.com`
+- **端口**：`443`
+- **标志 / 认证**：填写设置的用户名和密码
 
 [![](https://hostalk.net/posts/gost_https_proxy/gost3.jpg)](https://hostalk.net/posts/gost_https_proxy/gost3.jpg)
 
-Quantumult X 配置文件/编辑/server\_local字头下填写：
+### 3. 移动端：Quantumult X
 
-`http=你的域名:443, username=用户名, password=密码, over-tls=true, tls-verification=true, tls-host=你的域名, fast-open=false, udp-relay=false, tls13=false, tag=caddy2`
+在 Quantumult X 配置文件中的 `[server_local]` 区段追加一条配置：
+
+```ini
+http=proxy.yourdomain.com:443, username=你的账号, password=你的密码, over-tls=true, tls-verification=true, tls-host=proxy.yourdomain.com, fast-open=false, udp-relay=false, tls13=true, tag=Caddy2-HTTPS
+```

@@ -1,38 +1,19 @@
 ---
-abbrlink: ''
-author: OpenAI
-banner: null
-breadcrumb: null
 categories:
 - - 科技&产品
-comments: null
 cover: null
 date: '2026-08-28T03:47:47.000+08:00'
 description: 'OpenAI 首次完整复盘：内部模型在网络安全评估中绕过沙箱、串联零日漏洞攻陷自身基础设施与 Hugging Face，以及此后的安全与对齐整改。'
-h1: null
-indexing: null
-katex: null
-leftbar: null
-mathjax: null
-mermaid: null
-poster:
-  caption: null
-  color: null
-  headline: null
-  topic: null
-references: null
-rightbar: null
-sticky: null
 tags:
 - OpenAI
 - Hugging Face
 - AI安全
 - 网络安全
 - AI对齐
-title: Hugging Face 事件与前路
-topic: null
-type: null
+title: OpenAI 官方深度复盘：内部模型突破沙箱攻陷 Hugging Face 的全过程与安全反思
 updated: '2026-08-28T03:47:47.000+08:00'
+article:
+  author: OpenAI
 ---
 
 > **译者说明：** 本文是 OpenAI 文章《The Hugging Face incident and the road ahead》的非官方中文翻译，仅为方便中文读者阅读。内容与观点均归原作者所有；如译文与原文存在差异，请以 [OpenAI 英文原文](https://openai.com/index/hugging-face-incident-and-the-road-ahead/) 为准。

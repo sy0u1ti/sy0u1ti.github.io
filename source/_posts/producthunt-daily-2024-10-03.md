@@ -1,28 +1,9 @@
 ---
-abbrlink: ''
-author: null
-banner: null
-breadcrumb: null
 categories:
 - - 科技&产品
-comments: null
 cover: https://ph-files.imgix.net/beaa1537-7e49-477a-b1da-86644c6b8b2f.png?auto=format&fit=crop&frame=1&h=512&w=1024
 date: '2024-10-03T18:15:25.302645+08:00'
-description: null
-h1: null
-indexing: false
-katex: null
-leftbar: null
-mathjax: null
-mermaid: null
-poster:
-  caption: null
-  color: null
-  headline: null
-  topic: null
-references: null
-rightbar: null
-sticky: null
+description: 2024-10-03 的 Product Hunt 日榜，收录当天热门的 AI 工作自动化、开发者工具与效率产品。
 tags:
 - Product Hunt
 - AI
@@ -30,9 +11,12 @@ tags:
 - 营销增长
 - 招聘求职
 title: PH今日热榜 | 2024-10-03
-topic: producthunt-daily
-type: null
 updated: '2024-10-03T18:15:26.373+08:00'
+visibility:
+  searchable: false
+collection:
+  profile: topic
+  id: producthunt-daily
 ---
 ## [1. Semblian 2.0](https://www.producthunt.com/posts/semblian-2-0?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+decohack+%28ID%3A+131684%29)
 

@@ -12,3 +12,5 @@ yarn.lock
 
 .playwright-cli/
 .playwright-mcp/
+source/_data/caches/
+_config.stellar.yml.bak

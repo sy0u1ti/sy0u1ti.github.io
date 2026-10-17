@@ -1,64 +1,78 @@
 ---
-abbrlink: ''
-author: null
-banner: null
-breadcrumb: null
 categories:
 - - 站主的瞎话
-comments: null
 cover: null
 date: '2024-11-16T19:11:56.592158+08:00'
-description: null
-h1: null
-indexing: null
-katex: null
-leftbar: null
-mathjax: null
-mermaid: null
-poster:
-  caption: null
-  color: null
-  headline: null
-  topic: null
-references: null
-rightbar: null
-sticky: null
+description: '针对 Mac 昂贵的内置固态硬盘容量，介绍如何通过软链接（Symbolic Link）或 OLLAMA_MODELS 环境变量，将动辄数十 GB 的开源大模型无缝重定向存储到外置移动固态硬盘（SSD）中运行。'
 tags:
 - AI
 - Ollama
 - macOS
 - 本地部署
 - 存储管理
-title: 在 macOS 上使用 Ollama 将模型下载保存到外置硬盘
-topic: null
-type: null
+title: 解救 Mac 存储：如何把 Ollama 本地模型无缝迁移并运行在外置移动硬盘
 updated: '2024-11-24T16:30:33.335+08:00'
 ---
-*前言：Ollama 默认将模型下载到其内部数据目录`~/.ollama/models`，但mac的存储空间又十分金贵，网上找了很久也没找到在mac上改ollama默认模型下载目录的办法，摸索了一个方法在 macOS 上使用 Ollama 将模型下载到外置硬盘*
+众所周知，Mac 的内置存储空间堪比“黄金”。随着 Llama 3、Qwen 2.5、DeepSeek 等大参数量开源模型的普及，随便拉取几个 14B 或 32B 的 GGUF 权重，几十上百 GB 的磁盘空间瞬间就会被吃光。
 
-![image](https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.491atwtfvd.webp)
+Ollama 默认会将所有下载的模型存放在用户主目录下的隐藏文件夹中：`~/.ollama/models`。为了彻底释放内置硬盘压力，我们可以借助 **符号链接（软链接，Symbolic Link）**，将数据仓库无损重定向到雷电/USB 4 移动固态硬盘上。
 
-### 使用符号链接 (Symbolic Link)
+![Ollama 模型存放示意](https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.491atwtfvd.webp)
 
-* **步骤 1：将 Ollama 默认模型目录移动到外置硬盘**
+---
 
-  1. 找到 Ollama 的默认模型目录。通常位于 `~/.ollama/models`。
-  2. 将 `models` 目录复制或移动到你的外置硬盘上。例如，假设你的外置硬盘挂载在 `/Volumes/ExternalDrive`，你可以将 `models` 目录移动到 `/Volumes/ExternalDrive/ollama_models`。
-* **步骤 2：创建符号链接**
+## 操作步骤：使用符号链接无缝重定向
 
-  1. 打开终端。
-  2. 使用 `ln -s` 命令创建符号链接。命令格式如下：
+### 步骤 1：完全退出 Ollama 进程
 
-     ```bash
-     ln -s <目标路径> <链接路径>
-     ```
-  3. 在你的例子中，命令应该是：
+在迁移现有文件前，请确保 Ollama 没有在后台加载模型：
+- 在顶部菜单栏找到 Ollama 图标，点击 **Quit Ollama**。
+- 或者在终端中执行：`pkill -f ollama`。
 
-     ```bash
-     ln -s /Volumes/ExternalDrive/ollama_models ~/.ollama/models
-     ```
+### 步骤 2：迁移现有模型到外置硬盘
 
-  这会在 `~/.ollama` 目录下创建一个名为 `models` 的符号链接，指向外置硬盘上的 `ollama_models` 目录。
-* **步骤 3：验证**
+假设你的外置移动硬盘挂载名称为 `ExternalSSD`（可在访达或终端 `/Volumes` 下查看）：
 
-  现在，当你使用 Ollama 下载模型时，它会认为模型被下载到了 `~/.ollama/models`，但实际上文件会被保存到外置硬盘上的 `/Volumes/ExternalDrive/ollama_models`。
+```bash
+# 1. 在外置硬盘上新建存放目录
+mkdir -p /Volumes/ExternalSSD/ollama_models
+
+# 2. 将原目录中的模型权重迁移过去（如果原本已有下载模型）
+if [ -d ~/.ollama/models ]; then
+    cp -R ~/.ollama/models/* /Volumes/ExternalSSD/ollama_models/
+    # 确认迁移完成后备份并重命名原目录
+    mv ~/.ollama/models ~/.ollama/models.bak
+fi
+```
+
+### 步骤 3：创建全局符号链接
+
+执行软链接创建指令：
+
+```bash
+ln -s /Volumes/ExternalSSD/ollama_models ~/.ollama/models
+```
+
+检查链接是否创建成功：
+
+```bash
+ls -la ~/.ollama/models
+# 如果显示 ~/.ollama/models -> /Volumes/ExternalSSD/ollama_models 即表示成功
+```
+
+### 步骤 4：验证与清理
+
+重新启动 Ollama 客户端：
+1. 终端运行 `ollama list`，确认之前拉取的模型列表依然完好显示。
+2. 运行 `ollama run qwen2.5:7b` 测试对话与推理吞吐，确认外置硬盘读写正常。
+3. 确认一切无误后，即可安全删除之前的本地备份释放宝贵的 Mac 内置空间：
+   ```bash
+   rm -rf ~/.ollama/models.bak
+   ```
+
+---
+
+## 常见注意事项
+
+- **未挂载外置盘时的行为**：如果拔掉外置硬盘后启动了 Ollama，终端会提示找不到目录或创建空白目录，重新插上硬盘即可恢复。
+- **传输速率建议**：大模型权重对顺序读取性能要求较高，建议使用支持 NVMe 协议的移动硬盘盒或雷电硬盘（读取速度 > 1000 MB/s），以避免首次加载模型出现卡顿。
