@@ -306,7 +306,7 @@ features:
   # v1 plugins.fancybox
   lightbox:
     enabled: true
-    selector: '.md-text img:not(.inline):not([class*="avatar"]), .post-cover img, .cover img'
+    selector: '.md-text img:not(.inline):not([class*="avatar"]):not(.cover img), .post-cover img'
   # v1 plugins.scrollreveal
   reveal:
     enabled: true
