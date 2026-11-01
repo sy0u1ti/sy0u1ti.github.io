@@ -713,3 +713,20 @@ a.bangumi-tab {
     color: var(--text-p2);
   }
 }
+
+/* X article covers contain title text near both edges; avoid cropping it on phones. */
+@media (max-width: 768px) {
+  .article.banner:has(
+      .bg[data-src*="/images/agent-high-frequency-questions/"]
+    ) {
+    --bg-url: none;
+    background-image: none;
+  }
+
+  .article.banner:has(
+      .bg[data-src*="/images/agent-high-frequency-questions/"]
+    )
+    .bg {
+    display: none;
+  }
+}
