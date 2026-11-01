@@ -358,6 +358,6 @@ open_graph:
 
 inject:
   # v1 inject.head
-  head_end: '<link rel="stylesheet" href="/css/stellar-overrides.css?v=20260912-client-catalog">'
+  head_end: '<link rel="stylesheet" href="/css/stellar-overrides.css?v=20261102-agent-covers">'
   # v1 inject.script
   body_end: '<script defer src="/js/plugins/reading-progress.js?v=20260823j"></script>'
