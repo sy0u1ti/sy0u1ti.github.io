@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.syouiti.com/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C010%20%E6%8F%90%E7%A4%BA%E3%80%81%E7%A1%AE%E8%AE%A4%E4%B8%8E%E8%A1%A8%E5%8D%95%EF%BC%9A%E6%B5%AE%E5%B1%82%E6%80%8E%E4%B9%88%E9%80%89/</loc>
+    
+    <lastmod>2026-11-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.syouiti.com/curator-bookmarks-Chrome%E6%9C%AC%E5%9C%B0%E4%B9%A6%E7%AD%BE%E7%AE%A1%E7%90%86%E6%89%A9%E5%B1%95/</loc>
     
     <lastmod>2026-11-02</lastmod>
@@ -14,6 +23,15 @@
     <loc>https://blog.syouiti.com/202%E4%B8%AD%E5%9B%BD%E5%9B%BD%E5%86%85%E8%87%B3%E5%9B%BD%E9%99%85%E9%AA%A8%E5%B9%B2%E7%BA%BF%E8%B7%AF%E6%95%B4%E7%90%86/</loc>
     
     <lastmod>2026-11-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.syouiti.com/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C009%20Wiki%20%E5%B8%83%E5%B1%80%EF%BC%9A%E6%A1%8C%E9%9D%A2%E4%B8%8E%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%85%BC%E9%A1%BE/</loc>
+    
+    <lastmod>2026-11-01</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -981,6 +999,34 @@
   </url>
   
   <url>
+    <loc>https://blog.syouiti.com/tags/%E7%BD%91%E7%BB%9C/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.syouiti.com/tags/ISP/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.syouiti.com/tags/BGP/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.syouiti.com/tags/%E7%BA%BF%E8%B7%AF%E7%A7%91%E6%99%AE/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.syouiti.com/tags/Clash/</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -1135,6 +1181,13 @@
   </url>
   
   <url>
+    <loc>https://blog.syouiti.com/tags/3D/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.syouiti.com/tags/%E6%8B%96%E6%8B%BD%E6%8E%92%E5%BA%8F/</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -1142,21 +1195,14 @@
   </url>
   
   <url>
-    <loc>https://blog.syouiti.com/tags/%E6%8E%92%E7%89%88/</loc>
+    <loc>https://blog.syouiti.com/tags/%E5%BC%B9%E5%B1%82/</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.syouiti.com/tags/%E5%9B%BD%E9%99%85%E5%8C%96/</loc>
-    <lastmod>2026-11-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.syouiti.com/tags/3D/</loc>
+    <loc>https://blog.syouiti.com/tags/%E6%97%A0%E9%9A%9C%E7%A2%8D/</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1171,6 +1217,20 @@
   
   <url>
     <loc>https://blog.syouiti.com/tags/%E9%9D%A2%E8%AF%95/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.syouiti.com/tags/%E6%96%87%E6%A1%A3%E8%AE%BE%E8%AE%A1/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.syouiti.com/tags/%E5%93%8D%E5%BA%94%E5%BC%8F/</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1240,6 +1300,20 @@
   </url>
   
   <url>
+    <loc>https://blog.syouiti.com/tags/%E5%BC%80%E6%BA%90/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.syouiti.com/tags/%E8%A1%8C%E4%B8%9A%E8%A7%82%E5%AF%9F/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.syouiti.com/tags/macOS/</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -1289,7 +1363,7 @@
   </url>
   
   <url>
-    <loc>https://blog.syouiti.com/tags/%E8%AE%BE%E8%AE%A1%E5%88%9B%E6%84%8F/</loc>
+    <loc>https://blog.syouiti.com/tags/%E5%86%85%E5%AE%B9%E5%88%9B%E4%BD%9C/</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1303,14 +1377,14 @@
   </url>
   
   <url>
-    <loc>https://blog.syouiti.com/tags/%E8%90%A5%E9%94%80%E5%A2%9E%E9%95%BF/</loc>
+    <loc>https://blog.syouiti.com/tags/%E8%AE%BE%E8%AE%A1%E5%88%9B%E6%84%8F/</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.syouiti.com/tags/%E5%86%85%E5%AE%B9%E5%88%9B%E4%BD%9C/</loc>
+    <loc>https://blog.syouiti.com/tags/%E8%90%A5%E9%94%80%E5%A2%9E%E9%95%BF/</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1325,34 +1399,6 @@
   
   <url>
     <loc>https://blog.syouiti.com/tags/%E6%8B%9B%E8%81%98%E6%B1%82%E8%81%8C/</loc>
-    <lastmod>2026-11-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.syouiti.com/tags/%E5%BC%80%E6%BA%90/</loc>
-    <lastmod>2026-11-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.syouiti.com/tags/%E8%A1%8C%E4%B8%9A%E8%A7%82%E5%AF%9F/</loc>
-    <lastmod>2026-11-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.syouiti.com/tags/GPT-5/</loc>
-    <lastmod>2026-11-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.syouiti.com/tags/Sam-Altman/</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1374,6 +1420,20 @@
   
   <url>
     <loc>https://blog.syouiti.com/tags/%E4%B9%A6%E7%AD%BE%E7%AE%A1%E7%90%86/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.syouiti.com/tags/GPT-5/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.syouiti.com/tags/Sam-Altman/</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1436,7 +1496,7 @@
   </url>
   
   <url>
-    <loc>https://blog.syouiti.com/tags/SaaS/</loc>
+    <loc>https://blog.syouiti.com/tags/%E5%81%A5%E5%BA%B7%E7%94%9F%E6%B4%BB/</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1450,7 +1510,7 @@
   </url>
   
   <url>
-    <loc>https://blog.syouiti.com/tags/%E5%81%A5%E5%BA%B7%E7%94%9F%E6%B4%BB/</loc>
+    <loc>https://blog.syouiti.com/tags/SaaS/</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1513,21 +1573,21 @@
   </url>
   
   <url>
-    <loc>https://blog.syouiti.com/tags/Cloudflare/</loc>
+    <loc>https://blog.syouiti.com/tags/Ollama/</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.syouiti.com/tags/%E7%BD%91%E7%BB%9C/</loc>
+    <loc>https://blog.syouiti.com/tags/%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2/</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.syouiti.com/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</loc>
+    <loc>https://blog.syouiti.com/tags/%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1555,21 +1615,14 @@
   </url>
   
   <url>
-    <loc>https://blog.syouiti.com/tags/Ollama/</loc>
+    <loc>https://blog.syouiti.com/tags/Cloudflare/</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.syouiti.com/tags/%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2/</loc>
-    <lastmod>2026-11-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.syouiti.com/tags/%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/</loc>
+    <loc>https://blog.syouiti.com/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1577,13 +1630,6 @@
   
   <url>
     <loc>https://blog.syouiti.com/tags/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90/</loc>
-    <lastmod>2026-11-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.syouiti.com/tags/Warp/</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1618,21 +1664,21 @@
   </url>
   
   <url>
-    <loc>https://blog.syouiti.com/tags/ISP/</loc>
+    <loc>https://blog.syouiti.com/tags/Warp/</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.syouiti.com/tags/BGP/</loc>
+    <loc>https://blog.syouiti.com/tags/%E6%8E%92%E7%89%88/</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.syouiti.com/tags/%E7%BA%BF%E8%B7%AF%E7%A7%91%E6%99%AE/</loc>
+    <loc>https://blog.syouiti.com/tags/%E5%9B%BD%E9%99%85%E5%8C%96/</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
