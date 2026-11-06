@@ -1,0 +1,997 @@
+
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head><!-- hexo injector head_begin start -->
+<link rel="stylesheet" href="/css/bilicard.css">
+<!-- hexo injector head_begin end -->
+  
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/2.0.0" theme-name="Stellar" theme-version="2.0.0">
+  <link rel="canonical" href="https://blog.syouiti.com/999 个小技巧，让你 Vibe 的产品更有质感｜013 消息气泡：让材质决定动效/" data-stellar-page-meta="">
+  
+  <meta name="generator" content="Hexo 8.1.2">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  <title data-stellar-page-meta>013 消息气泡：让材质决定动效 - 白上賞一</title>
+  <script data-stellar-script="core">
+    (function () {
+      var key = 'stellar:v2:leftbar-state';
+      var fallback = "expanded";
+      try {
+        var value = localStorage.getItem(key);
+        document.documentElement.dataset.leftbarState = value === 'collapsed' || value === 'expanded' ? value : fallback;
+      } catch (error) {
+        document.documentElement.dataset.leftbarState = fallback;
+      }
+    })();
+  </script>
+
+  <meta name="description" content="以六种材质重做消息气泡，让发送、长回复与中途删除共用同一套物理性格，并附可直接复用的完整 Prompt。" data-stellar-page-meta="">
+<meta property="og:type" content="article" data-stellar-page-meta="">
+<meta property="og:title" content="013 消息气泡：让材质决定动效" data-stellar-page-meta="">
+<meta property="og:url" content="https://blog.syouiti.com/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C013%20%E6%B6%88%E6%81%AF%E6%B0%94%E6%B3%A1%EF%BC%9A%E8%AE%A9%E6%9D%90%E8%B4%A8%E5%86%B3%E5%AE%9A%E5%8A%A8%E6%95%88/" data-stellar-page-meta="">
+<meta property="og:site_name" content="白上賞一" data-stellar-page-meta="">
+<meta property="og:description" content="以六种材质重做消息气泡，让发送、长回复与中途删除共用同一套物理性格，并附可直接复用的完整 Prompt。" data-stellar-page-meta="">
+<meta property="og:locale" content="zh_CN" data-stellar-page-meta="">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png" data-stellar-page-meta="">
+<meta property="article:author" content="白上賞一「しらかみしょういち」" data-stellar-page-meta="">
+<meta property="article:published_time" content="2026-11-06T05:40:00.000Z" data-stellar-page-meta="">
+<meta property="article:modified_time" content="2026-11-06T05:40:00.000Z" data-stellar-page-meta="">
+<meta property="article:tag" content="Canvas" data-stellar-page-meta="">
+<meta property="article:tag" content="UI" data-stellar-page-meta="">
+<meta property="article:tag" content="交互设计" data-stellar-page-meta="">
+<meta property="article:tag" content="动效" data-stellar-page-meta="">
+<meta property="article:tag" content="视觉设计" data-stellar-page-meta="">
+<meta name="twitter:card" content="summary" data-stellar-page-meta="">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png" data-stellar-page-meta="">
+<meta name="twitter:creator" content="@Syou1Ti" data-stellar-page-meta=""><meta name="twitter:title" content="013 消息气泡：让材质决定动效" data-stellar-page-meta="">
+  
+  
+  <meta name="keywords" content="视觉设计,动效,交互设计,Canvas,UI" data-stellar-page-meta="">
+
+  <!-- feed -->
+  
+    
+
+    
+      
+        <link rel="alternate" href="/atom.xml" title="白上賞一" type="application/atom+xml">
+      
+    
+  
+
+  <link rel="preload" href="/css/main.css?v=2.0.0" as="style">
+  <link rel="stylesheet" href="/css/main.css?v=2.0.0">
+  <style>:root{--text-loading:"正在加载";--text-loading-error:"加载失败，请稍后重试。"}</style>
+
+
+  
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png">
+  
+
+  
+
+  <script type="application/ld+json" data-stellar-page-meta="">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"白上賞一「しらかみしょういち」","sameAs":[],"image":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png"},"dateCreated":"2026-11-06T05:40:00+00:00","dateModified":"2026-11-06T05:40:00+00:00","datePublished":"2026-11-06T05:40:00+00:00","description":"聊天界面是最适合检验材质与动效关系的地方。\n同一个气泡需要不断出现、变高、把后面的消息推开，还可能从中间消失。只要材质只是换颜色，动画只是套缩放，六种风格最终会像同一套组件换了皮。\n真正有性格的聊天界面，会让气泡的质感决定它如何进入、如何等待、如何离开。\n先固定气泡的共同几何材质可以不同，气泡的阅读结构必须一致。\n这套探索稿使用 28px 字号、38px 行高、17px 26px 内边距、2...","headline":"013 消息气泡：让材质决定动效","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.syouiti.com/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C013%20%E6%B6%88%E6%81%AF%E6%B0%94%E6%B3%A1%EF%BC%9A%E8%AE%A9%E6%9D%90%E8%B4%A8%E5%86%B3%E5%AE%9A%E5%8A%A8%E6%95%88/"},"publisher":{"@type":"Organization","name":"白上賞一「しらかみしょういち」","sameAs":[],"image":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png"}},"url":"https://blog.syouiti.com/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C013%20%E6%B6%88%E6%81%AF%E6%B0%94%E6%B3%A1%EF%BC%9A%E8%AE%A9%E6%9D%90%E8%B4%A8%E5%86%B3%E5%AE%9A%E5%8A%A8%E6%95%88/","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"],"keywords":"视觉设计, 动效, 交互设计, Canvas, UI","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"}</script>
+  <link rel="stylesheet" href="/css/stellar-overrides.css?v=20261102-agent-covers">
+
+  <link rel="stylesheet" href="/css/stellar-icons.css?v=ca746a9b39366bc3">
+  <link rel="preload" as="script" href="/js/stellar-icons.js?v=2a11bebd1b4bc4d3">
+  
+  
+</head>
+<body data-page-type="content" data-page-layout="post" data-article-style="tech"><div data-stellar-runtime-region id="site-cover" class="site-cover"></div><div class="site-shell" id="start" data-regions="leftbar rightbar"><div class="site-workspace">
+<aside data-stellar-runtime-region id="leftbar-region" class="site-region site-region--leftbar" data-region="leftbar" aria-label="Leftbar"><div class="site-region__surface ui-surface"><div class="site-region__decoration" aria-hidden="true"></div><div class="site-region__viewport"><header class="site-region__header site-region__zone site-region__zone--top">
+    <div class="widget-instance widget-instance--brand" data-widget-id="leftbar:fixed:brand" data-presentation="leftbar" data-leftbar-rail>
+<header class="brand-header brand-header--regular brand-header--site"><div class="brand-wrap"><a class="brand-image brand-image--avatar" href="&#x2F;"><img no-lazy src="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;sy0u1ti&#x2F;picx-images-hosting@master&#x2F;image.6t736trr6e.png" alt="" onerror="this.onerror&#x3D;null;this.src&#x3D;&quot;&#x2F;images&#x2F;stellar-error.491ee870f4940739.svg&quot;"></a><a class="brand-title" href="&#x2F;"><div class="brand-name">白上賞一</div><div class="brand-tagline cap">运气永在身🎲 | 就爱瞎折腾💯</div></a><div class="brand-stats data-service ds-ghinfo" data-api="https:&#x2F;&#x2F;api.github.com&#x2F;users&#x2F;sy0u1ti"><a class="brand-stat ui-interactive card-hover card-hover--spotlight" target="_blank" rel="noopener" href="https:&#x2F;&#x2F;github.com&#x2F;sy0u1ti?tab&#x3D;followers"><span class="brand-stat__value" type="text" id="followers"></span><span class="brand-stat__label">followers</span></a><a class="brand-stat ui-interactive card-hover card-hover--spotlight" target="_blank" rel="noopener" href="https:&#x2F;&#x2F;github.com&#x2F;sy0u1ti?tab&#x3D;following"><span class="brand-stat__value" type="text" id="following"></span><span class="brand-stat__label">following</span></a><a class="brand-stat ui-interactive card-hover card-hover--spotlight" target="_blank" rel="noopener" href="https:&#x2F;&#x2F;github.com&#x2F;sy0u1ti?tab&#x3D;repositories"><span class="brand-stat__value" type="text" id="public_repos"></span><span class="brand-stat__label">repos</span></a></div></div><div class="brand-search">
+
+<div class="ui-collection" data-layout="list" data-variant="nav" data-density="auto">
+  
+    
+<button class="ui-collection__item ui-interactive card-hover card-hover--spotlight search-trigger has-hover-surface" type="button" title="搜索" aria-label="搜索" data-shell-action="open-search" data-search-instance="leftbar-brand-search" data-search-domain="topic:vibe-product-quality" data-search-domain-label="999 个小技巧，让你 Vibe 的产品更有质感" data-search-domain-blog="true">
+  
+  <span class="ui-icon"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">搜索</span>
+      
+      
+    </span>
+  
+  <kbd class="search-shortcut" aria-hidden="true">⌘K</kbd>
+
+  
+</button>
+
+  
+</div>
+
+
+</div></header>
+</div>
+  </header>
+  <div class="site-region__body site-region__zone site-region__zone--body">
+    <div class="widget-instance widget-instance--menu" data-widget-id="leftbar:fixed:menu" data-presentation="leftbar" data-leftbar-rail>
+
+
+<nav class="menu dis-select">
+<div class="ui-collection" data-layout="grid" data-variant="nav" data-density="auto" style="--ui-columns:2">
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-active is-themed" href="&#x2F;" title="首页" aria-current="page" style="--item-theme:#3B82F6;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M9.163 2.819c1.671-1.09 3.864-1.09 5.536 0l5.882 3.839A3.25 3.25 0 0 1 22 9.38v8.87A3.75 3.75 0 0 1 18.25 22h-1.5A2.75 2.75 0 0 1 14 19.25v-3.5a1.75 1.75 0 0 0-1.75-1.75h-1.5A1.75 1.75 0 0 0 9 15.75v3.5A2.75 2.75 0 0 1 6.25 22h-1.5A3.75 3.75 0 0 1 1 18.25V9.38a3.25 3.25 0 0 1 1.419-2.722z" opacity=".5"/><path fill="currentColor" d="M10.25 15.75c0-.414.336-.75.75-.75h2c.414 0 .75.336.75.75v3.5c0 .69.56 1.25 1.25 1.25h1.5c1.243 0 2.25-1.007 2.25-2.25V9.38a1.75 1.75 0 0 0-.764-1.466l-5.882-3.838a2.535 2.535 0 0 0-2.784 0L3.438 7.914A1.75 1.75 0 0 0 2.674 9.38v8.87c0 1.243 1.007 2.25 2.25 2.25h1.5c.69 0 1.25-.56 1.25-1.25z"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">首页</span>
+      
+      
+    </span>
+  
+  
+  <span class="ui-collection__indicator"></span>
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="&#x2F;archives&#x2F;" title="归档" style="--item-theme:#10B981;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M3 9h18v10a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3z" opacity=".5"/><path fill="currentColor" d="M2 5a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm7 8a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2z"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">归档</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="&#x2F;categories&#x2F;" title="分类" style="--item-theme:#F59E0B;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 9.5V18a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4V9.5z" opacity=".5"/><path fill="currentColor" d="M2 7.5A3.5 3.5 0 0 1 5.5 4h3.086a2 2 0 0 1 1.414.586L11.414 6H18.5A3.5 3.5 0 0 1 22 9.5v.5H2z"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">分类</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="&#x2F;tags&#x2F;" title="标签" style="--item-theme:#EC4899;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"/><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">标签</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="&#x2F;bangumis&#x2F;" title="番剧" style="--item-theme:#8B5CF6;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 10.5V18a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4v-7.5z" opacity=".5"/><path fill="currentColor" d="M18 2a4 4 0 0 1 4 4v3H2V6a4 4 0 0 1 4-4zm-9.354 2l-2 3h2.384l2-3zm4.5 0l-2 3h2.384l2-3z"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">番剧</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="&#x2F;topic&#x2F;" title="专栏" style="--item-theme:#06B6D4;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">专栏</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+</div>
+
+</nav>
+
+</div>
+    <div class="widgets widget-stack widget-stack--leftbar widget-stack--body"><div class="widget-instance widget-instance--related" data-widget-id="leftbar:0:related" data-presentation="leftbar" data-leftbar-rail>
+
+<widget class="widget-wrapper related-widget">
+  
+    <div class="widget-header dis-select">
+      <span class="name">专栏：999 个小技巧，让你 Vibe 的产品更有质感</span>
+      
+    </div>
+  
+  <div class="widget-body"><div class="ui-collection" data-layout="list" data-variant="nav" data-density="compact">
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-active" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C013%20%E6%B6%88%E6%81%AF%E6%B0%94%E6%B3%A1%EF%BC%9A%E8%AE%A9%E6%9D%90%E8%B4%A8%E5%86%B3%E5%AE%9A%E5%8A%A8%E6%95%88&#x2F;" title="013 消息气泡：让材质决定动效" aria-current="page">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">013 消息气泡：让材质决定动效</span>
+      
+      
+    </span>
+  
+  
+  <span class="ui-collection__indicator"></span>
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C012%20%E5%8A%A8%E7%94%BB%E8%8A%82%E5%A5%8F%EF%BC%9A%E4%B8%8D%E5%90%8C%E5%8A%A8%E4%BD%9C%EF%BC%8C%E4%B8%8D%E5%90%8C%E6%9B%B2%E7%BA%BF&#x2F;" title="012 动画节奏：不同动作，不同曲线">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">012 动画节奏：不同动作，不同曲线</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C011%20%E6%B6%B2%E6%80%81%E7%8E%BB%E7%92%83%EF%BC%9A%E5%88%AB%E5%8F%AA%E5%81%9A%E4%B8%80%E5%B1%82%E6%A8%A1%E7%B3%8A&#x2F;" title="011 液态玻璃：别只做一层模糊">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">011 液态玻璃：别只做一层模糊</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C010%20%E6%8F%90%E7%A4%BA%E3%80%81%E7%A1%AE%E8%AE%A4%E4%B8%8E%E8%A1%A8%E5%8D%95%EF%BC%9A%E6%B5%AE%E5%B1%82%E6%80%8E%E4%B9%88%E9%80%89&#x2F;" title="010 提示、确认与表单：浮层怎么选">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">010 提示、确认与表单：浮层怎么选</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C009%20Wiki%20%E5%B8%83%E5%B1%80%EF%BC%9A%E6%A1%8C%E9%9D%A2%E4%B8%8E%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%85%BC%E9%A1%BE&#x2F;" title="009 Wiki 布局：桌面与移动端兼顾">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">009 Wiki 布局：桌面与移动端兼顾</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C008%20%E8%AE%A9%E6%96%87%E5%AD%97%E6%8E%92%E7%89%88%E6%9B%B4%E9%A1%BA%E7%9C%BC&#x2F;" title="008 让文字排版更顺眼">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">008 让文字排版更顺眼</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C007%20%E5%83%8F%E4%B9%A6%E4%B8%80%E6%A0%B7%E7%BF%BB%E5%BC%80%E7%9A%84%E5%8D%A1%E7%89%87&#x2F;" title="007 像书一样翻开的卡片">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">007 像书一样翻开的卡片</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C006%20%E6%9B%B4%E7%81%B5%E5%8A%A8%E7%9A%84%E6%8B%96%E6%8B%BD%E6%8E%92%E5%BA%8F&#x2F;" title="006 更灵动的拖拽排序">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">006 更灵动的拖拽排序</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C005%20%E9%80%92%E8%BF%9B%E5%BC%8F%E5%9C%86%E8%A7%92%E4%B8%8E%E8%BF%9E%E7%BB%AD%E6%9B%B2%E7%8E%87&#x2F;" title="005 递进式圆角与连续曲率圆角">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">005 递进式圆角与连续曲率圆角</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C004%20%E5%89%83%E5%88%80%E6%B3%95%E5%88%99&#x2F;" title="004 剃刀法则：如果不需要，就移除">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">004 剃刀法则：如果不需要，就移除</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C003%20Dither%20%E4%B8%8E%20ASCII%20%E5%8F%82%E6%95%B0%E5%8C%96%E6%95%88%E6%9E%9C&#x2F;" title="003 Dither 与 ASCII 参数化效果">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">003 Dither 与 ASCII 参数化效果</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C002%20%E7%BA%A7%E8%81%94%E8%8F%9C%E5%8D%95%E7%9A%84%E7%A8%B3%E5%AE%9A%E5%8C%BA&#x2F;" title="002 级联菜单：让子菜单不“跑丢”">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">002 级联菜单：让子菜单不“跑丢”</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C001%20%E6%8B%9F%E7%89%A9%E6%8C%89%E9%92%AE%E7%9A%84%E7%82%B9%E5%87%BB%E9%87%8D%E9%87%8F&#x2F;" title="001 拟物按钮：让点击有重量">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">001 拟物按钮：让点击有重量</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+</div></div>
+  
+</widget>
+
+
+</div><div class="widget-instance widget-instance--recent" data-widget-id="leftbar:1:recent" data-presentation="leftbar">
+
+<widget class="widget-wrapper slide-up recent-widget">
+  
+    <div class="widget-header dis-select">
+      <span class="name">最近更新</span>
+      
+    </div>
+  
+  <div class="widget-body"><div class="ui-collection" data-layout="list" data-variant="nav" data-density="compact">
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;curator-bookmarks-Chrome%E6%9C%AC%E5%9C%B0%E4%B9%A6%E7%AD%BE%E7%AE%A1%E7%90%86%E6%89%A9%E5%B1%95&#x2F;" title="Curator（策书）：本地优先的 Chrome 书签管理与 AI 整理扩展">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">C</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">Curator（策书）：本地优先的 Chrome 书签管理与 AI 整理扩展</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;202%E4%B8%AD%E5%9B%BD%E5%9B%BD%E5%86%85%E8%87%B3%E5%9B%BD%E9%99%85%E9%AA%A8%E5%B9%B2%E7%BA%BF%E8%B7%AF%E6%95%B4%E7%90%86&#x2F;" title="中国各大运营商国际出海骨干网全解析 (163 &#x2F; CN2 &#x2F; 4837 &#x2F; 9929 &#x2F; CMI)">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">中</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">中国各大运营商国际出海骨干网全解析 (163 / CN2 / 4837 / 9929 / CMI)</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C013%20%E6%B6%88%E6%81%AF%E6%B0%94%E6%B3%A1%EF%BC%9A%E8%AE%A9%E6%9D%90%E8%B4%A8%E5%86%B3%E5%AE%9A%E5%8A%A8%E6%95%88&#x2F;" title="013 消息气泡：让材质决定动效">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">013 消息气泡：让材质决定动效</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C012%20%E5%8A%A8%E7%94%BB%E8%8A%82%E5%A5%8F%EF%BC%9A%E4%B8%8D%E5%90%8C%E5%8A%A8%E4%BD%9C%EF%BC%8C%E4%B8%8D%E5%90%8C%E6%9B%B2%E7%BA%BF&#x2F;" title="012 动画节奏：不同动作，不同曲线">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">012 动画节奏：不同动作，不同曲线</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C011%20%E6%B6%B2%E6%80%81%E7%8E%BB%E7%92%83%EF%BC%9A%E5%88%AB%E5%8F%AA%E5%81%9A%E4%B8%80%E5%B1%82%E6%A8%A1%E7%B3%8A&#x2F;" title="011 液态玻璃：别只做一层模糊">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">011 液态玻璃：别只做一层模糊</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C010%20%E6%8F%90%E7%A4%BA%E3%80%81%E7%A1%AE%E8%AE%A4%E4%B8%8E%E8%A1%A8%E5%8D%95%EF%BC%9A%E6%B5%AE%E5%B1%82%E6%80%8E%E4%B9%88%E9%80%89&#x2F;" title="010 提示、确认与表单：浮层怎么选">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">010 提示、确认与表单：浮层怎么选</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C009%20Wiki%20%E5%B8%83%E5%B1%80%EF%BC%9A%E6%A1%8C%E9%9D%A2%E4%B8%8E%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%85%BC%E9%A1%BE&#x2F;" title="009 Wiki 布局：桌面与移动端兼顾">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">009 Wiki 布局：桌面与移动端兼顾</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;Agent%20%E9%AB%98%E9%A2%91%E9%A2%98%2009.%20Harness%E3%80%81Agent%20Loop%E3%80%81Runtime%20%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%8C%E6%80%8E%E4%B9%88%E6%90%AD&#x2F;" title="Agent 高频题 09. Harness、Agent Loop、Runtime 是什么，怎么搭">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">A</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">Agent 高频题 09. Harness、Agent Loop、Runtime 是什么，怎么搭</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C008%20%E8%AE%A9%E6%96%87%E5%AD%97%E6%8E%92%E7%89%88%E6%9B%B4%E9%A1%BA%E7%9C%BC&#x2F;" title="008 让文字排版更顺眼">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">008 让文字排版更顺眼</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C007%20%E5%83%8F%E4%B9%A6%E4%B8%80%E6%A0%B7%E7%BF%BB%E5%BC%80%E7%9A%84%E5%8D%A1%E7%89%87&#x2F;" title="007 像书一样翻开的卡片">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">007 像书一样翻开的卡片</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+</div></div>
+  
+</widget>
+
+
+</div></div>
+  </div>
+  <footer class="site-region__footer">
+    <div class="site-region__footer-actions"><div class="widget-instance widget-instance--actions" data-widget-id="leftbar:fixed:actions" data-presentation="leftbar">
+<div class="region-actions social-wrap ui-collection" data-layout="inline" data-variant="nav" data-density="compact"><button type="button" class="social ui-collection__item ui-interactive card-hover card-hover--spotlight is-icon-only" title="切换明暗主题" aria-label="切换明暗主题" onclick="setColorScheme(document.documentElement.getAttribute(&#39;data-theme&#39;) &#x3D;&#x3D;&#x3D; &#39;dark&#39; ? &#39;light&#39; : &#39;dark&#39;)"><span class="ui-icon"><svg class="icon" viewBox="0 0 1 1" data-icon="default:theme" aria-hidden="true"></svg></span></button></div>
+</div></div>
+    <div class="site-region__system ui-collection" data-layout="inline" data-variant="nav" data-density="compact">
+      <div class="site-region__settings"><div class="widget-instance widget-instance--settings" data-widget-id="leftbar:fixed:settings" data-presentation="leftbar" data-leftbar-rail>
+<a class="settings-widget ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;settings&#x2F;" data-profile-provider="giscus" data-profile-identity-enabled="false" data-profile-fallback-avatar="https:&#x2F;&#x2F;gcore.jsdelivr.net&#x2F;gh&#x2F;cdn-x&#x2F;placeholder@1.0.12&#x2F;avatar&#x2F;round&#x2F;3442075.svg" data-settings-placement="leftbar" data-settings-label="设置" aria-label="设置" title="设置">
+  <span class="settings-widget__avatar" aria-hidden="true">
+    <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><g fill="currentColor"><path fill-rule="evenodd" d="M12.4277 2C11.3139 2 10.2995 2.6007 8.27081 3.80211L7.58466 4.20846C5.55594 5.40987 4.54158 6.01057 3.98466 7C3.42773 7.98943 3.42773 9.19084 3.42773 11.5937V12.4063C3.42773 14.8092 3.42773 16.0106 3.98466 17C4.54158 17.9894 5.55594 18.5901 7.58466 19.7915L8.27081 20.1979C10.2995 21.3993 11.3139 22 12.4277 22C13.5416 22 14.5559 21.3993 16.5847 20.1979L17.2708 19.7915C19.2995 18.5901 20.3139 17.9894 20.8708 17C21.4277 16.0106 21.4277 14.8092 21.4277 12.4063V11.5937C21.4277 9.19084 21.4277 7.98943 20.8708 7C20.3139 6.01057 19.2995 5.40987 17.2708 4.20846L16.5847 3.80211C14.5559 2.6007 13.5416 2 12.4277 2Z" clip-rule="evenodd" opacity=".5"/><path d="M12.4277 8.25C10.3567 8.25 8.67773 9.92893 8.67773 12C8.67773 14.0711 10.3567 15.75 12.4277 15.75C14.4988 15.75 16.1777 14.0711 16.1777 12C16.1777 9.92893 14.4988 8.25 12.4277 8.25Z"/></g></svg></span>
+  </span>
+  <span class="settings-widget__name ui-collection__title">设置</span>
+</a>
+</div></div>
+      <button type="button" class="leftbar-state-toggle ui-collection__item ui-interactive card-hover card-hover--spotlight is-icon-only" aria-label="Collapse leftbar" aria-expanded="true" data-shell-action="toggle-leftbar"><span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M3.172 4.172C2 5.343 2 7.229 2 11v2c0 3.771 0 5.657 1.172 6.828S6.229 21 10 21h5V3h-5C6.229 3 4.343 3 3.172 4.172" clip-rule="evenodd" opacity=".5"/><path fill="currentColor" d="M5.5 9.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zm1 4a.75.75 0 0 0 0 1.5h4a.75.75 0 0 0 0-1.5zM22 13v-2c0-3.771 0-5.657-1.172-6.828c-.974-.975-3.192-1.139-5.828-1.166v17.988c2.636-.027 4.854-.191 5.828-1.166C22 18.657 22 16.771 22 13"/></svg></span></button>
+    </div>
+  </footer></div></div></aside>
+<main data-stellar-runtime-region class="site-main" id="main">
+
+
+<div class="article-banner-wrap slide-up"><div class="article banner top">
+  <div class="content">
+    
+    <div class="top bread-nav footnote"><div class="top-row"><div class="left" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" id="menu" href="/topic/">专栏</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C013%20%E6%B6%88%E6%81%AF%E6%B0%94%E6%B3%A1%EF%BC%9A%E8%AE%A9%E6%9D%90%E8%B4%A8%E5%86%B3%E5%AE%9A%E5%8A%A8%E6%95%88/">999 个小技巧，让你 Vibe 的产品更有质感</a>
+</div></div><div class="meta-row">
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-11-06T05:40:00.000Z">2026-11-06</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-11-06T05:40:00.000Z">2026-11-06</time></span></div>
+</div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>013 消息气泡：让材质决定动效</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div></div>
+<article class="md-text content slide-up"><p>聊天界面是最适合检验材质与动效关系的地方。</p>
+<p>同一个气泡需要不断出现、变高、把后面的消息推开，还可能从中间消失。只要材质只是换颜色，动画只是套缩放，六种风格最终会像同一套组件换了皮。</p>
+<p>真正有性格的聊天界面，会让气泡的质感决定它如何进入、如何等待、如何离开。</p>
+<h2 id="先固定气泡的共同几何"><a href="#先固定气泡的共同几何" class="headerlink" title="先固定气泡的共同几何"></a>先固定气泡的共同几何</h2><p>材质可以不同，气泡的阅读结构必须一致。</p>
+<p>这套探索稿使用 28px 字号、38px 行高、<code>17px 26px</code> 内边距、2px 边框和 38px 圆角。单行时形成胶囊，多行时自然变成圆角矩形。自己的消息在右，AI 在左，距离页面边缘 48px，长文本在固定宽度内提前排好。</p>
+<p>这些数值是探索 Demo 的比例，不是所有产品都必须照搬的绝对尺寸。真正要保留的是关系：</p>
+<ul>
+<li>气泡的圆角来自一行文字的高度；</li>
+<li>多行文本必须在动画开始前完成排版；</li>
+<li>动画不能改变字号、宽度或换行位置；</li>
+<li>文本始终留在 DOM 中，Canvas 只能绘制外壳或效果。</li>
+</ul>
+<p>同一发送者连续发出的消息构成一组：组内间距 4px，组间 16px。气泡需要知道自己属于 <code>single</code>、<code>first</code>、<code>middle</code> 还是 <code>last</code>，因为加入或删除一条消息时，组边缘的圆角也会随之变化。</p>
+<p>Cirrus、Aqua 和拟物风格在组内相接的一侧收窄到约 10px。Solid 与 Gradient 保持圆形气泡，只在组末增加一个由两块伪元素组成的尾巴。插入、删除或改变组身份时，尾巴应在约 160ms 内淡入淡出。</p>
+<h2 id="六种材质，六种物理性格"><a href="#六种材质，六种物理性格" class="headerlink" title="六种材质，六种物理性格"></a>六种材质，六种物理性格</h2><h3 id="Cirrus：轻磨砂玻璃与云的空气感"><a href="#Cirrus：轻磨砂玻璃与云的空气感" class="headerlink" title="Cirrus：轻磨砂玻璃与云的空气感"></a>Cirrus：轻磨砂玻璃与云的空气感</h3><p>Cirrus 没有描边和投影，只有薄磨砂、细颗粒和一层蓝色天空。</p>
+<p>天空不是普通渐变，而是由云层密度、太阳方向和 6 层噪声组成的慢速画面。它先渲染成约页面两倍尺寸的图片，再让背景缓慢左右漂移。玻璃本身用 <code>backdrop-filter: blur(26px) saturate(130%)</code> 取景，颗粒与 tint 放在伪元素里。</p>
+<p>发送时，气泡从 40px 下方升起，在约 560ms 内从透明玻璃逐渐结霜；缩放和淡入更快完成。长回复等待时，6×6 点阵像一圈缓慢散开的热量；删除时，气泡先退去霜面，再淡出。</p>
+<p>它适合轻盈、干净、偏向“空气”而非“硬件”的产品。</p>
+<h3 id="Pixel：网格、抖动与像素物理"><a href="#Pixel：网格、抖动与像素物理" class="headerlink" title="Pixel：网格、抖动与像素物理"></a>Pixel：网格、抖动与像素物理</h3><p>Pixel 的外壳不是 DOM 边框，而是一张按 4px 网格绘制在 Canvas 上的图。</p>
+<p>每一帧都要重新计算气泡当前的位置、尺寸、缩放和圆角，判断哪些格子属于气泡、哪些格子构成外轮廓。离开的格子不会立刻消失，而会留下按指数衰减的 trace，再用 4×4 Bayer 阈值决定是否绘制，从而形成像素拖影。</p>
+<p>文字仍然留在 DOM 中，只把位置吸附到网格。背景是深色棋盘，气泡用纯色填充和像素字体的硬阴影建立层级。</p>
+<p>这种材质适合做成套视觉语言：等待态是摆动的小像素钟摆，发送时逐格放大，删除时打散成格子消失，菜单从顶部一格一格擦入。</p>
+<h3 id="Aqua：高光、果冻与体积回弹"><a href="#Aqua：高光、果冻与体积回弹" class="headerlink" title="Aqua：高光、果冻与体积回弹"></a>Aqua：高光、果冻与体积回弹</h3><p>Aqua 借鉴早期 Mac 的果冻质感：渐变表面、内侧底部辉光、顶部白色反光、深色描边和柔和投影。</p>
+<p>发送时，气泡从 0.5 倍弹性放大，同时宽度与高度短暂反向摆动，再在约 0.2 秒内收敛。它会让纵向最多增长到 1.04 倍，避免顶到上一条消息。</p>
+<p>等待态是水滴落在水面的环形波纹；删除时膨胀到 1.14 再破掉。所有动作都要保持“有体积、可变形、但不会失控”的边界。</p>
+<h3 id="Gradient：贯穿整段对话的颜色坐标"><a href="#Gradient：贯穿整段对话的颜色坐标" class="headerlink" title="Gradient：贯穿整段对话的颜色坐标"></a>Gradient：贯穿整段对话的颜色坐标</h3><p>Gradient 的关键不是给每个气泡各自加渐变，而是让整段对话共享一条纵向渐变。</p>
+<p>每个气泡用 <code>--top</code> 表示自己在对话中的当前位置，背景尺寸等于整段对话高度。消息移动时，同一气泡显示的是渐变中属于它当前高度的切片，所以颜色会随位置变化。自己的气泡、组末尾巴和发送按钮都从同一色系取色。</p>
+<p>发送时从 16px 模糊中聚焦；等待态是两颗薄荷到青色的小光点环绕；删除时气泡放大并溶解成 24px 模糊。它更像品牌色彩的流动，而不是一张固定贴图。</p>
+<h3 id="拟物：把气泡当成可按下的实体"><a href="#拟物：把气泡当成可按下的实体" class="headerlink" title="拟物：把气泡当成可按下的实体"></a>拟物：把气泡当成可按下的实体</h3><p>拟物风格沿用 001 中拟物按钮的同一套配方：顶部内高光、底部内暗线、细描边、短投影与较长的环境阴影。</p>
+<p>自己的气泡是深灰金属渐变，AI 气泡是白色纸面；文字也带有轻微的光照方向。它既可以复古，也可以显得厚实、可靠，关键在光照关系一致。</p>
+<p>发送时像按下一枚实体键，先从 1.1 倍压回并短暂低于 1；等待态是一颗在 4×4 网格里弹跳的球；删除时被压下、下落并淡出。</p>
+<h3 id="Solid：基础对照组"><a href="#Solid：基础对照组" class="headerlink" title="Solid：基础对照组"></a>Solid：基础对照组</h3><p>Solid 没有阴影、纹理和大特效，只有蓝色自己的消息、浅灰的 AI 消息和稳定的白色背景。</p>
+<p>它不是为了“最朴素”，而是提供两个基准：可读性和性能。任何材质都应该能回答，它相比 Solid 多带来了什么；如果答案只是更像装饰，那么它可能不值得承担渲染成本。</p>
+<h2 id="线程要作为一个整体移动"><a href="#线程要作为一个整体移动" class="headerlink" title="线程要作为一个整体移动"></a>线程要作为一个整体移动</h2><p>消息气泡不是孤立组件。新消息出现、旧消息删除、AI 回复变高时，整段对话都要重新分配空间。</p>
+<p>最稳的实现是从底部向上排版，先算出每个气泡的目标位置，再用 <code>transform: translateY()</code> 放置。新增、删除或尺寸变化后，每个气泡从当前位置独立跟随自己的目标，不能让整块列表瞬间跳位。</p>
+<p>如果必须保留普通文档流，可以用 FLIP：先记录旧位置，再让布局发生，最后从旧位置动画到新位置。</p>
+<p>六种材质使用不同的弹簧响应，让同一布局变化带上不同的重量：</p>
+<div class="md-table-scroll"><table>
+<thead>
+<tr>
+<th>材质</th>
+<th>Response</th>
+<th>Damping</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cirrus</td>
+<td>0.50s</td>
+<td>0.88</td>
+</tr>
+<tr>
+<td>Pixel</td>
+<td>0.42s</td>
+<td>0.80</td>
+</tr>
+<tr>
+<td>Aqua</td>
+<td>0.46s</td>
+<td>0.74</td>
+</tr>
+<tr>
+<td>Gradient</td>
+<td>0.52s</td>
+<td>0.92</td>
+</tr>
+<tr>
+<td>拟物</td>
+<td>0.34s</td>
+<td>0.84</td>
+</tr>
+<tr>
+<td>Solid</td>
+<td>0.42s</td>
+<td>0.86</td>
+</tr>
+</tbody></table></div>
+<p>不要动画 <code>top</code>、<code>height</code> 或 <code>margin</code>，也不允许在追赶过程中发生气泡重叠。用户向上翻阅历史时，底部固定规则必须暂停，不能把滚动位置强行拉回最新消息。</p>
+<h2 id="发送：气泡按材质的规则出现"><a href="#发送：气泡按材质的规则出现" class="headerlink" title="发送：气泡按材质的规则出现"></a>发送：气泡按材质的规则出现</h2><p>所有发送都从目标位置下方约 40px 开始，但“如何落位”由材质决定：</p>
+<ul>
+<li>Cirrus 先透明后结霜，缩放和淡入先后完成；</li>
+<li>Pixel 以阶梯式缩放出现，并通过抖动淡入；</li>
+<li>Aqua 像果冻一样弹性放大；</li>
+<li>Gradient 从散焦变清晰；</li>
+<li>拟物从略大压回，像按下实体按键；</li>
+<li>Solid 使用最短、最稳定的缩放与淡入。</li>
+</ul>
+<p>这几种动作共享同一空间路径，却传达了不同的材料。不要把六种动画都写成同一个 scale 曲线再换时长，那样材质仍然只是表皮。</p>
+<h2 id="长回复：等待态也要属于同一种材质"><a href="#长回复：等待态也要属于同一种材质" class="headerlink" title="长回复：等待态也要属于同一种材质"></a>长回复：等待态也要属于同一种材质</h2><p>AI 思考中的点阵不是通用的“三个点”。</p>
+<p>在这个方案里，等待态是一块约 48px 的方形矩阵，每个材质运行自己的小物理系统：</p>
+<ul>
+<li>Cirrus：高斯热量沿圆环扩散；</li>
+<li>Pixel：像素钟摆以正弦摆动；</li>
+<li>Aqua：水滴引发的波纹向外衰减；</li>
+<li>Gradient：两颗光点沿薄荷到青色的路径环绕；</li>
+<li>拟物：小球在网格中弹跳；</li>
+<li>Solid：一根被拨动后衰减的弦。</li>
+</ul>
+<p>亮度必须是时间的连续函数，不能只是在离散帧之间开关。移动状态还需要按短暂快门做动态模糊，避免点阵变成闪烁的像素噪点。</p>
+<p>回复落地时，气泡从矩阵所在的角落展开到完整尺寸，矩阵同时淡出。文本必须提前按最终宽度排好并在气泡内裁切，展开过程中不能重新换行。随后文字按材质节奏依次出现。</p>
+<h2 id="删除：从中间离开仍要保持秩序"><a href="#删除：从中间离开仍要保持秩序" class="headerlink" title="删除：从中间离开仍要保持秩序"></a>删除：从中间离开仍要保持秩序</h2><p>长按气泡时，气泡先被压到 0.94–0.97，再抬到 1.02–1.04；其他消息降到约 35–50% 的可见度，Gradient 还会轻微失焦。菜单在当前气泡的发送者一侧展开。</p>
+<p>确认删除后，菜单先以 160–200ms <code>ease-in</code> 离开，气泡再按材质消失：</p>
+<ul>
+<li>Cirrus 退去霜面；</li>
+<li>Pixel 打散为格子；</li>
+<li>Aqua 膨胀后破裂；</li>
+<li>Gradient 放大并溶于模糊；</li>
+<li>拟物被压下、下落；</li>
+<li>Solid 缩小并模糊。</li>
+</ul>
+<p>气泡一开始离开，就要同时移出布局。上方消息依次落入缺口，最靠近缺口的一条先动，其他消息逐条跟上；落到底部时保留一部分向下速度并反向，让它们轻轻弹回，而不是压进下一条消息。</p>
+<p>如果缺口两侧是同一发送者，删除后它们应重新合并成一组。动画不能只负责“消失”，还要负责空间关系恢复。</p>
+<h2 id="Retrofit-只改授权范围内的东西"><a href="#Retrofit-只改授权范围内的东西" class="headerlink" title="Retrofit 只改授权范围内的东西"></a>Retrofit 只改授权范围内的东西</h2><p>如果是在已有聊天产品中改造，默认只改气泡的材质、发送、长回复文字、长按和退场。</p>
+<p>输入框、发送按钮、消息菜单和等待指示器都需要单独确认；图标一律不动。Retrofit 不能改变消息数据、组件 props 和加载方式，也不能为了演示而替换整个聊天架构。</p>
+<p>先列出现有气泡、线程布局、滚动方式、动画和可疑的布局抖动，再切换材质。如果发现当前列表在消息出现时会跳、文本播放时会重新换行，应该先修这些根因，而不是用遮罩掩盖。</p>
+<h2 id="性能与可访问性是材质的一部分"><a href="#性能与可访问性是材质的一部分" class="headerlink" title="性能与可访问性是材质的一部分"></a>性能与可访问性是材质的一部分</h2><p>只动画 <code>transform</code>、<code>opacity</code> 和必要的 <code>filter</code> / <code>backdrop-filter</code>。每次新动作都应从当前视觉状态打断旧动画，不能等旧动画播放完再响应。</p>
+<p>在 <code>prefers-reduced-motion: reduce</code> 下，保留淡入淡出，去掉位移、缩放与模糊；等待矩阵停在一个静止帧，线程位置直接更新。减少动态效果不是取消状态反馈。</p>
+<p>切换材质时，线程要在当前位置淡出，再以新材质淡入。用户不应因为换主题而重新看到整套历史消息播放一次。</p>
+<h2 id="检查清单"><a href="#检查清单" class="headerlink" title="检查清单"></a>检查清单</h2><ul>
+<li>六种材质是否共享同一气泡几何与阅读结构；</li>
+<li>单行、多行、组首、组中、组末是否正确改变圆角与尾巴；</li>
+<li>文本是否按最终宽度提前排版，动画中不重新换行；</li>
+<li>线程是否从底部排版并整体跟随，不是逐条跳位；</li>
+<li>材质是否影响发送、等待、回复展开和删除，而不只影响静态外观；</li>
+<li>等待点阵是否是连续运动，并有动态模糊；</li>
+<li>删除时是否从布局中及时移除，并让上方消息保持秩序；</li>
+<li>是否只修改气泡，或对 composer、菜单、指示器逐项取得许可；</li>
+<li>是否动画 <code>transform</code>、<code>opacity</code>、<code>filter</code>，而不是布局属性；</li>
+<li>减少动态效果时是否仍保留可理解的状态变化。</li>
+</ul>
+<details class="tag-plugin colorful folding" color="blue"><summary><p>消息气泡材质与动效示例 Prompt</p>
+</summary><div class="body"><figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></td><td class="code"><pre><span class="line">Prompt</span><br><span class="line"></span><br><span class="line">Message bubbles with a material, and motion that follows the material: sending, a long reply coming in, and deleting one from the middle, in an AI chat. Six materials are specified below with exact values. Use them either way:</span><br><span class="line">- Rebuild: make a standalone demo of a chat thread that plays the three motions in one material, with tabs to switch between materials.</span><br><span class="line">- Retrofit: give the bubbles in my existing chat a material and this motion, inside my code and design system, keeping the message data, the components and how messages load.</span><br><span class="line">Ask me which one, and which material(s), before you start.</span><br><span class="line"></span><br><span class="line">Retrofit scope: by default, change only the bubbles: their material (sections 1 and 2) and their motion (sections 3, 4, the reply opening and words in 5, and the bubble's long press and exit in 6). Leave every icon as it is. The cursor is for the rebuild demo only. Ask me separately, one at a time, before touching each of these, and change it only if I say yes:</span><br><span class="line">- the composer: the input field and the send button;</span><br><span class="line">- the message menu: its look, its items and how it opens and closes;</span><br><span class="line">- the typing indicator: replacing it with the dot matrix in section 5.</span><br><span class="line"></span><br><span class="line">0. Start from what exists (retrofit)</span><br><span class="line">- Find the thread, the bubble component and wherever messages are added, edited or removed, and note the composer, the message menu and the typing indicator. List how the thread is laid out and scrolls, and every animation it has now.</span><br><span class="line">- Flag a thread that jumps when a message arrives or leaves, a bubble whose lines rewrap while it animates, and anything that animates top, height or margin.</span><br><span class="line"></span><br><span class="line">1. The bubble box (the same in every material)</span><br><span class="line">- Text 28px on a 38px line, letter-spacing -0.01em, padding 17px 26px, a 2px border (transparent unless the material gives it a color), radius 38px: a capsule for one line, a rounded rectangle when it wraps. Plain circular arcs only, no superellipse or corner-shape. The send button is a circle.</span><br><span class="line">- Mine on the right, theirs (the AI) on the left, 48px from the sides. Long messages wrap inside a fixed width (680px here); lay the text out at that width from the start.</span><br><span class="line">- Messages in a row from one sender form a group: 4px apart inside a group, 16px between groups. Mark each bubble single, first, middle or last, and reshape the group with a 200ms border-radius transition when a message joins or leaves:</span><br><span class="line">  - Aqua, skeuomorphic, cirrus: where two bubbles of a group meet, the corners on the sender's side close to 10px.</span><br><span class="line">  - Solid, gradient: every bubble stays round; only the last of a group gets a tail, two pseudo-elements at the bottom corner on the sender's side (shown here for mine; mirror them for theirs):</span><br><span class="line">    .bubble::before { bottom: -2px; right: -14px; width: 64px; height: 38px; background: &lt;bubble color&gt;;</span><br><span class="line">      border-bottom-left-radius: 18px 14px; border-bottom-right-radius: 3px; }</span><br><span class="line">    .bubble::after { bottom: -2px; right: -34px; width: 32px; height: 42px; background: &lt;page background&gt;;</span><br><span class="line">      border-bottom-left-radius: 20px 24px; }</span><br><span class="line">    The blob sticks out 12px; the scoop beside it cuts it into a curl. Fade them in over 160ms when a bubble becomes the last of its group.</span><br><span class="line"></span><br><span class="line">2. The six materials</span><br><span class="line">Each one sets the paint, the type and the background (and, in the rebuild demo, the composer, the menu and the cursor). Keep them as tokens. In a retrofit, use the bubble values; take the background only if the material needs it to read (cirrus needs its sky, gradient a dark background) and ask me first. The CSS below is exact: copy it to match the look. ".me" is my bubble, ".them" the AI's; the base font is Inter.</span><br><span class="line"></span><br><span class="line">Cirrus (light, clean): thin frosted panes with no edge and no shadow, over a blue sky.</span><br><span class="line">  .bubble { border-color: transparent; background: none; box-shadow: none;</span><br><span class="line">    backdrop-filter: blur(26px) saturate(130%); }</span><br><span class="line">  .bubble::before { content: ''; position: absolute; inset: -2px; border-radius: inherit;</span><br><span class="line">    background: var(--grain), var(--tint); }   /* text sits above it */</span><br><span class="line">  .bubble.me { --tint: rgb(46 128 232 / 0.34); color: rgb(255 255 255); }</span><br><span class="line">  .bubble.them { --tint: rgb(104 134 168 / 0.34); color: rgb(255 255 255); }</span><br><span class="line">  --grain: a 160px SVG tile, feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch", then feColorMatrix "0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0.09 0" (mid gray at 9%).</span><br><span class="line">  The sky: render it once, at twice the page size, and use the image. For each pixel, a ray from an eye at height 1.25, looking ahead along z with a focal length of 1.25 and slightly down (uv.y - 0.02), marches through a cloud layer: density = clamp(2.8 * fbm(p * 0.95) - 1.05 - 0.75 * p.y, 0, 1), fbm being 6 octaves of value noise (each octave x2.03, half the weight). Step 0.03 or 2.5% of the distance, up to 160 steps or until opaque. At each step with cloud, light = clamp((d - density(p + 0.25 * sun)) / 0.4, 0, 1) with the sun at normalize(-0.35, 0.75, 0.55); color = mix(rgb(0.5, 0.6, 0.74), white, 0.2 + 0.8 * light), mixed 25% toward rgb(0.9, 0.93, 0.97) by density; alpha = 0.6 * density; fade it into the sky by 1 - exp(-0.0016 * t * t). The sky behind: mix(rgb(0.66, 0.82, 0.97) at the horizon, rgb(0.15, 0.45, 0.9) overhead) by clamp(rd.y * 1.6 + 0.35, 0, 1)^0.85, plus a faint warm glow toward the sun. The result is deep blue overhead and a sea of white cumulus in the lower half. Let the image drift sideways slowly (100px each way, one sway per loop).</span><br><span class="line">  Menu: background var(--grain), rgb(70 98 134 / 0.52); backdrop-filter: blur(36px) saturate(130%); white text; Delete rgb(255 138 126).</span><br><span class="line"></span><br><span class="line">Pixel (retro game): drawn in a canvas on a fixed grid of 4px cells, not with the DOM.</span><br><span class="line">  Every frame, for each cell, test the cell's center against the bubble's current shape: its position, scale, size, corners of radius 16px (4px where a group joins), and on the last of a group a stepped tail: in the bubble's own frame, with the origin at its bottom corner on the sender's side and x pointing outward, the triangle -10 &lt;= x &lt;= 14, -16 &lt;= y &lt;= 0, y &gt;= -16 + (x + 10) * 16 / 24. Cells inside are filled; cells inside with a neighbor outside are the one-cell outline.</span><br><span class="line">  Outline rgb(14 15 34); fill mine rgb(93 112 232), theirs rgb(244 243 236). Dimming mixes the fill toward the background.</span><br><span class="line">  Each cell keeps a trace = max(trace * exp(-dt / 0.06s), coverage now) and is drawn when the trace is above the 4x4 Bayer threshold for its position ((value + 0.5) / 16 for 0 8 2 10 / 12 4 14 6 / 3 11 1 9 / 15 7 13 5), so moving bubbles leave a dithered trail. A trace below 1 is drawn in its color mixed toward the background by 0.25 + 0.75 * trace, so the trail keeps its size but stays light. Scale the canvas up with image-rendering: pixelated.</span><br><span class="line">  Background: rgb(27 30 52) with 1px lines of white at 3.5% every 4px both ways.</span><br><span class="line">  Text stays in the DOM: font-family 'Pixelify Sans'; letter-spacing: 0.02em; mine color rgb(255 255 255) with text-shadow 0 4px 0 rgb(14 15 34 / 0.35); theirs color rgb(14 15 34); its position snapped to the 4px grid. Composer, menu and tabs: square corners, background rgb(244 243 236), and a stepped outline box-shadow: 0 -4px 0 rgb(14 15 34), 0 4px 0 rgb(14 15 34), -4px 0 0 rgb(14 15 34), 4px 0 0 rgb(14 15 34); the send button rgb(93 112 232).</span><br><span class="line"></span><br><span class="line">Aqua (playful, nostalgic):</span><br><span class="line">  .bubble { border-color: var(--edge); background: var(--face);</span><br><span class="line">    box-shadow: inset 0 -14px 18px -8px var(--glow), inset 0 2px 2px rgb(255 255 255 / 0.5), 0 4px 8px -2px rgb(0 30 80 / 0.32);</span><br><span class="line">    font-family: 'Lucida Grande'; letter-spacing: -0.01em; }</span><br><span class="line">  .bubble.me { --face: linear-gradient(180deg, rgb(116 188 255) 0%, rgb(58 146 242) 48%, rgb(28 111 220) 54%, rgb(43 132 236) 78%, rgb(138 210 255) 100%);</span><br><span class="line">    --edge: rgb(21 80 160); --glow: rgb(160 228 255 / 0.95); color: rgb(255 255 255); text-shadow: 0 -1px 1px rgb(0 40 110 / 0.45); }</span><br><span class="line">  .bubble.them { --face: linear-gradient(180deg, rgb(253 253 254) 0%, rgb(236 238 241) 48%, rgb(220 223 228) 54%, rgb(228 231 235) 78%, rgb(251 252 253) 100%);</span><br><span class="line">    --edge: rgb(141 148 159); --glow: rgb(255 255 255 / 0.95); color: rgb(29 29 31); text-shadow: 0 1px 0 rgb(255 255 255 / 0.7); }</span><br><span class="line">  .bubble::before { content: ''; position: absolute; top: 3px; left: 16px; right: 16px; height: min(46%, 36px);</span><br><span class="line">    border-radius: 30px 30px 18px 18px; background: linear-gradient(180deg, rgb(255 255 255 / 0.92), rgb(255 255 255 / 0.12)); }</span><br><span class="line">  Background: repeating-linear-gradient(180deg, rgb(246 246 246) 0 3px, rgb(233 233 233) 3px 6px).</span><br><span class="line"></span><br><span class="line">Gradient (brand):</span><br><span class="line">  .bubble.me { --grad: linear-gradient(180deg, rgb(11 127 134) 0%, rgb(13 148 136) 28%, rgb(16 163 127) 60%, rgb(31 191 143) 100%);</span><br><span class="line">    background: var(--grad) 0 calc(-1 * var(--top)) / 100% var(--thread-height); color: rgb(255 255 255); }</span><br><span class="line">  .bubble.them { background: rgb(38 38 42); color: rgb(244 244 245); }</span><br><span class="line">  .bubble { font-weight: 500; letter-spacing: -0.015em; }</span><br><span class="line">  --top is the bubble's current offset in the thread, set every frame as it moves, so each bubble shows the slice at its height and changes color as it moves up; the tail of mine shows the slice at the bubble's foot. Background rgb(0 0 0). The send button: linear-gradient(160deg, rgb(31 191 143), rgb(13 148 136) 60%, rgb(11 127 134)) border-box.</span><br><span class="line"></span><br><span class="line">Skeuomorphic (warm, tactile):</span><br><span class="line">  .bubble { font-family: 'Avenir Next'; font-weight: 500; }</span><br><span class="line">  .bubble.me { border-color: rgb(18 22 31); background: linear-gradient(180deg, rgb(72 81 100) 0%, rgb(39 48 66) 100%);</span><br><span class="line">    box-shadow: inset 0 2px 0 rgb(255 255 255 / 0.18), inset 0 2px 6px rgb(255 255 255 / 0.08), inset 0 -2px 0 rgb(0 0 0 / 0.22),</span><br><span class="line">      0 2px 4px rgb(15 23 42 / 0.18), 0 10px 22px -8px rgb(15 23 42 / 0.36);</span><br><span class="line">    color: rgb(255 255 255); text-shadow: 0 -2px 0 rgb(0 0 0 / 0.28); }</span><br><span class="line">  .bubble.them { border-color: rgb(15 23 42 / 0.14); background: linear-gradient(180deg, rgb(255 255 255) 0%, rgb(242 243 245) 100%);</span><br><span class="line">    box-shadow: inset 0 2px 0 rgb(255 255 255), inset 0 -2px 0 rgb(15 23 42 / 0.06), 0 2px 4px rgb(15 23 42 / 0.06), 0 8px 18px -8px rgb(15 23 42 / 0.18);</span><br><span class="line">    color: rgb(31 41 55); text-shadow: 0 1px 0 rgb(255 255 255); }</span><br><span class="line">  Background rgb(245 242 233).</span><br><span class="line"></span><br><span class="line">Solid (the default):</span><br><span class="line">  .bubble.me { background: rgb(10 132 255); color: rgb(255 255 255); }</span><br><span class="line">  .bubble.them { background: rgb(233 233 235); color: rgb(0 0 0); }</span><br><span class="line">  No shadow; white background.</span><br><span class="line"></span><br><span class="line">3. The thread moves as one</span><br><span class="line">- Lay the thread out from the bottom up, above the composer, and place each bubble with transform: translateY. When a message is added, removed or resized, compute every bubble's new place and let each one follow it on its own spring, from where it is now. No other bubble needs an animation of its own. If the list must stay in normal flow, do the same with FLIP.</span><br><span class="line">- Springs (response, damping): cirrus 0.5s 0.88, pixel 0.42s 0.8, aqua 0.46s 0.74, gradient 0.52s 0.92, skeuomorphic 0.34s 0.84, solid 0.42s 0.86.</span><br><span class="line">- Never animate top, height or margin, and never let two bubbles overlap.</span><br><span class="line"></span><br><span class="line">4. Send</span><br><span class="line">The bubble rises from about 40px below its place and comes in the material's way:</span><br><span class="line">- Cirrus: clear glass that frosts over: backdrop blur and tint from 0 to full over 560ms ease-out, scale 0.94 to 1 over 420ms, fade in over 200ms.</span><br><span class="line">- Pixel: scale 0.3 to 1 over 380ms on cubic-bezier(.22, 1, .36, 1), stepping on the grid; it fades in through the dither over 200ms; text appears once it is nearly full size.</span><br><span class="line">- Aqua: jelly: scale 0.5 to 1 on a spring (response 0.5s, damping 0.5) while width and height wobble against each other, 12% apart at first and dying out in about 0.2s; never let it grow taller than 1.04 of its size, so it can't reach the message above.</span><br><span class="line">- Gradient: out of focus: blur 16px to 0 and scale 0.96 to 1 over 440ms on cubic-bezier(.22, 1, .36, 1), fade in over 300ms.</span><br><span class="line">- Skeuomorphic: like a key: scale 1.1 to 1 on a spring (response 0.36s, damping 0.55) that dips under 1 first.</span><br><span class="line">- Solid: scale 0.9 to 1 over 380ms on cubic-bezier(.22, 1, .36, 1), fade in over 120ms.</span><br><span class="line"></span><br><span class="line">5. Long reply</span><br><span class="line">- While the AI is typing, show a small dot matrix on its own, with no bubble around it: about 48px square, where the reply will start. Each material runs a small piece of physics on it, on a loop:</span><br><span class="line">  - Cirrus 6x6: warmth let out along a slow circle (one turn in 2.2s) spreading like heat: the sum of Gaussians left behind over the last second, each wider and fainter with age.</span><br><span class="line">  - Pixel 6x6: a pendulum hung from the top middle, angle 0.9 cos(2πt / 1.1s), the bob bright and the rod faint, shown as square dots in four levels.</span><br><span class="line">  - Aqua 5x5: drops on water every 0.9s, rings travelling out and dying away (an exponentially decaying cosine in radius minus time).</span><br><span class="line">  - Gradient 6x6: two equal lights orbiting their center, one turn in 1.3s, colored mint to teal across the grid.</span><br><span class="line">  - Skeuomorphic 4x4: a ball bouncing: a parabola in time between bounces (0.62s apart) and a steady drift across, turned back by the walls.</span><br><span class="line">  - Solid 5x5: a plucked string, the fundamental plus a quieter second mode at twice the frequency.</span><br><span class="line">  Write each as a smooth function of time so brightness changes continuously, never on or off. Give the moving ones motion blur by averaging each frame over a short shutter (1/30 to 1/20s). Keep the dots flat, one color per material that stands out on its background, faint at rest and fuller as they light; no gloss or bevel.</span><br><span class="line">- When the reply lands, the bubble appears where the matrix was and opens from that corner to the message's size while the matrix fades out: cirrus on a soft spring over 640ms, aqua on a spring a little past its size over 760ms, skeuomorphic on a short spring over 520ms, the others over 520 to 600ms on cubic-bezier(.22, 1, .36, 1). Clip the text, already laid out, so lines never rewrap. Hold the thread above to the opening bubble instead of the spring, so nothing overlaps.</span><br><span class="line">- The words come in one after another, starting 160ms in: rising 10px as they fade in (cirrus, 18ms apart, 360ms each), typed in at once (pixel, 26ms apart), popping up from 0.4 on cubic-bezier(.34, 1.56, .64, 1) (aqua, 16ms, 300ms), sharpening out of an 8px blur while rising 6px (gradient, 14ms, 320ms), stamped in from 1.14 (skeuomorphic, 22ms, 160ms), fading in (solid, 14ms, 240ms).</span><br><span class="line"></span><br><span class="line">6. Delete from the middle</span><br><span class="line">- A long press presses the bubble to 0.94 to 0.97, then lifts it to 1.02 to 1.04, while the others dim to 35 to 50% (gradient also blurs them 4px). The menu opens under it, on the bubble's side, with Copy, Regenerate, Read aloud and Delete (Delete in red), coming in the material's way: frosting over (cirrus), a stepped wipe from the top in five steps (pixel), a pop from 0.7 (aqua), a focus pull from a 12px blur (gradient), a short drop from 14px above on a spring (skeuomorphic), a scale from 0.88 (solid).</span><br><span class="line">- On Delete the menu leaves in 160 to 200ms ease-in and the bubble goes in the material's way: melts back to clear glass, then fades (cirrus, 420ms); breaks up into cells that vanish at once in a scattered order, with no trail (pixel, 360ms); swells to 1.14 and pops (aqua, 320ms); dissolves into a 24px blur while growing to 1.12 (gradient, 380ms); is pressed to 0.94, then drops 36px and fades, with no blur (skeuomorphic, 320ms); shrinks to 0.7 with an 8px blur (solid, 260ms).</span><br><span class="line">- Take it out of the layout as it starts to leave. The messages above settle into the gap while the ones below stay put, the one nearest the gap first, about 60ms in, and each one above it 50 to 80ms after the one below. Let each land on the message below it: when it reaches its place still moving down, flip its velocity and keep 20 to 45% of it (aqua most, gradient least), so it bounces up a little and never sinks into the one below. If the messages either side of the gap are from the same sender, they join into one group.</span><br><span class="line"></span><br><span class="line">7. Keep it right</span><br><span class="line">- Animate transform, opacity and filter only (backdrop-filter for the glass).</span><br><span class="line">- A new action interrupts the running one from where it is; nothing waits for an animation. Switching material mid-motion fades the thread out and back in the new material from wherever it is.</span><br><span class="line">- Respect prefers-reduced-motion: keep the fades, drop movement, scale and blur, hold the typing matrix on one still frame, and place the thread at once.</span><br><span class="line">- Keep the thread pinned to the bottom while messages arrive, unless the user has scrolled up.</span><br><span class="line"></span><br><span class="line">8. Deliver</span><br><span class="line">- First list what you found (retrofit) or what you will build (rebuild), and the material(s) you will use.</span><br><span class="line">- Then build it, and list every file you touched.</span><br><span class="line">- Retrofit: don't change the message data, the components' props, the way messages load or any icon, and leave the composer, the menu and the typing indicator alone unless I said yes to them. If something does not fit this plan, ask me first.</span><br></pre></td></tr></tbody></table></figure></div></details>
+
+<h2 id="质感来自可解释的细节"><a href="#质感来自可解释的细节" class="headerlink" title="质感来自可解释的细节"></a>质感来自可解释的细节</h2><p>消息气泡的材质不是皮肤，而是动效的物理来源。</p>
+<p>玻璃会结霜，像素会留下网格拖影，果冻会回弹，渐变会随着在对话中的位置流动，拟物按键会被压下，纯色则提供清楚的基准。只要材质、线程位移、等待状态和退出方式遵守同一种因果关系，聊天界面才会像一个完整的产品，而不是六套随机组合的视觉特效。</p>
+</article>
+<div class="article-tags slide-up"><a class="tag" href="/tags/%E4%BA%A4%E4%BA%92%E8%AE%BE%E8%AE%A1/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>交互设计</a><a class="tag" href="/tags/UI/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>UI</a><a class="tag" href="/tags/%E8%A7%86%E8%A7%89%E8%AE%BE%E8%AE%A1/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>视觉设计</a><a class="tag" href="/tags/Canvas/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>Canvas</a><a class="tag" href="/tags/%E5%8A%A8%E6%95%88/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>动效</a></div>
+
+
+  <div class="article-share slide-up" id="share">
+    <div class="body">
+      <div class="social-wrap dis-select"><a class="social share-item qrcode ui-interactive is-icon-only" onclick="util.toggle(&quot;share-qrcode&quot;)" aria-label="分享文章: QR Code" title="分享文章: QR Code"><span class="share-item__icon ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="M10.553 13.447c-.424-.424-.95-.596-1.535-.675c-.553-.074-1.25-.074-2.086-.074H5.827c-.58 0-1.065 0-1.459.037c-.411.04-.795.124-1.146.34c-.345.21-.634.5-.845.844c-.216.352-.3.735-.34 1.147C2 15.459 2 15.944 2 16.525v.068c0 .884 0 1.597.055 2.17c.056.592.175 1.108.459 1.571c.288.47.682.864 1.152 1.152c.463.284.979.403 1.57.46C5.81 22 6.524 22 7.407 22h.07c.58 0 1.064 0 1.458-.037c.412-.04.795-.124 1.147-.34c.344-.21.633-.5.844-.844c.216-.352.3-.736.34-1.147c.037-.394.037-.879.037-1.46v-1.104c0-.836 0-1.533-.074-2.086c-.079-.584-.251-1.111-.675-1.535m-1.62-11.41c.412.04.795.124 1.147.34c.344.21.633.5.844.845c.216.351.3.735.34 1.146c.037.394.037.879.037 1.46v1.104c0 .836 0 1.533-.074 2.086c-.079.584-.251 1.111-.675 1.535s-.95.596-1.535.675c-.553.074-1.25.074-2.086.074H5.827c-.58 0-1.065 0-1.459-.037c-.411-.04-.795-.124-1.146-.34a2.56 2.56 0 0 1-.845-.844c-.216-.352-.3-.735-.34-1.147C2 8.54 2 8.056 2 7.475v-.068c0-.884 0-1.597.055-2.17c.056-.592.175-1.108.459-1.571c.288-.47.682-.864 1.152-1.152c.463-.284.979-.403 1.57-.46C5.81 2 6.524 2 7.407 2h.07c.58 0 1.064 0 1.458.037M16.593 2h-.068c-.58 0-1.065 0-1.46.037c-.41.04-.794.124-1.146.34c-.344.21-.633.5-.844.845c-.216.351-.3.735-.34 1.146c-.037.394-.037.879-.037 1.46v1.104c0 .836 0 1.533.074 2.086c.079.584.251 1.111.675 1.535s.95.596 1.535.675c.553.074 1.25.074 2.086.074h1.105c.58 0 1.065 0 1.459-.037c.411-.04.795-.124 1.146-.34c.345-.21.634-.5.845-.844c.216-.352.3-.735.34-1.147C22 8.54 22 8.056 22 7.475v-.068c0-.884 0-1.597-.055-2.17c-.056-.592-.175-1.108-.459-1.571a3.5 3.5 0 0 0-1.152-1.152c-.463-.284-.979-.403-1.57-.46C18.19 2 17.477 2 16.594 2" opacity=".5"/><path fill="currentColor" d="M14.093 21.302a.698.698 0 1 1-1.396 0v-2.79h1.396z" opacity=".4"/><path fill="currentColor" d="M21.302 12.698a.7.7 0 0 0-.697.697v3.256H22v-3.256a.7.7 0 0 0-.698-.697" opacity=".5"/><path fill="currentColor" d="M16.076 16.617c-.076.184-.076.417-.076.883s0 .699.076.883a1 1 0 0 0 .541.54c.184.077.417.077.883.077s.699 0 .883-.076a1 1 0 0 0 .54-.541c.077-.184.077-.417.077-.883s0-.699-.076-.883a1 1 0 0 0-.541-.54C18.199 16 17.966 16 17.5 16s-.699 0-.883.076a1 1 0 0 0-.54.541"/><path fill="currentColor" d="M22 18.535v-.023h-1.396c0 .443 0 .74-.016.97c-.015.224-.043.333-.073.405a1.16 1.16 0 0 1-.629.63c-.072.029-.18.056-.405.072c-.23.015-.527.016-.97.016h-1.86V22h1.883c.414 0 .759 0 1.042-.02a2.6 2.6 0 0 0 .844-.175a2.56 2.56 0 0 0 1.384-1.384c.112-.27.156-.549.176-.844c.02-.283.02-.628.02-1.042" opacity=".7"/><path fill="currentColor" d="M12.697 16.616v.035h1.396c0-.668 0-1.116.035-1.458c.034-.33.093-.482.16-.583a1.2 1.2 0 0 1 .321-.32c.101-.068.254-.128.584-.161c.342-.035.79-.036 1.458-.036h1.86v-1.395h-1.896c-.623 0-1.142 0-1.563.043c-.44.044-.85.142-1.218.388c-.28.187-.519.426-.706.706c-.246.368-.343.777-.388 1.217c-.043.421-.043.94-.043 1.564" opacity=".6"/><path fill="currentColor" d="M5.508 18.69c.219.155.528.155 1.146.155c.619 0 .928 0 1.146-.155a.8.8 0 0 0 .2-.199c.154-.218.154-.527.154-1.146s0-.927-.155-1.146A.8.8 0 0 0 7.8 16c-.218-.155-.527-.155-1.146-.155s-.927 0-1.146.155a.8.8 0 0 0-.199.2c-.155.218-.155.527-.155 1.145c0 .619 0 .928.155 1.146a.8.8 0 0 0 .2.2M6.654 8.155c-.618 0-.927 0-1.146-.155a.8.8 0 0 1-.199-.2c-.155-.217-.155-.527-.155-1.145c0-.619 0-.928.155-1.146a.8.8 0 0 1 .2-.2c.218-.154.527-.154 1.145-.154c.619 0 .928 0 1.146.155a.8.8 0 0 1 .2.199c.154.218.154.527.154 1.146s0 .928-.155 1.146A.8.8 0 0 1 7.8 8c-.218.155-.527.155-1.146.155M16.2 8c.218.155.527.155 1.146.155s.927 0 1.146-.155a.8.8 0 0 0 .199-.199c.155-.218.155-.528.155-1.146c0-.619 0-.928-.155-1.146a.8.8 0 0 0-.2-.2c-.218-.154-.527-.154-1.145-.154c-.619 0-.928 0-1.146.155a.8.8 0 0 0-.2.199c-.154.218-.154.527-.154 1.146s0 .928.155 1.146A.8.8 0 0 0 16.2 8"/></svg></span></a><a class="social share-item weibo ui-interactive is-icon-only" href="https:&#x2F;&#x2F;service.weibo.com&#x2F;share&#x2F;share.php?url&#x3D;https%3A%2F%2Fblog.syouiti.com%2F999%2520%25E4%25B8%25AA%25E5%25B0%258F%25E6%258A%2580%25E5%25B7%25A7%25EF%25BC%258C%25E8%25AE%25A9%25E4%25BD%25A0%2520Vibe%2520%25E7%259A%2584%25E4%25BA%25A7%25E5%2593%2581%25E6%259B%25B4%25E6%259C%2589%25E8%25B4%25A8%25E6%2584%259F%25EF%25BD%259C013%2520%25E6%25B6%2588%25E6%2581%25AF%25E6%25B0%2594%25E6%25B3%25A1%25EF%25BC%259A%25E8%25AE%25A9%25E6%259D%2590%25E8%25B4%25A8%25E5%2586%25B3%25E5%25AE%259A%25E5%258A%25A8%25E6%2595%2588%2F&amp;title&#x3D;013%20%E6%B6%88%E6%81%AF%E6%B0%94%E6%B3%A1%EF%BC%9A%E8%AE%A9%E6%9D%90%E8%B4%A8%E5%86%B3%E5%AE%9A%E5%8A%A8%E6%95%88%20-%20%E7%99%BD%E4%B8%8A%E8%B3%9E%E4%B8%80&amp;summary&#x3D;%E4%BB%A5%E5%85%AD%E7%A7%8D%E6%9D%90%E8%B4%A8%E9%87%8D%E5%81%9A%E6%B6%88%E6%81%AF%E6%B0%94%E6%B3%A1%EF%BC%8C%E8%AE%A9%E5%8F%91%E9%80%81%E3%80%81%E9%95%BF%E5%9B%9E%E5%A4%8D%E4%B8%8E%E4%B8%AD%E9%80%94%E5%88%A0%E9%99%A4%E5%85%B1%E7%94%A8%E5%90%8C%E4%B8%80%E5%A5%97%E7%89%A9%E7%90%86%E6%80%A7%E6%A0%BC%EF%BC%8C%E5%B9%B6%E9%99%84%E5%8F%AF%E7%9B%B4%E6%8E%A5%E5%A4%8D%E7%94%A8%E7%9A%84%E5%AE%8C%E6%95%B4%20Prompt%E3%80%82" target="_blank" rel="external nofollow noopener noreferrer" aria-label="分享文章: Weibo" title="分享文章: Weibo"><span class="share-item__icon ui-icon"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/80c07e4dbb303.svg" onerror="this.onerror&#x3D;null;this.src&#x3D;&quot;&#x2F;images&#x2F;stellar-error.491ee870f4940739.svg&quot;" /></span></a><a class="social share-item email ui-interactive is-icon-only" href="mailto:?subject&#x3D;013%20%E6%B6%88%E6%81%AF%E6%B0%94%E6%B3%A1%EF%BC%9A%E8%AE%A9%E6%9D%90%E8%B4%A8%E5%86%B3%E5%AE%9A%E5%8A%A8%E6%95%88%20-%20%E7%99%BD%E4%B8%8A%E8%B3%9E%E4%B8%80&amp;body&#x3D;https%3A%2F%2Fblog.syouiti.com%2F999%2520%25E4%25B8%25AA%25E5%25B0%258F%25E6%258A%2580%25E5%25B7%25A7%25EF%25BC%258C%25E8%25AE%25A9%25E4%25BD%25A0%2520Vibe%2520%25E7%259A%2584%25E4%25BA%25A7%25E5%2593%2581%25E6%259B%25B4%25E6%259C%2589%25E8%25B4%25A8%25E6%2584%259F%25EF%25BD%259C013%2520%25E6%25B6%2588%25E6%2581%25AF%25E6%25B0%2594%25E6%25B3%25A1%25EF%25BC%259A%25E8%25AE%25A9%25E6%259D%2590%25E8%25B4%25A8%25E5%2586%25B3%25E5%25AE%259A%25E5%258A%25A8%25E6%2595%2588%2F" aria-label="分享文章: Email" title="分享文章: Email"><span class="share-item__icon ui-icon"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/a1b00e20f425d.svg" onerror="this.onerror&#x3D;null;this.src&#x3D;&quot;&#x2F;images&#x2F;stellar-error.491ee870f4940739.svg&quot;" /></span></a></div>
+      <div class="share-qrcode" id="share-qrcode" style="opacity:0;height:0"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&amp;data=https%3A%2F%2Fblog.syouiti.com%2F999%2520%25E4%25B8%25AA%25E5%25B0%258F%25E6%258A%2580%25E5%25B7%25A7%25EF%25BC%258C%25E8%25AE%25A9%25E4%25BD%25A0%2520Vibe%2520%25E7%259A%2584%25E4%25BA%25A7%25E5%2593%2581%25E6%259B%25B4%25E6%259C%2589%25E8%25B4%25A8%25E6%2584%259F%25EF%25BD%259C013%2520%25E6%25B6%2588%25E6%2581%25AF%25E6%25B0%2594%25E6%25B3%25A1%25EF%25BC%259A%25E8%25AE%25A9%25E6%259D%2590%25E8%25B4%25A8%25E5%2586%25B3%25E5%25AE%259A%25E5%258A%25A8%25E6%2595%2588%2F" onerror="this.onerror&#x3D;null;this.src&#x3D;&quot;&#x2F;images&#x2F;stellar-error.491ee870f4940739.svg&quot;"/></div>
+    </div>
+  </div>
+
+<div class="article-footer slide-up">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section></div>
+
+<div class="related-wrap slide-up" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">较早文章 <svg class="icon" viewBox="0 0 1 1" data-icon="default:arrow-right" aria-hidden="true"></svg></div><a href="/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C012%20%E5%8A%A8%E7%94%BB%E8%8A%82%E5%A5%8F%EF%BC%9A%E4%B8%8D%E5%90%8C%E5%8A%A8%E4%BD%9C%EF%BC%8C%E4%B8%8D%E5%90%8C%E6%9B%B2%E7%BA%BF/">012 动画节奏：不同动作，不同曲线</a></div></section></div>
+
+
+
+
+  <div class="related-wrap md-text slide-up" id="comments">
+    
+    
+    <section class="header cmt-title cap theme">
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    
+    <section class="body cmt-body giscus">
+      
+
+<div class="lazy-icon"></div>
+
+<div id="giscus" data-repo="sy0u1ti/sy0u1ti.github.io" data-repo-id="R_kgDOKbZc8Q" data-category="General" data-category-id="DIC_kwDOKbZc8c4CZ0-1" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="noborder_dark" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+<footer class="page-footer slide-up footnote"><hr><div class="sitemap" style="column-count:2;"><div class="sitemap-group"><span class="fs15">站内</span><a href="&#x2F;">首页</a><a href="&#x2F;archives&#x2F;">归档</a><a href="&#x2F;tags&#x2F;">标签</a><a href="&#x2F;bangumis&#x2F;">番剧</a></div><div class="sitemap-group"><span class="fs15">站外</span><a target="_blank" rel="noopener" href="https:&#x2F;&#x2F;home.syouiti.com">Home</a><a target="_blank" rel="noopener" href="https:&#x2F;&#x2F;github.com&#x2F;sy0u1ti">GitHub</a></div></div><div class="text"><p>记录 AI、效率工具、网络技术与各种折腾。<br>本站由 <a href="/">白上賞一「しらかみしょういち」</a> 创建 · <a target="_blank" rel="noopener" href="https://icp.gov.moe/?keyword=20244469">萌ICP备20244469号</a></p>
+</div></footer>
+</main>
+<aside data-stellar-runtime-region id="rightbar-region" class="site-region site-region--rightbar" data-region="rightbar" aria-label="Rightbar"><div class="site-region__surface ui-drawer-surface"><div class="site-region__viewport"><div class="widgets widget-stack widget-stack--rightbar widget-stack--rightbar"><div class="widget-instance widget-instance--toc" data-widget-id="rightbar:1:toc" data-presentation="rightbar">
+
+
+<widget class="widget-wrapper slide-up toc" id="data-toc" collapse="false">
+  
+    <div class="widget-header dis-select">
+      <span class="name">本文目录</span>
+      <button type="button" class="cap-action ui-interactive card-hover card-hover--spotlight" data-shell-action="toggle-toc" aria-label="Toggle table of contents" aria-pressed="false"><span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></span></button>
+    </div>
+  
+  <div class="widget-body"><ol class="toc ui-collection-adapter"><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E5%85%88%E5%9B%BA%E5%AE%9A%E6%B0%94%E6%B3%A1%E7%9A%84%E5%85%B1%E5%90%8C%E5%87%A0%E4%BD%95"><span class="toc-text">先固定气泡的共同几何</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E5%85%AD%E7%A7%8D%E6%9D%90%E8%B4%A8%EF%BC%8C%E5%85%AD%E7%A7%8D%E7%89%A9%E7%90%86%E6%80%A7%E6%A0%BC"><span class="toc-text">六种材质，六种物理性格</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#Cirrus%EF%BC%9A%E8%BD%BB%E7%A3%A8%E7%A0%82%E7%8E%BB%E7%92%83%E4%B8%8E%E4%BA%91%E7%9A%84%E7%A9%BA%E6%B0%94%E6%84%9F"><span class="toc-text">Cirrus：轻磨砂玻璃与云的空气感</span></a></li><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#Pixel%EF%BC%9A%E7%BD%91%E6%A0%BC%E3%80%81%E6%8A%96%E5%8A%A8%E4%B8%8E%E5%83%8F%E7%B4%A0%E7%89%A9%E7%90%86"><span class="toc-text">Pixel：网格、抖动与像素物理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#Aqua%EF%BC%9A%E9%AB%98%E5%85%89%E3%80%81%E6%9E%9C%E5%86%BB%E4%B8%8E%E4%BD%93%E7%A7%AF%E5%9B%9E%E5%BC%B9"><span class="toc-text">Aqua：高光、果冻与体积回弹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#Gradient%EF%BC%9A%E8%B4%AF%E7%A9%BF%E6%95%B4%E6%AE%B5%E5%AF%B9%E8%AF%9D%E7%9A%84%E9%A2%9C%E8%89%B2%E5%9D%90%E6%A0%87"><span class="toc-text">Gradient：贯穿整段对话的颜色坐标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#%E6%8B%9F%E7%89%A9%EF%BC%9A%E6%8A%8A%E6%B0%94%E6%B3%A1%E5%BD%93%E6%88%90%E5%8F%AF%E6%8C%89%E4%B8%8B%E7%9A%84%E5%AE%9E%E4%BD%93"><span class="toc-text">拟物：把气泡当成可按下的实体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#Solid%EF%BC%9A%E5%9F%BA%E7%A1%80%E5%AF%B9%E7%85%A7%E7%BB%84"><span class="toc-text">Solid：基础对照组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E7%BA%BF%E7%A8%8B%E8%A6%81%E4%BD%9C%E4%B8%BA%E4%B8%80%E4%B8%AA%E6%95%B4%E4%BD%93%E7%A7%BB%E5%8A%A8"><span class="toc-text">线程要作为一个整体移动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E5%8F%91%E9%80%81%EF%BC%9A%E6%B0%94%E6%B3%A1%E6%8C%89%E6%9D%90%E8%B4%A8%E7%9A%84%E8%A7%84%E5%88%99%E5%87%BA%E7%8E%B0"><span class="toc-text">发送：气泡按材质的规则出现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E9%95%BF%E5%9B%9E%E5%A4%8D%EF%BC%9A%E7%AD%89%E5%BE%85%E6%80%81%E4%B9%9F%E8%A6%81%E5%B1%9E%E4%BA%8E%E5%90%8C%E4%B8%80%E7%A7%8D%E6%9D%90%E8%B4%A8"><span class="toc-text">长回复：等待态也要属于同一种材质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E5%88%A0%E9%99%A4%EF%BC%9A%E4%BB%8E%E4%B8%AD%E9%97%B4%E7%A6%BB%E5%BC%80%E4%BB%8D%E8%A6%81%E4%BF%9D%E6%8C%81%E7%A7%A9%E5%BA%8F"><span class="toc-text">删除：从中间离开仍要保持秩序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#Retrofit-%E5%8F%AA%E6%94%B9%E6%8E%88%E6%9D%83%E8%8C%83%E5%9B%B4%E5%86%85%E7%9A%84%E4%B8%9C%E8%A5%BF"><span class="toc-text">Retrofit 只改授权范围内的东西</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E6%80%A7%E8%83%BD%E4%B8%8E%E5%8F%AF%E8%AE%BF%E9%97%AE%E6%80%A7%E6%98%AF%E6%9D%90%E8%B4%A8%E7%9A%84%E4%B8%80%E9%83%A8%E5%88%86"><span class="toc-text">性能与可访问性是材质的一部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E6%A3%80%E6%9F%A5%E6%B8%85%E5%8D%95"><span class="toc-text">检查清单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E8%B4%A8%E6%84%9F%E6%9D%A5%E8%87%AA%E5%8F%AF%E8%A7%A3%E9%87%8A%E7%9A%84%E7%BB%86%E8%8A%82"><span class="toc-text">质感来自可解释的细节</span></a></li></ol></div>
+  <div class="widget-footer"><a class="top ui-interactive" onclick="util.scrollTop()"><span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="M20.536 3.464C22 4.93 22 7.286 22 12s0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12s0-7.071 1.464-8.536C4.93 2 7.286 2 12 2s7.071 0 8.535 1.464" opacity=".5"/><path fill="currentColor" d="M9.53 12.03a.75.75 0 0 1-1.06-1.06l3-3a.75.75 0 0 1 1.06 0l3 3a.75.75 0 1 1-1.06 1.06L12 9.56z"/><path fill="currentColor" d="M9.53 16.03a.75.75 0 0 1-1.06-1.06l3-3a.75.75 0 0 1 1.06 0l3 3a.75.75 0 1 1-1.06 1.06L12 13.56z"/></svg></span><span>回到顶部</span></a><a class="buttom ui-interactive" onclick="util.scrollComment()"><span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M7.25 9A.75.75 0 0 1 8 8.25h8a.75.75 0 0 1 0 1.5H8A.75.75 0 0 1 7.25 9m0 3.5a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 0 1.5H8a.75.75 0 0 1-.75-.75"/></svg></span><span>参与讨论</span></a></div>
+</widget>
+
+
+</div></div></div></div></aside>
+</div><button type="button" class="site-scrim" data-shell-action="dismiss-drawer" aria-label="Close navigation" tabindex="-1"></button><div data-stellar-runtime-region class="site-dock" role="group" aria-label="Layout panels">
+  <button type="button" class="site-dock__button site-dock__button--rightbar ui-interactive" aria-label="Open rightbar" aria-controls="rightbar-region" aria-expanded="false" data-shell-action="toggle-rightbar-drawer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type="button" class="site-dock__button site-dock__button--leftbar ui-interactive" aria-label="Open leftbar" aria-controls="leftbar-region" aria-expanded="false" data-shell-action="toggle-leftbar-drawer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+
+<dialog data-stellar-runtime-region class="search-dialog" id="site-search-dialog" aria-labelledby="site-search-title">
+  <div class="search-dialog__panel search-wrapper" id="site-search-wrapper" searching="false">
+    <div class="search-dialog__header">
+      <div class="search-form" role="search">
+        <span class="search-button" aria-hidden="true"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></span>
+        <input type="search" class="search-input" id="site-search-input" aria-labelledby="site-search-title" placeholder="搜索">
+      </div>
+      <button type="button" class="search-dialog__close" data-shell-action="close-search" aria-label="关闭搜索">×</button>
+    </div>
+    
+      <div class="search-dialog__scope" role="radiogroup" aria-labelledby="site-search-title" hidden>
+        <label class="search-dialog__scope-option" data-search-scope-option="all">
+          <input class="ui-radio" type="radio" name="site-search-scope" value="all">
+          <span>全站</span>
+        </label>
+        <label class="search-dialog__scope-option" data-search-scope-option="blog" hidden>
+          <input class="ui-radio" type="radio" name="site-search-scope" value="blog">
+          <span>博客</span>
+        </label>
+        <label class="search-dialog__scope-option" data-search-scope-option="current" hidden>
+          <input class="ui-radio" type="radio" name="site-search-scope" value="current">
+          <span data-search-scope-current-label></span>
+        </label>
+      </div>
+    
+    <h2 class="search-dialog__title" id="site-search-title">站内搜索</h2>
+    <div class="search-result" id="site-search-result"></div>
+    <div class="search-no-result">没有找到内容！</div>
+  </div>
+</dialog>
+</div><div class="site-scripts">
+<script data-stellar-script="core" src="/js/stellar-icons.js?v=2a11bebd1b4bc4d3"></script>
+
+<script data-stellar-script="defines">
+  window.canonical = window.stellarClientData.canonical;
+  const ctx = window.stellarClientData.ctx;
+  window.canonical.param = {permalink: "https://blog.syouiti.com/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C013%20%E6%B6%88%E6%81%AF%E6%B0%94%E6%B3%A1%EF%BC%9A%E8%AE%A9%E6%9D%90%E8%B4%A8%E5%86%B3%E5%AE%9A%E5%8A%A8%E6%95%88/", checklink: ctx.services.video.js};
+  ctx.date_suffix = {"just":"刚刚","min":"分钟前","hour":"小时前","day":"天前"};
+  if (ctx.search) Object.assign(ctx.search, {"more":"更多","no_more":"没有更多了"});
+  const def = window.stellarClientData.def;
+  window.ctx = ctx;
+  window.def = def;
+</script>
+
+
+<!-- core: 迁移期 DOM/资源兼容工具；Extension 注册与生命周期由 ESM runtime 所有 -->
+<script data-stellar-script="core" src="/js/utils.js?v=2.0.0"></script>
+<script data-stellar-script="core" src="/js/main.js?v=2.0.0" defer></script>
+<script data-stellar-script="core" defer src="/js/profile.js?v=2.0.0"></script>
+
+
+
+
+
+<script data-stellar-script="core" type="application/json" id="stellar-runtime-config">{"version":1,"root":"/","policy":{"cache":{"enabled":true,"defaultTtl":3600,"ttl":{"giscus":600,"waline":600,"artalk":600,"memos":600,"memos-user":86400,"sites":86400,"friends":86400,"friends_and_posts":86400,"siteinfo":86400},"maxEntries":200},"request":{"retries":2,"timeoutMs":5000,"idleTimeoutMs":3000,"maxCacheEntryBytes":204800},"features":{"codeCopyToastMs":2500},"providers":{"linkPrefetch":"flying_pages","lightbox":"fancybox","diagrams":"mermaid"}},"extensions":[{"id":"pin-slider","module":"/js/runtime/extensions/pin-slider.js","scope":"region","when":{"selector":".pin-slider"},"config":{}},{"id":"page-controls","module":"/js/runtime/extensions/page-controls.js","scope":"region","when":{"always":true},"config":{"highlight":"/js/search/highlight.js","tagtree":"/js/tagtree.js"}},{"id":"partial-navigation","module":"/js/runtime/extensions/partial-navigation.js","scope":"document","when":{"always":true},"config":{}},{"id":"color-scheme-switch","module":"/js/runtime/extensions/color-scheme-switch.js","scope":"document","when":{"always":true},"config":{"messages":{"light":"切换到浅色模式","dark":"切换到深色模式","auto":"切换到跟随系统配色"}}},{"id":"search","module":"/js/runtime/extensions/search.js","scope":"document","when":{"selector":".search-input"},"config":{"provider":"local","options":{"scope":"post","includeContent":true,"cacheTtlSeconds":86400},"assets":{"client":null,"provider":"/js/search/local-search.js","shortcut":"/js/search/shortcut.js"}}},{"id":"hero-parallax","module":"/js/runtime/extensions/hero-parallax.js","scope":"region","when":{"selector":".wiki-hero"},"config":{}},{"id":"hero-effect","module":"/js/runtime/extensions/hero-effect.js","scope":"region","when":{"selector":"canvas[data-hero-effect]"},"config":{}},{"id":"lazy-loading","module":"/js/runtime/extensions/lazy-loading.js","scope":"document","when":{"always":true},"config":{"asset":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@19.1/dist/lazyload.min.js"}},{"id":"deferred-icons","module":"/js/runtime/extensions/deferred-icons.js","scope":"region","when":{"selector":"svg.icon[data-icon]"},"config":{}},{"id":"dropdown","module":"/js/runtime/extensions/dropdown.js","scope":"region","when":{"selector":"details.dropdown"},"config":{}},{"id":"services","module":"/js/runtime/extensions/services.js","scope":"region","when":{"selector":"#artalk_container, #twikoo_container, #waline_container, .data-service, [class*='ds-'], a[cardlink], a[data-md-link][data-siteinfo-api], .site-card [data-siteinfo-api], .voice\u003eaudio, .video\u003evideo, .chat-file"},"config":{"marked":"https://cdn.jsdelivr.net/npm/marked@13.0.1/lib/marked.umd.min.js"}},{"id":"comments","module":"/js/runtime/extensions/comments.js","scope":"region","when":{"selector":"#comments"},"config":{"provider":"giscus","options":{"data-repo":"sy0u1ti/sy0u1ti.github.io","data-repo-id":"R_kgDOKbZc8Q","data-category":"General","data-category-id":"DIC_kwDOKbZc8c4CZ0-1","data-mapping":"pathname","data-strict":0,"data-reactions-enabled":1,"data-emit-metadata":0,"data-input-position":"bottom","data-theme":"noborder_dark","data-lang":"zh-CN","data-loading":"lazy","crossorigin":"anonymous"},"pageTitle":"013 消息气泡：让材质决定动效","assets":{"js":"https://giscus.app/client.js"}}},{"id":"settings","module":"/js/runtime/extensions/settings.js","scope":"region","when":{"selector":".settings-page"},"config":{}},{"id":"link-prefetch","module":"/js/runtime/extensions/link-prefetch.js","scope":"document","when":{"always":true},"config":{"asset":"https://gcore.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"}},{"id":"lightbox","module":"/js/runtime/extensions/lightbox.js","scope":"region","when":{"selector":"[data-fancybox]:not(.error), .with-fancybox, .ds-memos, .md-text img:not(.inline):not([class*=\"avatar\"]):not(.cover img), .post-cover img"},"config":{"enabled":true,"selector":".md-text img:not(.inline):not([class*=\"avatar\"]):not(.cover img), .post-cover img","assets":{"localCss":"/css/plugins/fancybox.css","js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"}}},{"id":"reveal","module":"/js/runtime/extensions/reveal.js","scope":"region","when":{"selector":".slide-up"},"config":{"enabled":true,"duration":500,"interval":60,"distance":10,"blur":4}},{"id":"code-copy","module":"/js/runtime/extensions/code-copy.js","scope":"region","when":{"selector":".code"},"config":{"assets":{"js":"/js/plugins/copycode.js"},"messages":{"label":"复制","copied":"复制成功","denied":"未获得剪贴板权限","unsupported":"当前浏览器不支持剪贴板或页面不是 HTTPS"}}},{"id":"adaptive-text","module":"/js/runtime/extensions/adaptive-text.js","scope":"region","when":{"selector":"[data-text-adaptive]"},"config":{"assets":{"colorJs":"/js/color.js","js":"/js/plugins/adaptive-text.js"}}},{"id":"card-hover","module":"/js/runtime/extensions/card-hover.js","scope":"region","when":{"selector":".card-hover"},"config":{"spotlight":true,"tilt":true,"assets":{"js":"/js/plugins/card-hover.js"}}},{"id":"swiper","module":"/js/runtime/extensions/swiper.js","scope":"region","when":{"selector":"#swiper-api"},"config":{"assets":{"localCss":"/css/plugins/swiper.css","js":"https://unpkg.com/swiper@10.3/swiper-bundle.min.js","css":"https://unpkg.com/swiper@10.3/swiper-bundle.min.css"}}}]}</script>
+<script data-stellar-script="core" type="module" src="/js/runtime/index.js?v=2.0.0&runtime=1"></script>
+
+
+<!-- inject -->
+<script defer src="/js/plugins/reading-progress.js?v=20260823j"></script>
+
+<script data-stellar-script="core" defer src="/js/navigation-init.js?v=2.0.0"></script>
+</div></body></html>
+
