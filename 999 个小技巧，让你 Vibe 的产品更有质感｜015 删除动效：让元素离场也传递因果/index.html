@@ -1,0 +1,1063 @@
+
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head><!-- hexo injector head_begin start -->
+<link rel="stylesheet" href="/css/bilicard.css">
+<!-- hexo injector head_begin end -->
+  
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/2.0.0" theme-name="Stellar" theme-version="2.0.0">
+  <link rel="canonical" href="https://blog.syouiti.com/999 个小技巧，让你 Vibe 的产品更有质感｜015 删除动效：让元素离场也传递因果/" data-stellar-page-meta="">
+  
+  <meta name="generator" content="Hexo 8.1.2">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  <title data-stellar-page-meta>015 删除动效：让元素离场也传递因果 - 白上賞一</title>
+  <script data-stellar-script="core">
+    (function () {
+      var key = 'stellar:v2:leftbar-state';
+      var fallback = "expanded";
+      try {
+        var value = localStorage.getItem(key);
+        document.documentElement.dataset.leftbarState = value === 'collapsed' || value === 'expanded' ? value : fallback;
+      } catch (error) {
+        document.documentElement.dataset.leftbarState = fallback;
+      }
+    })();
+  </script>
+
+  <meta name="description" content="用燃烧、羽化、碎块与撕贴纸四种离场方式，处理快照、邻项反应、空位回填与撤销，并附完整跨平台 Prompt。" data-stellar-page-meta="">
+<meta property="og:type" content="article" data-stellar-page-meta="">
+<meta property="og:title" content="015 删除动效：让元素离场也传递因果" data-stellar-page-meta="">
+<meta property="og:url" content="https://blog.syouiti.com/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C015%20%E5%88%A0%E9%99%A4%E5%8A%A8%E6%95%88%EF%BC%9A%E8%AE%A9%E5%85%83%E7%B4%A0%E7%A6%BB%E5%9C%BA%E4%B9%9F%E4%BC%A0%E9%80%92%E5%9B%A0%E6%9E%9C/" data-stellar-page-meta="">
+<meta property="og:site_name" content="白上賞一" data-stellar-page-meta="">
+<meta property="og:description" content="用燃烧、羽化、碎块与撕贴纸四种离场方式，处理快照、邻项反应、空位回填与撤销，并附完整跨平台 Prompt。" data-stellar-page-meta="">
+<meta property="og:locale" content="zh_CN" data-stellar-page-meta="">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png" data-stellar-page-meta="">
+<meta property="article:author" content="白上賞一「しらかみしょういち」" data-stellar-page-meta="">
+<meta property="article:published_time" content="2026-11-11T01:25:00.000Z" data-stellar-page-meta="">
+<meta property="article:modified_time" content="2026-11-11T01:25:00.000Z" data-stellar-page-meta="">
+<meta property="article:tag" content="Canvas" data-stellar-page-meta="">
+<meta property="article:tag" content="UI" data-stellar-page-meta="">
+<meta property="article:tag" content="WebGL" data-stellar-page-meta="">
+<meta property="article:tag" content="交互设计" data-stellar-page-meta="">
+<meta property="article:tag" content="动效" data-stellar-page-meta="">
+<meta name="twitter:card" content="summary" data-stellar-page-meta="">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png" data-stellar-page-meta="">
+<meta name="twitter:creator" content="@Syou1Ti" data-stellar-page-meta=""><meta name="twitter:title" content="015 删除动效：让元素离场也传递因果" data-stellar-page-meta="">
+  
+  
+  <meta name="keywords" content="动效,交互设计,WebGL,Canvas,UI" data-stellar-page-meta="">
+
+  <!-- feed -->
+  
+    
+
+    
+      
+        <link rel="alternate" href="/atom.xml" title="白上賞一" type="application/atom+xml">
+      
+    
+  
+
+  <link rel="preload" href="/css/main.css?v=2.0.0" as="style">
+  <link rel="stylesheet" href="/css/main.css?v=2.0.0">
+  <style>:root{--text-loading:"正在加载";--text-loading-error:"加载失败，请稍后重试。"}</style>
+
+
+  
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png">
+  
+
+  
+
+  <script type="application/ld+json" data-stellar-page-meta="">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"白上賞一「しらかみしょういち」","sameAs":[],"image":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png"},"dateCreated":"2026-11-11T01:25:00+00:00","dateModified":"2026-11-11T01:25:00+00:00","datePublished":"2026-11-11T01:25:00+00:00","description":"删除一个元素，不应该只是让它突然消失。\n用户点下删除后，需要确认三件事：被删掉的确实是刚才那一项、周围内容不会跟着乱跳、空出来的位置会以可理解的方式重新排好。\n原推文探索了四种卡片离场方式：燃烧、羽化、碎块和撕贴纸。它们的风格差异很大，但都遵守同一套因果：先留下证据，再处理离场，最后恢复布局。\n数据先删除，画面后离场删除动效不是延迟数据操作的加载动画。\n数据应该像原来一样立即删除，界面状态也...","headline":"015 删除动效：让元素离场也传递因果","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.syouiti.com/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C015%20%E5%88%A0%E9%99%A4%E5%8A%A8%E6%95%88%EF%BC%9A%E8%AE%A9%E5%85%83%E7%B4%A0%E7%A6%BB%E5%9C%BA%E4%B9%9F%E4%BC%A0%E9%80%92%E5%9B%A0%E6%9E%9C/"},"publisher":{"@type":"Organization","name":"白上賞一「しらかみしょういち」","sameAs":[],"image":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png"}},"url":"https://blog.syouiti.com/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C015%20%E5%88%A0%E9%99%A4%E5%8A%A8%E6%95%88%EF%BC%9A%E8%AE%A9%E5%85%83%E7%B4%A0%E7%A6%BB%E5%9C%BA%E4%B9%9F%E4%BC%A0%E9%80%92%E5%9B%A0%E6%9E%9C/","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"],"keywords":"动效, 交互设计, WebGL, Canvas, UI","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"}</script>
+  <link rel="stylesheet" href="/css/stellar-overrides.css?v=20261102-agent-covers">
+
+  <link rel="stylesheet" href="/css/stellar-icons.css?v=ca746a9b39366bc3">
+  <link rel="preload" as="script" href="/js/stellar-icons.js?v=2a11bebd1b4bc4d3">
+  
+  
+</head>
+<body data-page-type="content" data-page-layout="post" data-article-style="tech"><div data-stellar-runtime-region id="site-cover" class="site-cover"></div><div class="site-shell" id="start" data-regions="leftbar rightbar"><div class="site-workspace">
+<aside data-stellar-runtime-region id="leftbar-region" class="site-region site-region--leftbar" data-region="leftbar" aria-label="Leftbar"><div class="site-region__surface ui-surface"><div class="site-region__decoration" aria-hidden="true"></div><div class="site-region__viewport"><header class="site-region__header site-region__zone site-region__zone--top">
+    <div class="widget-instance widget-instance--brand" data-widget-id="leftbar:fixed:brand" data-presentation="leftbar" data-leftbar-rail>
+<header class="brand-header brand-header--regular brand-header--site"><div class="brand-wrap"><a class="brand-image brand-image--avatar" href="&#x2F;"><img no-lazy src="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;sy0u1ti&#x2F;picx-images-hosting@master&#x2F;image.6t736trr6e.png" alt="" onerror="this.onerror&#x3D;null;this.src&#x3D;&quot;&#x2F;images&#x2F;stellar-error.491ee870f4940739.svg&quot;"></a><a class="brand-title" href="&#x2F;"><div class="brand-name">白上賞一</div><div class="brand-tagline cap">运气永在身🎲 | 就爱瞎折腾💯</div></a><div class="brand-stats data-service ds-ghinfo" data-api="https:&#x2F;&#x2F;api.github.com&#x2F;users&#x2F;sy0u1ti"><a class="brand-stat ui-interactive card-hover card-hover--spotlight" target="_blank" rel="noopener" href="https:&#x2F;&#x2F;github.com&#x2F;sy0u1ti?tab&#x3D;followers"><span class="brand-stat__value" type="text" id="followers"></span><span class="brand-stat__label">followers</span></a><a class="brand-stat ui-interactive card-hover card-hover--spotlight" target="_blank" rel="noopener" href="https:&#x2F;&#x2F;github.com&#x2F;sy0u1ti?tab&#x3D;following"><span class="brand-stat__value" type="text" id="following"></span><span class="brand-stat__label">following</span></a><a class="brand-stat ui-interactive card-hover card-hover--spotlight" target="_blank" rel="noopener" href="https:&#x2F;&#x2F;github.com&#x2F;sy0u1ti?tab&#x3D;repositories"><span class="brand-stat__value" type="text" id="public_repos"></span><span class="brand-stat__label">repos</span></a></div></div><div class="brand-search">
+
+<div class="ui-collection" data-layout="list" data-variant="nav" data-density="auto">
+  
+    
+<button class="ui-collection__item ui-interactive card-hover card-hover--spotlight search-trigger has-hover-surface" type="button" title="搜索" aria-label="搜索" data-shell-action="open-search" data-search-instance="leftbar-brand-search" data-search-domain="topic:vibe-product-quality" data-search-domain-label="999 个小技巧，让你 Vibe 的产品更有质感" data-search-domain-blog="true">
+  
+  <span class="ui-icon"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">搜索</span>
+      
+      
+    </span>
+  
+  <kbd class="search-shortcut" aria-hidden="true">⌘K</kbd>
+
+  
+</button>
+
+  
+</div>
+
+
+</div></header>
+</div>
+  </header>
+  <div class="site-region__body site-region__zone site-region__zone--body">
+    <div class="widget-instance widget-instance--menu" data-widget-id="leftbar:fixed:menu" data-presentation="leftbar" data-leftbar-rail>
+
+
+<nav class="menu dis-select">
+<div class="ui-collection" data-layout="grid" data-variant="nav" data-density="auto" style="--ui-columns:2">
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-active is-themed" href="&#x2F;" title="首页" aria-current="page" style="--item-theme:#3B82F6;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M9.163 2.819c1.671-1.09 3.864-1.09 5.536 0l5.882 3.839A3.25 3.25 0 0 1 22 9.38v8.87A3.75 3.75 0 0 1 18.25 22h-1.5A2.75 2.75 0 0 1 14 19.25v-3.5a1.75 1.75 0 0 0-1.75-1.75h-1.5A1.75 1.75 0 0 0 9 15.75v3.5A2.75 2.75 0 0 1 6.25 22h-1.5A3.75 3.75 0 0 1 1 18.25V9.38a3.25 3.25 0 0 1 1.419-2.722z" opacity=".5"/><path fill="currentColor" d="M10.25 15.75c0-.414.336-.75.75-.75h2c.414 0 .75.336.75.75v3.5c0 .69.56 1.25 1.25 1.25h1.5c1.243 0 2.25-1.007 2.25-2.25V9.38a1.75 1.75 0 0 0-.764-1.466l-5.882-3.838a2.535 2.535 0 0 0-2.784 0L3.438 7.914A1.75 1.75 0 0 0 2.674 9.38v8.87c0 1.243 1.007 2.25 2.25 2.25h1.5c.69 0 1.25-.56 1.25-1.25z"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">首页</span>
+      
+      
+    </span>
+  
+  
+  <span class="ui-collection__indicator"></span>
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="&#x2F;archives&#x2F;" title="归档" style="--item-theme:#10B981;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M3 9h18v10a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3z" opacity=".5"/><path fill="currentColor" d="M2 5a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm7 8a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2z"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">归档</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="&#x2F;categories&#x2F;" title="分类" style="--item-theme:#F59E0B;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 9.5V18a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4V9.5z" opacity=".5"/><path fill="currentColor" d="M2 7.5A3.5 3.5 0 0 1 5.5 4h3.086a2 2 0 0 1 1.414.586L11.414 6H18.5A3.5 3.5 0 0 1 22 9.5v.5H2z"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">分类</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="&#x2F;tags&#x2F;" title="标签" style="--item-theme:#EC4899;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"/><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">标签</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="&#x2F;bangumis&#x2F;" title="番剧" style="--item-theme:#8B5CF6;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 10.5V18a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4v-7.5z" opacity=".5"/><path fill="currentColor" d="M18 2a4 4 0 0 1 4 4v3H2V6a4 4 0 0 1 4-4zm-9.354 2l-2 3h2.384l2-3zm4.5 0l-2 3h2.384l2-3z"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">番剧</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="&#x2F;topic&#x2F;" title="专栏" style="--item-theme:#06B6D4;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">专栏</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+</div>
+
+</nav>
+
+</div>
+    <div class="widgets widget-stack widget-stack--leftbar widget-stack--body"><div class="widget-instance widget-instance--related" data-widget-id="leftbar:0:related" data-presentation="leftbar" data-leftbar-rail>
+
+<widget class="widget-wrapper related-widget">
+  
+    <div class="widget-header dis-select">
+      <span class="name">专栏：999 个小技巧，让你 Vibe 的产品更有质感</span>
+      
+    </div>
+  
+  <div class="widget-body"><div class="ui-collection" data-layout="list" data-variant="nav" data-density="compact">
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C016%20%E8%BF%9E%E7%BB%AD%E6%80%A7%EF%BC%9A%E8%AE%A9%E7%95%8C%E9%9D%A2%E9%A1%BA%E7%9D%80%E7%94%A8%E6%88%B7%E5%8A%A8%E4%BD%9C%E8%BF%87%E6%B8%A1&#x2F;" title="016 连续性：让界面顺着用户动作过渡">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">016 连续性：让界面顺着用户动作过渡</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-active" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C015%20%E5%88%A0%E9%99%A4%E5%8A%A8%E6%95%88%EF%BC%9A%E8%AE%A9%E5%85%83%E7%B4%A0%E7%A6%BB%E5%9C%BA%E4%B9%9F%E4%BC%A0%E9%80%92%E5%9B%A0%E6%9E%9C&#x2F;" title="015 删除动效：让元素离场也传递因果" aria-current="page">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">015 删除动效：让元素离场也传递因果</span>
+      
+      
+    </span>
+  
+  
+  <span class="ui-collection__indicator"></span>
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C014%20%E5%86%B2%E5%87%BB%E6%B3%A2%E5%85%89%E7%8E%AF%EF%BC%9A%E8%AE%A9%E5%85%89%E7%9C%9F%E6%AD%A3%E6%89%AD%E6%9B%B2%E9%A1%B5%E9%9D%A2&#x2F;" title="014 冲击波光环：让光真正扭曲页面">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">014 冲击波光环：让光真正扭曲页面</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C013%20%E6%B6%88%E6%81%AF%E6%B0%94%E6%B3%A1%EF%BC%9A%E8%AE%A9%E6%9D%90%E8%B4%A8%E5%86%B3%E5%AE%9A%E5%8A%A8%E6%95%88&#x2F;" title="013 消息气泡：让材质决定动效">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">013 消息气泡：让材质决定动效</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C012%20%E5%8A%A8%E7%94%BB%E8%8A%82%E5%A5%8F%EF%BC%9A%E4%B8%8D%E5%90%8C%E5%8A%A8%E4%BD%9C%EF%BC%8C%E4%B8%8D%E5%90%8C%E6%9B%B2%E7%BA%BF&#x2F;" title="012 动画节奏：不同动作，不同曲线">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">012 动画节奏：不同动作，不同曲线</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C011%20%E6%B6%B2%E6%80%81%E7%8E%BB%E7%92%83%EF%BC%9A%E5%88%AB%E5%8F%AA%E5%81%9A%E4%B8%80%E5%B1%82%E6%A8%A1%E7%B3%8A&#x2F;" title="011 液态玻璃：别只做一层模糊">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">011 液态玻璃：别只做一层模糊</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C010%20%E6%8F%90%E7%A4%BA%E3%80%81%E7%A1%AE%E8%AE%A4%E4%B8%8E%E8%A1%A8%E5%8D%95%EF%BC%9A%E6%B5%AE%E5%B1%82%E6%80%8E%E4%B9%88%E9%80%89&#x2F;" title="010 提示、确认与表单：浮层怎么选">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">010 提示、确认与表单：浮层怎么选</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C009%20Wiki%20%E5%B8%83%E5%B1%80%EF%BC%9A%E6%A1%8C%E9%9D%A2%E4%B8%8E%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%85%BC%E9%A1%BE&#x2F;" title="009 Wiki 布局：桌面与移动端兼顾">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">009 Wiki 布局：桌面与移动端兼顾</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C008%20%E8%AE%A9%E6%96%87%E5%AD%97%E6%8E%92%E7%89%88%E6%9B%B4%E9%A1%BA%E7%9C%BC&#x2F;" title="008 让文字排版更顺眼">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">008 让文字排版更顺眼</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C007%20%E5%83%8F%E4%B9%A6%E4%B8%80%E6%A0%B7%E7%BF%BB%E5%BC%80%E7%9A%84%E5%8D%A1%E7%89%87&#x2F;" title="007 像书一样翻开的卡片">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">007 像书一样翻开的卡片</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C006%20%E6%9B%B4%E7%81%B5%E5%8A%A8%E7%9A%84%E6%8B%96%E6%8B%BD%E6%8E%92%E5%BA%8F&#x2F;" title="006 更灵动的拖拽排序">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">006 更灵动的拖拽排序</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C005%20%E9%80%92%E8%BF%9B%E5%BC%8F%E5%9C%86%E8%A7%92%E4%B8%8E%E8%BF%9E%E7%BB%AD%E6%9B%B2%E7%8E%87&#x2F;" title="005 递进式圆角与连续曲率圆角">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">005 递进式圆角与连续曲率圆角</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C004%20%E5%89%83%E5%88%80%E6%B3%95%E5%88%99&#x2F;" title="004 剃刀法则：如果不需要，就移除">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">004 剃刀法则：如果不需要，就移除</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C003%20Dither%20%E4%B8%8E%20ASCII%20%E5%8F%82%E6%95%B0%E5%8C%96%E6%95%88%E6%9E%9C&#x2F;" title="003 Dither 与 ASCII 参数化效果">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">003 Dither 与 ASCII 参数化效果</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C002%20%E7%BA%A7%E8%81%94%E8%8F%9C%E5%8D%95%E7%9A%84%E7%A8%B3%E5%AE%9A%E5%8C%BA&#x2F;" title="002 级联菜单：让子菜单不“跑丢”">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">002 级联菜单：让子菜单不“跑丢”</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C001%20%E6%8B%9F%E7%89%A9%E6%8C%89%E9%92%AE%E7%9A%84%E7%82%B9%E5%87%BB%E9%87%8D%E9%87%8F&#x2F;" title="001 拟物按钮：让点击有重量">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">001 拟物按钮：让点击有重量</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+</div></div>
+  
+</widget>
+
+
+</div><div class="widget-instance widget-instance--recent" data-widget-id="leftbar:1:recent" data-presentation="leftbar">
+
+<widget class="widget-wrapper slide-up recent-widget">
+  
+    <div class="widget-header dis-select">
+      <span class="name">最近更新</span>
+      
+    </div>
+  
+  <div class="widget-body"><div class="ui-collection" data-layout="list" data-variant="nav" data-density="compact">
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C016%20%E8%BF%9E%E7%BB%AD%E6%80%A7%EF%BC%9A%E8%AE%A9%E7%95%8C%E9%9D%A2%E9%A1%BA%E7%9D%80%E7%94%A8%E6%88%B7%E5%8A%A8%E4%BD%9C%E8%BF%87%E6%B8%A1&#x2F;" title="016 连续性：让界面顺着用户动作过渡">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">016 连续性：让界面顺着用户动作过渡</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;curator-bookmarks-Chrome%E6%9C%AC%E5%9C%B0%E4%B9%A6%E7%AD%BE%E7%AE%A1%E7%90%86%E6%89%A9%E5%B1%95&#x2F;" title="Curator（策书）：本地优先的 Chrome 书签管理与 AI 整理扩展">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">C</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">Curator（策书）：本地优先的 Chrome 书签管理与 AI 整理扩展</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;202%E4%B8%AD%E5%9B%BD%E5%9B%BD%E5%86%85%E8%87%B3%E5%9B%BD%E9%99%85%E9%AA%A8%E5%B9%B2%E7%BA%BF%E8%B7%AF%E6%95%B4%E7%90%86&#x2F;" title="中国各大运营商国际出海骨干网全解析 (163 &#x2F; CN2 &#x2F; 4837 &#x2F; 9929 &#x2F; CMI)">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">中</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">中国各大运营商国际出海骨干网全解析 (163 / CN2 / 4837 / 9929 / CMI)</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C015%20%E5%88%A0%E9%99%A4%E5%8A%A8%E6%95%88%EF%BC%9A%E8%AE%A9%E5%85%83%E7%B4%A0%E7%A6%BB%E5%9C%BA%E4%B9%9F%E4%BC%A0%E9%80%92%E5%9B%A0%E6%9E%9C&#x2F;" title="015 删除动效：让元素离场也传递因果">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">015 删除动效：让元素离场也传递因果</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C014%20%E5%86%B2%E5%87%BB%E6%B3%A2%E5%85%89%E7%8E%AF%EF%BC%9A%E8%AE%A9%E5%85%89%E7%9C%9F%E6%AD%A3%E6%89%AD%E6%9B%B2%E9%A1%B5%E9%9D%A2&#x2F;" title="014 冲击波光环：让光真正扭曲页面">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">014 冲击波光环：让光真正扭曲页面</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;%E7%94%A8%20AI%20%E5%81%9A%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1%EF%BC%9A11%20%E6%9D%A1%E8%AE%A9%E4%BA%A7%E5%93%81%E6%98%93%E7%94%A8%E4%B8%94%E4%B8%8D%E4%B8%91%E7%9A%84%E6%A3%80%E6%9F%A5%E6%B8%85%E5%8D%95&#x2F;" title="用 AI 做产品设计：11 条让产品易用且不丑的检查清单">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">用</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">用 AI 做产品设计：11 条让产品易用且不丑的检查清单</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;%E7%A0%B4%E7%94%B2%E8%AE%B0%E5%BF%86%EF%BC%9A%E6%8A%8A%E5%85%8D%E5%8D%A1%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2%E5%86%99%E8%BF%9B%20Agent%20%E9%95%BF%E6%9C%9F%E8%AE%B0%E5%BF%86&#x2F;" title="破甲记忆：把免卡节点部署写进 Agent 长期记忆">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">破</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">破甲记忆：把免卡节点部署写进 Agent 长期记忆</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C013%20%E6%B6%88%E6%81%AF%E6%B0%94%E6%B3%A1%EF%BC%9A%E8%AE%A9%E6%9D%90%E8%B4%A8%E5%86%B3%E5%AE%9A%E5%8A%A8%E6%95%88&#x2F;" title="013 消息气泡：让材质决定动效">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">013 消息气泡：让材质决定动效</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C012%20%E5%8A%A8%E7%94%BB%E8%8A%82%E5%A5%8F%EF%BC%9A%E4%B8%8D%E5%90%8C%E5%8A%A8%E4%BD%9C%EF%BC%8C%E4%B8%8D%E5%90%8C%E6%9B%B2%E7%BA%BF&#x2F;" title="012 动画节奏：不同动作，不同曲线">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">012 动画节奏：不同动作，不同曲线</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C011%20%E6%B6%B2%E6%80%81%E7%8E%BB%E7%92%83%EF%BC%9A%E5%88%AB%E5%8F%AA%E5%81%9A%E4%B8%80%E5%B1%82%E6%A8%A1%E7%B3%8A&#x2F;" title="011 液态玻璃：别只做一层模糊">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">011 液态玻璃：别只做一层模糊</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+</div></div>
+  
+</widget>
+
+
+</div></div>
+  </div>
+  <footer class="site-region__footer">
+    <div class="site-region__footer-actions"><div class="widget-instance widget-instance--actions" data-widget-id="leftbar:fixed:actions" data-presentation="leftbar">
+<div class="region-actions social-wrap ui-collection" data-layout="inline" data-variant="nav" data-density="compact"><button type="button" class="social ui-collection__item ui-interactive card-hover card-hover--spotlight is-icon-only" title="切换明暗主题" aria-label="切换明暗主题" onclick="setColorScheme(document.documentElement.getAttribute(&#39;data-theme&#39;) &#x3D;&#x3D;&#x3D; &#39;dark&#39; ? &#39;light&#39; : &#39;dark&#39;)"><span class="ui-icon"><svg class="icon" viewBox="0 0 1 1" data-icon="default:theme" aria-hidden="true"></svg></span></button></div>
+</div></div>
+    <div class="site-region__system ui-collection" data-layout="inline" data-variant="nav" data-density="compact">
+      <div class="site-region__settings"><div class="widget-instance widget-instance--settings" data-widget-id="leftbar:fixed:settings" data-presentation="leftbar" data-leftbar-rail>
+<a class="settings-widget ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;settings&#x2F;" data-profile-provider="giscus" data-profile-identity-enabled="false" data-profile-fallback-avatar="https:&#x2F;&#x2F;gcore.jsdelivr.net&#x2F;gh&#x2F;cdn-x&#x2F;placeholder@1.0.12&#x2F;avatar&#x2F;round&#x2F;3442075.svg" data-settings-placement="leftbar" data-settings-label="设置" aria-label="设置" title="设置">
+  <span class="settings-widget__avatar" aria-hidden="true">
+    <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><g fill="currentColor"><path fill-rule="evenodd" d="M12.4277 2C11.3139 2 10.2995 2.6007 8.27081 3.80211L7.58466 4.20846C5.55594 5.40987 4.54158 6.01057 3.98466 7C3.42773 7.98943 3.42773 9.19084 3.42773 11.5937V12.4063C3.42773 14.8092 3.42773 16.0106 3.98466 17C4.54158 17.9894 5.55594 18.5901 7.58466 19.7915L8.27081 20.1979C10.2995 21.3993 11.3139 22 12.4277 22C13.5416 22 14.5559 21.3993 16.5847 20.1979L17.2708 19.7915C19.2995 18.5901 20.3139 17.9894 20.8708 17C21.4277 16.0106 21.4277 14.8092 21.4277 12.4063V11.5937C21.4277 9.19084 21.4277 7.98943 20.8708 7C20.3139 6.01057 19.2995 5.40987 17.2708 4.20846L16.5847 3.80211C14.5559 2.6007 13.5416 2 12.4277 2Z" clip-rule="evenodd" opacity=".5"/><path d="M12.4277 8.25C10.3567 8.25 8.67773 9.92893 8.67773 12C8.67773 14.0711 10.3567 15.75 12.4277 15.75C14.4988 15.75 16.1777 14.0711 16.1777 12C16.1777 9.92893 14.4988 8.25 12.4277 8.25Z"/></g></svg></span>
+  </span>
+  <span class="settings-widget__name ui-collection__title">设置</span>
+</a>
+</div></div>
+      <button type="button" class="leftbar-state-toggle ui-collection__item ui-interactive card-hover card-hover--spotlight is-icon-only" aria-label="Collapse leftbar" aria-expanded="true" data-shell-action="toggle-leftbar"><span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M3.172 4.172C2 5.343 2 7.229 2 11v2c0 3.771 0 5.657 1.172 6.828S6.229 21 10 21h5V3h-5C6.229 3 4.343 3 3.172 4.172" clip-rule="evenodd" opacity=".5"/><path fill="currentColor" d="M5.5 9.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zm1 4a.75.75 0 0 0 0 1.5h4a.75.75 0 0 0 0-1.5zM22 13v-2c0-3.771 0-5.657-1.172-6.828c-.974-.975-3.192-1.139-5.828-1.166v17.988c2.636-.027 4.854-.191 5.828-1.166C22 18.657 22 16.771 22 13"/></svg></span></button>
+    </div>
+  </footer></div></div></aside>
+<main data-stellar-runtime-region class="site-main" id="main">
+
+
+<div class="article-banner-wrap slide-up"><div class="article banner top">
+  <div class="content">
+    
+    <div class="top bread-nav footnote"><div class="top-row"><div class="left" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" id="menu" href="/topic/">专栏</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C016%20%E8%BF%9E%E7%BB%AD%E6%80%A7%EF%BC%9A%E8%AE%A9%E7%95%8C%E9%9D%A2%E9%A1%BA%E7%9D%80%E7%94%A8%E6%88%B7%E5%8A%A8%E4%BD%9C%E8%BF%87%E6%B8%A1/">999 个小技巧，让你 Vibe 的产品更有质感</a>
+</div></div><div class="meta-row">
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-11-11T01:25:00.000Z">2026-11-11</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-11-11T01:25:00.000Z">2026-11-11</time></span></div>
+</div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>015 删除动效：让元素离场也传递因果</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div></div>
+<article class="md-text content slide-up"><p>删除一个元素，不应该只是让它突然消失。</p>
+<p>用户点下删除后，需要确认三件事：被删掉的确实是刚才那一项、周围内容不会跟着乱跳、空出来的位置会以可理解的方式重新排好。</p>
+<p>原推文探索了四种卡片离场方式：燃烧、羽化、碎块和撕贴纸。它们的风格差异很大，但都遵守同一套因果：先留下证据，再处理离场，最后恢复布局。</p>
+<h2 id="数据先删除，画面后离场"><a href="#数据先删除，画面后离场" class="headerlink" title="数据先删除，画面后离场"></a>数据先删除，画面后离场</h2><p>删除动效不是延迟数据操作的加载动画。</p>
+<p>数据应该像原来一样立即删除，界面状态也立即更新。动效只是“删除已经发生”的可视过程，不能阻塞输入，更不能等动画播完才提交。</p>
+<p>真正需要提前完成的，是离场画面的准备：</p>
+<ol>
+<li>在状态改变前读取列表项矩形；</li>
+<li>捕获它的当前视觉快照；</li>
+<li>隐藏真实列表项；</li>
+<li>在列表上方播放离场效果；</li>
+<li>同时闭合剩余项目之间的空位。</li>
+</ol>
+<p>虚拟列表尤其要注意。下一次渲染后，原始节点可能已经不存在，所以截图和尺寸读取必须先于状态更新。</p>
+<h2 id="第一帧必须和真实项目完全一致"><a href="#第一帧必须和真实项目完全一致" class="headerlink" title="第一帧必须和真实项目完全一致"></a>第一帧必须和真实项目完全一致</h2><p>如果动画开始时卡片突然换了圆角、掉了一像素，或文字位置轻微移动，用户会立刻发现这是叠加的假图层。</p>
+<p>快照要保留项目自己的背景、边框、阴影、圆角和连续曲率，并且按设备像素比至少 2 倍上传。半透明素材需要正确处理预乘 alpha，否则重新着色后会出现暗边。</p>
+<p>对于半透明或带 <code>backdrop-filter</code> 的卡片，截图时还要先把它压平到真实背景上，不能只截一个透明轮廓。</p>
+<p>离场画面可以暂时盖住邻项，但应该被列表滚动容器裁切，并位于页头、标签栏和浮动按钮之下。火焰可以从卡片位置升起，经过邻项后方，但不能盖住全局导航。</p>
+<h2 id="四种删除，四种材料性格"><a href="#四种删除，四种材料性格" class="headerlink" title="四种删除，四种材料性格"></a>四种删除，四种材料性格</h2><h3 id="Burn：最终、戏剧性的删除"><a href="#Burn：最终、戏剧性的删除" class="headerlink" title="Burn：最终、戏剧性的删除"></a>Burn：最终、戏剧性的删除</h3><p>Burn 总计约 2 秒，燃烧前锋在 1.15 秒内扫过卡片。</p>
+<p>它不是一张逐渐变黑的图，而是按顺序叠加：</p>
+<ul>
+<li>页面后方先出现一圈橙色火光；</li>
+<li>纸张从前锋位置经历焦黄、棕色、暖黑，再被烧穿；</li>
+<li>燃烧边界保留清晰的黑炭带和一条浅灰灰烬线；</li>
+<li>火焰从燃烧前沿向上生长，分成独立火舌；</li>
+<li>64 个火星与灰片在前锋经过后离开。</li>
+</ul>
+<p>焦黑区域不能变成灰蒙蒙的烟雾。真正让燃烧可信的，是暖黑保持干净、灰烬线足够细，以及火焰的噪声只在边缘缓慢游走。</p>
+<p>燃烧还会向未燃烧的一侧投热光。光带出现在火焰前侧，而不是把整张卡片均匀染黄；否则看起来只是换了一个暖色滤镜。</p>
+<h3 id="Plume：轻柔、向上的羽化"><a href="#Plume：轻柔、向上的羽化" class="headerlink" title="Plume：轻柔、向上的羽化"></a>Plume：轻柔、向上的羽化</h3><p>Plume 约 1.4 秒，从卡片底部升起一朵柔软火焰，把内容向上带走。</p>
+<p>纸张底边先被拉向火焰根部，靠近燃烧线的部分变暖、上移、收窄，并轻微摆动。火焰从窄根开始，向上逐渐张开，形成分瓣、叶脉和近白色核心。</p>
+<p>它不是把一张卡片向上擦除，而是让内容和火焰共享一个方向：底部的纸被吸入，顶端最后才烧尽。中段如果火焰最宽，就会立刻像一个色块。</p>
+<p>Plume 适合“完成”“归档”这类正向删除。它比 Burn 轻，但仍然有明确的消散过程。</p>
+<h3 id="Blocks：俏皮、机械的碎裂"><a href="#Blocks：俏皮、机械的碎裂" class="headerlink" title="Blocks：俏皮、机械的碎裂"></a>Blocks：俏皮、机械的碎裂</h3><p>Blocks 约 1.5 秒，先用 70ms 的白色闪光和 4% 膨胀确认命中，再把卡片碎成三种尺寸的块。</p>
+<p>36px 网格中：</p>
+<ul>
+<li>35% 保持整块；</li>
+<li>45% 拆成 18px；</li>
+<li>20% 拆成 9px。</li>
+</ul>
+<p>每块保留原图的一部分，带有细描边、底边与右边的阴影，以及略微不同的亮度。所有碎块从中心爆发，速度、方向、旋转和重力共同决定轨迹。</p>
+<p>碎块会落到可见列表底部附近，弹一次，再缩小淡出。它适合更 playful 的产品，但必须在真实列表里测试长文本、图片和滚动状态，否则碎片可能看起来像随机噪点。</p>
+<h3 id="Peel：可以摸到的撕贴纸"><a href="#Peel：可以摸到的撕贴纸" class="headerlink" title="Peel：可以摸到的撕贴纸"></a>Peel：可以摸到的撕贴纸</h3><p>Peel 约 1.2 秒，前半段用 0.62 秒把贴纸从一角掀起。</p>
+<p>它必须使用真实的 5px 网格，因为折起位置同时能看到正面、背面和阴影，单靠逐像素扭曲无法表现两层空间。</p>
+<p>贴纸弯曲过程分为两段：</p>
+<ul>
+<li>先绕半径 20px 的圆柱弯折；</li>
+<li>离开弯折后，沿半径 420px 的宽弧继续；</li>
+</ul>
+<p>两段保持弧长，所以纸张不会被拉长。折痕处有单独加深的阴影，背面使用更鲜明的同类色，并沿原卡片的圆角生成 6px 宽的白色模切边。</p>
+<p>只有撕贴纸样式的删除，才值得承担网格、透视和两层明暗的成本。普通产品用一张贴纸效果比四套效果混用更容易成立。</p>
+<h2 id="邻项不是背景，它们也会感受到事件"><a href="#邻项不是背景，它们也会感受到事件" class="headerlink" title="邻项不是背景，它们也会感受到事件"></a>邻项不是背景，它们也会感受到事件</h2><p>卡片离开时，周围项目应该对正在发生的事作出反应，但只能改变 <code>transform</code> 和绘制，不能改变布局或阻塞输入。</p>
+<p>Burn 和 Plume 会让最近的项目朝远离火焰的方向轻微倾斜、缩小，并在面向火焰的一侧出现局部暖光。热浪还可以用向上漂移的噪声弯曲邻项和标题，但弯曲周期要足够长，整行文字应该平滑弯曲，不能把单个字撕开。</p>
+<p>Blocks 的碎裂冲击会让邻项短暂外推再回弹。Peel 的拉力则会把邻项向贴纸方向拉几像素，释放后再弹回。</p>
+<p>反应强度按 1 / 距离衰减。第一邻项明显，第二邻项只剩一点，再远就应该安静。整组效果持续不足一秒时，过多邻项同时运动只会让页面失控。</p>
+<h2 id="空位闭合属于同一次动作"><a href="#空位闭合属于同一次动作" class="headerlink" title="空位闭合属于同一次动作"></a>空位闭合属于同一次动作</h2><p>删除不是“卡片消失后，列表再换一个状态”。空位要在离场过程中开始闭合。</p>
+<p>默认使用只作用在 <code>transform</code> 上的弹簧：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">progress = 1 - exp(-7t) × cos(6t)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>总时长约 520ms，但不同效果在不同时间启动：</p>
+<ul>
+<li>Burn 在 900ms；</li>
+<li>Plume 在 720ms；</li>
+<li>Blocks 在 240ms；</li>
+<li>Peel 在 640ms。</li>
+</ul>
+<p>不要把 <code>height</code>、<code>margin</code> 或真实布局位置逐帧动画。列表项应该先有最终位置，再通过位移追赶过去。新项目如果需要补入，从下方约 60px 上移，并在前 40% 淡入；绝不能让刚被删除的文字重新出现。</p>
+<p>弹簧不能把项目推入下一条。所有元素先按最终位置计算，再各自从旧位置出发，这与 013 中聊天线程的整体位移遵循同一原则。</p>
+<h2 id="真实项目需要适配尺寸和形状"><a href="#真实项目需要适配尺寸和形状" class="headerlink" title="真实项目需要适配尺寸和形状"></a>真实项目需要适配尺寸和形状</h2><p>原效果以约 432 × 130px 的卡片为基准。换到产品的真实列表时：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">k = clamp(sqrt(w × h / (432 × 130)), 0.6, 1.4)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>像素距离和火焰高度按 <code>k</code> 缩放，网格仍保持 5–6px。</p>
+<p>明显小于 200 × 60px 的项目，应改用碎块或淡出；整行表格可以燃烧、碎裂或剥离，但羽化需要足够高度，通常要把火焰缩短并允许跨到上一行。</p>
+<p>所有边缘计算都必须使用产品自己的圆角与曲线。使用 <code>corner-shape: superellipse()</code> 时，快照、模切边和火焰裁切都要遵循同一条超椭圆，不能一个用圆、一个用超椭圆。</p>
+<h2 id="删除必须可撤销，也必须可跳过"><a href="#删除必须可撤销，也必须可跳过" class="headerlink" title="删除必须可撤销，也必须可跳过"></a>删除必须可撤销，也必须可跳过</h2><p>如果产品支持撤销，删除动画不能阻止撤回。撤销发生时，应立即终止离场效果，让原项目按产品原有方式回到列表。</p>
+<p>最多同时允许三个离场效果。超过三个时，其他删除应退化为简短的淡出和缩小，避免多个火焰和碎块同时拖垮帧率。</p>
+<p>在 <code>prefers-reduced-motion: reduce</code> 下，不播放物理效果，也不让邻项反应，只保留约 220ms 的淡出与 4% 缩小，然后闭合空位。</p>
+<p>焦点要移动到下一个项目，读屏需要明确听到该项目已被删除。静止状态必须与修改前像素一致，没有删除时不能保留画布、shader 或循环。</p>
+<h2 id="平台不同，分工相同"><a href="#平台不同，分工相同" class="headerlink" title="平台不同，分工相同"></a>平台不同，分工相同</h2><p>所有实现都可以拆成四个部分：</p>
+<ol>
+<li>项目快照；</li>
+<li>Burn / Plume 的逐像素 shader；</li>
+<li>Peel 的真实网格；</li>
+<li>Blocks 和粒子的大量小四边形。</li>
+</ol>
+<div class="md-table-scroll"><table>
+<thead>
+<tr>
+<th>平台</th>
+<th>主要能力</th>
+<th>回退</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Web</td>
+<td>WebGL2 画布、实例化四边形、SVG 热浪滤镜</td>
+<td>Canvas 2D 碎块或淡出</td>
+</tr>
+<tr>
+<td>iOS</td>
+<td>SwiftUI <code>.layerEffect</code>、Metal 网格、Canvas</td>
+<td>Blocks 与淡出</td>
+</tr>
+<tr>
+<td>Android</td>
+<td>AGSL RuntimeShader、Canvas mesh、OpenGL ES</td>
+<td>淡出</td>
+</tr>
+<tr>
+<td>Flutter</td>
+<td>Impeller FragmentProgram、Canvas Atlas</td>
+<td>淡出</td>
+</tr>
+<tr>
+<td>Rust</td>
+<td>wgpu 后处理与实例化渲染</td>
+<td>淡出</td>
+</tr>
+</tbody></table></div>
+<p>Web 端还需要在删除处理器里完成截图和隐藏，再让布局库或 FLIP 处理空位。虚拟列表必须把效果画布挂在滚动容器外，否则被删除的项目会连同效果一起卸载。</p>
+<h2 id="先做决策，再改代码"><a href="#先做决策，再改代码" class="headerlink" title="先做决策，再改代码"></a>先做决策，再改代码</h2><p>在真实产品中接入前，需要先确认：</p>
+<ul>
+<li>哪些删除入口使用效果，滑动删除和批量删除默认如何回退；</li>
+<li>这一款产品只使用哪一种效果；</li>
+<li>邻项是否反应，热浪是否值得性能成本；</li>
+<li>贴纸背面取类别色还是品牌色，Plume 是否沿用原火焰配色；</li>
+<li>当前平台是否真的支持所需的快照和 shader。</li>
+</ul>
+<p>然后先列出会修改的文件、列表接入点、快照方式、绘制方案、成本和回退，等待确认。删除效果不应该借机重写一个列表，也不应该引入无法维护的渲染框架。</p>
+<h2 id="检查清单"><a href="#检查清单" class="headerlink" title="检查清单"></a>检查清单</h2><ul>
+<li>删除数据是否立即提交，动画是否从不阻塞输入；</li>
+<li>快照是否在状态更新前完成，第一帧是否与真实项目一致；</li>
+<li>效果层是否位于滚动容器内裁切，导航是否始终在上方；</li>
+<li>Burn、Plume、Blocks、Peel 是否各自符合材质与时长；</li>
+<li>邻项是否只使用 transform 与绘制，并按距离衰减；</li>
+<li>空位是否用弹簧闭合，而不是动画布局高度；</li>
+<li>尺寸、圆角、连续曲率、深色模式是否使用产品自身的 token；</li>
+<li>撤销、连续删除和降级状态是否正确；</li>
+<li>焦点、读屏、减少动态效果和静止零开销是否成立；</li>
+<li>是否先给出实现方案与平台回退，再开始修改。</li>
+</ul>
+<details class="tag-plugin colorful folding" color="blue"><summary><p>卡片删除效果示例 Prompt</p>
+</summary><div class="body"><figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line">Prompt</span><br><span class="line"></span><br><span class="line">Add a delete effect to the cards or list items in my existing product: when one is deleted it leaves in one of four ways (Burn, Plume, Blocks, Peel), the items around it answer, and the gap closes.</span><br><span class="line"></span><br><span class="line">This is a change to my product, not a demo. Build it inside my code, on my stack, with my components, tokens and list. Do not change what deleting does or how the list looks at rest. Do not copy any demo scene: no phone frame, backdrop, sample cards or fonts. Do not rewrite the list or add a dependency or renderer without asking. Every value below is a default to start from, not a requirement. The numbers assume an item about 432 x 130 px; section 1 says how to fit them to mine.</span><br><span class="line"></span><br><span class="line">First look at my app (section 0) and tell me in a few lines what you found. Then ask me these one at a time, offering the default each time, and wait for each answer:</span><br><span class="line">1. Where: which delete actions get the effect (the default: the item's own delete button), what happens for swipe-to-delete and bulk delete (the default: the current behavior, or the fade in section 8), and whether undo exists. Delete the data at once as today; the effect is only the picture of it leaving, and must never block input or wait to commit.</span><br><span class="line">2. Which effect: one per product is usually right. Burn suits a final, dramatic delete; Plume a gentle or positive one (done, archived); Blocks a playful one; Peel anything sticker-like. Say which one fits my item's shape and size best.</span><br><span class="line">3. Neighbors: should the items around it react (section 7)? The default is yes. Should heat bend them? Say what that costs on my platform.</span><br><span class="line">4. Colors and modes: the sticker back from the item's own category color or my brand; Plume's flame colors as given or from my palette; which modes my app has (section 1).</span><br><span class="line">Then propose how you will build it on my platform: which files change, how it hooks into my list, how the item is captured, what draws the effect, the cost and the fallback (section 9 is a starting point, not a prescription). Wait for my go-ahead.</span><br><span class="line"></span><br><span class="line">0. Start from what exists</span><br><span class="line">- Find the list, the item component, where items are removed, how the list reflows now, and any existing exit animation or list-animation library. Reuse that for the gap if it can do the spring in section 2.</span><br><span class="line">- Read the item's real styles: size, corner radius and corner curve, background, border, shadow, and whether it has images, video or nested scrolling.</span><br><span class="line">- Find the scroll container, anything that clips or transforms the list, what sits above it (headers, tab bars, floating buttons), and whether the list is virtualized or recycled.</span><br><span class="line">- Note what the items draw with, what graphics the product already ships (WebGL, three.js, Pixi, Skia, Metal, Vulkan, wgpu), and the platform's version range. This decides the snapshot and the renderer (section 9).</span><br><span class="line">- Note my motion tokens, color tokens, dark mode, reduced-motion handling and how tests or screenshots run, and keep them working.</span><br><span class="line"></span><br><span class="line">1. Fit it to my UI</span><br><span class="line">- Size: k = clamp(sqrt(w * h / (432 * 130)), 0.6, 1.4). Multiply pixel distances and flame heights by k. Burn's field is already relative to the item. Mesh cells stay 5 or 6px.</span><br><span class="line">- Items much smaller than about 200 x 60 px: use Blocks with 9 and 18px chunks, or the fade. Full-width table rows: Burn, Blocks or Peel; Plume needs height to read, so give it a shorter flame and let it cross the row above.</span><br><span class="line">- Shape: use my radius and corner curve everywhere an edge is computed (the snapshot, the die-cut edge, the flame clip). For continuous corners use |x|^n + |y|^n = 1, the same curve as my CSS or platform API. Square rows use radius 0.</span><br><span class="line">- Paper color: the effects read the item's own picture, so a tinted item keeps its tint until it scorches. If my item has a translucent or blurred background, flatten it onto its real backdrop in the snapshot.</span><br><span class="line">- Dark mode (starting points, to check by eye): Burn's char disappears on a dark surface, so lift it to rgb(58 50 46) and keep the ash line. Firelight on neighbors is at about half strength and normal blending, since multiply does nothing on dark. Plume's halo at 20%. Peel's shadow at 50% and black, the adhesive at 12%.</span><br><span class="line">- Origin: Burn and Blocks start at the actual delete control, wherever it is. Peel starts from the corner nearest it and travels toward the item's far side, choosing the direction so the flap stays on screen. Mirror the direction if the control is on the left.</span><br><span class="line">- Where it lives: mount the surface at the level of the scroll container, outside the list, so removing the item cannot unmount it and it is clipped like the list. If the list scrolls during an effect, move the surface with it.</span><br><span class="line"></span><br><span class="line">2. What every effect shares</span><br><span class="line">- In the delete handler, before the state changes: read the item's rectangle, take its picture (section 9), then hide the real item. With a virtualized or recycled list the item is gone on the next update, so this must happen first.</span><br><span class="line">- Draw the effect on one surface over the list that ignores input. Keep headings and navigation above that surface, so a flame passes behind them; it may cover neighboring items for a moment and is clipped only by the scroll area or screen.</span><br><span class="line">- The first frame must match the real item exactly, including its corner curve; if it does not, the snapshot is wrong. Upload it at 2x or device scale with premultiplied alpha, and un-premultiply before recoloring it.</span><br><span class="line">- Close the gap with a spring on transforms only, progress = 1 - exp(-7t) * cos(6t) over 520ms, never by animating height or margin. It starts while the effect is still running: 900ms into Burn, 720ms into Plume, 240ms into Blocks, 640ms into Peel. A new item, if the list brings one, comes from 60px lower and fades in over the first 40%. Never bring back the text just deleted.</span><br><span class="line">- Draw only while an effect runs; free its buffers and textures when it ends. Each delete owns its own effect; allow up to 3 at once and use the fade beyond that. On undo, stop that effect at once and let the item return the way my product brings items back.</span><br><span class="line">- The field used below: f(p) = length((p - click) * (1, 1.15)) / maxD + (fbm(p * 0.018) - 0.5) * 0.42 + (fbm(p * 0.085) - 0.5) * 0.05 - pocket, with click the delete button's center, maxD its distance to the farthest corner, fbm five octaves of smooth value noise (each 2.03 times the frequency plus an offset of 17.1, half the weight), and pocket = smoothstep(0.6, 0.78, fbm(p * 0.03 + 40)) * 0.12. The coarse field is the same without the last two terms.</span><br><span class="line"></span><br><span class="line">3. Burn (2s in all; the front takes 1.15s)</span><br><span class="line">- level = t / 1.15 * 1.4 - 0.1, and d = f(p) - level: positive is not yet reached. Draw in order: the light behind, the paper, the flames, the particles.</span><br><span class="line">- The light behind: on the page around the front, rgb(255 158 56) at exp(-abs(d) / 0.07) * near * 30%, where near is 1 on the item and exp(-distance / 26) off it, fading as level goes from 1.1 to 1.3.</span><br><span class="line">- The paper, in order: mix toward rgb(247 194 102) by 55% over d = 0.17 to 0.05; toward rgb(107 51 18) over d = 0.06 to 0.008; toward rgb(13 9 8) over d = 0.012 to -0.006. Keep the char clean, since this is where it turns dirty: one band 5% of the field wide (about 20px), warm black to rgb(43 31 26), with an edge that wanders only on slow noise, charD = d + (noise(p * 0.05) - 0.5) * 0.014, finished by a fine line of pale ash in rgb(189 179 168) at 85% where abs(charD + 0.05) is under 0.0035. Past that line the paper is gone, with a crisp edge. No gray mottling, no smoky soft edge.</span><br><span class="line">- Heat sits on the unburnt side so the char stays dark. Each band is exp(-(d / w)^2), with w ahead and behind of the line: orange rgb(255 112 13) w 0.05 and 0.012 at 92%; gold rgb(255 204 66) w 0.024 and 0.006 at 95%; the line rgb(255 250 214) w 0.008. Multiply them all by 0.72 + 0.28 * noise(p * 0.02, moving at 1.5/s).</span><br><span class="line">- Stray points catch ahead of the front: smoothstep(0.78, 0.84, noise(p * 0.17)), only where d is about 0.02 to 0.15, in rgb(255 184 64), flickering 0.6 + 0.4 * sin(18t + noise(p * 0.05) * 30).</span><br><span class="line">- Flames rise from the front. n1 = noise(x * 0.045 + 0.6t, y * 0.02 + 6t), n2 = noise(x * 0.11 + 5, y * 0.05 + 9t), tall = 16 + 72 * smoothstep(0.32, 0.8, n1). At each point take 5 samples s from 0 to tall going down the page, and add exp(-(coarse front / 0.042)^2) * (1 - smoothstep(0, tall, s)) * 0.5, counting only samples that land on the item (smoothstep(2, -6, distance to its edge)). Cap at 1, then multiply by smoothstep(0.2, 0.62, n1 * 0.7 + n2 * 0.3) so they stand in separate tongues. Ramp rgb(255 107 18), rgb(255 194 51) over 0.2 to 0.55, rgb(255 250 214) over 0.55 to 0.9. Alpha smoothstep(0.03, 0.62, flame) * 95%.</span><br><span class="line">- The paper is a mesh (6px cells). lift = clamp(1 - (f - level) / 0.1, 0, 1)^2: it pulls back 9px * lift away from the click and rises 12px * lift^2, shading to rgb(209 194 173).</span><br><span class="line">- 64 particles, each leaving as the front reaches it, living 0.5 to 1.2s. 80% are sparks of 2.5 to 4.5px, rgb(255 158 41) to a pale core. The rest are pale gray flakes of 3 to 8px at 60%, with irregular outlines. They rise 60 to 240px (sparks 1.2 times, flakes 0.8), drifting sideways by sin(6 age) * 12 * age and up to 20px, fading from 45% of their life.</span><br><span class="line"></span><br><span class="line">4. Plume (1.4s): one soft flame takes the item from the bottom up</span><br><span class="line">- The paper goes from the bottom up: the line reaches the top at 0.84s, ease-in-out from 0.04s, with a wandering edge of about 17px, the middle leading the sides by up to 80px at mid-flight. Within 90px of the line the paper warms to rgb(255 212 173), shifts up as much as 20px, is drawn in toward the middle by 20% and wobbles, so it looks pulled into the root of the flame. Fade it over the last 10px.</span><br><span class="line">- One plume, in one shader over the item, starting at the middle of its bottom edge: a narrow root, half-width 36 to 62px, plus 0.75 * up above the base, so the flame opens as it climbs. Never make it widest at the bottom, or it reads as a block. Height from 90 to 300px, growing in over 0.16s and pulsing about 10%. It sways more the higher it goes: sin(3.6t + up * 0.012) * up * 0.08 + sin(6.1t + up * 0.03) * up * 0.03. fan = (x - middle - sway) / (half-width + up * 0.75).</span><br><span class="line">- The shape: m = 1 - length(fan, rel) - (v.x - 0.35) * 0.3, drawn where m &gt; 0. The crown has pointed tongues that run along it: rel = (up / height) / (0.86 + 0.5 * c1^2 + 0.18 * c2^2), with c1 = 1 - abs(sin(fan * 3.4 + 2.6t + sin(1.7t))) and c2 = 1 - abs(sin(fan * 7.1 - 4t + 1.3)).</span><br><span class="line">- The lobes: Voronoi at q = (fan * 2.4, (up + 20)^0.8 * 0.02 - 2.6t), warped by up to 0.58 of noise, its points circling at 3.2 rad/s; v.x is the distance to the nearest point and v.y to the second. Fanning this way makes the borders long curves rising from the base. The bottom edge is scalloped: smoothstep(0, 1, (rise + 14 - v.x * 46) / 12).</span><br><span class="line">- Color: pink rgb(250 153 168) and orange rgb(255 168 87) in soft noise patches, lighter inside each lobe toward rgb(255 204 163); veins where v.y - v.x is under 0.04 to 0.075, in rgb(255 240 158); a near-white rgb(255 247 214) heart over the lower half; a soft halo rgb(255 184 143) around it at 30%.</span><br><span class="line">- Six pieces break off from 0.25s, one every 0.13s, each an oval 26 down to 6px, floating up 120 to 240px over 0.55 to 0.85s. 44 pale dots rgb(255 237 189) of 4 to 12px rise from it between 0.15 and 0.85s.</span><br><span class="line">- From 0.72s it burns out quickly rather than flying away as a block: with gone = smoothstep(0.72, 1.16, t), height times 1 + 1.3 * gone^2, half-width times 1 - 0.6 * gone, the spread above going from 0.75 to 0.32, sway up to 2.2 times, and it breaks up from the root (subtract gone * (1.25 - 0.55 * rel) * (0.55 + 0.45 * noise) from m), so the tips go last. The root rises only 150px * gone^2.</span><br><span class="line"></span><br><span class="line">5. Blocks (1.5s)</span><br><span class="line">- A 70ms hit first: the item swells 4% and flashes up to 55% white, sin(pi * t / 0.07).</span><br><span class="line">- Then chunks in three sizes on a 36px grid: 35% stay whole, 45% split to 18px, 20% to 9px. Each shows its own slice of the item, with a 1px outline at 20%, a bottom and right edge up to 36% darker over 5px, and its own shade of 92 to 100%, so it looks solid.</span><br><span class="line">- All burst at once from the middle, with up to 30ms of stagger. Direction: normalize((from - center - (0, 14)) * (1, 2.2) + up to 20px of random). Speed (200 + rand * 400 + 220 * nearness) * (1.25 - size / 72), plus 430 upward; gravity 2300 px/s^2; spin up to 6 rad/s.</span><br><span class="line">- They land on the bottom of the visible list, within 26px of it, bounce once at 42% speed with 60% of their sideways speed and 40% of their spin, and shrink to 20% and fade after 0.95 to 1.25s.</span><br><span class="line">- The gap: if my list can bring an item in from above, the item above falls in with a bounce and a new one drops in on top 90ms later, over 700ms: a fall (t / 0.5)^2 landing halfway, then bounces of 10% (t 0.5 to 0.76) and 3% (t 0.76 to 1). Otherwise use the spring in section 2.</span><br><span class="line"></span><br><span class="line">6. Peel (1.2s; the pull takes 0.62s)</span><br><span class="line">- The item is a mesh (5px cells) bent over a cylinder of radius 20 whose line moves across it from the corner, in the direction (-0.55, 1) normalized for a control at the top right, reaching the far corner at 0.62s. Position of the line: reach * p^2 * (1.6 - 0.6p). It starts slowly and speeds up as the last of the adhesive gives way, so the sheet never stops before it comes free.</span><br><span class="line">- For a point past the bend by e along that direction: up to the bend angle (1.3 growing to 1.8 rad) follow the cylinder: along = line - r * sin(e / r), z = r * (1 - cos(e / r)). Beyond it follow a wide arc of radius 420, continuing from the cylinder's end with the same tangent. Both keep arc length, so nothing stretches and the pulled corner moves at (1 - cos(bend)) times the speed of the line. Perspective with a focal length of 1400, centered on the screen, not on the item.</span><br><span class="line">- Draw in order: the adhesive left behind (white at 34%, speckled on a 2px grid, gone 0.3s after release), the part still stuck, the shadow, then the flap. Paint the flap's cells from the stuck end to the free end, so the higher layer of the fold is on top without a depth buffer.</span><br><span class="line">- The shadow lies on the screen: offset (0.14, 0.22) * z with no perspective, edge softness 8 + 0.24 * z, opacity 34% / (1 + z / 170), rising from nothing over the first 14px of height. It falls on the part still stuck too. Darken that part another 16% in the crease, fading over 16px from the bend.</span><br><span class="line">- One light from (-0.35, -0.55, 0.76), with the normal (dir * sin(bend), cos(bend)) flipped on the back. Diffuse 0.74 + 0.26 * max(dot(n, L), 0) / L.z. Add a Blinn-Phong highlight (exponent 24, 14%, fading in over the first 0.5 rad) and a rim at the ridge, where the sheet is seen edge-on: (1 - abs(n.z))^5 * 50%.</span><br><span class="line">- The back is printed in the item's color made livelier (saturation times 1.5, 12% toward white, brightness times 1.06), inside a white die-cut edge 6px wide that follows the item's own corner curve. This is what makes it read.</span><br><span class="line">- With a click or tap the corner lifts by itself. Only if delete is a drag or swipe in my product, tie the line to the finger and keep the corner under it.</span><br><span class="line">- At 0.62s the sticker comes free. Measure the velocity of its center of mass, in the plane and in height, over the last few milliseconds and keep it: it moves by v * g where g = (1 - exp(-5t)) / 5 for air drag, falls by (1500 / 5) * (t - g), turns 2.4 * g rad about its center of mass, and fades over 0.3 to 0.55s.</span><br><span class="line"></span><br><span class="line">7. The neighbors</span><br><span class="line">Each item knows its distance d in the list; the effect falls off as 1 / |d|. Apply these to my real items with transforms and paint only. They must not change layout or block input.</span><br><span class="line">- Burn and Plume: light on the edge facing the fire, a radial gradient 230px wide, transparent at 72%, painted as part of the item's own fill (a separate layer with the same rounded shape leaves a pale rim at the corners). 42% for the nearest and 10% for the next, flickering 0.8 + 0.2 * sin(31t) * sin(13t). For Burn it follows the front; for Plume it stays at the middle. Burn uses rgb(255 176 96), Plume rgb(255 178 150). They also lean away 3px (Plume 7px) and shrink 0.6%. All of it ramps in over 150ms and out over the last 350ms of 1.4s (Plume 1.25s).</span><br><span class="line">- Burn and Plume also send up heat: noise that drifts upward at 170px/s moves the pixels of the neighbors and the heading, up to 4px for Burn and 5px for Plume sideways and about a third of that vertically, outlines included. Items below get 60%, the heading 50% for Burn and 70% for Plume. Keep its vertical noise period around 80px and one octave: whole lines should bend smoothly; shorter periods tear individual letters apart. Heat is only on while there is fire. It should be noticeable and never hurt reading.</span><br><span class="line">- Blocks: the impact pushes them away and they ring back: 18px * exp(-6.5t) * sin(24t), with a tilt of 1.1 degrees * exp(-6.5t) * sin(20t) and a squeeze of 1.8% * exp(-9t), from 70ms.</span><br><span class="line">- Peel: they are tugged 6px toward the sticker over the pull, then ring on release: exp(-7t) * cos(26t).</span><br><span class="line"></span><br><span class="line">8. Check</span><br><span class="line">- In my real list, with real data: long text, short text, images, first item, last item, one item only, and the list scrolled.</span><br><span class="line">- The first frame matches the real item; nothing jumps when it is swapped for the picture.</span><br><span class="line">- Text around the effect stays readable; the list works during it, and rapid deletes do not leak or stack up. Undo works in the middle of an effect.</span><br><span class="line">- Reduced motion: no effect and no reactions, a 220ms fade and 4% shrink, then the gap closes. The same when the renderer is unavailable or its context is lost, and for anything past 3 at once.</span><br><span class="line">- Focus moves to the next item, and a screen reader hears that it was deleted. At rest my list is pixel-identical to before, and nothing runs when nothing is being deleted. Light and dark both checked. Existing tests still pass.</span><br><span class="line"></span><br><span class="line">9. How to build it, by platform</span><br><span class="line">These are suggestions; check them against my stack and its versions, and prefer what the product already uses. Every route is the same four parts: a picture of the item, a per-pixel shader (Burn, Plume), a real mesh (Peel, because a fold shows two layers at one point and a per-pixel distortion cannot do that), and many small quads (Blocks and particles).</span><br><span class="line">- Web: WebGL2 on one canvas over the list, instanced quads for Blocks and particles; if the product already has three.js, Pixi or a similar layer, draw there. Hook the list where it removes items: React and Vue read the rectangle and draw the picture in the click handler before the state update, then close the gap with Motion layout, a FLIP in useLayoutEffect, or TransitionGroup; Svelte with animate:flip; Virtuoso, TanStack Virtual and similar need the surface outside the virtual list.</span><br><span class="line">  - Heat, best first: where HTML-in-Canvas exists, draw the list through WebGL and warp it per pixel in one field around the fire: strongest within the fire's box, falling off as a Gaussian of 170px, reaching about twice as far above as below (progressive enhancement: feature-detect it, keep the DOM layout; the WebGL upload call has changed between Chrome versions, so drawing with drawElementImage to a 2D canvas and uploading that is the steadier path). Otherwise an SVG filter on each neighbor: feTurbulence with baseFrequency 0.008 0.013 and one octave, the red channel's contrast doubled so the movement is even, an feOffset that moves it up, feDisplacementMap with a scale of about 2.5 times the wanted pixels. It does not smooth what it moves, so rebuild the outline: dilate the result by 1px under itself and cut it to its own alpha blurred by 0.8px with the slope doubled. Apply it only during the effect, and test it in Safari. If neither works, leave heat out.</span><br><span class="line">  - The snapshot: when the item is simple, redraw it to a 2D canvas (synchronous and exact, including text positions read from Range rects, reading font, color and letter-spacing from computed style). HTML-in-Canvas gives the live page in recent Chromium behind a flag, with no Firefox or Safari yet. html-to-image or modern-screenshot work once at delete but cost tens to hundreds of ms and need same-origin fonts and images. html2canvas is a last resort.</span><br><span class="line">  - Without WebGL2: Blocks can run in Canvas 2D with drawImage slices up to a few hundred chunks; the rest fall back to the fade.</span><br><span class="line">  - Cost: Burn's flames are the heaviest shader; on low-end devices sample the front 3 times instead of 5, or draw that layer at half resolution.</span><br><span class="line">- iOS: snapshot with ImageRenderer or drawHierarchy. In UIKit run it from the data source's delete with the cell's rect; in SwiftUI from the delete action, with an overlay above the List. Burn and Plume fit a SwiftUI .layerEffect (iOS 17+), and heat a .distortionEffect on each neighbor. Peel needs a mesh: Metal, or a SceneKit plane. Blocks fit SwiftUI Canvas in a TimelineView. Below iOS 17: Blocks and the fade.</span><br><span class="line">- Android: snapshot with View.drawToBitmap or Compose GraphicsLayer.toImageBitmap(). Hook a RecyclerView ItemAnimator, or use Modifier.animateItem() in Compose, with the effect in an overlay. Burn, Plume and heat fit RenderEffect with an AGSL RuntimeShader (API 33+). Peel: Canvas.drawBitmapMesh for each layer in order, or OpenGL ES for true perspective. Blocks: Canvas.drawVertices or drawBitmap with rects.</span><br><span class="line">- Flutter: snapshot with RenderRepaintBoundary.toImage (async, so capture on tap down or keep one ready). AnimatedList.removeItem for the gap, the effect in an Overlay. Burn and Plume: a FragmentProgram on Impeller. Blocks: Canvas.drawAtlas, cheap for many quads. Peel: Canvas.drawVertices with a textured mesh.</span><br><span class="line">- Rust: render the item to a texture, then wgpu: instanced quads, and one mesh pipeline for Peel, with the shaders ported to WGSL. In Bevy use Mesh2d with a custom Material2d. In egui or iced, draw through the renderer's wgpu callback; widgets cannot do this themselves. In GPUI, render into a custom element or fall back to the fade.</span><br><span class="line">- Electron and Tauri: the web route. Electron can ship the Chromium features it needs; Tauri uses the system WebView, so on macOS and Linux test WebGL2 and the heat filter in WebKit.</span><br><span class="line">- Anything else (Qt, a game engine, a custom renderer): the same four parts in its own shader and mesh tools.</span><br></pre></td></tr></tbody></table></figure></div></details>
+
+<h2 id="质感来自可解释的细节"><a href="#质感来自可解释的细节" class="headerlink" title="质感来自可解释的细节"></a>质感来自可解释的细节</h2><p>四种删除效果之所以不像滤镜，是因为它们共享同一条因果链：先有被删除项目的真实快照，再有符合材料特性的离场，邻项感受到事件，空位按弹簧闭合，数据没有被动画拖慢。</p>
+<p>风格可以不同，但因果关系不能断。用户看到的不只是“卡片消失了”，而是“我删掉了这一项，周围的世界随之调整”。</p>
+</article>
+<div class="article-tags slide-up"><a class="tag" href="/tags/%E4%BA%A4%E4%BA%92%E8%AE%BE%E8%AE%A1/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>交互设计</a><a class="tag" href="/tags/UI/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>UI</a><a class="tag" href="/tags/Canvas/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>Canvas</a><a class="tag" href="/tags/%E5%8A%A8%E6%95%88/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>动效</a><a class="tag" href="/tags/WebGL/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>WebGL</a></div>
+
+
+  <div class="article-share slide-up" id="share">
+    <div class="body">
+      <div class="social-wrap dis-select"><a class="social share-item qrcode ui-interactive is-icon-only" onclick="util.toggle(&quot;share-qrcode&quot;)" aria-label="分享文章: QR Code" title="分享文章: QR Code"><span class="share-item__icon ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="M10.553 13.447c-.424-.424-.95-.596-1.535-.675c-.553-.074-1.25-.074-2.086-.074H5.827c-.58 0-1.065 0-1.459.037c-.411.04-.795.124-1.146.34c-.345.21-.634.5-.845.844c-.216.352-.3.735-.34 1.147C2 15.459 2 15.944 2 16.525v.068c0 .884 0 1.597.055 2.17c.056.592.175 1.108.459 1.571c.288.47.682.864 1.152 1.152c.463.284.979.403 1.57.46C5.81 22 6.524 22 7.407 22h.07c.58 0 1.064 0 1.458-.037c.412-.04.795-.124 1.147-.34c.344-.21.633-.5.844-.844c.216-.352.3-.736.34-1.147c.037-.394.037-.879.037-1.46v-1.104c0-.836 0-1.533-.074-2.086c-.079-.584-.251-1.111-.675-1.535m-1.62-11.41c.412.04.795.124 1.147.34c.344.21.633.5.844.845c.216.351.3.735.34 1.146c.037.394.037.879.037 1.46v1.104c0 .836 0 1.533-.074 2.086c-.079.584-.251 1.111-.675 1.535s-.95.596-1.535.675c-.553.074-1.25.074-2.086.074H5.827c-.58 0-1.065 0-1.459-.037c-.411-.04-.795-.124-1.146-.34a2.56 2.56 0 0 1-.845-.844c-.216-.352-.3-.735-.34-1.147C2 8.54 2 8.056 2 7.475v-.068c0-.884 0-1.597.055-2.17c.056-.592.175-1.108.459-1.571c.288-.47.682-.864 1.152-1.152c.463-.284.979-.403 1.57-.46C5.81 2 6.524 2 7.407 2h.07c.58 0 1.064 0 1.458.037M16.593 2h-.068c-.58 0-1.065 0-1.46.037c-.41.04-.794.124-1.146.34c-.344.21-.633.5-.844.845c-.216.351-.3.735-.34 1.146c-.037.394-.037.879-.037 1.46v1.104c0 .836 0 1.533.074 2.086c.079.584.251 1.111.675 1.535s.95.596 1.535.675c.553.074 1.25.074 2.086.074h1.105c.58 0 1.065 0 1.459-.037c.411-.04.795-.124 1.146-.34c.345-.21.634-.5.845-.844c.216-.352.3-.735.34-1.147C22 8.54 22 8.056 22 7.475v-.068c0-.884 0-1.597-.055-2.17c-.056-.592-.175-1.108-.459-1.571a3.5 3.5 0 0 0-1.152-1.152c-.463-.284-.979-.403-1.57-.46C18.19 2 17.477 2 16.594 2" opacity=".5"/><path fill="currentColor" d="M14.093 21.302a.698.698 0 1 1-1.396 0v-2.79h1.396z" opacity=".4"/><path fill="currentColor" d="M21.302 12.698a.7.7 0 0 0-.697.697v3.256H22v-3.256a.7.7 0 0 0-.698-.697" opacity=".5"/><path fill="currentColor" d="M16.076 16.617c-.076.184-.076.417-.076.883s0 .699.076.883a1 1 0 0 0 .541.54c.184.077.417.077.883.077s.699 0 .883-.076a1 1 0 0 0 .54-.541c.077-.184.077-.417.077-.883s0-.699-.076-.883a1 1 0 0 0-.541-.54C18.199 16 17.966 16 17.5 16s-.699 0-.883.076a1 1 0 0 0-.54.541"/><path fill="currentColor" d="M22 18.535v-.023h-1.396c0 .443 0 .74-.016.97c-.015.224-.043.333-.073.405a1.16 1.16 0 0 1-.629.63c-.072.029-.18.056-.405.072c-.23.015-.527.016-.97.016h-1.86V22h1.883c.414 0 .759 0 1.042-.02a2.6 2.6 0 0 0 .844-.175a2.56 2.56 0 0 0 1.384-1.384c.112-.27.156-.549.176-.844c.02-.283.02-.628.02-1.042" opacity=".7"/><path fill="currentColor" d="M12.697 16.616v.035h1.396c0-.668 0-1.116.035-1.458c.034-.33.093-.482.16-.583a1.2 1.2 0 0 1 .321-.32c.101-.068.254-.128.584-.161c.342-.035.79-.036 1.458-.036h1.86v-1.395h-1.896c-.623 0-1.142 0-1.563.043c-.44.044-.85.142-1.218.388c-.28.187-.519.426-.706.706c-.246.368-.343.777-.388 1.217c-.043.421-.043.94-.043 1.564" opacity=".6"/><path fill="currentColor" d="M5.508 18.69c.219.155.528.155 1.146.155c.619 0 .928 0 1.146-.155a.8.8 0 0 0 .2-.199c.154-.218.154-.527.154-1.146s0-.927-.155-1.146A.8.8 0 0 0 7.8 16c-.218-.155-.527-.155-1.146-.155s-.927 0-1.146.155a.8.8 0 0 0-.199.2c-.155.218-.155.527-.155 1.145c0 .619 0 .928.155 1.146a.8.8 0 0 0 .2.2M6.654 8.155c-.618 0-.927 0-1.146-.155a.8.8 0 0 1-.199-.2c-.155-.217-.155-.527-.155-1.145c0-.619 0-.928.155-1.146a.8.8 0 0 1 .2-.2c.218-.154.527-.154 1.145-.154c.619 0 .928 0 1.146.155a.8.8 0 0 1 .2.199c.154.218.154.527.154 1.146s0 .928-.155 1.146A.8.8 0 0 1 7.8 8c-.218.155-.527.155-1.146.155M16.2 8c.218.155.527.155 1.146.155s.927 0 1.146-.155a.8.8 0 0 0 .199-.199c.155-.218.155-.528.155-1.146c0-.619 0-.928-.155-1.146a.8.8 0 0 0-.2-.2c-.218-.154-.527-.154-1.145-.154c-.619 0-.928 0-1.146.155a.8.8 0 0 0-.2.199c-.154.218-.154.527-.154 1.146s0 .928.155 1.146A.8.8 0 0 0 16.2 8"/></svg></span></a><a class="social share-item weibo ui-interactive is-icon-only" href="https:&#x2F;&#x2F;service.weibo.com&#x2F;share&#x2F;share.php?url&#x3D;https%3A%2F%2Fblog.syouiti.com%2F999%2520%25E4%25B8%25AA%25E5%25B0%258F%25E6%258A%2580%25E5%25B7%25A7%25EF%25BC%258C%25E8%25AE%25A9%25E4%25BD%25A0%2520Vibe%2520%25E7%259A%2584%25E4%25BA%25A7%25E5%2593%2581%25E6%259B%25B4%25E6%259C%2589%25E8%25B4%25A8%25E6%2584%259F%25EF%25BD%259C015%2520%25E5%2588%25A0%25E9%2599%25A4%25E5%258A%25A8%25E6%2595%2588%25EF%25BC%259A%25E8%25AE%25A9%25E5%2585%2583%25E7%25B4%25A0%25E7%25A6%25BB%25E5%259C%25BA%25E4%25B9%259F%25E4%25BC%25A0%25E9%2580%2592%25E5%259B%25A0%25E6%259E%259C%2F&amp;title&#x3D;015%20%E5%88%A0%E9%99%A4%E5%8A%A8%E6%95%88%EF%BC%9A%E8%AE%A9%E5%85%83%E7%B4%A0%E7%A6%BB%E5%9C%BA%E4%B9%9F%E4%BC%A0%E9%80%92%E5%9B%A0%E6%9E%9C%20-%20%E7%99%BD%E4%B8%8A%E8%B3%9E%E4%B8%80&amp;summary&#x3D;%E7%94%A8%E7%87%83%E7%83%A7%E3%80%81%E7%BE%BD%E5%8C%96%E3%80%81%E7%A2%8E%E5%9D%97%E4%B8%8E%E6%92%95%E8%B4%B4%E7%BA%B8%E5%9B%9B%E7%A7%8D%E7%A6%BB%E5%9C%BA%E6%96%B9%E5%BC%8F%EF%BC%8C%E5%A4%84%E7%90%86%E5%BF%AB%E7%85%A7%E3%80%81%E9%82%BB%E9%A1%B9%E5%8F%8D%E5%BA%94%E3%80%81%E7%A9%BA%E4%BD%8D%E5%9B%9E%E5%A1%AB%E4%B8%8E%E6%92%A4%E9%94%80%EF%BC%8C%E5%B9%B6%E9%99%84%E5%AE%8C%E6%95%B4%E8%B7%A8%E5%B9%B3%E5%8F%B0%20Prompt%E3%80%82" target="_blank" rel="external nofollow noopener noreferrer" aria-label="分享文章: Weibo" title="分享文章: Weibo"><span class="share-item__icon ui-icon"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/80c07e4dbb303.svg" onerror="this.onerror&#x3D;null;this.src&#x3D;&quot;&#x2F;images&#x2F;stellar-error.491ee870f4940739.svg&quot;" /></span></a><a class="social share-item email ui-interactive is-icon-only" href="mailto:?subject&#x3D;015%20%E5%88%A0%E9%99%A4%E5%8A%A8%E6%95%88%EF%BC%9A%E8%AE%A9%E5%85%83%E7%B4%A0%E7%A6%BB%E5%9C%BA%E4%B9%9F%E4%BC%A0%E9%80%92%E5%9B%A0%E6%9E%9C%20-%20%E7%99%BD%E4%B8%8A%E8%B3%9E%E4%B8%80&amp;body&#x3D;https%3A%2F%2Fblog.syouiti.com%2F999%2520%25E4%25B8%25AA%25E5%25B0%258F%25E6%258A%2580%25E5%25B7%25A7%25EF%25BC%258C%25E8%25AE%25A9%25E4%25BD%25A0%2520Vibe%2520%25E7%259A%2584%25E4%25BA%25A7%25E5%2593%2581%25E6%259B%25B4%25E6%259C%2589%25E8%25B4%25A8%25E6%2584%259F%25EF%25BD%259C015%2520%25E5%2588%25A0%25E9%2599%25A4%25E5%258A%25A8%25E6%2595%2588%25EF%25BC%259A%25E8%25AE%25A9%25E5%2585%2583%25E7%25B4%25A0%25E7%25A6%25BB%25E5%259C%25BA%25E4%25B9%259F%25E4%25BC%25A0%25E9%2580%2592%25E5%259B%25A0%25E6%259E%259C%2F" aria-label="分享文章: Email" title="分享文章: Email"><span class="share-item__icon ui-icon"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/a1b00e20f425d.svg" onerror="this.onerror&#x3D;null;this.src&#x3D;&quot;&#x2F;images&#x2F;stellar-error.491ee870f4940739.svg&quot;" /></span></a></div>
+      <div class="share-qrcode" id="share-qrcode" style="opacity:0;height:0"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&amp;data=https%3A%2F%2Fblog.syouiti.com%2F999%2520%25E4%25B8%25AA%25E5%25B0%258F%25E6%258A%2580%25E5%25B7%25A7%25EF%25BC%258C%25E8%25AE%25A9%25E4%25BD%25A0%2520Vibe%2520%25E7%259A%2584%25E4%25BA%25A7%25E5%2593%2581%25E6%259B%25B4%25E6%259C%2589%25E8%25B4%25A8%25E6%2584%259F%25EF%25BD%259C015%2520%25E5%2588%25A0%25E9%2599%25A4%25E5%258A%25A8%25E6%2595%2588%25EF%25BC%259A%25E8%25AE%25A9%25E5%2585%2583%25E7%25B4%25A0%25E7%25A6%25BB%25E5%259C%25BA%25E4%25B9%259F%25E4%25BC%25A0%25E9%2580%2592%25E5%259B%25A0%25E6%259E%259C%2F" onerror="this.onerror&#x3D;null;this.src&#x3D;&quot;&#x2F;images&#x2F;stellar-error.491ee870f4940739.svg&quot;"/></div>
+    </div>
+  </div>
+
+<div class="article-footer slide-up">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section></div>
+
+<div class="related-wrap slide-up" id="read-next"><section class="body"><div class="item" id="prev"><div class="note"><svg class="icon" viewBox="0 0 1 1" data-icon="default:arrow-left" aria-hidden="true"></svg> 较新文章</div><a href="/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C016%20%E8%BF%9E%E7%BB%AD%E6%80%A7%EF%BC%9A%E8%AE%A9%E7%95%8C%E9%9D%A2%E9%A1%BA%E7%9D%80%E7%94%A8%E6%88%B7%E5%8A%A8%E4%BD%9C%E8%BF%87%E6%B8%A1/">016 连续性：让界面顺着用户动作过渡</a></div><div class="item" id="next"><div class="note">较早文章 <svg class="icon" viewBox="0 0 1 1" data-icon="default:arrow-right" aria-hidden="true"></svg></div><a href="/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C014%20%E5%86%B2%E5%87%BB%E6%B3%A2%E5%85%89%E7%8E%AF%EF%BC%9A%E8%AE%A9%E5%85%89%E7%9C%9F%E6%AD%A3%E6%89%AD%E6%9B%B2%E9%A1%B5%E9%9D%A2/">014 冲击波光环：让光真正扭曲页面</a></div></section></div>
+
+
+
+
+  <div class="related-wrap md-text slide-up" id="comments">
+    
+    
+    <section class="header cmt-title cap theme">
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    
+    <section class="body cmt-body giscus">
+      
+
+<div class="lazy-icon"></div>
+
+<div id="giscus" data-repo="sy0u1ti/sy0u1ti.github.io" data-repo-id="R_kgDOKbZc8Q" data-category="General" data-category-id="DIC_kwDOKbZc8c4CZ0-1" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="noborder_dark" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+<footer class="page-footer slide-up footnote"><hr><div class="sitemap" style="column-count:2;"><div class="sitemap-group"><span class="fs15">站内</span><a href="&#x2F;">首页</a><a href="&#x2F;archives&#x2F;">归档</a><a href="&#x2F;tags&#x2F;">标签</a><a href="&#x2F;bangumis&#x2F;">番剧</a></div><div class="sitemap-group"><span class="fs15">站外</span><a target="_blank" rel="noopener" href="https:&#x2F;&#x2F;home.syouiti.com">Home</a><a target="_blank" rel="noopener" href="https:&#x2F;&#x2F;github.com&#x2F;sy0u1ti">GitHub</a></div></div><div class="text"><p>记录 AI、效率工具、网络技术与各种折腾。<br>本站由 <a href="/">白上賞一「しらかみしょういち」</a> 创建 · <a target="_blank" rel="noopener" href="https://icp.gov.moe/?keyword=20244469">萌ICP备20244469号</a></p>
+</div></footer>
+</main>
+<aside data-stellar-runtime-region id="rightbar-region" class="site-region site-region--rightbar" data-region="rightbar" aria-label="Rightbar"><div class="site-region__surface ui-drawer-surface"><div class="site-region__viewport"><div class="widgets widget-stack widget-stack--rightbar widget-stack--rightbar"><div class="widget-instance widget-instance--toc" data-widget-id="rightbar:1:toc" data-presentation="rightbar">
+
+
+<widget class="widget-wrapper slide-up toc" id="data-toc" collapse="false">
+  
+    <div class="widget-header dis-select">
+      <span class="name">本文目录</span>
+      <button type="button" class="cap-action ui-interactive card-hover card-hover--spotlight" data-shell-action="toggle-toc" aria-label="Toggle table of contents" aria-pressed="false"><span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></span></button>
+    </div>
+  
+  <div class="widget-body"><ol class="toc ui-collection-adapter"><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E6%95%B0%E6%8D%AE%E5%85%88%E5%88%A0%E9%99%A4%EF%BC%8C%E7%94%BB%E9%9D%A2%E5%90%8E%E7%A6%BB%E5%9C%BA"><span class="toc-text">数据先删除，画面后离场</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E7%AC%AC%E4%B8%80%E5%B8%A7%E5%BF%85%E9%A1%BB%E5%92%8C%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E5%AE%8C%E5%85%A8%E4%B8%80%E8%87%B4"><span class="toc-text">第一帧必须和真实项目完全一致</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E5%9B%9B%E7%A7%8D%E5%88%A0%E9%99%A4%EF%BC%8C%E5%9B%9B%E7%A7%8D%E6%9D%90%E6%96%99%E6%80%A7%E6%A0%BC"><span class="toc-text">四种删除，四种材料性格</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#Burn%EF%BC%9A%E6%9C%80%E7%BB%88%E3%80%81%E6%88%8F%E5%89%A7%E6%80%A7%E7%9A%84%E5%88%A0%E9%99%A4"><span class="toc-text">Burn：最终、戏剧性的删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#Plume%EF%BC%9A%E8%BD%BB%E6%9F%94%E3%80%81%E5%90%91%E4%B8%8A%E7%9A%84%E7%BE%BD%E5%8C%96"><span class="toc-text">Plume：轻柔、向上的羽化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#Blocks%EF%BC%9A%E4%BF%8F%E7%9A%AE%E3%80%81%E6%9C%BA%E6%A2%B0%E7%9A%84%E7%A2%8E%E8%A3%82"><span class="toc-text">Blocks：俏皮、机械的碎裂</span></a></li><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#Peel%EF%BC%9A%E5%8F%AF%E4%BB%A5%E6%91%B8%E5%88%B0%E7%9A%84%E6%92%95%E8%B4%B4%E7%BA%B8"><span class="toc-text">Peel：可以摸到的撕贴纸</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E9%82%BB%E9%A1%B9%E4%B8%8D%E6%98%AF%E8%83%8C%E6%99%AF%EF%BC%8C%E5%AE%83%E4%BB%AC%E4%B9%9F%E4%BC%9A%E6%84%9F%E5%8F%97%E5%88%B0%E4%BA%8B%E4%BB%B6"><span class="toc-text">邻项不是背景，它们也会感受到事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E7%A9%BA%E4%BD%8D%E9%97%AD%E5%90%88%E5%B1%9E%E4%BA%8E%E5%90%8C%E4%B8%80%E6%AC%A1%E5%8A%A8%E4%BD%9C"><span class="toc-text">空位闭合属于同一次动作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%9C%80%E8%A6%81%E9%80%82%E9%85%8D%E5%B0%BA%E5%AF%B8%E5%92%8C%E5%BD%A2%E7%8A%B6"><span class="toc-text">真实项目需要适配尺寸和形状</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E5%88%A0%E9%99%A4%E5%BF%85%E9%A1%BB%E5%8F%AF%E6%92%A4%E9%94%80%EF%BC%8C%E4%B9%9F%E5%BF%85%E9%A1%BB%E5%8F%AF%E8%B7%B3%E8%BF%87"><span class="toc-text">删除必须可撤销，也必须可跳过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E5%B9%B3%E5%8F%B0%E4%B8%8D%E5%90%8C%EF%BC%8C%E5%88%86%E5%B7%A5%E7%9B%B8%E5%90%8C"><span class="toc-text">平台不同，分工相同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E5%85%88%E5%81%9A%E5%86%B3%E7%AD%96%EF%BC%8C%E5%86%8D%E6%94%B9%E4%BB%A3%E7%A0%81"><span class="toc-text">先做决策，再改代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E6%A3%80%E6%9F%A5%E6%B8%85%E5%8D%95"><span class="toc-text">检查清单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E8%B4%A8%E6%84%9F%E6%9D%A5%E8%87%AA%E5%8F%AF%E8%A7%A3%E9%87%8A%E7%9A%84%E7%BB%86%E8%8A%82"><span class="toc-text">质感来自可解释的细节</span></a></li></ol></div>
+  <div class="widget-footer"><a class="top ui-interactive" onclick="util.scrollTop()"><span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="M20.536 3.464C22 4.93 22 7.286 22 12s0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12s0-7.071 1.464-8.536C4.93 2 7.286 2 12 2s7.071 0 8.535 1.464" opacity=".5"/><path fill="currentColor" d="M9.53 12.03a.75.75 0 0 1-1.06-1.06l3-3a.75.75 0 0 1 1.06 0l3 3a.75.75 0 1 1-1.06 1.06L12 9.56z"/><path fill="currentColor" d="M9.53 16.03a.75.75 0 0 1-1.06-1.06l3-3a.75.75 0 0 1 1.06 0l3 3a.75.75 0 1 1-1.06 1.06L12 13.56z"/></svg></span><span>回到顶部</span></a><a class="buttom ui-interactive" onclick="util.scrollComment()"><span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M7.25 9A.75.75 0 0 1 8 8.25h8a.75.75 0 0 1 0 1.5H8A.75.75 0 0 1 7.25 9m0 3.5a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 0 1.5H8a.75.75 0 0 1-.75-.75"/></svg></span><span>参与讨论</span></a></div>
+</widget>
+
+
+</div></div></div></div></aside>
+</div><button type="button" class="site-scrim" data-shell-action="dismiss-drawer" aria-label="Close navigation" tabindex="-1"></button><div data-stellar-runtime-region class="site-dock" role="group" aria-label="Layout panels">
+  <button type="button" class="site-dock__button site-dock__button--rightbar ui-interactive" aria-label="Open rightbar" aria-controls="rightbar-region" aria-expanded="false" data-shell-action="toggle-rightbar-drawer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type="button" class="site-dock__button site-dock__button--leftbar ui-interactive" aria-label="Open leftbar" aria-controls="leftbar-region" aria-expanded="false" data-shell-action="toggle-leftbar-drawer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+
+<dialog data-stellar-runtime-region class="search-dialog" id="site-search-dialog" aria-labelledby="site-search-title">
+  <div class="search-dialog__panel search-wrapper" id="site-search-wrapper" searching="false">
+    <div class="search-dialog__header">
+      <div class="search-form" role="search">
+        <span class="search-button" aria-hidden="true"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></span>
+        <input type="search" class="search-input" id="site-search-input" aria-labelledby="site-search-title" placeholder="搜索">
+      </div>
+      <button type="button" class="search-dialog__close" data-shell-action="close-search" aria-label="关闭搜索">×</button>
+    </div>
+    
+      <div class="search-dialog__scope" role="radiogroup" aria-labelledby="site-search-title" hidden>
+        <label class="search-dialog__scope-option" data-search-scope-option="all">
+          <input class="ui-radio" type="radio" name="site-search-scope" value="all">
+          <span>全站</span>
+        </label>
+        <label class="search-dialog__scope-option" data-search-scope-option="blog" hidden>
+          <input class="ui-radio" type="radio" name="site-search-scope" value="blog">
+          <span>博客</span>
+        </label>
+        <label class="search-dialog__scope-option" data-search-scope-option="current" hidden>
+          <input class="ui-radio" type="radio" name="site-search-scope" value="current">
+          <span data-search-scope-current-label></span>
+        </label>
+      </div>
+    
+    <h2 class="search-dialog__title" id="site-search-title">站内搜索</h2>
+    <div class="search-result" id="site-search-result"></div>
+    <div class="search-no-result">没有找到内容！</div>
+  </div>
+</dialog>
+</div><div class="site-scripts">
+<script data-stellar-script="core" src="/js/stellar-icons.js?v=2a11bebd1b4bc4d3"></script>
+
+<script data-stellar-script="defines">
+  window.canonical = window.stellarClientData.canonical;
+  const ctx = window.stellarClientData.ctx;
+  window.canonical.param = {permalink: "https://blog.syouiti.com/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C015%20%E5%88%A0%E9%99%A4%E5%8A%A8%E6%95%88%EF%BC%9A%E8%AE%A9%E5%85%83%E7%B4%A0%E7%A6%BB%E5%9C%BA%E4%B9%9F%E4%BC%A0%E9%80%92%E5%9B%A0%E6%9E%9C/", checklink: ctx.services.video.js};
+  ctx.date_suffix = {"just":"刚刚","min":"分钟前","hour":"小时前","day":"天前"};
+  if (ctx.search) Object.assign(ctx.search, {"more":"更多","no_more":"没有更多了"});
+  const def = window.stellarClientData.def;
+  window.ctx = ctx;
+  window.def = def;
+</script>
+
+
+<!-- core: 迁移期 DOM/资源兼容工具；Extension 注册与生命周期由 ESM runtime 所有 -->
+<script data-stellar-script="core" src="/js/utils.js?v=2.0.0"></script>
+<script data-stellar-script="core" src="/js/main.js?v=2.0.0" defer></script>
+<script data-stellar-script="core" defer src="/js/profile.js?v=2.0.0"></script>
+
+
+
+
+
+<script data-stellar-script="core" type="application/json" id="stellar-runtime-config">{"version":1,"root":"/","policy":{"cache":{"enabled":true,"defaultTtl":3600,"ttl":{"giscus":600,"waline":600,"artalk":600,"memos":600,"memos-user":86400,"sites":86400,"friends":86400,"friends_and_posts":86400,"siteinfo":86400},"maxEntries":200},"request":{"retries":2,"timeoutMs":5000,"idleTimeoutMs":3000,"maxCacheEntryBytes":204800},"features":{"codeCopyToastMs":2500},"providers":{"linkPrefetch":"flying_pages","lightbox":"fancybox","diagrams":"mermaid"}},"extensions":[{"id":"pin-slider","module":"/js/runtime/extensions/pin-slider.js","scope":"region","when":{"selector":".pin-slider"},"config":{}},{"id":"page-controls","module":"/js/runtime/extensions/page-controls.js","scope":"region","when":{"always":true},"config":{"highlight":"/js/search/highlight.js","tagtree":"/js/tagtree.js"}},{"id":"partial-navigation","module":"/js/runtime/extensions/partial-navigation.js","scope":"document","when":{"always":true},"config":{}},{"id":"color-scheme-switch","module":"/js/runtime/extensions/color-scheme-switch.js","scope":"document","when":{"always":true},"config":{"messages":{"light":"切换到浅色模式","dark":"切换到深色模式","auto":"切换到跟随系统配色"}}},{"id":"search","module":"/js/runtime/extensions/search.js","scope":"document","when":{"selector":".search-input"},"config":{"provider":"local","options":{"scope":"post","includeContent":true,"cacheTtlSeconds":86400},"assets":{"client":null,"provider":"/js/search/local-search.js","shortcut":"/js/search/shortcut.js"}}},{"id":"hero-parallax","module":"/js/runtime/extensions/hero-parallax.js","scope":"region","when":{"selector":".wiki-hero"},"config":{}},{"id":"hero-effect","module":"/js/runtime/extensions/hero-effect.js","scope":"region","when":{"selector":"canvas[data-hero-effect]"},"config":{}},{"id":"lazy-loading","module":"/js/runtime/extensions/lazy-loading.js","scope":"document","when":{"always":true},"config":{"asset":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@19.1/dist/lazyload.min.js"}},{"id":"deferred-icons","module":"/js/runtime/extensions/deferred-icons.js","scope":"region","when":{"selector":"svg.icon[data-icon]"},"config":{}},{"id":"dropdown","module":"/js/runtime/extensions/dropdown.js","scope":"region","when":{"selector":"details.dropdown"},"config":{}},{"id":"services","module":"/js/runtime/extensions/services.js","scope":"region","when":{"selector":"#artalk_container, #twikoo_container, #waline_container, .data-service, [class*='ds-'], a[cardlink], a[data-md-link][data-siteinfo-api], .site-card [data-siteinfo-api], .voice\u003eaudio, .video\u003evideo, .chat-file"},"config":{"marked":"https://cdn.jsdelivr.net/npm/marked@13.0.1/lib/marked.umd.min.js"}},{"id":"comments","module":"/js/runtime/extensions/comments.js","scope":"region","when":{"selector":"#comments"},"config":{"provider":"giscus","options":{"data-repo":"sy0u1ti/sy0u1ti.github.io","data-repo-id":"R_kgDOKbZc8Q","data-category":"General","data-category-id":"DIC_kwDOKbZc8c4CZ0-1","data-mapping":"pathname","data-strict":0,"data-reactions-enabled":1,"data-emit-metadata":0,"data-input-position":"bottom","data-theme":"noborder_dark","data-lang":"zh-CN","data-loading":"lazy","crossorigin":"anonymous"},"pageTitle":"015 删除动效：让元素离场也传递因果","assets":{"js":"https://giscus.app/client.js"}}},{"id":"settings","module":"/js/runtime/extensions/settings.js","scope":"region","when":{"selector":".settings-page"},"config":{}},{"id":"link-prefetch","module":"/js/runtime/extensions/link-prefetch.js","scope":"document","when":{"always":true},"config":{"asset":"https://gcore.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"}},{"id":"lightbox","module":"/js/runtime/extensions/lightbox.js","scope":"region","when":{"selector":"[data-fancybox]:not(.error), .with-fancybox, .ds-memos, .md-text img:not(.inline):not([class*=\"avatar\"]):not(.cover img), .post-cover img"},"config":{"enabled":true,"selector":".md-text img:not(.inline):not([class*=\"avatar\"]):not(.cover img), .post-cover img","assets":{"localCss":"/css/plugins/fancybox.css","js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"}}},{"id":"reveal","module":"/js/runtime/extensions/reveal.js","scope":"region","when":{"selector":".slide-up"},"config":{"enabled":true,"duration":500,"interval":60,"distance":10,"blur":4}},{"id":"code-copy","module":"/js/runtime/extensions/code-copy.js","scope":"region","when":{"selector":".code"},"config":{"assets":{"js":"/js/plugins/copycode.js"},"messages":{"label":"复制","copied":"复制成功","denied":"未获得剪贴板权限","unsupported":"当前浏览器不支持剪贴板或页面不是 HTTPS"}}},{"id":"adaptive-text","module":"/js/runtime/extensions/adaptive-text.js","scope":"region","when":{"selector":"[data-text-adaptive]"},"config":{"assets":{"colorJs":"/js/color.js","js":"/js/plugins/adaptive-text.js"}}},{"id":"card-hover","module":"/js/runtime/extensions/card-hover.js","scope":"region","when":{"selector":".card-hover"},"config":{"spotlight":true,"tilt":true,"assets":{"js":"/js/plugins/card-hover.js"}}},{"id":"swiper","module":"/js/runtime/extensions/swiper.js","scope":"region","when":{"selector":"#swiper-api"},"config":{"assets":{"localCss":"/css/plugins/swiper.css","js":"https://unpkg.com/swiper@10.3/swiper-bundle.min.js","css":"https://unpkg.com/swiper@10.3/swiper-bundle.min.css"}}}]}</script>
+<script data-stellar-script="core" type="module" src="/js/runtime/index.js?v=2.0.0&runtime=1"></script>
+
+
+<!-- inject -->
+<script defer src="/js/plugins/reading-progress.js?v=20260823j"></script>
+
+<script data-stellar-script="core" defer src="/js/navigation-init.js?v=2.0.0"></script>
+</div></body></html>
+
