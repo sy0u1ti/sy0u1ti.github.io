@@ -1,0 +1,1071 @@
+
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head><!-- hexo injector head_begin start -->
+<link rel="stylesheet" href="/css/bilicard.css">
+<!-- hexo injector head_begin end -->
+  
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/2.0.0" theme-name="Stellar" theme-version="2.0.0">
+  <link rel="canonical" href="https://blog.syouiti.com/999 个小技巧，让你 Vibe 的产品更有质感｜017 Toast 与 Notification：先判断事件归谁/" data-stellar-page-meta="">
+  
+  <meta name="generator" content="Hexo 8.1.2">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  <title data-stellar-page-meta>017 Toast 与 Notification：先判断事件归谁 - 白上賞一</title>
+  <script data-stellar-script="core">
+    (function () {
+      var key = 'stellar:v2:leftbar-state';
+      var fallback = "expanded";
+      try {
+        var value = localStorage.getItem(key);
+        document.documentElement.dataset.leftbarState = value === 'collapsed' || value === 'expanded' ? value : fallback;
+      } catch (error) {
+        document.documentElement.dataset.leftbarState = fallback;
+      }
+    })();
+  </script>
+
+  <meta name="description" content="按事件来源、紧急程度、可撤销性与是否必须处理，判断 Toast、Notification 或都不使用，并附完整审查与改造 Prompt。" data-stellar-page-meta="">
+<meta property="og:type" content="article" data-stellar-page-meta="">
+<meta property="og:title" content="017 Toast 与 Notification：先判断事件归谁" data-stellar-page-meta="">
+<meta property="og:url" content="https://blog.syouiti.com/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C017%20Toast%20%E4%B8%8E%20Notification%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E4%BA%8B%E4%BB%B6%E5%BD%92%E8%B0%81/" data-stellar-page-meta="">
+<meta property="og:site_name" content="白上賞一" data-stellar-page-meta="">
+<meta property="og:description" content="按事件来源、紧急程度、可撤销性与是否必须处理，判断 Toast、Notification 或都不使用，并附完整审查与改造 Prompt。" data-stellar-page-meta="">
+<meta property="og:locale" content="zh_CN" data-stellar-page-meta="">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png" data-stellar-page-meta="">
+<meta property="article:author" content="白上賞一「しらかみしょういち」" data-stellar-page-meta="">
+<meta property="article:published_time" content="2026-11-14T05:00:00.000Z" data-stellar-page-meta="">
+<meta property="article:modified_time" content="2026-11-14T05:00:00.000Z" data-stellar-page-meta="">
+<meta property="article:tag" content="UI" data-stellar-page-meta="">
+<meta property="article:tag" content="交互设计" data-stellar-page-meta="">
+<meta property="article:tag" content="反馈" data-stellar-page-meta="">
+<meta property="article:tag" content="无障碍" data-stellar-page-meta="">
+<meta property="article:tag" content="通知" data-stellar-page-meta="">
+<meta name="twitter:card" content="summary" data-stellar-page-meta="">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png" data-stellar-page-meta="">
+<meta name="twitter:creator" content="@Syou1Ti" data-stellar-page-meta=""><meta name="twitter:title" content="017 Toast 与 Notification：先判断事件归谁" data-stellar-page-meta="">
+  
+  
+  <meta name="keywords" content="交互设计,通知,反馈,UI,无障碍" data-stellar-page-meta="">
+
+  <!-- feed -->
+  
+    
+
+    
+      
+        <link rel="alternate" href="/atom.xml" title="白上賞一" type="application/atom+xml">
+      
+    
+  
+
+  <link rel="preload" href="/css/main.css?v=2.0.0" as="style">
+  <link rel="stylesheet" href="/css/main.css?v=2.0.0">
+  <style>:root{--text-loading:"正在加载";--text-loading-error:"加载失败，请稍后重试。"}</style>
+
+
+  
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png">
+  
+
+  
+
+  <script type="application/ld+json" data-stellar-page-meta="">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"白上賞一「しらかみしょういち」","sameAs":[],"image":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png"},"dateCreated":"2026-11-14T05:00:00+00:00","dateModified":"2026-11-14T05:00:00+00:00","datePublished":"2026-11-14T05:00:00+00:00","description":"Toast 和 Notification 都能告诉用户“发生了一件事”，但它们回答的不是同一种问题。\nToast 回应的是用户刚刚做过的动作：复制成功、同步完成、文件已上传。用户知道结果就可以继续工作。\nNotification 传递的是用户没有刚刚触发、由其他人或系统发出的消息：有人提到了你、支付到账、后台报告完成、安全告警。它可能和当前操作无关，但用户之后必须能找到。\n如果两者只是换一个...","headline":"017 Toast 与 Notification：先判断事件归谁","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.syouiti.com/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C017%20Toast%20%E4%B8%8E%20Notification%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E4%BA%8B%E4%BB%B6%E5%BD%92%E8%B0%81/"},"publisher":{"@type":"Organization","name":"白上賞一「しらかみしょういち」","sameAs":[],"image":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png"}},"url":"https://blog.syouiti.com/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C017%20Toast%20%E4%B8%8E%20Notification%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E4%BA%8B%E4%BB%B6%E5%BD%92%E8%B0%81/","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"],"keywords":"交互设计, 通知, 反馈, UI, 无障碍","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"}</script>
+  <link rel="stylesheet" href="/css/stellar-overrides.css?v=20261102-agent-covers">
+
+  <link rel="stylesheet" href="/css/stellar-icons.css?v=ca746a9b39366bc3">
+  <link rel="preload" as="script" href="/js/stellar-icons.js?v=2a11bebd1b4bc4d3">
+  
+  
+</head>
+<body data-page-type="content" data-page-layout="post" data-article-style="tech"><div data-stellar-runtime-region id="site-cover" class="site-cover"></div><div class="site-shell" id="start" data-regions="leftbar rightbar"><div class="site-workspace">
+<aside data-stellar-runtime-region id="leftbar-region" class="site-region site-region--leftbar" data-region="leftbar" aria-label="Leftbar"><div class="site-region__surface ui-surface"><div class="site-region__decoration" aria-hidden="true"></div><div class="site-region__viewport"><header class="site-region__header site-region__zone site-region__zone--top">
+    <div class="widget-instance widget-instance--brand" data-widget-id="leftbar:fixed:brand" data-presentation="leftbar" data-leftbar-rail>
+<header class="brand-header brand-header--regular brand-header--site"><div class="brand-wrap"><a class="brand-image brand-image--avatar" href="&#x2F;"><img no-lazy src="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;sy0u1ti&#x2F;picx-images-hosting@master&#x2F;image.6t736trr6e.png" alt="" onerror="this.onerror&#x3D;null;this.src&#x3D;&quot;&#x2F;images&#x2F;stellar-error.491ee870f4940739.svg&quot;"></a><a class="brand-title" href="&#x2F;"><div class="brand-name">白上賞一</div><div class="brand-tagline cap">运气永在身🎲 | 就爱瞎折腾💯</div></a><div class="brand-stats data-service ds-ghinfo" data-api="https:&#x2F;&#x2F;api.github.com&#x2F;users&#x2F;sy0u1ti"><a class="brand-stat ui-interactive card-hover card-hover--spotlight" target="_blank" rel="noopener" href="https:&#x2F;&#x2F;github.com&#x2F;sy0u1ti?tab&#x3D;followers"><span class="brand-stat__value" type="text" id="followers"></span><span class="brand-stat__label">followers</span></a><a class="brand-stat ui-interactive card-hover card-hover--spotlight" target="_blank" rel="noopener" href="https:&#x2F;&#x2F;github.com&#x2F;sy0u1ti?tab&#x3D;following"><span class="brand-stat__value" type="text" id="following"></span><span class="brand-stat__label">following</span></a><a class="brand-stat ui-interactive card-hover card-hover--spotlight" target="_blank" rel="noopener" href="https:&#x2F;&#x2F;github.com&#x2F;sy0u1ti?tab&#x3D;repositories"><span class="brand-stat__value" type="text" id="public_repos"></span><span class="brand-stat__label">repos</span></a></div></div><div class="brand-search">
+
+<div class="ui-collection" data-layout="list" data-variant="nav" data-density="auto">
+  
+    
+<button class="ui-collection__item ui-interactive card-hover card-hover--spotlight search-trigger has-hover-surface" type="button" title="搜索" aria-label="搜索" data-shell-action="open-search" data-search-instance="leftbar-brand-search" data-search-domain="topic:vibe-product-quality" data-search-domain-label="999 个小技巧，让你 Vibe 的产品更有质感" data-search-domain-blog="true">
+  
+  <span class="ui-icon"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">搜索</span>
+      
+      
+    </span>
+  
+  <kbd class="search-shortcut" aria-hidden="true">⌘K</kbd>
+
+  
+</button>
+
+  
+</div>
+
+
+</div></header>
+</div>
+  </header>
+  <div class="site-region__body site-region__zone site-region__zone--body">
+    <div class="widget-instance widget-instance--menu" data-widget-id="leftbar:fixed:menu" data-presentation="leftbar" data-leftbar-rail>
+
+
+<nav class="menu dis-select">
+<div class="ui-collection" data-layout="grid" data-variant="nav" data-density="auto" style="--ui-columns:2">
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-active is-themed" href="&#x2F;" title="首页" aria-current="page" style="--item-theme:#3B82F6;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M9.163 2.819c1.671-1.09 3.864-1.09 5.536 0l5.882 3.839A3.25 3.25 0 0 1 22 9.38v8.87A3.75 3.75 0 0 1 18.25 22h-1.5A2.75 2.75 0 0 1 14 19.25v-3.5a1.75 1.75 0 0 0-1.75-1.75h-1.5A1.75 1.75 0 0 0 9 15.75v3.5A2.75 2.75 0 0 1 6.25 22h-1.5A3.75 3.75 0 0 1 1 18.25V9.38a3.25 3.25 0 0 1 1.419-2.722z" opacity=".5"/><path fill="currentColor" d="M10.25 15.75c0-.414.336-.75.75-.75h2c.414 0 .75.336.75.75v3.5c0 .69.56 1.25 1.25 1.25h1.5c1.243 0 2.25-1.007 2.25-2.25V9.38a1.75 1.75 0 0 0-.764-1.466l-5.882-3.838a2.535 2.535 0 0 0-2.784 0L3.438 7.914A1.75 1.75 0 0 0 2.674 9.38v8.87c0 1.243 1.007 2.25 2.25 2.25h1.5c.69 0 1.25-.56 1.25-1.25z"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">首页</span>
+      
+      
+    </span>
+  
+  
+  <span class="ui-collection__indicator"></span>
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="&#x2F;archives&#x2F;" title="归档" style="--item-theme:#10B981;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M3 9h18v10a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3z" opacity=".5"/><path fill="currentColor" d="M2 5a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm7 8a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2z"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">归档</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="&#x2F;categories&#x2F;" title="分类" style="--item-theme:#F59E0B;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 9.5V18a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4V9.5z" opacity=".5"/><path fill="currentColor" d="M2 7.5A3.5 3.5 0 0 1 5.5 4h3.086a2 2 0 0 1 1.414.586L11.414 6H18.5A3.5 3.5 0 0 1 22 9.5v.5H2z"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">分类</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="&#x2F;tags&#x2F;" title="标签" style="--item-theme:#EC4899;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"/><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">标签</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="&#x2F;bangumis&#x2F;" title="番剧" style="--item-theme:#8B5CF6;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 10.5V18a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4v-7.5z" opacity=".5"/><path fill="currentColor" d="M18 2a4 4 0 0 1 4 4v3H2V6a4 4 0 0 1 4-4zm-9.354 2l-2 3h2.384l2-3zm4.5 0l-2 3h2.384l2-3z"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">番剧</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="&#x2F;topic&#x2F;" title="专栏" style="--item-theme:#06B6D4;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">专栏</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+</div>
+
+</nav>
+
+</div>
+    <div class="widgets widget-stack widget-stack--leftbar widget-stack--body"><div class="widget-instance widget-instance--related" data-widget-id="leftbar:0:related" data-presentation="leftbar" data-leftbar-rail>
+
+<widget class="widget-wrapper related-widget">
+  
+    <div class="widget-header dis-select">
+      <span class="name">专栏：999 个小技巧，让你 Vibe 的产品更有质感</span>
+      
+    </div>
+  
+  <div class="widget-body"><div class="ui-collection" data-layout="list" data-variant="nav" data-density="compact">
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C018%20%E7%AD%89%E5%BE%85%E7%8A%B6%E6%80%81%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E7%94%A8%E6%88%B7%E8%A6%81%E7%AD%89%E5%A4%9A%E4%B9%85&#x2F;" title="018 等待状态：先判断用户要等多久">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">018 等待状态：先判断用户要等多久</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-active" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C017%20Toast%20%E4%B8%8E%20Notification%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E4%BA%8B%E4%BB%B6%E5%BD%92%E8%B0%81&#x2F;" title="017 Toast 与 Notification：先判断事件归谁" aria-current="page">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">017 Toast 与 Notification：先判断事件归谁</span>
+      
+      
+    </span>
+  
+  
+  <span class="ui-collection__indicator"></span>
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C016%20%E8%BF%9E%E7%BB%AD%E6%80%A7%EF%BC%9A%E8%AE%A9%E7%95%8C%E9%9D%A2%E9%A1%BA%E7%9D%80%E7%94%A8%E6%88%B7%E5%8A%A8%E4%BD%9C%E8%BF%87%E6%B8%A1&#x2F;" title="016 连续性：让界面顺着用户动作过渡">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">016 连续性：让界面顺着用户动作过渡</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C015%20%E5%88%A0%E9%99%A4%E5%8A%A8%E6%95%88%EF%BC%9A%E8%AE%A9%E5%85%83%E7%B4%A0%E7%A6%BB%E5%9C%BA%E4%B9%9F%E4%BC%A0%E9%80%92%E5%9B%A0%E6%9E%9C&#x2F;" title="015 删除动效：让元素离场也传递因果">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">015 删除动效：让元素离场也传递因果</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C014%20%E5%86%B2%E5%87%BB%E6%B3%A2%E5%85%89%E7%8E%AF%EF%BC%9A%E8%AE%A9%E5%85%89%E7%9C%9F%E6%AD%A3%E6%89%AD%E6%9B%B2%E9%A1%B5%E9%9D%A2&#x2F;" title="014 冲击波光环：让光真正扭曲页面">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">014 冲击波光环：让光真正扭曲页面</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C013%20%E6%B6%88%E6%81%AF%E6%B0%94%E6%B3%A1%EF%BC%9A%E8%AE%A9%E6%9D%90%E8%B4%A8%E5%86%B3%E5%AE%9A%E5%8A%A8%E6%95%88&#x2F;" title="013 消息气泡：让材质决定动效">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">013 消息气泡：让材质决定动效</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C012%20%E5%8A%A8%E7%94%BB%E8%8A%82%E5%A5%8F%EF%BC%9A%E4%B8%8D%E5%90%8C%E5%8A%A8%E4%BD%9C%EF%BC%8C%E4%B8%8D%E5%90%8C%E6%9B%B2%E7%BA%BF&#x2F;" title="012 动画节奏：不同动作，不同曲线">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">012 动画节奏：不同动作，不同曲线</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C011%20%E6%B6%B2%E6%80%81%E7%8E%BB%E7%92%83%EF%BC%9A%E5%88%AB%E5%8F%AA%E5%81%9A%E4%B8%80%E5%B1%82%E6%A8%A1%E7%B3%8A&#x2F;" title="011 液态玻璃：别只做一层模糊">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">011 液态玻璃：别只做一层模糊</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C010%20%E6%8F%90%E7%A4%BA%E3%80%81%E7%A1%AE%E8%AE%A4%E4%B8%8E%E8%A1%A8%E5%8D%95%EF%BC%9A%E6%B5%AE%E5%B1%82%E6%80%8E%E4%B9%88%E9%80%89&#x2F;" title="010 提示、确认与表单：浮层怎么选">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">010 提示、确认与表单：浮层怎么选</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C009%20Wiki%20%E5%B8%83%E5%B1%80%EF%BC%9A%E6%A1%8C%E9%9D%A2%E4%B8%8E%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%85%BC%E9%A1%BE&#x2F;" title="009 Wiki 布局：桌面与移动端兼顾">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">009 Wiki 布局：桌面与移动端兼顾</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C008%20%E8%AE%A9%E6%96%87%E5%AD%97%E6%8E%92%E7%89%88%E6%9B%B4%E9%A1%BA%E7%9C%BC&#x2F;" title="008 让文字排版更顺眼">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">008 让文字排版更顺眼</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C007%20%E5%83%8F%E4%B9%A6%E4%B8%80%E6%A0%B7%E7%BF%BB%E5%BC%80%E7%9A%84%E5%8D%A1%E7%89%87&#x2F;" title="007 像书一样翻开的卡片">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">007 像书一样翻开的卡片</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C006%20%E6%9B%B4%E7%81%B5%E5%8A%A8%E7%9A%84%E6%8B%96%E6%8B%BD%E6%8E%92%E5%BA%8F&#x2F;" title="006 更灵动的拖拽排序">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">006 更灵动的拖拽排序</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C005%20%E9%80%92%E8%BF%9B%E5%BC%8F%E5%9C%86%E8%A7%92%E4%B8%8E%E8%BF%9E%E7%BB%AD%E6%9B%B2%E7%8E%87&#x2F;" title="005 递进式圆角与连续曲率圆角">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">005 递进式圆角与连续曲率圆角</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C004%20%E5%89%83%E5%88%80%E6%B3%95%E5%88%99&#x2F;" title="004 剃刀法则：如果不需要，就移除">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">004 剃刀法则：如果不需要，就移除</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C003%20Dither%20%E4%B8%8E%20ASCII%20%E5%8F%82%E6%95%B0%E5%8C%96%E6%95%88%E6%9E%9C&#x2F;" title="003 Dither 与 ASCII 参数化效果">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">003 Dither 与 ASCII 参数化效果</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C002%20%E7%BA%A7%E8%81%94%E8%8F%9C%E5%8D%95%E7%9A%84%E7%A8%B3%E5%AE%9A%E5%8C%BA&#x2F;" title="002 级联菜单：让子菜单不“跑丢”">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">002 级联菜单：让子菜单不“跑丢”</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C001%20%E6%8B%9F%E7%89%A9%E6%8C%89%E9%92%AE%E7%9A%84%E7%82%B9%E5%87%BB%E9%87%8D%E9%87%8F&#x2F;" title="001 拟物按钮：让点击有重量">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">001 拟物按钮：让点击有重量</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+</div></div>
+  
+</widget>
+
+
+</div><div class="widget-instance widget-instance--recent" data-widget-id="leftbar:1:recent" data-presentation="leftbar">
+
+<widget class="widget-wrapper slide-up recent-widget">
+  
+    <div class="widget-header dis-select">
+      <span class="name">最近更新</span>
+      
+    </div>
+  
+  <div class="widget-body"><div class="ui-collection" data-layout="list" data-variant="nav" data-density="compact">
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C018%20%E7%AD%89%E5%BE%85%E7%8A%B6%E6%80%81%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E7%94%A8%E6%88%B7%E8%A6%81%E7%AD%89%E5%A4%9A%E4%B9%85&#x2F;" title="018 等待状态：先判断用户要等多久">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">018 等待状态：先判断用户要等多久</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C017%20Toast%20%E4%B8%8E%20Notification%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E4%BA%8B%E4%BB%B6%E5%BD%92%E8%B0%81&#x2F;" title="017 Toast 与 Notification：先判断事件归谁">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">017 Toast 与 Notification：先判断事件归谁</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;curator-bookmarks-Chrome%E6%9C%AC%E5%9C%B0%E4%B9%A6%E7%AD%BE%E7%AE%A1%E7%90%86%E6%89%A9%E5%B1%95&#x2F;" title="Curator（策书）：本地优先的 Chrome 书签管理与 AI 整理扩展">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">C</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">Curator（策书）：本地优先的 Chrome 书签管理与 AI 整理扩展</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;202%E4%B8%AD%E5%9B%BD%E5%9B%BD%E5%86%85%E8%87%B3%E5%9B%BD%E9%99%85%E9%AA%A8%E5%B9%B2%E7%BA%BF%E8%B7%AF%E6%95%B4%E7%90%86&#x2F;" title="中国各大运营商国际出海骨干网全解析 (163 &#x2F; CN2 &#x2F; 4837 &#x2F; 9929 &#x2F; CMI)">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">中</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">中国各大运营商国际出海骨干网全解析 (163 / CN2 / 4837 / 9929 / CMI)</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C016%20%E8%BF%9E%E7%BB%AD%E6%80%A7%EF%BC%9A%E8%AE%A9%E7%95%8C%E9%9D%A2%E9%A1%BA%E7%9D%80%E7%94%A8%E6%88%B7%E5%8A%A8%E4%BD%9C%E8%BF%87%E6%B8%A1&#x2F;" title="016 连续性：让界面顺着用户动作过渡">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">016 连续性：让界面顺着用户动作过渡</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C015%20%E5%88%A0%E9%99%A4%E5%8A%A8%E6%95%88%EF%BC%9A%E8%AE%A9%E5%85%83%E7%B4%A0%E7%A6%BB%E5%9C%BA%E4%B9%9F%E4%BC%A0%E9%80%92%E5%9B%A0%E6%9E%9C&#x2F;" title="015 删除动效：让元素离场也传递因果">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">015 删除动效：让元素离场也传递因果</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C014%20%E5%86%B2%E5%87%BB%E6%B3%A2%E5%85%89%E7%8E%AF%EF%BC%9A%E8%AE%A9%E5%85%89%E7%9C%9F%E6%AD%A3%E6%89%AD%E6%9B%B2%E9%A1%B5%E9%9D%A2&#x2F;" title="014 冲击波光环：让光真正扭曲页面">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">014 冲击波光环：让光真正扭曲页面</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;%E7%94%A8%20AI%20%E5%81%9A%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1%EF%BC%9A11%20%E6%9D%A1%E8%AE%A9%E4%BA%A7%E5%93%81%E6%98%93%E7%94%A8%E4%B8%94%E4%B8%8D%E4%B8%91%E7%9A%84%E6%A3%80%E6%9F%A5%E6%B8%85%E5%8D%95&#x2F;" title="用 AI 做产品设计：11 条让产品易用且不丑的检查清单">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">用</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">用 AI 做产品设计：11 条让产品易用且不丑的检查清单</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;%E7%A0%B4%E7%94%B2%E8%AE%B0%E5%BF%86%EF%BC%9A%E6%8A%8A%E5%85%8D%E5%8D%A1%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2%E5%86%99%E8%BF%9B%20Agent%20%E9%95%BF%E6%9C%9F%E8%AE%B0%E5%BF%86&#x2F;" title="破甲记忆：把免卡节点部署写进 Agent 长期记忆">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">破</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">破甲记忆：把免卡节点部署写进 Agent 长期记忆</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C013%20%E6%B6%88%E6%81%AF%E6%B0%94%E6%B3%A1%EF%BC%9A%E8%AE%A9%E6%9D%90%E8%B4%A8%E5%86%B3%E5%AE%9A%E5%8A%A8%E6%95%88&#x2F;" title="013 消息气泡：让材质决定动效">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">013 消息气泡：让材质决定动效</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+</div></div>
+  
+</widget>
+
+
+</div></div>
+  </div>
+  <footer class="site-region__footer">
+    <div class="site-region__footer-actions"><div class="widget-instance widget-instance--actions" data-widget-id="leftbar:fixed:actions" data-presentation="leftbar">
+<div class="region-actions social-wrap ui-collection" data-layout="inline" data-variant="nav" data-density="compact"><button type="button" class="social ui-collection__item ui-interactive card-hover card-hover--spotlight is-icon-only" title="切换明暗主题" aria-label="切换明暗主题" onclick="setColorScheme(document.documentElement.getAttribute(&#39;data-theme&#39;) &#x3D;&#x3D;&#x3D; &#39;dark&#39; ? &#39;light&#39; : &#39;dark&#39;)"><span class="ui-icon"><svg class="icon" viewBox="0 0 1 1" data-icon="default:theme" aria-hidden="true"></svg></span></button></div>
+</div></div>
+    <div class="site-region__system ui-collection" data-layout="inline" data-variant="nav" data-density="compact">
+      <div class="site-region__settings"><div class="widget-instance widget-instance--settings" data-widget-id="leftbar:fixed:settings" data-presentation="leftbar" data-leftbar-rail>
+<a class="settings-widget ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;settings&#x2F;" data-profile-provider="giscus" data-profile-identity-enabled="false" data-profile-fallback-avatar="https:&#x2F;&#x2F;gcore.jsdelivr.net&#x2F;gh&#x2F;cdn-x&#x2F;placeholder@1.0.12&#x2F;avatar&#x2F;round&#x2F;3442075.svg" data-settings-placement="leftbar" data-settings-label="设置" aria-label="设置" title="设置">
+  <span class="settings-widget__avatar" aria-hidden="true">
+    <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><g fill="currentColor"><path fill-rule="evenodd" d="M12.4277 2C11.3139 2 10.2995 2.6007 8.27081 3.80211L7.58466 4.20846C5.55594 5.40987 4.54158 6.01057 3.98466 7C3.42773 7.98943 3.42773 9.19084 3.42773 11.5937V12.4063C3.42773 14.8092 3.42773 16.0106 3.98466 17C4.54158 17.9894 5.55594 18.5901 7.58466 19.7915L8.27081 20.1979C10.2995 21.3993 11.3139 22 12.4277 22C13.5416 22 14.5559 21.3993 16.5847 20.1979L17.2708 19.7915C19.2995 18.5901 20.3139 17.9894 20.8708 17C21.4277 16.0106 21.4277 14.8092 21.4277 12.4063V11.5937C21.4277 9.19084 21.4277 7.98943 20.8708 7C20.3139 6.01057 19.2995 5.40987 17.2708 4.20846L16.5847 3.80211C14.5559 2.6007 13.5416 2 12.4277 2Z" clip-rule="evenodd" opacity=".5"/><path d="M12.4277 8.25C10.3567 8.25 8.67773 9.92893 8.67773 12C8.67773 14.0711 10.3567 15.75 12.4277 15.75C14.4988 15.75 16.1777 14.0711 16.1777 12C16.1777 9.92893 14.4988 8.25 12.4277 8.25Z"/></g></svg></span>
+  </span>
+  <span class="settings-widget__name ui-collection__title">设置</span>
+</a>
+</div></div>
+      <button type="button" class="leftbar-state-toggle ui-collection__item ui-interactive card-hover card-hover--spotlight is-icon-only" aria-label="Collapse leftbar" aria-expanded="true" data-shell-action="toggle-leftbar"><span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M3.172 4.172C2 5.343 2 7.229 2 11v2c0 3.771 0 5.657 1.172 6.828S6.229 21 10 21h5V3h-5C6.229 3 4.343 3 3.172 4.172" clip-rule="evenodd" opacity=".5"/><path fill="currentColor" d="M5.5 9.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zm1 4a.75.75 0 0 0 0 1.5h4a.75.75 0 0 0 0-1.5zM22 13v-2c0-3.771 0-5.657-1.172-6.828c-.974-.975-3.192-1.139-5.828-1.166v17.988c2.636-.027 4.854-.191 5.828-1.166C22 18.657 22 16.771 22 13"/></svg></span></button>
+    </div>
+  </footer></div></div></aside>
+<main data-stellar-runtime-region class="site-main" id="main">
+
+
+<div class="article-banner-wrap slide-up"><div class="article banner top">
+  <div class="content">
+    
+    <div class="top bread-nav footnote"><div class="top-row"><div class="left" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" id="menu" href="/topic/">专栏</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C018%20%E7%AD%89%E5%BE%85%E7%8A%B6%E6%80%81%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E7%94%A8%E6%88%B7%E8%A6%81%E7%AD%89%E5%A4%9A%E4%B9%85/">999 个小技巧，让你 Vibe 的产品更有质感</a>
+</div></div><div class="meta-row">
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-11-14T05:00:00.000Z">2026-11-14</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-11-14T05:00:00.000Z">2026-11-14</time></span></div>
+</div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>017 Toast 与 Notification：先判断事件归谁</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div></div>
+<article class="md-text content slide-up"><p>Toast 和 Notification 都能告诉用户“发生了一件事”，但它们回答的不是同一种问题。</p>
+<p>Toast 回应的是用户刚刚做过的动作：复制成功、同步完成、文件已上传。用户知道结果就可以继续工作。</p>
+<p>Notification 传递的是用户没有刚刚触发、由其他人或系统发出的消息：有人提到了你、支付到账、后台报告完成、安全告警。它可能和当前操作无关，但用户之后必须能找到。</p>
+<p>如果两者只是换一个位置和样式，产品的反馈层级就会变乱：真正需要处理的消息一闪而过，而普通成功状态却在页面角落里长期占位。</p>
+<h2 id="Toast-只承接眼前这次操作"><a href="#Toast-只承接眼前这次操作" class="headerlink" title="Toast 只承接眼前这次操作"></a>Toast 只承接眼前这次操作</h2><p>Toast 出现在用户正在工作的位置上，不打断任务，并自动消失。</p>
+<p>它可以分成三种：</p>
+<h3 id="Status-Toast"><a href="#Status-Toast" class="headerlink" title="Status Toast"></a>Status Toast</h3><p>只确认结果。一个图标加几个字，例如「链接已复制」「已同步」，不需要按钮。</p>
+<p>用户不需要跳去别处检查，也不需要做下一步，看到就够了。</p>
+<h3 id="Action-Toast"><a href="#Action-Toast" class="headerlink" title="Action Toast"></a>Action Toast</h3><p>动作已经完成，但还保留一个紧随其后的选择，通常只有「撤销」。</p>
+<p>它需要停留足够久，让用户能读到并点击；如果是限时撤销，还要显示剩余时间。关闭按钮与操作按钮并列，不能把撤销藏进二级菜单。</p>
+<p>能立即撤销的操作，直接执行并给 Undo，比执行前弹一次确认更轻。</p>
+<h3 id="Progress-Toast"><a href="#Progress-Toast" class="headerlink" title="Progress Toast"></a>Progress Toast</h3><p>短时间运行中的工作，例如上传、同步或导出。它先显示进度，完成后在原位变成结果，并提供一个查看入口。</p>
+<p>Toast 不擅长处理必须修复的失败。上传失败、支付失败或表单错误都应该留在出事的位置，直到用户解决。</p>
+<h2 id="Notification-承接用户没触发的消息"><a href="#Notification-承接用户没触发的消息" class="headerlink" title="Notification 承接用户没触发的消息"></a>Notification 承接用户没触发的消息</h2><p>Notification 的核心不是“长得像系统通知”，而是消息来源与当前动作无关。</p>
+<p>它可能需要：</p>
+<ul>
+<li>一条标题；</li>
+<li>一两行正文；</li>
+<li>最多两个操作；</li>
+<li>时间与其他上下文。</li>
+</ul>
+<p>它应该跨页面可见，直到用户打开、处理或关闭，同时保存在通知中心、活动列表或铃铛入口中。多条 Notification 可以堆叠。</p>
+<p>如果用户错过它会造成明显后果，它就不该只以三秒 Toast 的形式出现。</p>
+<h2 id="有些信息不该做成浮层"><a href="#有些信息不该做成浮层" class="headerlink" title="有些信息不该做成浮层"></a>有些信息不该做成浮层</h2><p>很多反馈问题不是选错 Toast 或 Notification，而是根本不应该出现在浮层里。</p>
+<div class="md-table-scroll"><table>
+<thead>
+<tr>
+<th>情况</th>
+<th>更合适的位置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>单个字段错误</td>
+<td>字段旁或表单内</td>
+</tr>
+<tr>
+<td>上传、支付等必须修复的失败</td>
+<td>原项目上，保留到解决</td>
+</tr>
+<tr>
+<td>不可撤销操作</td>
+<td>执行前就地确认或 Dialog</td>
+</tr>
+<tr>
+<td>只值得顺便看一眼的状态</td>
+<td>徽标、圆点或原地状态变化</td>
+</tr>
+</tbody></table></div>
+<p>尤其不能先执行不可逆操作，再用 Toast 告知“已经删除”。确认必须发生在动作之前。</p>
+<h2 id="用几个问题完成判断"><a href="#用几个问题完成判断" class="headerlink" title="用几个问题完成判断"></a>用几个问题完成判断</h2><p>先看事件是谁造成的：</p>
+<ul>
+<li>用户刚刚触发：优先 Toast；</li>
+<li>其他人、系统或后台任务：优先 Notification；</li>
+<li>用户早先在别处触发、现在才完成：可以进入 Notification 列表。</li>
+</ul>
+<p>再看用户是否需要行动：</p>
+<ul>
+<li>不需要行动：Status Toast；</li>
+<li>只需一个快速后续动作：Action Toast；</li>
+<li>需要做决定或回复：Notification；</li>
+<li>必须修复：留在原处。</li>
+</ul>
+<p>还要问：</p>
+<ul>
+<li>操作能否撤销？能，就直接执行并给 Undo；不能，就在执行前确认。</li>
+<li>内容有多少？几个字适合 Toast；一两句话、姓名、金额与位置更适合 Notification。</li>
+<li>错过会不会有影响？不会，可以让 Toast 自动消失；会，就保留在 Notification 与收件箱里。</li>
+<li>用户离开当前页面后任务是否还在运行？如果仍在运行，页内 Toast 已无法覆盖，需要浏览器或系统通知，并同步进入产品内通知列表。</li>
+<li>同时出现多条怎么办？Toast 一次只显示一条；Notification 可以堆叠。</li>
+</ul>
+<h2 id="Toast-的动作要像一个整体"><a href="#Toast-的动作要像一个整体" class="headerlink" title="Toast 的动作要像一个整体"></a>Toast 的动作要像一个整体</h2><p>在设计样式前，先保持反馈层级稳定。</p>
+<p>Toast 默认可以放在内容顶部中央、顶栏下方，一次一个。它应该足够轻，但又能让图标、文案、操作和关闭按钮组成一个完整对象。</p>
+<p>进入时，整块 Toast 一起下移、放大并清除模糊，不能让文字逐字出现。离开要更快，避免用户等它退场。</p>
+<p>只有当结果已经完成时，才扫过一次高光；正在等待用户选择的 Undo Toast 不需要提前庆祝。</p>
+<p>进度转结果时，旧文案向上模糊离开，新文案从下方进入，Toast 宽度与图标在原位过渡。重要的不是动画多复杂，而是用户能看出“同一个任务变成了结果”。</p>
+<p>计时规则也要明确：</p>
+<ul>
+<li>Status Toast 约 3–5 秒，文案越长停留越久；</li>
+<li>Action Toast 至少约 5 秒；</li>
+<li>Progress Toast 在工作期间保留，完成后约 3 秒离开；</li>
+<li>指针停在 Toast 上或焦点位于内部时，计时暂停。</li>
+</ul>
+<h2 id="Notification-要像一叠可以展开的卡片"><a href="#Notification-要像一叠可以展开的卡片" class="headerlink" title="Notification 要像一叠可以展开的卡片"></a>Notification 要像一叠可以展开的卡片</h2><p>Notification 更适合放在页面右上角，跨页面保持一致。</p>
+<p>默认堆叠时，最新一条在最前，后面几条只露出边缘，最多显示三层。新通知从上方落下并压到栈顶，原有卡片顺势后退，用户能看到“新的叠上来了”，而不是旧的突然被替换。</p>
+<p>悬停或点击时，堆叠展开成真实高度的列表。展开后每张卡保留细边与轻阴影，避免阴影压到下一张。</p>
+<p>删除时，卡片向右滑出并淡出，下面的卡片用稍慢一点的动画闭合空位。触屏没有悬停，应该点击展开，并允许滑动关闭。</p>
+<p>铃铛显示待处理数量，页面标题也同步显示数字，后台标签页才能提示用户。需要做决定的安全、支付等通知，即使从屏幕清掉，也应该继续留在通知列表。</p>
+<h2 id="可访问性不能被浮层打断"><a href="#可访问性不能被浮层打断" class="headerlink" title="可访问性不能被浮层打断"></a>可访问性不能被浮层打断</h2><p>Toast 不应抢焦点，可通过 <code>role="status"</code> 进行礼貌播报。需要用户注意的 Notification 只播报一次，也不能把焦点从当前任务移走。</p>
+<p>两者的按钮都必须能通过键盘访问，Escape 关闭当前焦点所在的卡片。触摸设备保持同样的位置与层级，并提供滑动手势。</p>
+<p>在 <code>prefers-reduced-motion: reduce</code> 下，保留状态变化与约 150ms 淡入淡出，取消位移、缩放和模糊。深色模式沿用相同的层级规则，高光要更弱。</p>
+<h2 id="先审查，再决定是否改样式"><a href="#先审查，再决定是否改样式" class="headerlink" title="先审查，再决定是否改样式"></a>先审查，再决定是否改样式</h2><p>最有效的顺序不是先画一个新 Toast，而是先盘点产品里所有“告诉用户发生了什么”的入口：</p>
+<ul>
+<li>Toast 与 Snackbar；</li>
+<li>Alert、Banner 与页内错误；</li>
+<li>通知列表、收件箱、活动面板；</li>
+<li>徽标与数字；</li>
+<li>浏览器通知或系统推送。</li>
+</ul>
+<p>逐条记录触发者、内容、按钮、出现位置、停留时间，以及之后能否重新找到。</p>
+<p>然后先输出一张表：位置、现在如何显示、应该是什么、原因、需要改什么。已经正确的保持不动；处于两种情况之间的，明确写出需要用户决定的问题。</p>
+<p>只有分类和文案确认后，再决定是否重做 Toast、Notification 或两者的视觉。</p>
+<h2 id="检查清单"><a href="#检查清单" class="headerlink" title="检查清单"></a>检查清单</h2><ul>
+<li>Toast 是否只回应用户刚完成的动作；</li>
+<li>Notification 是否承接与当前操作无关、需要保留的消息；</li>
+<li>Status、Action、Progress 三种 Toast 是否没有混用；</li>
+<li>可撤销操作是否直接执行并提供 Undo；</li>
+<li>不可逆操作是否在执行前确认；</li>
+<li>必须修复的失败是否留在原处，而不是短暂 Toast；</li>
+<li>后台任务离开页面后是否仍能通过系统通知与站内列表找到；</li>
+<li>Toast 是否一次一个，Notification 是否正确堆叠；</li>
+<li>计时、悬停暂停、进度转结果和 Undo 后状态是否成立；</li>
+<li>键盘、读屏、触屏、深色模式与减少动态效果是否完整。</li>
+</ul>
+<details class="tag-plugin colorful folding" color="blue"><summary><p>Toast 与 Notification 示例 Prompt</p>
+</summary><div class="body"><figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">Prompt</span><br><span class="line"></span><br><span class="line">Review how my product tells people that something happened, and decide for each message whether it should be a toast, a notification, or neither. Then, if I want it, restyle the toasts and notifications along the lines below. This is about judgment first: diagnose and recommend, and change only what I approve.</span><br><span class="line"></span><br><span class="line">This is a change to my product, not a demo. Work inside my code, on my stack, with my components, tokens, corner scale, fonts and copy style. Do not add a dependency, a new state library or a new visual pattern without asking. Every value below is a default to start from.</span><br><span class="line"></span><br><span class="line">0. Read the product first</span><br><span class="line">- Find every place that shows a message about an event: toasts and snackbars, alerts and banners, notification lists, inbox or activity panels, badges and counts, inline success and error text, and browser or push notifications.</span><br><span class="line">- For each one, note: what triggers it (the person's own action, another person, the system, a background job), what it says, any buttons, where it appears, how long it stays, and whether it can be found again later.</span><br><span class="line">- Find the components behind them and where they are mounted (one per page, or one for the whole app). Note how they announce themselves to screen readers.</span><br><span class="line">- Tell me in a few lines what you found before going on.</span><br><span class="line"></span><br><span class="line">1. What each one is for</span><br><span class="line">- Toast: answers something the person just did, in the place they are working. It is short, it does not interrupt, and it goes away by itself. It comes in three kinds:</span><br><span class="line">  a. Status: confirms a result, so the person does not have to go and check. An icon and a few words, no buttons. Example: "Link copied".</span><br><span class="line">  b. Action: the action has already been done, and the toast holds the one step that may follow, usually Undo. One line and one button, plus a close. It stays long enough to use the button, with the time left shown.</span><br><span class="line">  c. Progress: work that takes a moment. It shows that the work is under way, then turns into the result in the same place, with a button to see it. Example: "Uploading brand-guide.pdf" turns into "Uploaded to Files, Open".</span><br><span class="line">- Notification: news the person did not cause just now, from other people or from the system: a mention, a reply, a payment, a deadline, a security alert, a finished report. It can carry more: a title, a few lines and up to two actions. It is shown on every page, stays until it is opened, handled or closed, and several can be shown at once. It is also kept somewhere the person can find it again (an inbox or a list behind a bell, with a count).</span><br><span class="line">- Neither:</span><br><span class="line">  - A form error or a problem with one field: show it next to the field.</span><br><span class="line">  - A failure the person has to fix (an upload that failed, a payment that did not go through): keep it on the item, with a way to fix it, until it is fixed. A toast that disappears after a few seconds is not enough.</span><br><span class="line">  - An action that cannot be undone: ask before doing it (a confirm next to the button, or a dialog for something with a large impact). A toast after the fact is too late.</span><br><span class="line">  - Something only worth seeing when the person looks: a badge, a dot or a change of state in place, with no message at all.</span><br><span class="line"></span><br><span class="line">2. Questions that settle a case</span><br><span class="line">- Who caused it? The person, just now: toast. Someone else, the system, or the person a while ago in another place: notification.</span><br><span class="line">- Does the person need to act? No: status toast. One quick step that may follow (Undo, View): action toast. A real decision or a reply: notification. Something that must be fixed: keep it on the item.</span><br><span class="line">- Can the action be undone? Then do it at once and offer Undo in a toast instead of asking first. If it cannot be undone, confirm before, not after.</span><br><span class="line">- How much is there to say? A few words: toast. A sentence or two, a name, an amount, a place: notification.</span><br><span class="line">- Would it matter if the person missed it? No: toast. Yes: notification, kept until handled.</span><br><span class="line">- Is the work still running when the person leaves? If it ends while they are still on the page, a toast is enough. If they have moved to another tab or app, a browser or system notification (with permission) is the only way to reach them; inside the product, it also goes into the notification list.</span><br><span class="line">- Several at once? Toasts: one at a time; a new one replaces the old one, or waits. Notifications: they stack.</span><br><span class="line"></span><br><span class="line">3. Report before changing anything</span><br><span class="line">Give me a table first, and do not change code yet. One row per message:</span><br><span class="line">- Where: the screen or component, and what triggers it.</span><br><span class="line">- Now: how it is shown today, in a few words.</span><br><span class="line">- Should be: status toast, action toast, progress toast, notification, or neither (and which).</span><br><span class="line">- Why: one line, using the questions above.</span><br><span class="line">- Change: what would change (kind, wording, buttons, how long it stays, where it is kept).</span><br><span class="line">Mark the ones that are already right. Mark the ones that could go either way and say what decides between them, as a question for me. Then list anything missing: an action that should offer Undo, a failure that only shows a toast, a background job that never says it is done, news with no place to find it again.</span><br><span class="line">Then ask me which rows to change and wait.</span><br><span class="line"></span><br><span class="line">4. Optional: restyle the toast and the notifications</span><br><span class="line">After the table, offer these as a separate choice, and wait for my answer:</span><br><span class="line">A. Restyle the toast only.</span><br><span class="line">B. Restyle the notifications only.</span><br><span class="line">C. Both.</span><br><span class="line">D. Neither; just fix the kinds and wording.</span><br><span class="line">For each one I pick, show me a short before and after (values and motion), in my product's own colours and corners, and wait for my go-ahead before building.</span><br><span class="line"></span><br><span class="line">4A. Toast</span><br><span class="line">- Place: the top centre of the page, 12 under the top bar, over the content. One at a time.</span><br><span class="line">- Shape: 40 tall, 16 corners (or the nearest step in my corner scale), a white surface with a soft top-to-bottom gradient (#ffffff to #f7f9fc), a 1px border rgba(214, 219, 227, 0.95), and a soft shadow (0 16px 36px rgba(17, 24, 39, 0.08), 0 3px 10px rgba(17, 24, 39, 0.05)). Inner shapes are concentric with it: the icon, 8 in, is 24 with 8 corners; a button or the close, 6 in, is 28 with 10 corners.</span><br><span class="line">- Content: icon, then one line of 14/20 text, then the button and the close if there are any. The done icon is a check on a soft tile in my accent colour; work in progress is a ring; the time left to undo is a ring that empties, with the seconds in its centre. The button is accent-coloured text, with a tint only on hover. Keep the gaps tight: 8 between the icon and the text, the button and the close next to each other.</span><br><span class="line">- Enter: in 500ms on cubic-bezier(0.25, 0.1, 0.25, 1), the whole toast comes down from 10px above, grows from 96% and clears from an 8px blur; it is fully opaque a little before the end. Text and controls move with it as one piece, not letter by letter.</span><br><span class="line">- Leave: 220ms, ease-in: up 6px, blur 6px, fade out.</span><br><span class="line">- Sheen: a light band crosses it once (900ms, ease-out) only when something is done: a status toast as it enters, a progress toast as it turns into its result, an Undo toast after Undo. An action toast that still waits for a choice enters without it.</span><br><span class="line">- Change in place (progress to result, archived to restored): the old line (text, button and close together) blurs out and moves 5px up in 180ms; the new line blurs in from 5px below between 100 and 400ms; the toast takes its new width in 380ms on cubic-bezier(0.32, 0.72, 0, 1). Only the icon has a move of its own: the old one shrinks and blurs away while the new one turns in from -40 degrees and half size.</span><br><span class="line">- After Undo: the change is reverted, and the toast says so ("Task restored") for about 1.5 seconds before it leaves.</span><br><span class="line">- Timing: a status toast stays 3 to 5 seconds, longer for longer text; an action toast at least 5 seconds; a progress toast stays while the work runs, then 3 seconds. The timer pauses while the pointer is over the toast or focus is inside it.</span><br><span class="line"></span><br><span class="line">4B. Notifications</span><br><span class="line">- Place: the top right, 12 under the top bar, the same on every page, above the content. 344 wide.</span><br><span class="line">- Card: 24 corners with 12 of padding, so the picture (32, a person's photo or the product's logo) and the buttons (32 tall, 12 corners) are concentric with it. A title (14/20, semibold) with the time on the right, up to three lines of 13/20 text, then up to two buttons on the bottom right, the main one last.</span><br><span class="line">- A stack: the newest is in front. The older ones are cut to the front one's height and peek out 12 below it, at 95% and 90%, showing only their edge; at most three show.</span><br><span class="line">- A new one arrives: it slides down onto the stack from 56px above in 560ms on cubic-bezier(0.32, 0.72, 0, 1), clearing from a light blur, while the others are pushed down and back a step. The one it covers keeps its content until the new one is on its way over it, so it reads as stacking, not replacing.</span><br><span class="line">- Hover: the stack spreads into a list at the cards' own heights, 8 apart, in 380ms on the same curve. In the list each card keeps to a hairline and a light shadow, so no shadow falls on the card below; stacked, only the front card has the deep shadow.</span><br><span class="line">- Close one, as on macOS: a small close button (24, 10 corners) appears over a card's top-left corner while the pointer is on that card. Handling a card with one of its buttons also removes it. A removed card slides 48px to the right and fades in 260ms, and the ones below close the gap in 400ms. "Clear all" sits under the last card while the list is spread out.</span><br><span class="line">- Counts: the bell shows how many are waiting, and so does the page title, so a tab in the background shows it too. Notifications that need a decision (security, payments) stay in the list behind the bell even when they are cleared from the screen.</span><br><span class="line"></span><br><span class="line">4C. For both</span><br><span class="line">- Reduced motion: keep the change of state and a short fade (about 150ms); drop the movement, scaling and blur.</span><br><span class="line">- Screen readers: toasts are announced politely (role="status"); a notification that needs attention is announced once as it arrives. Neither takes focus away from what the person is doing. Their buttons can be reached by keyboard, and Escape closes the one in focus.</span><br><span class="line">- Touch: the same places, with swipe to dismiss; there is no hover, so the stack spreads on tap.</span><br><span class="line">- Dark mode: the same rules on my dark surfaces; the sheen is fainter.</span><br><span class="line"></span><br><span class="line">5. Build what I pick</span><br><span class="line">- List the files you will touch and wait for my go-ahead.</span><br><span class="line">- Change one thing at a time and keep what each action does. Then check:</span><br><span class="line">  - Short and long text, a missing picture, many notifications at once, several toasts in a row.</span><br><span class="line">  - Undo used, ignored and closed; a progress that fails; leaving the page while something is still running.</span><br><span class="line">  - Phone and desktop layouts, light and dark, reduced motion, keyboard and screen reader.</span><br><span class="line">  - Existing tests still pass.</span><br><span class="line">- Web: CSS transitions or the Web Animations API for the toast; for the stack, measure each card's height and animate transform and height together. Sonner (React) has a similar stack and can be adapted, but ask before adding it. iOS, Android and Flutter: use the platform's own animation tools with the same values; for messages that reach people outside the app, use the system's notifications.</span><br></pre></td></tr></tbody></table></figure></div></details>
+
+<h2 id="质感来自可解释的细节"><a href="#质感来自可解释的细节" class="headerlink" title="质感来自可解释的细节"></a>质感来自可解释的细节</h2><p>Toast 与 Notification 的选择，不是把消息放在顶部还是右上角。</p>
+<p>问题在于：这件事是谁引起的、用户现在是否必须知道、错过会不会有损失、之后还能不能找到。反馈机制回答了这些问题，界面才会安静但不遗漏，明确却不打断。</p>
+</article>
+<div class="article-tags slide-up"><a class="tag" href="/tags/%E4%BA%A4%E4%BA%92%E8%AE%BE%E8%AE%A1/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>交互设计</a><a class="tag" href="/tags/UI/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>UI</a><a class="tag" href="/tags/%E6%97%A0%E9%9A%9C%E7%A2%8D/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>无障碍</a><a class="tag" href="/tags/%E9%80%9A%E7%9F%A5/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>通知</a><a class="tag" href="/tags/%E5%8F%8D%E9%A6%88/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>反馈</a></div>
+
+
+  <div class="article-share slide-up" id="share">
+    <div class="body">
+      <div class="social-wrap dis-select"><a class="social share-item qrcode ui-interactive is-icon-only" onclick="util.toggle(&quot;share-qrcode&quot;)" aria-label="分享文章: QR Code" title="分享文章: QR Code"><span class="share-item__icon ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="M10.553 13.447c-.424-.424-.95-.596-1.535-.675c-.553-.074-1.25-.074-2.086-.074H5.827c-.58 0-1.065 0-1.459.037c-.411.04-.795.124-1.146.34c-.345.21-.634.5-.845.844c-.216.352-.3.735-.34 1.147C2 15.459 2 15.944 2 16.525v.068c0 .884 0 1.597.055 2.17c.056.592.175 1.108.459 1.571c.288.47.682.864 1.152 1.152c.463.284.979.403 1.57.46C5.81 22 6.524 22 7.407 22h.07c.58 0 1.064 0 1.458-.037c.412-.04.795-.124 1.147-.34c.344-.21.633-.5.844-.844c.216-.352.3-.736.34-1.147c.037-.394.037-.879.037-1.46v-1.104c0-.836 0-1.533-.074-2.086c-.079-.584-.251-1.111-.675-1.535m-1.62-11.41c.412.04.795.124 1.147.34c.344.21.633.5.844.845c.216.351.3.735.34 1.146c.037.394.037.879.037 1.46v1.104c0 .836 0 1.533-.074 2.086c-.079.584-.251 1.111-.675 1.535s-.95.596-1.535.675c-.553.074-1.25.074-2.086.074H5.827c-.58 0-1.065 0-1.459-.037c-.411-.04-.795-.124-1.146-.34a2.56 2.56 0 0 1-.845-.844c-.216-.352-.3-.735-.34-1.147C2 8.54 2 8.056 2 7.475v-.068c0-.884 0-1.597.055-2.17c.056-.592.175-1.108.459-1.571c.288-.47.682-.864 1.152-1.152c.463-.284.979-.403 1.57-.46C5.81 2 6.524 2 7.407 2h.07c.58 0 1.064 0 1.458.037M16.593 2h-.068c-.58 0-1.065 0-1.46.037c-.41.04-.794.124-1.146.34c-.344.21-.633.5-.844.845c-.216.351-.3.735-.34 1.146c-.037.394-.037.879-.037 1.46v1.104c0 .836 0 1.533.074 2.086c.079.584.251 1.111.675 1.535s.95.596 1.535.675c.553.074 1.25.074 2.086.074h1.105c.58 0 1.065 0 1.459-.037c.411-.04.795-.124 1.146-.34c.345-.21.634-.5.845-.844c.216-.352.3-.735.34-1.147C22 8.54 22 8.056 22 7.475v-.068c0-.884 0-1.597-.055-2.17c-.056-.592-.175-1.108-.459-1.571a3.5 3.5 0 0 0-1.152-1.152c-.463-.284-.979-.403-1.57-.46C18.19 2 17.477 2 16.594 2" opacity=".5"/><path fill="currentColor" d="M14.093 21.302a.698.698 0 1 1-1.396 0v-2.79h1.396z" opacity=".4"/><path fill="currentColor" d="M21.302 12.698a.7.7 0 0 0-.697.697v3.256H22v-3.256a.7.7 0 0 0-.698-.697" opacity=".5"/><path fill="currentColor" d="M16.076 16.617c-.076.184-.076.417-.076.883s0 .699.076.883a1 1 0 0 0 .541.54c.184.077.417.077.883.077s.699 0 .883-.076a1 1 0 0 0 .54-.541c.077-.184.077-.417.077-.883s0-.699-.076-.883a1 1 0 0 0-.541-.54C18.199 16 17.966 16 17.5 16s-.699 0-.883.076a1 1 0 0 0-.54.541"/><path fill="currentColor" d="M22 18.535v-.023h-1.396c0 .443 0 .74-.016.97c-.015.224-.043.333-.073.405a1.16 1.16 0 0 1-.629.63c-.072.029-.18.056-.405.072c-.23.015-.527.016-.97.016h-1.86V22h1.883c.414 0 .759 0 1.042-.02a2.6 2.6 0 0 0 .844-.175a2.56 2.56 0 0 0 1.384-1.384c.112-.27.156-.549.176-.844c.02-.283.02-.628.02-1.042" opacity=".7"/><path fill="currentColor" d="M12.697 16.616v.035h1.396c0-.668 0-1.116.035-1.458c.034-.33.093-.482.16-.583a1.2 1.2 0 0 1 .321-.32c.101-.068.254-.128.584-.161c.342-.035.79-.036 1.458-.036h1.86v-1.395h-1.896c-.623 0-1.142 0-1.563.043c-.44.044-.85.142-1.218.388c-.28.187-.519.426-.706.706c-.246.368-.343.777-.388 1.217c-.043.421-.043.94-.043 1.564" opacity=".6"/><path fill="currentColor" d="M5.508 18.69c.219.155.528.155 1.146.155c.619 0 .928 0 1.146-.155a.8.8 0 0 0 .2-.199c.154-.218.154-.527.154-1.146s0-.927-.155-1.146A.8.8 0 0 0 7.8 16c-.218-.155-.527-.155-1.146-.155s-.927 0-1.146.155a.8.8 0 0 0-.199.2c-.155.218-.155.527-.155 1.145c0 .619 0 .928.155 1.146a.8.8 0 0 0 .2.2M6.654 8.155c-.618 0-.927 0-1.146-.155a.8.8 0 0 1-.199-.2c-.155-.217-.155-.527-.155-1.145c0-.619 0-.928.155-1.146a.8.8 0 0 1 .2-.2c.218-.154.527-.154 1.145-.154c.619 0 .928 0 1.146.155a.8.8 0 0 1 .2.199c.154.218.154.527.154 1.146s0 .928-.155 1.146A.8.8 0 0 1 7.8 8c-.218.155-.527.155-1.146.155M16.2 8c.218.155.527.155 1.146.155s.927 0 1.146-.155a.8.8 0 0 0 .199-.199c.155-.218.155-.528.155-1.146c0-.619 0-.928-.155-1.146a.8.8 0 0 0-.2-.2c-.218-.154-.527-.154-1.145-.154c-.619 0-.928 0-1.146.155a.8.8 0 0 0-.2.199c-.154.218-.154.527-.154 1.146s0 .928.155 1.146A.8.8 0 0 0 16.2 8"/></svg></span></a><a class="social share-item weibo ui-interactive is-icon-only" href="https:&#x2F;&#x2F;service.weibo.com&#x2F;share&#x2F;share.php?url&#x3D;https%3A%2F%2Fblog.syouiti.com%2F999%2520%25E4%25B8%25AA%25E5%25B0%258F%25E6%258A%2580%25E5%25B7%25A7%25EF%25BC%258C%25E8%25AE%25A9%25E4%25BD%25A0%2520Vibe%2520%25E7%259A%2584%25E4%25BA%25A7%25E5%2593%2581%25E6%259B%25B4%25E6%259C%2589%25E8%25B4%25A8%25E6%2584%259F%25EF%25BD%259C017%2520Toast%2520%25E4%25B8%258E%2520Notification%25EF%25BC%259A%25E5%2585%2588%25E5%2588%25A4%25E6%2596%25AD%25E4%25BA%258B%25E4%25BB%25B6%25E5%25BD%2592%25E8%25B0%2581%2F&amp;title&#x3D;017%20Toast%20%E4%B8%8E%20Notification%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E4%BA%8B%E4%BB%B6%E5%BD%92%E8%B0%81%20-%20%E7%99%BD%E4%B8%8A%E8%B3%9E%E4%B8%80&amp;summary&#x3D;%E6%8C%89%E4%BA%8B%E4%BB%B6%E6%9D%A5%E6%BA%90%E3%80%81%E7%B4%A7%E6%80%A5%E7%A8%8B%E5%BA%A6%E3%80%81%E5%8F%AF%E6%92%A4%E9%94%80%E6%80%A7%E4%B8%8E%E6%98%AF%E5%90%A6%E5%BF%85%E9%A1%BB%E5%A4%84%E7%90%86%EF%BC%8C%E5%88%A4%E6%96%AD%20Toast%E3%80%81Notification%20%E6%88%96%E9%83%BD%E4%B8%8D%E4%BD%BF%E7%94%A8%EF%BC%8C%E5%B9%B6%E9%99%84%E5%AE%8C%E6%95%B4%E5%AE%A1%E6%9F%A5%E4%B8%8E%E6%94%B9%E9%80%A0%20Prompt%E3%80%82" target="_blank" rel="external nofollow noopener noreferrer" aria-label="分享文章: Weibo" title="分享文章: Weibo"><span class="share-item__icon ui-icon"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/80c07e4dbb303.svg" onerror="this.onerror&#x3D;null;this.src&#x3D;&quot;&#x2F;images&#x2F;stellar-error.491ee870f4940739.svg&quot;" /></span></a><a class="social share-item email ui-interactive is-icon-only" href="mailto:?subject&#x3D;017%20Toast%20%E4%B8%8E%20Notification%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E4%BA%8B%E4%BB%B6%E5%BD%92%E8%B0%81%20-%20%E7%99%BD%E4%B8%8A%E8%B3%9E%E4%B8%80&amp;body&#x3D;https%3A%2F%2Fblog.syouiti.com%2F999%2520%25E4%25B8%25AA%25E5%25B0%258F%25E6%258A%2580%25E5%25B7%25A7%25EF%25BC%258C%25E8%25AE%25A9%25E4%25BD%25A0%2520Vibe%2520%25E7%259A%2584%25E4%25BA%25A7%25E5%2593%2581%25E6%259B%25B4%25E6%259C%2589%25E8%25B4%25A8%25E6%2584%259F%25EF%25BD%259C017%2520Toast%2520%25E4%25B8%258E%2520Notification%25EF%25BC%259A%25E5%2585%2588%25E5%2588%25A4%25E6%2596%25AD%25E4%25BA%258B%25E4%25BB%25B6%25E5%25BD%2592%25E8%25B0%2581%2F" aria-label="分享文章: Email" title="分享文章: Email"><span class="share-item__icon ui-icon"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/a1b00e20f425d.svg" onerror="this.onerror&#x3D;null;this.src&#x3D;&quot;&#x2F;images&#x2F;stellar-error.491ee870f4940739.svg&quot;" /></span></a></div>
+      <div class="share-qrcode" id="share-qrcode" style="opacity:0;height:0"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&amp;data=https%3A%2F%2Fblog.syouiti.com%2F999%2520%25E4%25B8%25AA%25E5%25B0%258F%25E6%258A%2580%25E5%25B7%25A7%25EF%25BC%258C%25E8%25AE%25A9%25E4%25BD%25A0%2520Vibe%2520%25E7%259A%2584%25E4%25BA%25A7%25E5%2593%2581%25E6%259B%25B4%25E6%259C%2589%25E8%25B4%25A8%25E6%2584%259F%25EF%25BD%259C017%2520Toast%2520%25E4%25B8%258E%2520Notification%25EF%25BC%259A%25E5%2585%2588%25E5%2588%25A4%25E6%2596%25AD%25E4%25BA%258B%25E4%25BB%25B6%25E5%25BD%2592%25E8%25B0%2581%2F" onerror="this.onerror&#x3D;null;this.src&#x3D;&quot;&#x2F;images&#x2F;stellar-error.491ee870f4940739.svg&quot;"/></div>
+    </div>
+  </div>
+
+<div class="article-footer slide-up">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section></div>
+
+<div class="related-wrap slide-up" id="read-next"><section class="body"><div class="item" id="prev"><div class="note"><svg class="icon" viewBox="0 0 1 1" data-icon="default:arrow-left" aria-hidden="true"></svg> 较新文章</div><a href="/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C018%20%E7%AD%89%E5%BE%85%E7%8A%B6%E6%80%81%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E7%94%A8%E6%88%B7%E8%A6%81%E7%AD%89%E5%A4%9A%E4%B9%85/">018 等待状态：先判断用户要等多久</a></div><div class="item" id="next"><div class="note">较早文章 <svg class="icon" viewBox="0 0 1 1" data-icon="default:arrow-right" aria-hidden="true"></svg></div><a href="/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C016%20%E8%BF%9E%E7%BB%AD%E6%80%A7%EF%BC%9A%E8%AE%A9%E7%95%8C%E9%9D%A2%E9%A1%BA%E7%9D%80%E7%94%A8%E6%88%B7%E5%8A%A8%E4%BD%9C%E8%BF%87%E6%B8%A1/">016 连续性：让界面顺着用户动作过渡</a></div></section></div>
+
+
+
+
+  <div class="related-wrap md-text slide-up" id="comments">
+    
+    
+    <section class="header cmt-title cap theme">
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    
+    <section class="body cmt-body giscus">
+      
+
+<div class="lazy-icon"></div>
+
+<div id="giscus" data-repo="sy0u1ti/sy0u1ti.github.io" data-repo-id="R_kgDOKbZc8Q" data-category="General" data-category-id="DIC_kwDOKbZc8c4CZ0-1" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="noborder_dark" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+<footer class="page-footer slide-up footnote"><hr><div class="sitemap" style="column-count:2;"><div class="sitemap-group"><span class="fs15">站内</span><a href="&#x2F;">首页</a><a href="&#x2F;archives&#x2F;">归档</a><a href="&#x2F;tags&#x2F;">标签</a><a href="&#x2F;bangumis&#x2F;">番剧</a></div><div class="sitemap-group"><span class="fs15">站外</span><a target="_blank" rel="noopener" href="https:&#x2F;&#x2F;home.syouiti.com">Home</a><a target="_blank" rel="noopener" href="https:&#x2F;&#x2F;github.com&#x2F;sy0u1ti">GitHub</a></div></div><div class="text"><p>记录 AI、效率工具、网络技术与各种折腾。<br>本站由 <a href="/">白上賞一「しらかみしょういち」</a> 创建 · <a target="_blank" rel="noopener" href="https://icp.gov.moe/?keyword=20244469">萌ICP备20244469号</a></p>
+</div></footer>
+</main>
+<aside data-stellar-runtime-region id="rightbar-region" class="site-region site-region--rightbar" data-region="rightbar" aria-label="Rightbar"><div class="site-region__surface ui-drawer-surface"><div class="site-region__viewport"><div class="widgets widget-stack widget-stack--rightbar widget-stack--rightbar"><div class="widget-instance widget-instance--toc" data-widget-id="rightbar:1:toc" data-presentation="rightbar">
+
+
+<widget class="widget-wrapper slide-up toc" id="data-toc" collapse="false">
+  
+    <div class="widget-header dis-select">
+      <span class="name">本文目录</span>
+      <button type="button" class="cap-action ui-interactive card-hover card-hover--spotlight" data-shell-action="toggle-toc" aria-label="Toggle table of contents" aria-pressed="false"><span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></span></button>
+    </div>
+  
+  <div class="widget-body"><ol class="toc ui-collection-adapter"><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#Toast-%E5%8F%AA%E6%89%BF%E6%8E%A5%E7%9C%BC%E5%89%8D%E8%BF%99%E6%AC%A1%E6%93%8D%E4%BD%9C"><span class="toc-text">Toast 只承接眼前这次操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#Status-Toast"><span class="toc-text">Status Toast</span></a></li><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#Action-Toast"><span class="toc-text">Action Toast</span></a></li><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#Progress-Toast"><span class="toc-text">Progress Toast</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#Notification-%E6%89%BF%E6%8E%A5%E7%94%A8%E6%88%B7%E6%B2%A1%E8%A7%A6%E5%8F%91%E7%9A%84%E6%B6%88%E6%81%AF"><span class="toc-text">Notification 承接用户没触发的消息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E6%9C%89%E4%BA%9B%E4%BF%A1%E6%81%AF%E4%B8%8D%E8%AF%A5%E5%81%9A%E6%88%90%E6%B5%AE%E5%B1%82"><span class="toc-text">有些信息不该做成浮层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E7%94%A8%E5%87%A0%E4%B8%AA%E9%97%AE%E9%A2%98%E5%AE%8C%E6%88%90%E5%88%A4%E6%96%AD"><span class="toc-text">用几个问题完成判断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#Toast-%E7%9A%84%E5%8A%A8%E4%BD%9C%E8%A6%81%E5%83%8F%E4%B8%80%E4%B8%AA%E6%95%B4%E4%BD%93"><span class="toc-text">Toast 的动作要像一个整体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#Notification-%E8%A6%81%E5%83%8F%E4%B8%80%E5%8F%A0%E5%8F%AF%E4%BB%A5%E5%B1%95%E5%BC%80%E7%9A%84%E5%8D%A1%E7%89%87"><span class="toc-text">Notification 要像一叠可以展开的卡片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E5%8F%AF%E8%AE%BF%E9%97%AE%E6%80%A7%E4%B8%8D%E8%83%BD%E8%A2%AB%E6%B5%AE%E5%B1%82%E6%89%93%E6%96%AD"><span class="toc-text">可访问性不能被浮层打断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E5%85%88%E5%AE%A1%E6%9F%A5%EF%BC%8C%E5%86%8D%E5%86%B3%E5%AE%9A%E6%98%AF%E5%90%A6%E6%94%B9%E6%A0%B7%E5%BC%8F"><span class="toc-text">先审查，再决定是否改样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E6%A3%80%E6%9F%A5%E6%B8%85%E5%8D%95"><span class="toc-text">检查清单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E8%B4%A8%E6%84%9F%E6%9D%A5%E8%87%AA%E5%8F%AF%E8%A7%A3%E9%87%8A%E7%9A%84%E7%BB%86%E8%8A%82"><span class="toc-text">质感来自可解释的细节</span></a></li></ol></div>
+  <div class="widget-footer"><a class="top ui-interactive" onclick="util.scrollTop()"><span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="M20.536 3.464C22 4.93 22 7.286 22 12s0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12s0-7.071 1.464-8.536C4.93 2 7.286 2 12 2s7.071 0 8.535 1.464" opacity=".5"/><path fill="currentColor" d="M9.53 12.03a.75.75 0 0 1-1.06-1.06l3-3a.75.75 0 0 1 1.06 0l3 3a.75.75 0 1 1-1.06 1.06L12 9.56z"/><path fill="currentColor" d="M9.53 16.03a.75.75 0 0 1-1.06-1.06l3-3a.75.75 0 0 1 1.06 0l3 3a.75.75 0 1 1-1.06 1.06L12 13.56z"/></svg></span><span>回到顶部</span></a><a class="buttom ui-interactive" onclick="util.scrollComment()"><span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M7.25 9A.75.75 0 0 1 8 8.25h8a.75.75 0 0 1 0 1.5H8A.75.75 0 0 1 7.25 9m0 3.5a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 0 1.5H8a.75.75 0 0 1-.75-.75"/></svg></span><span>参与讨论</span></a></div>
+</widget>
+
+
+</div></div></div></div></aside>
+</div><button type="button" class="site-scrim" data-shell-action="dismiss-drawer" aria-label="Close navigation" tabindex="-1"></button><div data-stellar-runtime-region class="site-dock" role="group" aria-label="Layout panels">
+  <button type="button" class="site-dock__button site-dock__button--rightbar ui-interactive" aria-label="Open rightbar" aria-controls="rightbar-region" aria-expanded="false" data-shell-action="toggle-rightbar-drawer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type="button" class="site-dock__button site-dock__button--leftbar ui-interactive" aria-label="Open leftbar" aria-controls="leftbar-region" aria-expanded="false" data-shell-action="toggle-leftbar-drawer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+
+<dialog data-stellar-runtime-region class="search-dialog" id="site-search-dialog" aria-labelledby="site-search-title">
+  <div class="search-dialog__panel search-wrapper" id="site-search-wrapper" searching="false">
+    <div class="search-dialog__header">
+      <div class="search-form" role="search">
+        <span class="search-button" aria-hidden="true"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></span>
+        <input type="search" class="search-input" id="site-search-input" aria-labelledby="site-search-title" placeholder="搜索">
+      </div>
+      <button type="button" class="search-dialog__close" data-shell-action="close-search" aria-label="关闭搜索">×</button>
+    </div>
+    
+      <div class="search-dialog__scope" role="radiogroup" aria-labelledby="site-search-title" hidden>
+        <label class="search-dialog__scope-option" data-search-scope-option="all">
+          <input class="ui-radio" type="radio" name="site-search-scope" value="all">
+          <span>全站</span>
+        </label>
+        <label class="search-dialog__scope-option" data-search-scope-option="blog" hidden>
+          <input class="ui-radio" type="radio" name="site-search-scope" value="blog">
+          <span>博客</span>
+        </label>
+        <label class="search-dialog__scope-option" data-search-scope-option="current" hidden>
+          <input class="ui-radio" type="radio" name="site-search-scope" value="current">
+          <span data-search-scope-current-label></span>
+        </label>
+      </div>
+    
+    <h2 class="search-dialog__title" id="site-search-title">站内搜索</h2>
+    <div class="search-result" id="site-search-result"></div>
+    <div class="search-no-result">没有找到内容！</div>
+  </div>
+</dialog>
+</div><div class="site-scripts">
+<script data-stellar-script="core" src="/js/stellar-icons.js?v=2a11bebd1b4bc4d3"></script>
+
+<script data-stellar-script="defines">
+  window.canonical = window.stellarClientData.canonical;
+  const ctx = window.stellarClientData.ctx;
+  window.canonical.param = {permalink: "https://blog.syouiti.com/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C017%20Toast%20%E4%B8%8E%20Notification%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E4%BA%8B%E4%BB%B6%E5%BD%92%E8%B0%81/", checklink: ctx.services.video.js};
+  ctx.date_suffix = {"just":"刚刚","min":"分钟前","hour":"小时前","day":"天前"};
+  if (ctx.search) Object.assign(ctx.search, {"more":"更多","no_more":"没有更多了"});
+  const def = window.stellarClientData.def;
+  window.ctx = ctx;
+  window.def = def;
+</script>
+
+
+<!-- core: 迁移期 DOM/资源兼容工具；Extension 注册与生命周期由 ESM runtime 所有 -->
+<script data-stellar-script="core" src="/js/utils.js?v=2.0.0"></script>
+<script data-stellar-script="core" src="/js/main.js?v=2.0.0" defer></script>
+<script data-stellar-script="core" defer src="/js/profile.js?v=2.0.0"></script>
+
+
+
+
+
+<script data-stellar-script="core" type="application/json" id="stellar-runtime-config">{"version":1,"root":"/","policy":{"cache":{"enabled":true,"defaultTtl":3600,"ttl":{"giscus":600,"waline":600,"artalk":600,"memos":600,"memos-user":86400,"sites":86400,"friends":86400,"friends_and_posts":86400,"siteinfo":86400},"maxEntries":200},"request":{"retries":2,"timeoutMs":5000,"idleTimeoutMs":3000,"maxCacheEntryBytes":204800},"features":{"codeCopyToastMs":2500},"providers":{"linkPrefetch":"flying_pages","lightbox":"fancybox","diagrams":"mermaid"}},"extensions":[{"id":"pin-slider","module":"/js/runtime/extensions/pin-slider.js","scope":"region","when":{"selector":".pin-slider"},"config":{}},{"id":"page-controls","module":"/js/runtime/extensions/page-controls.js","scope":"region","when":{"always":true},"config":{"highlight":"/js/search/highlight.js","tagtree":"/js/tagtree.js"}},{"id":"partial-navigation","module":"/js/runtime/extensions/partial-navigation.js","scope":"document","when":{"always":true},"config":{}},{"id":"color-scheme-switch","module":"/js/runtime/extensions/color-scheme-switch.js","scope":"document","when":{"always":true},"config":{"messages":{"light":"切换到浅色模式","dark":"切换到深色模式","auto":"切换到跟随系统配色"}}},{"id":"search","module":"/js/runtime/extensions/search.js","scope":"document","when":{"selector":".search-input"},"config":{"provider":"local","options":{"scope":"post","includeContent":true,"cacheTtlSeconds":86400},"assets":{"client":null,"provider":"/js/search/local-search.js","shortcut":"/js/search/shortcut.js"}}},{"id":"hero-parallax","module":"/js/runtime/extensions/hero-parallax.js","scope":"region","when":{"selector":".wiki-hero"},"config":{}},{"id":"hero-effect","module":"/js/runtime/extensions/hero-effect.js","scope":"region","when":{"selector":"canvas[data-hero-effect]"},"config":{}},{"id":"lazy-loading","module":"/js/runtime/extensions/lazy-loading.js","scope":"document","when":{"always":true},"config":{"asset":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@19.1/dist/lazyload.min.js"}},{"id":"deferred-icons","module":"/js/runtime/extensions/deferred-icons.js","scope":"region","when":{"selector":"svg.icon[data-icon]"},"config":{}},{"id":"dropdown","module":"/js/runtime/extensions/dropdown.js","scope":"region","when":{"selector":"details.dropdown"},"config":{}},{"id":"services","module":"/js/runtime/extensions/services.js","scope":"region","when":{"selector":"#artalk_container, #twikoo_container, #waline_container, .data-service, [class*='ds-'], a[cardlink], a[data-md-link][data-siteinfo-api], .site-card [data-siteinfo-api], .voice\u003eaudio, .video\u003evideo, .chat-file"},"config":{"marked":"https://cdn.jsdelivr.net/npm/marked@13.0.1/lib/marked.umd.min.js"}},{"id":"comments","module":"/js/runtime/extensions/comments.js","scope":"region","when":{"selector":"#comments"},"config":{"provider":"giscus","options":{"data-repo":"sy0u1ti/sy0u1ti.github.io","data-repo-id":"R_kgDOKbZc8Q","data-category":"General","data-category-id":"DIC_kwDOKbZc8c4CZ0-1","data-mapping":"pathname","data-strict":0,"data-reactions-enabled":1,"data-emit-metadata":0,"data-input-position":"bottom","data-theme":"noborder_dark","data-lang":"zh-CN","data-loading":"lazy","crossorigin":"anonymous"},"pageTitle":"017 Toast 与 Notification：先判断事件归谁","assets":{"js":"https://giscus.app/client.js"}}},{"id":"settings","module":"/js/runtime/extensions/settings.js","scope":"region","when":{"selector":".settings-page"},"config":{}},{"id":"link-prefetch","module":"/js/runtime/extensions/link-prefetch.js","scope":"document","when":{"always":true},"config":{"asset":"https://gcore.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"}},{"id":"lightbox","module":"/js/runtime/extensions/lightbox.js","scope":"region","when":{"selector":"[data-fancybox]:not(.error), .with-fancybox, .ds-memos, .md-text img:not(.inline):not([class*=\"avatar\"]):not(.cover img), .post-cover img"},"config":{"enabled":true,"selector":".md-text img:not(.inline):not([class*=\"avatar\"]):not(.cover img), .post-cover img","assets":{"localCss":"/css/plugins/fancybox.css","js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"}}},{"id":"reveal","module":"/js/runtime/extensions/reveal.js","scope":"region","when":{"selector":".slide-up"},"config":{"enabled":true,"duration":500,"interval":60,"distance":10,"blur":4}},{"id":"code-copy","module":"/js/runtime/extensions/code-copy.js","scope":"region","when":{"selector":".code"},"config":{"assets":{"js":"/js/plugins/copycode.js"},"messages":{"label":"复制","copied":"复制成功","denied":"未获得剪贴板权限","unsupported":"当前浏览器不支持剪贴板或页面不是 HTTPS"}}},{"id":"adaptive-text","module":"/js/runtime/extensions/adaptive-text.js","scope":"region","when":{"selector":"[data-text-adaptive]"},"config":{"assets":{"colorJs":"/js/color.js","js":"/js/plugins/adaptive-text.js"}}},{"id":"card-hover","module":"/js/runtime/extensions/card-hover.js","scope":"region","when":{"selector":".card-hover"},"config":{"spotlight":true,"tilt":true,"assets":{"js":"/js/plugins/card-hover.js"}}},{"id":"swiper","module":"/js/runtime/extensions/swiper.js","scope":"region","when":{"selector":"#swiper-api"},"config":{"assets":{"localCss":"/css/plugins/swiper.css","js":"https://unpkg.com/swiper@10.3/swiper-bundle.min.js","css":"https://unpkg.com/swiper@10.3/swiper-bundle.min.css"}}}]}</script>
+<script data-stellar-script="core" type="module" src="/js/runtime/index.js?v=2.0.0&runtime=1"></script>
+
+
+<!-- inject -->
+<script defer src="/js/plugins/reading-progress.js?v=20260823j"></script>
+
+<script data-stellar-script="core" defer src="/js/navigation-init.js?v=2.0.0"></script>
+</div></body></html>
+

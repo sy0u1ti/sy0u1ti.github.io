@@ -1,0 +1,1046 @@
+
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head><!-- hexo injector head_begin start -->
+<link rel="stylesheet" href="/css/bilicard.css">
+<!-- hexo injector head_begin end -->
+  
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/2.0.0" theme-name="Stellar" theme-version="2.0.0">
+  <link rel="canonical" href="https://blog.syouiti.com/999 个小技巧，让你 Vibe 的产品更有质感｜018 等待状态：先判断用户要等多久/" data-stellar-page-meta="">
+  
+  <meta name="generator" content="Hexo 8.1.2">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  <title data-stellar-page-meta>018 等待状态：先判断用户要等多久 - 白上賞一</title>
+  <script data-stellar-script="core">
+    (function () {
+      var key = 'stellar:v2:leftbar-state';
+      var fallback = "expanded";
+      try {
+        var value = localStorage.getItem(key);
+        document.documentElement.dataset.leftbarState = value === 'collapsed' || value === 'expanded' ? value : fallback;
+      } catch (error) {
+        document.documentElement.dataset.leftbarState = fallback;
+      }
+    })();
+  </script>
+
+  <meta name="description" content="按等待时长与任务类型选择无状态、Spinner、Skeleton、Progress、乐观更新或流式回复，并附完整诊断与改造 Prompt。" data-stellar-page-meta="">
+<meta property="og:type" content="article" data-stellar-page-meta="">
+<meta property="og:title" content="018 等待状态：先判断用户要等多久" data-stellar-page-meta="">
+<meta property="og:url" content="https://blog.syouiti.com/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C018%20%E7%AD%89%E5%BE%85%E7%8A%B6%E6%80%81%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E7%94%A8%E6%88%B7%E8%A6%81%E7%AD%89%E5%A4%9A%E4%B9%85/" data-stellar-page-meta="">
+<meta property="og:site_name" content="白上賞一" data-stellar-page-meta="">
+<meta property="og:description" content="按等待时长与任务类型选择无状态、Spinner、Skeleton、Progress、乐观更新或流式回复，并附完整诊断与改造 Prompt。" data-stellar-page-meta="">
+<meta property="og:locale" content="zh_CN" data-stellar-page-meta="">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png" data-stellar-page-meta="">
+<meta property="article:author" content="白上賞一「しらかみしょういち」" data-stellar-page-meta="">
+<meta property="article:published_time" content="2026-11-14T05:20:00.000Z" data-stellar-page-meta="">
+<meta property="article:modified_time" content="2026-11-14T05:20:00.000Z" data-stellar-page-meta="">
+<meta property="article:tag" content="UI" data-stellar-page-meta="">
+<meta property="article:tag" content="交互设计" data-stellar-page-meta="">
+<meta property="article:tag" content="加载状态" data-stellar-page-meta="">
+<meta property="article:tag" content="动效" data-stellar-page-meta="">
+<meta property="article:tag" content="无障碍" data-stellar-page-meta="">
+<meta name="twitter:card" content="summary" data-stellar-page-meta="">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png" data-stellar-page-meta="">
+<meta name="twitter:creator" content="@Syou1Ti" data-stellar-page-meta=""><meta name="twitter:title" content="018 等待状态：先判断用户要等多久" data-stellar-page-meta="">
+  
+  
+  <meta name="keywords" content="交互设计,加载状态,动效,UI,无障碍" data-stellar-page-meta="">
+
+  <!-- feed -->
+  
+    
+
+    
+      
+        <link rel="alternate" href="/atom.xml" title="白上賞一" type="application/atom+xml">
+      
+    
+  
+
+  <link rel="preload" href="/css/main.css?v=2.0.0" as="style">
+  <link rel="stylesheet" href="/css/main.css?v=2.0.0">
+  <style>:root{--text-loading:"正在加载";--text-loading-error:"加载失败，请稍后重试。"}</style>
+
+
+  
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png">
+  
+
+  
+
+  <script type="application/ld+json" data-stellar-page-meta="">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"白上賞一「しらかみしょういち」","sameAs":[],"image":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png"},"dateCreated":"2026-11-14T05:20:00+00:00","dateModified":"2026-11-14T05:20:00+00:00","datePublished":"2026-11-14T05:20:00+00:00","description":"等待不可避免，但“加载中”不是一种通用状态。\n一次 100ms 的请求如果先闪出一个 Spinner，用户反而感觉页面卡了一下；一个两秒的按钮操作如果让整页变灰，会切断所有其他工作；一段几十秒的导入如果只显示转圈，用户不知道它是在运行、卡住，还是已经失败。\n好的等待状态不是让动画填补空白，而是回答三个问题：还要等多久、我在等什么、我能继续做什么。\n先按时间决定是否需要加载态300ms 以内：...","headline":"018 等待状态：先判断用户要等多久","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.syouiti.com/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C018%20%E7%AD%89%E5%BE%85%E7%8A%B6%E6%80%81%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E7%94%A8%E6%88%B7%E8%A6%81%E7%AD%89%E5%A4%9A%E4%B9%85/"},"publisher":{"@type":"Organization","name":"白上賞一「しらかみしょういち」","sameAs":[],"image":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png"}},"url":"https://blog.syouiti.com/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C018%20%E7%AD%89%E5%BE%85%E7%8A%B6%E6%80%81%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E7%94%A8%E6%88%B7%E8%A6%81%E7%AD%89%E5%A4%9A%E4%B9%85/","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"],"keywords":"交互设计, 加载状态, 动效, UI, 无障碍","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"}</script>
+  <link rel="stylesheet" href="/css/stellar-overrides.css?v=20261102-agent-covers">
+
+  <link rel="stylesheet" href="/css/stellar-icons.css?v=ca746a9b39366bc3">
+  <link rel="preload" as="script" href="/js/stellar-icons.js?v=2a11bebd1b4bc4d3">
+  
+  
+</head>
+<body data-page-type="content" data-page-layout="post" data-article-style="tech"><div data-stellar-runtime-region id="site-cover" class="site-cover"></div><div class="site-shell" id="start" data-regions="leftbar rightbar"><div class="site-workspace">
+<aside data-stellar-runtime-region id="leftbar-region" class="site-region site-region--leftbar" data-region="leftbar" aria-label="Leftbar"><div class="site-region__surface ui-surface"><div class="site-region__decoration" aria-hidden="true"></div><div class="site-region__viewport"><header class="site-region__header site-region__zone site-region__zone--top">
+    <div class="widget-instance widget-instance--brand" data-widget-id="leftbar:fixed:brand" data-presentation="leftbar" data-leftbar-rail>
+<header class="brand-header brand-header--regular brand-header--site"><div class="brand-wrap"><a class="brand-image brand-image--avatar" href="&#x2F;"><img no-lazy src="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;sy0u1ti&#x2F;picx-images-hosting@master&#x2F;image.6t736trr6e.png" alt="" onerror="this.onerror&#x3D;null;this.src&#x3D;&quot;&#x2F;images&#x2F;stellar-error.491ee870f4940739.svg&quot;"></a><a class="brand-title" href="&#x2F;"><div class="brand-name">白上賞一</div><div class="brand-tagline cap">运气永在身🎲 | 就爱瞎折腾💯</div></a><div class="brand-stats data-service ds-ghinfo" data-api="https:&#x2F;&#x2F;api.github.com&#x2F;users&#x2F;sy0u1ti"><a class="brand-stat ui-interactive card-hover card-hover--spotlight" target="_blank" rel="noopener" href="https:&#x2F;&#x2F;github.com&#x2F;sy0u1ti?tab&#x3D;followers"><span class="brand-stat__value" type="text" id="followers"></span><span class="brand-stat__label">followers</span></a><a class="brand-stat ui-interactive card-hover card-hover--spotlight" target="_blank" rel="noopener" href="https:&#x2F;&#x2F;github.com&#x2F;sy0u1ti?tab&#x3D;following"><span class="brand-stat__value" type="text" id="following"></span><span class="brand-stat__label">following</span></a><a class="brand-stat ui-interactive card-hover card-hover--spotlight" target="_blank" rel="noopener" href="https:&#x2F;&#x2F;github.com&#x2F;sy0u1ti?tab&#x3D;repositories"><span class="brand-stat__value" type="text" id="public_repos"></span><span class="brand-stat__label">repos</span></a></div></div><div class="brand-search">
+
+<div class="ui-collection" data-layout="list" data-variant="nav" data-density="auto">
+  
+    
+<button class="ui-collection__item ui-interactive card-hover card-hover--spotlight search-trigger has-hover-surface" type="button" title="搜索" aria-label="搜索" data-shell-action="open-search" data-search-instance="leftbar-brand-search" data-search-domain="topic:vibe-product-quality" data-search-domain-label="999 个小技巧，让你 Vibe 的产品更有质感" data-search-domain-blog="true">
+  
+  <span class="ui-icon"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">搜索</span>
+      
+      
+    </span>
+  
+  <kbd class="search-shortcut" aria-hidden="true">⌘K</kbd>
+
+  
+</button>
+
+  
+</div>
+
+
+</div></header>
+</div>
+  </header>
+  <div class="site-region__body site-region__zone site-region__zone--body">
+    <div class="widget-instance widget-instance--menu" data-widget-id="leftbar:fixed:menu" data-presentation="leftbar" data-leftbar-rail>
+
+
+<nav class="menu dis-select">
+<div class="ui-collection" data-layout="grid" data-variant="nav" data-density="auto" style="--ui-columns:2">
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-active is-themed" href="&#x2F;" title="首页" aria-current="page" style="--item-theme:#3B82F6;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M9.163 2.819c1.671-1.09 3.864-1.09 5.536 0l5.882 3.839A3.25 3.25 0 0 1 22 9.38v8.87A3.75 3.75 0 0 1 18.25 22h-1.5A2.75 2.75 0 0 1 14 19.25v-3.5a1.75 1.75 0 0 0-1.75-1.75h-1.5A1.75 1.75 0 0 0 9 15.75v3.5A2.75 2.75 0 0 1 6.25 22h-1.5A3.75 3.75 0 0 1 1 18.25V9.38a3.25 3.25 0 0 1 1.419-2.722z" opacity=".5"/><path fill="currentColor" d="M10.25 15.75c0-.414.336-.75.75-.75h2c.414 0 .75.336.75.75v3.5c0 .69.56 1.25 1.25 1.25h1.5c1.243 0 2.25-1.007 2.25-2.25V9.38a1.75 1.75 0 0 0-.764-1.466l-5.882-3.838a2.535 2.535 0 0 0-2.784 0L3.438 7.914A1.75 1.75 0 0 0 2.674 9.38v8.87c0 1.243 1.007 2.25 2.25 2.25h1.5c.69 0 1.25-.56 1.25-1.25z"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">首页</span>
+      
+      
+    </span>
+  
+  
+  <span class="ui-collection__indicator"></span>
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="&#x2F;archives&#x2F;" title="归档" style="--item-theme:#10B981;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M3 9h18v10a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3z" opacity=".5"/><path fill="currentColor" d="M2 5a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm7 8a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2z"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">归档</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="&#x2F;categories&#x2F;" title="分类" style="--item-theme:#F59E0B;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 9.5V18a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4V9.5z" opacity=".5"/><path fill="currentColor" d="M2 7.5A3.5 3.5 0 0 1 5.5 4h3.086a2 2 0 0 1 1.414.586L11.414 6H18.5A3.5 3.5 0 0 1 22 9.5v.5H2z"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">分类</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="&#x2F;tags&#x2F;" title="标签" style="--item-theme:#EC4899;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"/><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">标签</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="&#x2F;bangumis&#x2F;" title="番剧" style="--item-theme:#8B5CF6;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 10.5V18a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4v-7.5z" opacity=".5"/><path fill="currentColor" d="M18 2a4 4 0 0 1 4 4v3H2V6a4 4 0 0 1 4-4zm-9.354 2l-2 3h2.384l2-3zm4.5 0l-2 3h2.384l2-3z"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">番剧</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="&#x2F;topic&#x2F;" title="专栏" style="--item-theme:#06B6D4;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">专栏</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+</div>
+
+</nav>
+
+</div>
+    <div class="widgets widget-stack widget-stack--leftbar widget-stack--body"><div class="widget-instance widget-instance--related" data-widget-id="leftbar:0:related" data-presentation="leftbar" data-leftbar-rail>
+
+<widget class="widget-wrapper related-widget">
+  
+    <div class="widget-header dis-select">
+      <span class="name">专栏：999 个小技巧，让你 Vibe 的产品更有质感</span>
+      
+    </div>
+  
+  <div class="widget-body"><div class="ui-collection" data-layout="list" data-variant="nav" data-density="compact">
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-active" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C018%20%E7%AD%89%E5%BE%85%E7%8A%B6%E6%80%81%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E7%94%A8%E6%88%B7%E8%A6%81%E7%AD%89%E5%A4%9A%E4%B9%85&#x2F;" title="018 等待状态：先判断用户要等多久" aria-current="page">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">018 等待状态：先判断用户要等多久</span>
+      
+      
+    </span>
+  
+  
+  <span class="ui-collection__indicator"></span>
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C017%20Toast%20%E4%B8%8E%20Notification%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E4%BA%8B%E4%BB%B6%E5%BD%92%E8%B0%81&#x2F;" title="017 Toast 与 Notification：先判断事件归谁">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">017 Toast 与 Notification：先判断事件归谁</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C016%20%E8%BF%9E%E7%BB%AD%E6%80%A7%EF%BC%9A%E8%AE%A9%E7%95%8C%E9%9D%A2%E9%A1%BA%E7%9D%80%E7%94%A8%E6%88%B7%E5%8A%A8%E4%BD%9C%E8%BF%87%E6%B8%A1&#x2F;" title="016 连续性：让界面顺着用户动作过渡">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">016 连续性：让界面顺着用户动作过渡</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C015%20%E5%88%A0%E9%99%A4%E5%8A%A8%E6%95%88%EF%BC%9A%E8%AE%A9%E5%85%83%E7%B4%A0%E7%A6%BB%E5%9C%BA%E4%B9%9F%E4%BC%A0%E9%80%92%E5%9B%A0%E6%9E%9C&#x2F;" title="015 删除动效：让元素离场也传递因果">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">015 删除动效：让元素离场也传递因果</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C014%20%E5%86%B2%E5%87%BB%E6%B3%A2%E5%85%89%E7%8E%AF%EF%BC%9A%E8%AE%A9%E5%85%89%E7%9C%9F%E6%AD%A3%E6%89%AD%E6%9B%B2%E9%A1%B5%E9%9D%A2&#x2F;" title="014 冲击波光环：让光真正扭曲页面">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">014 冲击波光环：让光真正扭曲页面</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C013%20%E6%B6%88%E6%81%AF%E6%B0%94%E6%B3%A1%EF%BC%9A%E8%AE%A9%E6%9D%90%E8%B4%A8%E5%86%B3%E5%AE%9A%E5%8A%A8%E6%95%88&#x2F;" title="013 消息气泡：让材质决定动效">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">013 消息气泡：让材质决定动效</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C012%20%E5%8A%A8%E7%94%BB%E8%8A%82%E5%A5%8F%EF%BC%9A%E4%B8%8D%E5%90%8C%E5%8A%A8%E4%BD%9C%EF%BC%8C%E4%B8%8D%E5%90%8C%E6%9B%B2%E7%BA%BF&#x2F;" title="012 动画节奏：不同动作，不同曲线">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">012 动画节奏：不同动作，不同曲线</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C011%20%E6%B6%B2%E6%80%81%E7%8E%BB%E7%92%83%EF%BC%9A%E5%88%AB%E5%8F%AA%E5%81%9A%E4%B8%80%E5%B1%82%E6%A8%A1%E7%B3%8A&#x2F;" title="011 液态玻璃：别只做一层模糊">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">011 液态玻璃：别只做一层模糊</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C010%20%E6%8F%90%E7%A4%BA%E3%80%81%E7%A1%AE%E8%AE%A4%E4%B8%8E%E8%A1%A8%E5%8D%95%EF%BC%9A%E6%B5%AE%E5%B1%82%E6%80%8E%E4%B9%88%E9%80%89&#x2F;" title="010 提示、确认与表单：浮层怎么选">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">010 提示、确认与表单：浮层怎么选</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C009%20Wiki%20%E5%B8%83%E5%B1%80%EF%BC%9A%E6%A1%8C%E9%9D%A2%E4%B8%8E%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%85%BC%E9%A1%BE&#x2F;" title="009 Wiki 布局：桌面与移动端兼顾">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">009 Wiki 布局：桌面与移动端兼顾</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C008%20%E8%AE%A9%E6%96%87%E5%AD%97%E6%8E%92%E7%89%88%E6%9B%B4%E9%A1%BA%E7%9C%BC&#x2F;" title="008 让文字排版更顺眼">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">008 让文字排版更顺眼</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C007%20%E5%83%8F%E4%B9%A6%E4%B8%80%E6%A0%B7%E7%BF%BB%E5%BC%80%E7%9A%84%E5%8D%A1%E7%89%87&#x2F;" title="007 像书一样翻开的卡片">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">007 像书一样翻开的卡片</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C006%20%E6%9B%B4%E7%81%B5%E5%8A%A8%E7%9A%84%E6%8B%96%E6%8B%BD%E6%8E%92%E5%BA%8F&#x2F;" title="006 更灵动的拖拽排序">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">006 更灵动的拖拽排序</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C005%20%E9%80%92%E8%BF%9B%E5%BC%8F%E5%9C%86%E8%A7%92%E4%B8%8E%E8%BF%9E%E7%BB%AD%E6%9B%B2%E7%8E%87&#x2F;" title="005 递进式圆角与连续曲率圆角">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">005 递进式圆角与连续曲率圆角</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C004%20%E5%89%83%E5%88%80%E6%B3%95%E5%88%99&#x2F;" title="004 剃刀法则：如果不需要，就移除">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">004 剃刀法则：如果不需要，就移除</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C003%20Dither%20%E4%B8%8E%20ASCII%20%E5%8F%82%E6%95%B0%E5%8C%96%E6%95%88%E6%9E%9C&#x2F;" title="003 Dither 与 ASCII 参数化效果">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">003 Dither 与 ASCII 参数化效果</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C002%20%E7%BA%A7%E8%81%94%E8%8F%9C%E5%8D%95%E7%9A%84%E7%A8%B3%E5%AE%9A%E5%8C%BA&#x2F;" title="002 级联菜单：让子菜单不“跑丢”">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">002 级联菜单：让子菜单不“跑丢”</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C001%20%E6%8B%9F%E7%89%A9%E6%8C%89%E9%92%AE%E7%9A%84%E7%82%B9%E5%87%BB%E9%87%8D%E9%87%8F&#x2F;" title="001 拟物按钮：让点击有重量">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">001 拟物按钮：让点击有重量</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+</div></div>
+  
+</widget>
+
+
+</div><div class="widget-instance widget-instance--recent" data-widget-id="leftbar:1:recent" data-presentation="leftbar">
+
+<widget class="widget-wrapper slide-up recent-widget">
+  
+    <div class="widget-header dis-select">
+      <span class="name">最近更新</span>
+      
+    </div>
+  
+  <div class="widget-body"><div class="ui-collection" data-layout="list" data-variant="nav" data-density="compact">
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C018%20%E7%AD%89%E5%BE%85%E7%8A%B6%E6%80%81%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E7%94%A8%E6%88%B7%E8%A6%81%E7%AD%89%E5%A4%9A%E4%B9%85&#x2F;" title="018 等待状态：先判断用户要等多久">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">018 等待状态：先判断用户要等多久</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C017%20Toast%20%E4%B8%8E%20Notification%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E4%BA%8B%E4%BB%B6%E5%BD%92%E8%B0%81&#x2F;" title="017 Toast 与 Notification：先判断事件归谁">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">017 Toast 与 Notification：先判断事件归谁</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;curator-bookmarks-Chrome%E6%9C%AC%E5%9C%B0%E4%B9%A6%E7%AD%BE%E7%AE%A1%E7%90%86%E6%89%A9%E5%B1%95&#x2F;" title="Curator（策书）：本地优先的 Chrome 书签管理与 AI 整理扩展">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">C</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">Curator（策书）：本地优先的 Chrome 书签管理与 AI 整理扩展</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;202%E4%B8%AD%E5%9B%BD%E5%9B%BD%E5%86%85%E8%87%B3%E5%9B%BD%E9%99%85%E9%AA%A8%E5%B9%B2%E7%BA%BF%E8%B7%AF%E6%95%B4%E7%90%86&#x2F;" title="中国各大运营商国际出海骨干网全解析 (163 &#x2F; CN2 &#x2F; 4837 &#x2F; 9929 &#x2F; CMI)">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">中</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">中国各大运营商国际出海骨干网全解析 (163 / CN2 / 4837 / 9929 / CMI)</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C016%20%E8%BF%9E%E7%BB%AD%E6%80%A7%EF%BC%9A%E8%AE%A9%E7%95%8C%E9%9D%A2%E9%A1%BA%E7%9D%80%E7%94%A8%E6%88%B7%E5%8A%A8%E4%BD%9C%E8%BF%87%E6%B8%A1&#x2F;" title="016 连续性：让界面顺着用户动作过渡">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">016 连续性：让界面顺着用户动作过渡</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C015%20%E5%88%A0%E9%99%A4%E5%8A%A8%E6%95%88%EF%BC%9A%E8%AE%A9%E5%85%83%E7%B4%A0%E7%A6%BB%E5%9C%BA%E4%B9%9F%E4%BC%A0%E9%80%92%E5%9B%A0%E6%9E%9C&#x2F;" title="015 删除动效：让元素离场也传递因果">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">015 删除动效：让元素离场也传递因果</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C014%20%E5%86%B2%E5%87%BB%E6%B3%A2%E5%85%89%E7%8E%AF%EF%BC%9A%E8%AE%A9%E5%85%89%E7%9C%9F%E6%AD%A3%E6%89%AD%E6%9B%B2%E9%A1%B5%E9%9D%A2&#x2F;" title="014 冲击波光环：让光真正扭曲页面">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">014 冲击波光环：让光真正扭曲页面</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;%E7%94%A8%20AI%20%E5%81%9A%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1%EF%BC%9A11%20%E6%9D%A1%E8%AE%A9%E4%BA%A7%E5%93%81%E6%98%93%E7%94%A8%E4%B8%94%E4%B8%8D%E4%B8%91%E7%9A%84%E6%A3%80%E6%9F%A5%E6%B8%85%E5%8D%95&#x2F;" title="用 AI 做产品设计：11 条让产品易用且不丑的检查清单">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">用</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">用 AI 做产品设计：11 条让产品易用且不丑的检查清单</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;%E7%A0%B4%E7%94%B2%E8%AE%B0%E5%BF%86%EF%BC%9A%E6%8A%8A%E5%85%8D%E5%8D%A1%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2%E5%86%99%E8%BF%9B%20Agent%20%E9%95%BF%E6%9C%9F%E8%AE%B0%E5%BF%86&#x2F;" title="破甲记忆：把免卡节点部署写进 Agent 长期记忆">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">破</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">破甲记忆：把免卡节点部署写进 Agent 长期记忆</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C013%20%E6%B6%88%E6%81%AF%E6%B0%94%E6%B3%A1%EF%BC%9A%E8%AE%A9%E6%9D%90%E8%B4%A8%E5%86%B3%E5%AE%9A%E5%8A%A8%E6%95%88&#x2F;" title="013 消息气泡：让材质决定动效">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">013 消息气泡：让材质决定动效</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+</div></div>
+  
+</widget>
+
+
+</div></div>
+  </div>
+  <footer class="site-region__footer">
+    <div class="site-region__footer-actions"><div class="widget-instance widget-instance--actions" data-widget-id="leftbar:fixed:actions" data-presentation="leftbar">
+<div class="region-actions social-wrap ui-collection" data-layout="inline" data-variant="nav" data-density="compact"><button type="button" class="social ui-collection__item ui-interactive card-hover card-hover--spotlight is-icon-only" title="切换明暗主题" aria-label="切换明暗主题" onclick="setColorScheme(document.documentElement.getAttribute(&#39;data-theme&#39;) &#x3D;&#x3D;&#x3D; &#39;dark&#39; ? &#39;light&#39; : &#39;dark&#39;)"><span class="ui-icon"><svg class="icon" viewBox="0 0 1 1" data-icon="default:theme" aria-hidden="true"></svg></span></button></div>
+</div></div>
+    <div class="site-region__system ui-collection" data-layout="inline" data-variant="nav" data-density="compact">
+      <div class="site-region__settings"><div class="widget-instance widget-instance--settings" data-widget-id="leftbar:fixed:settings" data-presentation="leftbar" data-leftbar-rail>
+<a class="settings-widget ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;settings&#x2F;" data-profile-provider="giscus" data-profile-identity-enabled="false" data-profile-fallback-avatar="https:&#x2F;&#x2F;gcore.jsdelivr.net&#x2F;gh&#x2F;cdn-x&#x2F;placeholder@1.0.12&#x2F;avatar&#x2F;round&#x2F;3442075.svg" data-settings-placement="leftbar" data-settings-label="设置" aria-label="设置" title="设置">
+  <span class="settings-widget__avatar" aria-hidden="true">
+    <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><g fill="currentColor"><path fill-rule="evenodd" d="M12.4277 2C11.3139 2 10.2995 2.6007 8.27081 3.80211L7.58466 4.20846C5.55594 5.40987 4.54158 6.01057 3.98466 7C3.42773 7.98943 3.42773 9.19084 3.42773 11.5937V12.4063C3.42773 14.8092 3.42773 16.0106 3.98466 17C4.54158 17.9894 5.55594 18.5901 7.58466 19.7915L8.27081 20.1979C10.2995 21.3993 11.3139 22 12.4277 22C13.5416 22 14.5559 21.3993 16.5847 20.1979L17.2708 19.7915C19.2995 18.5901 20.3139 17.9894 20.8708 17C21.4277 16.0106 21.4277 14.8092 21.4277 12.4063V11.5937C21.4277 9.19084 21.4277 7.98943 20.8708 7C20.3139 6.01057 19.2995 5.40987 17.2708 4.20846L16.5847 3.80211C14.5559 2.6007 13.5416 2 12.4277 2Z" clip-rule="evenodd" opacity=".5"/><path d="M12.4277 8.25C10.3567 8.25 8.67773 9.92893 8.67773 12C8.67773 14.0711 10.3567 15.75 12.4277 15.75C14.4988 15.75 16.1777 14.0711 16.1777 12C16.1777 9.92893 14.4988 8.25 12.4277 8.25Z"/></g></svg></span>
+  </span>
+  <span class="settings-widget__name ui-collection__title">设置</span>
+</a>
+</div></div>
+      <button type="button" class="leftbar-state-toggle ui-collection__item ui-interactive card-hover card-hover--spotlight is-icon-only" aria-label="Collapse leftbar" aria-expanded="true" data-shell-action="toggle-leftbar"><span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M3.172 4.172C2 5.343 2 7.229 2 11v2c0 3.771 0 5.657 1.172 6.828S6.229 21 10 21h5V3h-5C6.229 3 4.343 3 3.172 4.172" clip-rule="evenodd" opacity=".5"/><path fill="currentColor" d="M5.5 9.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zm1 4a.75.75 0 0 0 0 1.5h4a.75.75 0 0 0 0-1.5zM22 13v-2c0-3.771 0-5.657-1.172-6.828c-.974-.975-3.192-1.139-5.828-1.166v17.988c2.636-.027 4.854-.191 5.828-1.166C22 18.657 22 16.771 22 13"/></svg></span></button>
+    </div>
+  </footer></div></div></aside>
+<main data-stellar-runtime-region class="site-main" id="main">
+
+
+<div class="article-banner-wrap slide-up"><div class="article banner top">
+  <div class="content">
+    
+    <div class="top bread-nav footnote"><div class="top-row"><div class="left" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" id="menu" href="/topic/">专栏</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C018%20%E7%AD%89%E5%BE%85%E7%8A%B6%E6%80%81%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E7%94%A8%E6%88%B7%E8%A6%81%E7%AD%89%E5%A4%9A%E4%B9%85/">999 个小技巧，让你 Vibe 的产品更有质感</a>
+</div></div><div class="meta-row">
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-11-14T05:20:00.000Z">2026-11-14</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-11-14T05:20:00.000Z">2026-11-14</time></span></div>
+</div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>018 等待状态：先判断用户要等多久</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div></div>
+<article class="md-text content slide-up"><p>等待不可避免，但“加载中”不是一种通用状态。</p>
+<p>一次 100ms 的请求如果先闪出一个 Spinner，用户反而感觉页面卡了一下；一个两秒的按钮操作如果让整页变灰，会切断所有其他工作；一段几十秒的导入如果只显示转圈，用户不知道它是在运行、卡住，还是已经失败。</p>
+<p>好的等待状态不是让动画填补空白，而是回答三个问题：还要等多久、我在等什么、我能继续做什么。</p>
+<h2 id="先按时间决定是否需要加载态"><a href="#先按时间决定是否需要加载态" class="headerlink" title="先按时间决定是否需要加载态"></a>先按时间决定是否需要加载态</h2><h3 id="300ms-以内：不要单独出现加载态"><a href="#300ms-以内：不要单独出现加载态" class="headerlink" title="300ms 以内：不要单独出现加载态"></a>300ms 以内：不要单独出现加载态</h3><p>短于 300ms 的等待不显示 Spinner、Skeleton 或进度条。它们刚出现就消失，看起来像故障闪烁。</p>
+<p>只有一种例外：按钮自身的图标本来就代表动作，例如刷新或同步。点击后，图标直接从按压状态旋转，始终停在完整一圈，不跳到半个角度。</p>
+<p>如果结果发生在用户正在看的位置，结果本身就是反馈；如果结果发生在页外，例如后台同步、复制或自动保存，再用短 Toast 确认。</p>
+<h3 id="0-3–3-秒：在用户操作的位置响应"><a href="#0-3–3-秒：在用户操作的位置响应" class="headerlink" title="0.3–3 秒：在用户操作的位置响应"></a>0.3–3 秒：在用户操作的位置响应</h3><p>一个按钮提交请求时，不要在页面中央盖一层 Loading。</p>
+<p>按钮的文字和宽度保持不动，只让图标变化。图标本身没有“等待”含义时，可以等 300ms 后再淡入 Spinner；已经出现过的加载态至少保留 500ms，避免闪现。</p>
+<p>按钮在运行期间不能被再次提交，但页面其他区域应该继续可用。完成后恢复按钮，并用一句短 Toast 告知结果。</p>
+<h3 id="1–10-秒：Skeleton-或明确的进度"><a href="#1–10-秒：Skeleton-或明确的进度" class="headerlink" title="1–10 秒：Skeleton 或明确的进度"></a>1–10 秒：Skeleton 或明确的进度</h3><p>当页面结构已经确定，Skeleton 比空白页和居中 Spinner 更能说明“内容会出现在哪里”。</p>
+<p>标题、标签、筛选器和表头这些不依赖数据的部分应该立即显示。300ms 后，再用真实尺寸的占位形状补齐剩余区域：</p>
+<ul>
+<li>行高与头像尺寸一致；</li>
+<li>文本线略短于真实文本，并保留轻微长度变化；</li>
+<li>整组列表共享一条每约 1.2 秒扫过的亮带；</li>
+<li>数据到达时，真实行在相同位置依次淡入，每项约间隔 40ms。</li>
+</ul>
+<p>核心不是画灰色方块，而是让加载前后的布局完全重合，数据到达时页面不跳动。</p>
+<h3 id="超过-10-秒：给进度、阶段和出口"><a href="#超过-10-秒：给进度、阶段和出口" class="headerlink" title="超过 10 秒：给进度、阶段和出口"></a>超过 10 秒：给进度、阶段和出口</h3><p>可计数的任务需要说明正在做什么、完成多少、还剩多久。</p>
+<p>上传、导入、导出之类的后台工作，应该在用户离开当前页面后继续可见，因此适合放进左上或右上的 Notification 中；只影响当前项目的任务，可以直接在原位置显示同尺寸的进度。</p>
+<p>页面继续可用，任务可取消。完成后，进度卡片在原位转成结果，而不是另开一条消息。</p>
+<p>无法计数的长任务，至少要说清阶段，例如「正在连接」「正在处理 3 个文件」。超过约 10 秒仍无结果，应提示比预期更久，并提供转到后台的选项。</p>
+<h2 id="Spinner-只适合短而未知的动作"><a href="#Spinner-只适合短而未知的动作" class="headerlink" title="Spinner 只适合短而未知的动作"></a>Spinner 只适合短而未知的动作</h2><p>Spinner 适合动作范围小、时间未知、结果无需用户处理的等待。</p>
+<p>默认图标可以取产品自己的加载图标，尺寸 12–16px，每圈约 0.9 秒。按钮里的动作图标如果本来就代表该操作，可以直接旋转；否则与 Spinner 做约 180ms 的淡入和轻微缩放过渡。</p>
+<p>Spinner 不应该同时出现在按钮、页面遮罩和顶部进度条三处。一个等待只保留一个指示器。</p>
+<h2 id="Skeleton-不是灰色占位图"><a href="#Skeleton-不是灰色占位图" class="headerlink" title="Skeleton 不是灰色占位图"></a>Skeleton 不是灰色占位图</h2><p>Skeleton 的价值在于提前建立布局。</p>
+<p>真实尺寸的行、头像、缩略图和文本线决定占位；亮带只是让用户知道内容仍在加载。刷新已有内容时，应保留旧数据并显示轻微刷新状态，而不是突然把可用页面替换成 Skeleton。</p>
+<p>如果返回的数据少于占位数量，多出的形状直接淡出；如果更多，新行在列表尾部继续进入。无论哪种情况，已出现的真实内容都不应该跳位。</p>
+<h2 id="进度需要比“百分比”更多信息"><a href="#进度需要比“百分比”更多信息" class="headerlink" title="进度需要比“百分比”更多信息"></a>进度需要比“百分比”更多信息</h2><p>进度条必须同时提供：</p>
+<ul>
+<li>任务名称；</li>
+<li>已完成数量或百分比；</li>
+<li>有足够样本后显示预计剩余时间；</li>
+<li>取消入口；</li>
+<li>完成后的原位结果。</li>
+</ul>
+<p>在还没有一秒数据时，剩余时间可以显示「正在估算」，不要伪造一个快速变化的数字。任务结束后，进度条收起，图标与标题在同一张卡片内变成完成状态。</p>
+<p>卡片应保留在通知中心，用户之后仍能打开结果。屏幕上关闭卡片，不应等于丢掉后台任务。</p>
+<h2 id="乐观更新要先能回来"><a href="#乐观更新要先能回来" class="headerlink" title="乐观更新要先能回来"></a>乐观更新要先能回来</h2><p>完成、点赞、重命名、排序、移动和评论，几乎总会成功，而且容易恢复，适合乐观更新。</p>
+<p>用户点击后，先在所有出现该状态的位置立即更新：勾选、计数、列表顺序和统计数字同时变化。服务器保存放在后台，界面上只显示安静的「保存中」，随后变成「已保存」。</p>
+<p>如果保存失败，必须完整撤回：</p>
+<ul>
+<li>勾选、计数和列表位置全部恢复；</li>
+<li>用户输入的内容保留；</li>
+<li>在原项目上说明失败原因；</li>
+<li>用 Retry 替换保存状态，直到问题解决。</li>
+</ul>
+<p>支付、永久删除、向其他人发送消息等不可轻易撤回的动作，不使用乐观更新。</p>
+<h2 id="AI-回复属于流式结果"><a href="#AI-回复属于流式结果" class="headerlink" title="AI 回复属于流式结果"></a>AI 回复属于流式结果</h2><p>AI 的长回复不应该用一个覆盖整页的 Spinner。</p>
+<p>先展示正在进行的步骤，例如「读取 4 个任务」「检查 3 个事件」「撰写摘要」，每一步完成后变成勾选。随后文字随流到达，当前最后一段从轻微模糊中淡入，并在末尾保留光标。</p>
+<p>答案的空间要从一开始就预留好，只向下增长，避免每来一句话都把页面推一下。结束后提供 Copy 与 Retry；只有答案经常很久才完成时，才提供停止。</p>
+<p>首段文字最好在 1–2 秒内出现；如果模型还没开始输出，步骤状态必须继续变化，让用户知道工作没有停。</p>
+<h2 id="用户不需要看见的等待就不要显示"><a href="#用户不需要看见的等待就不要显示" class="headerlink" title="用户不需要看见的等待就不要显示"></a>用户不需要看见的等待就不要显示</h2><p>预取、草稿保存和后台同步通常不需要加载态。</p>
+<p>如果必须给一点确认，就使用固定位置的安静状态，例如「已保存」，不要用 Spinner 打断当前任务。</p>
+<h2 id="统一的等待规则"><a href="#统一的等待规则" class="headerlink" title="统一的等待规则"></a>统一的等待规则</h2><p>无论选择哪种模式，都应共享同一套规则：</p>
+<ul>
+<li>300ms 延迟与 500ms 最短显示由同一个 helper 控制；</li>
+<li>内容到达时布局不移动，空间提前预留；</li>
+<li>一个等待只有一个主指示器；</li>
+<li>刷新时优先保留旧数据；</li>
+<li>失败留在原位置，说明原因并提供 Retry；</li>
+<li>减少动态效果时保留状态，去掉扫光和旋转，可用轻微透明度脉冲或不闪动；</li>
+<li>加载区域设置 <code>aria-busy</code>，完成与失败通过礼貌 live region 播报，焦点保持原位，忙碌按钮仍可被键盘到达。</li>
+</ul>
+<h2 id="先诊断，再选组件"><a href="#先诊断，再选组件" class="headerlink" title="先诊断，再选组件"></a>先诊断，再选组件</h2><p>在改代码前，先找出所有让人等待的位置：</p>
+<ul>
+<li>页面与路由加载；</li>
+<li>列表和表格；</li>
+<li>搜索与筛选；</li>
+<li>保存、发送、同步、删除按钮；</li>
+<li>上传、导入和导出；</li>
+<li>后台任务；</li>
+<li>AI 调用。</li>
+</ul>
+<p>每个位置记录触发方式、典型时长、当前显示、内容到达时是否跳位、是否允许继续操作、失败表现与能否取消。</p>
+<p>然后按等待类型分组，先输出一张表：位置、时长与现状、应该使用什么、原因、准备如何改。共享的 delay helper、Skeleton 形状和进度 Notification 也要单独列出，等用户选择后再修改。</p>
+<h2 id="检查清单"><a href="#检查清单" class="headerlink" title="检查清单"></a>检查清单</h2><ul>
+<li>300ms 以内是否没有单独加载态；</li>
+<li>按钮等待是否只改变图标，保持文字与宽度；</li>
+<li>加载态是否延迟出现并至少保留 500ms；</li>
+<li>Skeleton 是否使用真实布局尺寸，数据到达时不跳位；</li>
+<li>长任务是否提供进度、阶段、剩余时间、取消和后台继续；</li>
+<li>刷新时是否保留旧数据，而不是显示整页 Skeleton；</li>
+<li>乐观更新失败是否能完整回滚、保留输入并提供 Retry；</li>
+<li>AI 回复是否先展示步骤、预留空间并流式出现；</li>
+<li>一个等待是否只有一个主指示器；</li>
+<li>减少动态效果、读屏、键盘和真实慢网测试是否都通过。</li>
+</ul>
+<details class="tag-plugin colorful folding" color="blue"><summary><p>等待状态示例 Prompt</p>
+</summary><div class="body"><figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">Prompt</span><br><span class="line"></span><br><span class="line">Review how my product handles waiting, and decide for each wait which loading state fits: nothing, a spinner, a skeleton, progress, an optimistic change, or an AI answer written as it arrives. Then, if I want it, change them along the lines below. This is about judgment first: diagnose and recommend, and change only what I approve.</span><br><span class="line"></span><br><span class="line">This is a change to my product, not a demo. Work inside my code, on my stack, with my components, tokens, motion values and copy style. Do not add a dependency, a data library or a new visual pattern without asking. Every value below is a default to start from.</span><br><span class="line"></span><br><span class="line">0. Read the product first</span><br><span class="line">- Find every place a person waits: page and route loads, lists and tables, search and filters, buttons that call the server (save, send, sync, delete), uploads, imports and exports, background jobs, and AI calls.</span><br><span class="line">- For each one, note: what starts it; how long it usually takes (measure it, or estimate from the call: cached, one request, several, a job); what is shown meanwhile (a spinner, a skeleton, nothing, a blocking overlay); whether the layout moves when the data arrives; whether the person can keep working; what happens when it fails; and whether it can be cancelled.</span><br><span class="line">- Find the shared pieces: the spinner, skeleton and progress components, the data layer (a fetch wrapper, React Query, SWR, Apollo, a store), and any global loading bar or overlay.</span><br><span class="line">- Tell me in a few lines what you found before going on.</span><br><span class="line"></span><br><span class="line">1. The kinds of waiting</span><br><span class="line">a. Under 300ms: show no separate loader (no spinner, skeleton or bar): one that appears and goes in under 300ms reads as a flicker. The one exception is a button whose own icon already means the action, which turns from the press (b). The result is the feedback: when it shows where the person is looking, nothing more is needed; when it doesn't (a sync, a copy, a save off-screen), confirm it with a short toast.</span><br><span class="line">b. A short wait for one action, length unknown (about 0.3 to 3s): show it where the person acted, with the label and the width unchanged. If the button's icon already means the action (sync, refresh), turn that icon from the press: at least one whole turn even when the answer is instant, and on until the answer lands, always stopping on a whole turn. Otherwise the icon becomes a spinner, started only after 300ms and kept at least 500ms. Block a second press while it runs, but never grey out the page. When it is done, the button goes back as it was and a short toast gives the result (Synced, 1 task updated): at the top centre, a few words, gone after about 3s.</span><br><span class="line">c. Content whose layout is known (a page, a list, a card, a table): a skeleton.</span><br><span class="line">  - Show what does not depend on the data at once: the title, tabs, filters, column headers.</span><br><span class="line">  - After 300ms, draw skeleton shapes for the rest, at the real sizes and places: the same row height and avatar size, lines a little shorter than the text, their lengths varying a little.</span><br><span class="line">  - A light band crosses the whole list together, every 1.2s.</span><br><span class="line">  - When the data arrives, the real rows take the same places, top to bottom, each fading in over 200ms, 40ms apart. Nothing jumps. If fewer rows come back, the extra shapes fade out.</span><br><span class="line">  - Never put a lone spinner in the middle of an empty page instead.</span><br><span class="line">d. Long work that can be counted (uploads, imports, exports, batch jobs, over about 3s): progress.</span><br><span class="line">  - Say what it is doing, how far (a count or a percentage, and a bar), and the time left once there is a second of data to estimate from; before that, "Estimating…".</span><br><span class="line">  - Show it in a notification at the top right when the work goes on while the person moves on (an import, an export, a batch job): it keeps the page free, stays on every page and is kept until handled. Work that only concerns one item can show in that item's place instead, at the same size, so nothing on the page moves.</span><br><span class="line">  - Keep the page usable and offer Cancel. If it can go on without the person, let it run in the background and tell them when it is done.</span><br><span class="line">  - Show it once the work has run 300 to 500ms; a job done sooner needs only the result.</span><br><span class="line">  - At the end it turns into the result in place, and opens it when clicked.</span><br><span class="line">  - Long work that cannot be counted: name the stage it is in (Connecting, Processing 3 files) rather than an endless spinner; after about 10s, say it is taking longer than usual and offer to keep it running in the background.</span><br><span class="line">e. An action that almost always works and is easy to reverse (mark done, like, rename, reorder, move, add a comment): optimistic.</span><br><span class="line">  - Show the result at once, before the server answers, everywhere it appears (the tick, the status, the totals), and save behind it. Say quietly that it is saving, in a fixed place on the item (Saving, then Saved, fading after a moment), never with a spinner over the change itself.</span><br><span class="line">  - If the save fails, put every part of the change back, say why on the item in a few words (Couldn’t save), and offer Retry in the place of the saving status. Keep what the person typed.</span><br><span class="line">  - Not for payments, deleting for good, sending something to other people, or anything that cannot be quietly put back.</span><br><span class="line">f. AI answers and other results that arrive in pieces:</span><br><span class="line">  - First say what it is doing, as steps (Reading 4 tasks, Checking 3 events, Writing the summary), each turning into a check.</span><br><span class="line">  - Then write the answer as the words arrive, each fading in from a slight blur as the next begins, with a caret after the last.</span><br><span class="line">  - Keep the answer's space from the start (a card at its final size, or a minimum height that only grows downward), so the page does not move as it writes.</span><br><span class="line">  - At the end, show Copy and Retry. Offer a way to stop only when answers often run long.</span><br><span class="line">  - Aim for the first words within 1 to 2s; when that is not possible, the steps must keep moving.</span><br><span class="line">g. Waits the person does not need to see (prefetching, saving a draft, syncing in the background): nothing, or a quiet status in a fixed place (Saved). Never block the page for them.</span><br><span class="line"></span><br><span class="line">2. Rules for every kind</span><br><span class="line">- Thresholds: under 300ms nothing but a button's own icon turning; 300ms to 1s a spinner or skeleton; 1 to 10s a skeleton, or progress that says what it is doing; over 10s progress, the time left and a way out. Measure on a slow mobile network, not on localhost.</span><br><span class="line">- Delay and minimum: what appears after 300ms stays at least 500ms. Write one helper for this and use it everywhere.</span><br><span class="line">- The layout never moves when content arrives: reserve the space (skeletons at real size, minimum heights, fixed image ratios).</span><br><span class="line">- One indicator per wait: never a spinner on the button, an overlay on the page and a bar at the top all at once.</span><br><span class="line">- Keep what is known: when refreshing, keep showing the old data with a quiet refresh state, rather than a skeleton.</span><br><span class="line">- Failures stay where they happened, say what failed and what to do, and offer Retry. A toast that disappears is not enough for something the person has to fix.</span><br><span class="line">- Reduced motion: keep every state; drop the moving band and the spin, and use a soft opacity pulse or nothing.</span><br><span class="line">- Accessibility: aria-busy on the region that is loading, a polite live region for done and failed, focus left where it was, and a busy button still reachable by keyboard.</span><br><span class="line"></span><br><span class="line">3. Report before changing anything</span><br><span class="line">Give me a table first, and do not change code yet. One row per wait:</span><br><span class="line">- Where: the screen or component, and what starts the wait.</span><br><span class="line">- Now: how long it takes, and what is shown.</span><br><span class="line">- Should be: nothing, spinner, skeleton, progress, optimistic, AI answer, or background; and why, in a phrase that points to the rule above.</span><br><span class="line">- Change: what you would do, in a phrase.</span><br><span class="line">Group the rows by kind. Then list the shared pieces you would add or change (the delay helper, skeleton shapes, the progress notification). Wait for me to choose what to change.</span><br><span class="line"></span><br><span class="line">4. How it looks (defaults; fit them to my design)</span><br><span class="line">- Spinner: the loading icon from my icon set (or a ring segment on a faint track), 12 to 16px, a turn every 0.9s, in the accent or the text colour. In a button, an icon that already means the action turns instead, speeding up over the first 18% and slowing over the last 18% so it starts and stops at rest: one turn in 640ms at the least, and on at about 600° a second for longer waits (three turns in 1.7s), always ending on a whole turn; otherwise the icon cross-fades into the spinner over 180ms with a little blur and scale. The label and width stay.</span><br><span class="line">- Toast: 40px tall with a 16px corner, a check on a soft tile and a few words, top centre of the content; it comes down 10px from a slight blur over 500ms, and leaves after about 3s.</span><br><span class="line">- Skeleton: shapes in the raised grey (rgb(240 240 242) on white; on dark, white at 8%), 6px corners for lines, circles for pictures, 12px lines for 14px text. The band is white at 75%, 320px wide, crossing the whole list at once.</span><br><span class="line">- Progress in a notification: 344px wide, 24px corners, 14px padding (16px on the right), at the top right. A 32px icon tile centred on the words beside it, holding the file's type as a two-tone filled icon at 18px, the title (Importing tasks.csv), the count and time left in one line (568 of 1,240 rows · About 2s left), and a 4px bar in the accent on the accent at 10%; no row of buttons: the card opens what it is about, and a close mark on hover cancels. It comes down 56px onto the page out of a 4px blur and from 96% over 420ms. When it is done, the same card changes in place: the old words blur out over 160ms and the new ones in over 420ms (Imported 1,240 tasks, Added to Backlog.), the bar folds away and the tile turns solid green with a heavy white check, the same 18px. It then stays until opened or closed.</span><br><span class="line">- Optimistic: a 20px checkbox in the task icon's place, shown on hover and filled green when ticked; totals roll to the new figure over 320ms; Saving with a 12px spinner, then Saved with a check, at the start of the row's last column, in 12px grey. When a save fails the row shakes 6px, twice, over 360ms, the reason in red takes the place of the row's counts, and Retry takes the place of Saving, until it is fixed.</span><br><span class="line">- AI answer: steps at 13px with a 16px spinner that turns into a check; the answer at 15/24; the caret 2px wide in the accent; Retry and Copy at the end.</span><br><span class="line"></span><br><span class="line">5. How to build it, by platform</span><br><span class="line">These are suggestions; check them against my stack and its versions, and prefer what the product already uses.</span><br><span class="line">- Web: the delay and minimum as one hook or helper, for example useDelayedFlag(loading, 300, 500). React: Suspense with a skeleton fallback, startTransition to keep the old content while the new loads, useOptimistic or a mutation's onMutate with a rollback; React Query or SWR keep the previous data while they refetch. Read streamed answers from fetch with a ReadableStream, or the AI SDK's useChat. Draw the band as one gradient fixed to the list, moved by background-position, and stop it under prefers-reduced-motion.</span><br><span class="line">- iOS: .redacted(reason: .placeholder) for skeletons, ProgressView for progress, Task cancellation for Cancel, optimistic changes in the view model with a rollback, AsyncSequence for streamed text.</span><br><span class="line">- Android: a shimmer brush over placeholder shapes in Compose, LinearProgressIndicator with a value, Paging's LoadState for lists, optimistic state in the ViewModel with a rollback, Flow for streamed text.</span><br><span class="line">- Flutter: the real widgets as placeholders under a shimmer (or Skeletonizer), LinearProgressIndicator(value:), a Stream for streamed text.</span><br><span class="line">- Rust and other native desktops (egui, iced, GPUI, Tauri): the same states in the UI model, with the 300 and 500ms timers in the update loop.</span><br><span class="line"></span><br><span class="line">6. Check</span><br><span class="line">- Throttle the network (Slow 4G) and time every wait: nothing shows a separate loader under 300ms, nothing flashes, nothing moves the layout when the data comes.</span><br><span class="line">- Turn the network off during an optimistic change: it goes back, says why, and Retry works.</span><br><span class="line">- Cancel a long job, and leave the page during one: nothing is lost, nothing keeps spinning.</span><br><span class="line">- A screen reader hears loading and done; reduced motion has no moving band; light and dark both checked; existing tests still pass.</span><br></pre></td></tr></tbody></table></figure></div></details>
+
+<h2 id="质感来自可解释的细节"><a href="#质感来自可解释的细节" class="headerlink" title="质感来自可解释的细节"></a>质感来自可解释的细节</h2><p>加载状态不是在页面空着的时候塞一个动画，而是让用户知道时间正在被怎么使用。</p>
+<p>短等待不打断，熟布局不跳动，长任务有进度和出口，乐观更新能回来，流式结果先说明正在做什么。等待仍然存在，但用户不会因为不知道发生什么而失去耐心。</p>
+</article>
+<div class="article-tags slide-up"><a class="tag" href="/tags/%E4%BA%A4%E4%BA%92%E8%AE%BE%E8%AE%A1/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>交互设计</a><a class="tag" href="/tags/UI/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>UI</a><a class="tag" href="/tags/%E5%8A%A8%E6%95%88/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>动效</a><a class="tag" href="/tags/%E6%97%A0%E9%9A%9C%E7%A2%8D/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>无障碍</a><a class="tag" href="/tags/%E5%8A%A0%E8%BD%BD%E7%8A%B6%E6%80%81/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>加载状态</a></div>
+
+
+  <div class="article-share slide-up" id="share">
+    <div class="body">
+      <div class="social-wrap dis-select"><a class="social share-item qrcode ui-interactive is-icon-only" onclick="util.toggle(&quot;share-qrcode&quot;)" aria-label="分享文章: QR Code" title="分享文章: QR Code"><span class="share-item__icon ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="M10.553 13.447c-.424-.424-.95-.596-1.535-.675c-.553-.074-1.25-.074-2.086-.074H5.827c-.58 0-1.065 0-1.459.037c-.411.04-.795.124-1.146.34c-.345.21-.634.5-.845.844c-.216.352-.3.735-.34 1.147C2 15.459 2 15.944 2 16.525v.068c0 .884 0 1.597.055 2.17c.056.592.175 1.108.459 1.571c.288.47.682.864 1.152 1.152c.463.284.979.403 1.57.46C5.81 22 6.524 22 7.407 22h.07c.58 0 1.064 0 1.458-.037c.412-.04.795-.124 1.147-.34c.344-.21.633-.5.844-.844c.216-.352.3-.736.34-1.147c.037-.394.037-.879.037-1.46v-1.104c0-.836 0-1.533-.074-2.086c-.079-.584-.251-1.111-.675-1.535m-1.62-11.41c.412.04.795.124 1.147.34c.344.21.633.5.844.845c.216.351.3.735.34 1.146c.037.394.037.879.037 1.46v1.104c0 .836 0 1.533-.074 2.086c-.079.584-.251 1.111-.675 1.535s-.95.596-1.535.675c-.553.074-1.25.074-2.086.074H5.827c-.58 0-1.065 0-1.459-.037c-.411-.04-.795-.124-1.146-.34a2.56 2.56 0 0 1-.845-.844c-.216-.352-.3-.735-.34-1.147C2 8.54 2 8.056 2 7.475v-.068c0-.884 0-1.597.055-2.17c.056-.592.175-1.108.459-1.571c.288-.47.682-.864 1.152-1.152c.463-.284.979-.403 1.57-.46C5.81 2 6.524 2 7.407 2h.07c.58 0 1.064 0 1.458.037M16.593 2h-.068c-.58 0-1.065 0-1.46.037c-.41.04-.794.124-1.146.34c-.344.21-.633.5-.844.845c-.216.351-.3.735-.34 1.146c-.037.394-.037.879-.037 1.46v1.104c0 .836 0 1.533.074 2.086c.079.584.251 1.111.675 1.535s.95.596 1.535.675c.553.074 1.25.074 2.086.074h1.105c.58 0 1.065 0 1.459-.037c.411-.04.795-.124 1.146-.34c.345-.21.634-.5.845-.844c.216-.352.3-.735.34-1.147C22 8.54 22 8.056 22 7.475v-.068c0-.884 0-1.597-.055-2.17c-.056-.592-.175-1.108-.459-1.571a3.5 3.5 0 0 0-1.152-1.152c-.463-.284-.979-.403-1.57-.46C18.19 2 17.477 2 16.594 2" opacity=".5"/><path fill="currentColor" d="M14.093 21.302a.698.698 0 1 1-1.396 0v-2.79h1.396z" opacity=".4"/><path fill="currentColor" d="M21.302 12.698a.7.7 0 0 0-.697.697v3.256H22v-3.256a.7.7 0 0 0-.698-.697" opacity=".5"/><path fill="currentColor" d="M16.076 16.617c-.076.184-.076.417-.076.883s0 .699.076.883a1 1 0 0 0 .541.54c.184.077.417.077.883.077s.699 0 .883-.076a1 1 0 0 0 .54-.541c.077-.184.077-.417.077-.883s0-.699-.076-.883a1 1 0 0 0-.541-.54C18.199 16 17.966 16 17.5 16s-.699 0-.883.076a1 1 0 0 0-.54.541"/><path fill="currentColor" d="M22 18.535v-.023h-1.396c0 .443 0 .74-.016.97c-.015.224-.043.333-.073.405a1.16 1.16 0 0 1-.629.63c-.072.029-.18.056-.405.072c-.23.015-.527.016-.97.016h-1.86V22h1.883c.414 0 .759 0 1.042-.02a2.6 2.6 0 0 0 .844-.175a2.56 2.56 0 0 0 1.384-1.384c.112-.27.156-.549.176-.844c.02-.283.02-.628.02-1.042" opacity=".7"/><path fill="currentColor" d="M12.697 16.616v.035h1.396c0-.668 0-1.116.035-1.458c.034-.33.093-.482.16-.583a1.2 1.2 0 0 1 .321-.32c.101-.068.254-.128.584-.161c.342-.035.79-.036 1.458-.036h1.86v-1.395h-1.896c-.623 0-1.142 0-1.563.043c-.44.044-.85.142-1.218.388c-.28.187-.519.426-.706.706c-.246.368-.343.777-.388 1.217c-.043.421-.043.94-.043 1.564" opacity=".6"/><path fill="currentColor" d="M5.508 18.69c.219.155.528.155 1.146.155c.619 0 .928 0 1.146-.155a.8.8 0 0 0 .2-.199c.154-.218.154-.527.154-1.146s0-.927-.155-1.146A.8.8 0 0 0 7.8 16c-.218-.155-.527-.155-1.146-.155s-.927 0-1.146.155a.8.8 0 0 0-.199.2c-.155.218-.155.527-.155 1.145c0 .619 0 .928.155 1.146a.8.8 0 0 0 .2.2M6.654 8.155c-.618 0-.927 0-1.146-.155a.8.8 0 0 1-.199-.2c-.155-.217-.155-.527-.155-1.145c0-.619 0-.928.155-1.146a.8.8 0 0 1 .2-.2c.218-.154.527-.154 1.145-.154c.619 0 .928 0 1.146.155a.8.8 0 0 1 .2.199c.154.218.154.527.154 1.146s0 .928-.155 1.146A.8.8 0 0 1 7.8 8c-.218.155-.527.155-1.146.155M16.2 8c.218.155.527.155 1.146.155s.927 0 1.146-.155a.8.8 0 0 0 .199-.199c.155-.218.155-.528.155-1.146c0-.619 0-.928-.155-1.146a.8.8 0 0 0-.2-.2c-.218-.154-.527-.154-1.145-.154c-.619 0-.928 0-1.146.155a.8.8 0 0 0-.2.199c-.154.218-.154.527-.154 1.146s0 .928.155 1.146A.8.8 0 0 0 16.2 8"/></svg></span></a><a class="social share-item weibo ui-interactive is-icon-only" href="https:&#x2F;&#x2F;service.weibo.com&#x2F;share&#x2F;share.php?url&#x3D;https%3A%2F%2Fblog.syouiti.com%2F999%2520%25E4%25B8%25AA%25E5%25B0%258F%25E6%258A%2580%25E5%25B7%25A7%25EF%25BC%258C%25E8%25AE%25A9%25E4%25BD%25A0%2520Vibe%2520%25E7%259A%2584%25E4%25BA%25A7%25E5%2593%2581%25E6%259B%25B4%25E6%259C%2589%25E8%25B4%25A8%25E6%2584%259F%25EF%25BD%259C018%2520%25E7%25AD%2589%25E5%25BE%2585%25E7%258A%25B6%25E6%2580%2581%25EF%25BC%259A%25E5%2585%2588%25E5%2588%25A4%25E6%2596%25AD%25E7%2594%25A8%25E6%2588%25B7%25E8%25A6%2581%25E7%25AD%2589%25E5%25A4%259A%25E4%25B9%2585%2F&amp;title&#x3D;018%20%E7%AD%89%E5%BE%85%E7%8A%B6%E6%80%81%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E7%94%A8%E6%88%B7%E8%A6%81%E7%AD%89%E5%A4%9A%E4%B9%85%20-%20%E7%99%BD%E4%B8%8A%E8%B3%9E%E4%B8%80&amp;summary&#x3D;%E6%8C%89%E7%AD%89%E5%BE%85%E6%97%B6%E9%95%BF%E4%B8%8E%E4%BB%BB%E5%8A%A1%E7%B1%BB%E5%9E%8B%E9%80%89%E6%8B%A9%E6%97%A0%E7%8A%B6%E6%80%81%E3%80%81Spinner%E3%80%81Skeleton%E3%80%81Progress%E3%80%81%E4%B9%90%E8%A7%82%E6%9B%B4%E6%96%B0%E6%88%96%E6%B5%81%E5%BC%8F%E5%9B%9E%E5%A4%8D%EF%BC%8C%E5%B9%B6%E9%99%84%E5%AE%8C%E6%95%B4%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%94%B9%E9%80%A0%20Prompt%E3%80%82" target="_blank" rel="external nofollow noopener noreferrer" aria-label="分享文章: Weibo" title="分享文章: Weibo"><span class="share-item__icon ui-icon"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/80c07e4dbb303.svg" onerror="this.onerror&#x3D;null;this.src&#x3D;&quot;&#x2F;images&#x2F;stellar-error.491ee870f4940739.svg&quot;" /></span></a><a class="social share-item email ui-interactive is-icon-only" href="mailto:?subject&#x3D;018%20%E7%AD%89%E5%BE%85%E7%8A%B6%E6%80%81%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E7%94%A8%E6%88%B7%E8%A6%81%E7%AD%89%E5%A4%9A%E4%B9%85%20-%20%E7%99%BD%E4%B8%8A%E8%B3%9E%E4%B8%80&amp;body&#x3D;https%3A%2F%2Fblog.syouiti.com%2F999%2520%25E4%25B8%25AA%25E5%25B0%258F%25E6%258A%2580%25E5%25B7%25A7%25EF%25BC%258C%25E8%25AE%25A9%25E4%25BD%25A0%2520Vibe%2520%25E7%259A%2584%25E4%25BA%25A7%25E5%2593%2581%25E6%259B%25B4%25E6%259C%2589%25E8%25B4%25A8%25E6%2584%259F%25EF%25BD%259C018%2520%25E7%25AD%2589%25E5%25BE%2585%25E7%258A%25B6%25E6%2580%2581%25EF%25BC%259A%25E5%2585%2588%25E5%2588%25A4%25E6%2596%25AD%25E7%2594%25A8%25E6%2588%25B7%25E8%25A6%2581%25E7%25AD%2589%25E5%25A4%259A%25E4%25B9%2585%2F" aria-label="分享文章: Email" title="分享文章: Email"><span class="share-item__icon ui-icon"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/a1b00e20f425d.svg" onerror="this.onerror&#x3D;null;this.src&#x3D;&quot;&#x2F;images&#x2F;stellar-error.491ee870f4940739.svg&quot;" /></span></a></div>
+      <div class="share-qrcode" id="share-qrcode" style="opacity:0;height:0"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&amp;data=https%3A%2F%2Fblog.syouiti.com%2F999%2520%25E4%25B8%25AA%25E5%25B0%258F%25E6%258A%2580%25E5%25B7%25A7%25EF%25BC%258C%25E8%25AE%25A9%25E4%25BD%25A0%2520Vibe%2520%25E7%259A%2584%25E4%25BA%25A7%25E5%2593%2581%25E6%259B%25B4%25E6%259C%2589%25E8%25B4%25A8%25E6%2584%259F%25EF%25BD%259C018%2520%25E7%25AD%2589%25E5%25BE%2585%25E7%258A%25B6%25E6%2580%2581%25EF%25BC%259A%25E5%2585%2588%25E5%2588%25A4%25E6%2596%25AD%25E7%2594%25A8%25E6%2588%25B7%25E8%25A6%2581%25E7%25AD%2589%25E5%25A4%259A%25E4%25B9%2585%2F" onerror="this.onerror&#x3D;null;this.src&#x3D;&quot;&#x2F;images&#x2F;stellar-error.491ee870f4940739.svg&quot;"/></div>
+    </div>
+  </div>
+
+<div class="article-footer slide-up">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section></div>
+
+<div class="related-wrap slide-up" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">较早文章 <svg class="icon" viewBox="0 0 1 1" data-icon="default:arrow-right" aria-hidden="true"></svg></div><a href="/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C017%20Toast%20%E4%B8%8E%20Notification%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E4%BA%8B%E4%BB%B6%E5%BD%92%E8%B0%81/">017 Toast 与 Notification：先判断事件归谁</a></div></section></div>
+
+
+
+
+  <div class="related-wrap md-text slide-up" id="comments">
+    
+    
+    <section class="header cmt-title cap theme">
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    
+    <section class="body cmt-body giscus">
+      
+
+<div class="lazy-icon"></div>
+
+<div id="giscus" data-repo="sy0u1ti/sy0u1ti.github.io" data-repo-id="R_kgDOKbZc8Q" data-category="General" data-category-id="DIC_kwDOKbZc8c4CZ0-1" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="noborder_dark" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+<footer class="page-footer slide-up footnote"><hr><div class="sitemap" style="column-count:2;"><div class="sitemap-group"><span class="fs15">站内</span><a href="&#x2F;">首页</a><a href="&#x2F;archives&#x2F;">归档</a><a href="&#x2F;tags&#x2F;">标签</a><a href="&#x2F;bangumis&#x2F;">番剧</a></div><div class="sitemap-group"><span class="fs15">站外</span><a target="_blank" rel="noopener" href="https:&#x2F;&#x2F;home.syouiti.com">Home</a><a target="_blank" rel="noopener" href="https:&#x2F;&#x2F;github.com&#x2F;sy0u1ti">GitHub</a></div></div><div class="text"><p>记录 AI、效率工具、网络技术与各种折腾。<br>本站由 <a href="/">白上賞一「しらかみしょういち」</a> 创建 · <a target="_blank" rel="noopener" href="https://icp.gov.moe/?keyword=20244469">萌ICP备20244469号</a></p>
+</div></footer>
+</main>
+<aside data-stellar-runtime-region id="rightbar-region" class="site-region site-region--rightbar" data-region="rightbar" aria-label="Rightbar"><div class="site-region__surface ui-drawer-surface"><div class="site-region__viewport"><div class="widgets widget-stack widget-stack--rightbar widget-stack--rightbar"><div class="widget-instance widget-instance--toc" data-widget-id="rightbar:1:toc" data-presentation="rightbar">
+
+
+<widget class="widget-wrapper slide-up toc" id="data-toc" collapse="false">
+  
+    <div class="widget-header dis-select">
+      <span class="name">本文目录</span>
+      <button type="button" class="cap-action ui-interactive card-hover card-hover--spotlight" data-shell-action="toggle-toc" aria-label="Toggle table of contents" aria-pressed="false"><span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></span></button>
+    </div>
+  
+  <div class="widget-body"><ol class="toc ui-collection-adapter"><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E5%85%88%E6%8C%89%E6%97%B6%E9%97%B4%E5%86%B3%E5%AE%9A%E6%98%AF%E5%90%A6%E9%9C%80%E8%A6%81%E5%8A%A0%E8%BD%BD%E6%80%81"><span class="toc-text">先按时间决定是否需要加载态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#300ms-%E4%BB%A5%E5%86%85%EF%BC%9A%E4%B8%8D%E8%A6%81%E5%8D%95%E7%8B%AC%E5%87%BA%E7%8E%B0%E5%8A%A0%E8%BD%BD%E6%80%81"><span class="toc-text">300ms 以内：不要单独出现加载态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#0-3%E2%80%933-%E7%A7%92%EF%BC%9A%E5%9C%A8%E7%94%A8%E6%88%B7%E6%93%8D%E4%BD%9C%E7%9A%84%E4%BD%8D%E7%BD%AE%E5%93%8D%E5%BA%94"><span class="toc-text">0.3–3 秒：在用户操作的位置响应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#1%E2%80%9310-%E7%A7%92%EF%BC%9ASkeleton-%E6%88%96%E6%98%8E%E7%A1%AE%E7%9A%84%E8%BF%9B%E5%BA%A6"><span class="toc-text">1–10 秒：Skeleton 或明确的进度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#%E8%B6%85%E8%BF%87-10-%E7%A7%92%EF%BC%9A%E7%BB%99%E8%BF%9B%E5%BA%A6%E3%80%81%E9%98%B6%E6%AE%B5%E5%92%8C%E5%87%BA%E5%8F%A3"><span class="toc-text">超过 10 秒：给进度、阶段和出口</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#Spinner-%E5%8F%AA%E9%80%82%E5%90%88%E7%9F%AD%E8%80%8C%E6%9C%AA%E7%9F%A5%E7%9A%84%E5%8A%A8%E4%BD%9C"><span class="toc-text">Spinner 只适合短而未知的动作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#Skeleton-%E4%B8%8D%E6%98%AF%E7%81%B0%E8%89%B2%E5%8D%A0%E4%BD%8D%E5%9B%BE"><span class="toc-text">Skeleton 不是灰色占位图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E8%BF%9B%E5%BA%A6%E9%9C%80%E8%A6%81%E6%AF%94%E2%80%9C%E7%99%BE%E5%88%86%E6%AF%94%E2%80%9D%E6%9B%B4%E5%A4%9A%E4%BF%A1%E6%81%AF"><span class="toc-text">进度需要比“百分比”更多信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E4%B9%90%E8%A7%82%E6%9B%B4%E6%96%B0%E8%A6%81%E5%85%88%E8%83%BD%E5%9B%9E%E6%9D%A5"><span class="toc-text">乐观更新要先能回来</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#AI-%E5%9B%9E%E5%A4%8D%E5%B1%9E%E4%BA%8E%E6%B5%81%E5%BC%8F%E7%BB%93%E6%9E%9C"><span class="toc-text">AI 回复属于流式结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E7%94%A8%E6%88%B7%E4%B8%8D%E9%9C%80%E8%A6%81%E7%9C%8B%E8%A7%81%E7%9A%84%E7%AD%89%E5%BE%85%E5%B0%B1%E4%B8%8D%E8%A6%81%E6%98%BE%E7%A4%BA"><span class="toc-text">用户不需要看见的等待就不要显示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E7%BB%9F%E4%B8%80%E7%9A%84%E7%AD%89%E5%BE%85%E8%A7%84%E5%88%99"><span class="toc-text">统一的等待规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E5%85%88%E8%AF%8A%E6%96%AD%EF%BC%8C%E5%86%8D%E9%80%89%E7%BB%84%E4%BB%B6"><span class="toc-text">先诊断，再选组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E6%A3%80%E6%9F%A5%E6%B8%85%E5%8D%95"><span class="toc-text">检查清单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E8%B4%A8%E6%84%9F%E6%9D%A5%E8%87%AA%E5%8F%AF%E8%A7%A3%E9%87%8A%E7%9A%84%E7%BB%86%E8%8A%82"><span class="toc-text">质感来自可解释的细节</span></a></li></ol></div>
+  <div class="widget-footer"><a class="top ui-interactive" onclick="util.scrollTop()"><span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="M20.536 3.464C22 4.93 22 7.286 22 12s0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12s0-7.071 1.464-8.536C4.93 2 7.286 2 12 2s7.071 0 8.535 1.464" opacity=".5"/><path fill="currentColor" d="M9.53 12.03a.75.75 0 0 1-1.06-1.06l3-3a.75.75 0 0 1 1.06 0l3 3a.75.75 0 1 1-1.06 1.06L12 9.56z"/><path fill="currentColor" d="M9.53 16.03a.75.75 0 0 1-1.06-1.06l3-3a.75.75 0 0 1 1.06 0l3 3a.75.75 0 1 1-1.06 1.06L12 13.56z"/></svg></span><span>回到顶部</span></a><a class="buttom ui-interactive" onclick="util.scrollComment()"><span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M7.25 9A.75.75 0 0 1 8 8.25h8a.75.75 0 0 1 0 1.5H8A.75.75 0 0 1 7.25 9m0 3.5a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 0 1.5H8a.75.75 0 0 1-.75-.75"/></svg></span><span>参与讨论</span></a></div>
+</widget>
+
+
+</div></div></div></div></aside>
+</div><button type="button" class="site-scrim" data-shell-action="dismiss-drawer" aria-label="Close navigation" tabindex="-1"></button><div data-stellar-runtime-region class="site-dock" role="group" aria-label="Layout panels">
+  <button type="button" class="site-dock__button site-dock__button--rightbar ui-interactive" aria-label="Open rightbar" aria-controls="rightbar-region" aria-expanded="false" data-shell-action="toggle-rightbar-drawer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type="button" class="site-dock__button site-dock__button--leftbar ui-interactive" aria-label="Open leftbar" aria-controls="leftbar-region" aria-expanded="false" data-shell-action="toggle-leftbar-drawer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+
+<dialog data-stellar-runtime-region class="search-dialog" id="site-search-dialog" aria-labelledby="site-search-title">
+  <div class="search-dialog__panel search-wrapper" id="site-search-wrapper" searching="false">
+    <div class="search-dialog__header">
+      <div class="search-form" role="search">
+        <span class="search-button" aria-hidden="true"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></span>
+        <input type="search" class="search-input" id="site-search-input" aria-labelledby="site-search-title" placeholder="搜索">
+      </div>
+      <button type="button" class="search-dialog__close" data-shell-action="close-search" aria-label="关闭搜索">×</button>
+    </div>
+    
+      <div class="search-dialog__scope" role="radiogroup" aria-labelledby="site-search-title" hidden>
+        <label class="search-dialog__scope-option" data-search-scope-option="all">
+          <input class="ui-radio" type="radio" name="site-search-scope" value="all">
+          <span>全站</span>
+        </label>
+        <label class="search-dialog__scope-option" data-search-scope-option="blog" hidden>
+          <input class="ui-radio" type="radio" name="site-search-scope" value="blog">
+          <span>博客</span>
+        </label>
+        <label class="search-dialog__scope-option" data-search-scope-option="current" hidden>
+          <input class="ui-radio" type="radio" name="site-search-scope" value="current">
+          <span data-search-scope-current-label></span>
+        </label>
+      </div>
+    
+    <h2 class="search-dialog__title" id="site-search-title">站内搜索</h2>
+    <div class="search-result" id="site-search-result"></div>
+    <div class="search-no-result">没有找到内容！</div>
+  </div>
+</dialog>
+</div><div class="site-scripts">
+<script data-stellar-script="core" src="/js/stellar-icons.js?v=2a11bebd1b4bc4d3"></script>
+
+<script data-stellar-script="defines">
+  window.canonical = window.stellarClientData.canonical;
+  const ctx = window.stellarClientData.ctx;
+  window.canonical.param = {permalink: "https://blog.syouiti.com/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C018%20%E7%AD%89%E5%BE%85%E7%8A%B6%E6%80%81%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E7%94%A8%E6%88%B7%E8%A6%81%E7%AD%89%E5%A4%9A%E4%B9%85/", checklink: ctx.services.video.js};
+  ctx.date_suffix = {"just":"刚刚","min":"分钟前","hour":"小时前","day":"天前"};
+  if (ctx.search) Object.assign(ctx.search, {"more":"更多","no_more":"没有更多了"});
+  const def = window.stellarClientData.def;
+  window.ctx = ctx;
+  window.def = def;
+</script>
+
+
+<!-- core: 迁移期 DOM/资源兼容工具；Extension 注册与生命周期由 ESM runtime 所有 -->
+<script data-stellar-script="core" src="/js/utils.js?v=2.0.0"></script>
+<script data-stellar-script="core" src="/js/main.js?v=2.0.0" defer></script>
+<script data-stellar-script="core" defer src="/js/profile.js?v=2.0.0"></script>
+
+
+
+
+
+<script data-stellar-script="core" type="application/json" id="stellar-runtime-config">{"version":1,"root":"/","policy":{"cache":{"enabled":true,"defaultTtl":3600,"ttl":{"giscus":600,"waline":600,"artalk":600,"memos":600,"memos-user":86400,"sites":86400,"friends":86400,"friends_and_posts":86400,"siteinfo":86400},"maxEntries":200},"request":{"retries":2,"timeoutMs":5000,"idleTimeoutMs":3000,"maxCacheEntryBytes":204800},"features":{"codeCopyToastMs":2500},"providers":{"linkPrefetch":"flying_pages","lightbox":"fancybox","diagrams":"mermaid"}},"extensions":[{"id":"pin-slider","module":"/js/runtime/extensions/pin-slider.js","scope":"region","when":{"selector":".pin-slider"},"config":{}},{"id":"page-controls","module":"/js/runtime/extensions/page-controls.js","scope":"region","when":{"always":true},"config":{"highlight":"/js/search/highlight.js","tagtree":"/js/tagtree.js"}},{"id":"partial-navigation","module":"/js/runtime/extensions/partial-navigation.js","scope":"document","when":{"always":true},"config":{}},{"id":"color-scheme-switch","module":"/js/runtime/extensions/color-scheme-switch.js","scope":"document","when":{"always":true},"config":{"messages":{"light":"切换到浅色模式","dark":"切换到深色模式","auto":"切换到跟随系统配色"}}},{"id":"search","module":"/js/runtime/extensions/search.js","scope":"document","when":{"selector":".search-input"},"config":{"provider":"local","options":{"scope":"post","includeContent":true,"cacheTtlSeconds":86400},"assets":{"client":null,"provider":"/js/search/local-search.js","shortcut":"/js/search/shortcut.js"}}},{"id":"hero-parallax","module":"/js/runtime/extensions/hero-parallax.js","scope":"region","when":{"selector":".wiki-hero"},"config":{}},{"id":"hero-effect","module":"/js/runtime/extensions/hero-effect.js","scope":"region","when":{"selector":"canvas[data-hero-effect]"},"config":{}},{"id":"lazy-loading","module":"/js/runtime/extensions/lazy-loading.js","scope":"document","when":{"always":true},"config":{"asset":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@19.1/dist/lazyload.min.js"}},{"id":"deferred-icons","module":"/js/runtime/extensions/deferred-icons.js","scope":"region","when":{"selector":"svg.icon[data-icon]"},"config":{}},{"id":"dropdown","module":"/js/runtime/extensions/dropdown.js","scope":"region","when":{"selector":"details.dropdown"},"config":{}},{"id":"services","module":"/js/runtime/extensions/services.js","scope":"region","when":{"selector":"#artalk_container, #twikoo_container, #waline_container, .data-service, [class*='ds-'], a[cardlink], a[data-md-link][data-siteinfo-api], .site-card [data-siteinfo-api], .voice\u003eaudio, .video\u003evideo, .chat-file"},"config":{"marked":"https://cdn.jsdelivr.net/npm/marked@13.0.1/lib/marked.umd.min.js"}},{"id":"comments","module":"/js/runtime/extensions/comments.js","scope":"region","when":{"selector":"#comments"},"config":{"provider":"giscus","options":{"data-repo":"sy0u1ti/sy0u1ti.github.io","data-repo-id":"R_kgDOKbZc8Q","data-category":"General","data-category-id":"DIC_kwDOKbZc8c4CZ0-1","data-mapping":"pathname","data-strict":0,"data-reactions-enabled":1,"data-emit-metadata":0,"data-input-position":"bottom","data-theme":"noborder_dark","data-lang":"zh-CN","data-loading":"lazy","crossorigin":"anonymous"},"pageTitle":"018 等待状态：先判断用户要等多久","assets":{"js":"https://giscus.app/client.js"}}},{"id":"settings","module":"/js/runtime/extensions/settings.js","scope":"region","when":{"selector":".settings-page"},"config":{}},{"id":"link-prefetch","module":"/js/runtime/extensions/link-prefetch.js","scope":"document","when":{"always":true},"config":{"asset":"https://gcore.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"}},{"id":"lightbox","module":"/js/runtime/extensions/lightbox.js","scope":"region","when":{"selector":"[data-fancybox]:not(.error), .with-fancybox, .ds-memos, .md-text img:not(.inline):not([class*=\"avatar\"]):not(.cover img), .post-cover img"},"config":{"enabled":true,"selector":".md-text img:not(.inline):not([class*=\"avatar\"]):not(.cover img), .post-cover img","assets":{"localCss":"/css/plugins/fancybox.css","js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"}}},{"id":"reveal","module":"/js/runtime/extensions/reveal.js","scope":"region","when":{"selector":".slide-up"},"config":{"enabled":true,"duration":500,"interval":60,"distance":10,"blur":4}},{"id":"code-copy","module":"/js/runtime/extensions/code-copy.js","scope":"region","when":{"selector":".code"},"config":{"assets":{"js":"/js/plugins/copycode.js"},"messages":{"label":"复制","copied":"复制成功","denied":"未获得剪贴板权限","unsupported":"当前浏览器不支持剪贴板或页面不是 HTTPS"}}},{"id":"adaptive-text","module":"/js/runtime/extensions/adaptive-text.js","scope":"region","when":{"selector":"[data-text-adaptive]"},"config":{"assets":{"colorJs":"/js/color.js","js":"/js/plugins/adaptive-text.js"}}},{"id":"card-hover","module":"/js/runtime/extensions/card-hover.js","scope":"region","when":{"selector":".card-hover"},"config":{"spotlight":true,"tilt":true,"assets":{"js":"/js/plugins/card-hover.js"}}},{"id":"swiper","module":"/js/runtime/extensions/swiper.js","scope":"region","when":{"selector":"#swiper-api"},"config":{"assets":{"localCss":"/css/plugins/swiper.css","js":"https://unpkg.com/swiper@10.3/swiper-bundle.min.js","css":"https://unpkg.com/swiper@10.3/swiper-bundle.min.css"}}}]}</script>
+<script data-stellar-script="core" type="module" src="/js/runtime/index.js?v=2.0.0&runtime=1"></script>
+
+
+<!-- inject -->
+<script defer src="/js/plugins/reading-progress.js?v=20260823j"></script>
+
+<script data-stellar-script="core" defer src="/js/navigation-init.js?v=2.0.0"></script>
+</div></body></html>
+
