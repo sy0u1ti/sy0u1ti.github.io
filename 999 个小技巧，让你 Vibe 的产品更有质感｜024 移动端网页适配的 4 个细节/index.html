@@ -1,0 +1,1167 @@
+
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head><!-- hexo injector head_begin start -->
+<link rel="stylesheet" href="/css/bilicard.css">
+<!-- hexo injector head_begin end -->
+  
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/2.0.0" theme-name="Stellar" theme-version="2.0.0">
+  <link rel="canonical" href="https://blog.syouiti.com/999 个小技巧，让你 Vibe 的产品更有质感｜024 移动端网页适配的 4 个细节/" data-stellar-page-meta="">
+  
+  <meta name="generator" content="Hexo 8.1.2">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  <title data-stellar-page-meta>024 移动端网页适配的 4 个细节 - 白上賞一</title>
+  <script data-stellar-script="core">
+    (function () {
+      var key = 'stellar:v2:leftbar-state';
+      var fallback = "expanded";
+      try {
+        var value = localStorage.getItem(key);
+        document.documentElement.dataset.leftbarState = value === 'collapsed' || value === 'expanded' ? value : fallback;
+      } catch (error) {
+        document.documentElement.dataset.leftbarState = fallback;
+      }
+    })();
+  </script>
+
+  <meta name="description" content="从去掉 iOS 点击高亮与悬停残留、把导航移到底部并随滚动折叠，到搞定 iOS Safari 状态栏/工具栏取色与 PWA 安装体验，并附一份移动端网页适配审查 Prompt。" data-stellar-page-meta="">
+<meta property="og:type" content="article" data-stellar-page-meta="">
+<meta property="og:title" content="024 移动端网页适配的 4 个细节" data-stellar-page-meta="">
+<meta property="og:url" content="https://blog.syouiti.com/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C024%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%BD%91%E9%A1%B5%E9%80%82%E9%85%8D%E7%9A%84%204%20%E4%B8%AA%E7%BB%86%E8%8A%82/" data-stellar-page-meta="">
+<meta property="og:site_name" content="白上賞一" data-stellar-page-meta="">
+<meta property="og:description" content="从去掉 iOS 点击高亮与悬停残留、把导航移到底部并随滚动折叠，到搞定 iOS Safari 状态栏/工具栏取色与 PWA 安装体验，并附一份移动端网页适配审查 Prompt。" data-stellar-page-meta="">
+<meta property="og:locale" content="zh_CN" data-stellar-page-meta="">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png" data-stellar-page-meta="">
+<meta property="article:author" content="白上賞一「しらかみしょういち」" data-stellar-page-meta="">
+<meta property="article:published_time" content="2026-11-24T00:50:00.000Z" data-stellar-page-meta="">
+<meta property="article:modified_time" content="2026-11-24T00:50:00.000Z" data-stellar-page-meta="">
+<meta property="article:tag" content="CSS" data-stellar-page-meta="">
+<meta property="article:tag" content="PWA" data-stellar-page-meta="">
+<meta property="article:tag" content="Safari" data-stellar-page-meta="">
+<meta property="article:tag" content="交互设计" data-stellar-page-meta="">
+<meta property="article:tag" content="移动端适配" data-stellar-page-meta="">
+<meta name="twitter:card" content="summary" data-stellar-page-meta="">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png" data-stellar-page-meta="">
+<meta name="twitter:creator" content="@Syou1Ti" data-stellar-page-meta=""><meta name="twitter:title" content="024 移动端网页适配的 4 个细节" data-stellar-page-meta="">
+  
+  
+  <meta name="keywords" content="移动端适配,Safari,PWA,CSS,交互设计" data-stellar-page-meta="">
+
+  <!-- feed -->
+  
+    
+
+    
+      
+        <link rel="alternate" href="/atom.xml" title="白上賞一" type="application/atom+xml">
+      
+    
+  
+
+  <link rel="preload" href="/css/main.css?v=2.0.0" as="style">
+  <link rel="stylesheet" href="/css/main.css?v=2.0.0">
+  <style>:root{--text-loading:"正在加载";--text-loading-error:"加载失败，请稍后重试。"}</style>
+
+
+  
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png">
+  
+
+  
+
+  <script type="application/ld+json" data-stellar-page-meta="">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"白上賞一「しらかみしょういち」","sameAs":[],"image":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png"},"dateCreated":"2026-11-24T00:50:00+00:00","dateModified":"2026-11-24T00:50:00+00:00","datePublished":"2026-11-24T00:50:00+00:00","description":"很多网站的“移动端适配”，做到不出现横向滚动条就停手了。\n真正拿到手机上用几分钟，粗糙感会立刻露出来：每点一下按钮就闪出一块灰黑方块，点完后悬停样式还死死粘在元素上；主导航高高挂在屏幕顶端，单手根本够不着；一弹遮罩或底栏，Safari 底部工具栏后面就多出一条不合群的灰带；添加到桌面打开，要么图标糊掉，要么还是套着浏览器壳子。\n让移动端网页真正像一个趁手的产品，关键不在重写一套页面，而在补齐...","headline":"024 移动端网页适配的 4 个细节","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.syouiti.com/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C024%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%BD%91%E9%A1%B5%E9%80%82%E9%85%8D%E7%9A%84%204%20%E4%B8%AA%E7%BB%86%E8%8A%82/"},"publisher":{"@type":"Organization","name":"白上賞一「しらかみしょういち」","sameAs":[],"image":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/sy0u1ti/picx-images-hosting@master/image.6t736trr6e.png"}},"url":"https://blog.syouiti.com/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C024%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%BD%91%E9%A1%B5%E9%80%82%E9%85%8D%E7%9A%84%204%20%E4%B8%AA%E7%BB%86%E8%8A%82/","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"],"keywords":"移动端适配, Safari, PWA, CSS, 交互设计","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"}</script>
+  <link rel="stylesheet" href="/css/stellar-overrides.css?v=20261102-agent-covers">
+
+  <link rel="stylesheet" href="/css/stellar-icons.css?v=ca746a9b39366bc3">
+  <link rel="preload" as="script" href="/js/stellar-icons.js?v=2a11bebd1b4bc4d3">
+  
+  
+</head>
+<body data-page-type="content" data-page-layout="post" data-article-style="tech"><div data-stellar-runtime-region id="site-cover" class="site-cover"></div><div class="site-shell" id="start" data-regions="leftbar rightbar"><div class="site-workspace">
+<aside data-stellar-runtime-region id="leftbar-region" class="site-region site-region--leftbar" data-region="leftbar" aria-label="Leftbar"><div class="site-region__surface ui-surface"><div class="site-region__decoration" aria-hidden="true"></div><div class="site-region__viewport"><header class="site-region__header site-region__zone site-region__zone--top">
+    <div class="widget-instance widget-instance--brand" data-widget-id="leftbar:fixed:brand" data-presentation="leftbar" data-leftbar-rail>
+<header class="brand-header brand-header--regular brand-header--site"><div class="brand-wrap"><a class="brand-image brand-image--avatar" href="&#x2F;"><img no-lazy src="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;sy0u1ti&#x2F;picx-images-hosting@master&#x2F;image.6t736trr6e.png" alt="" onerror="this.onerror&#x3D;null;this.src&#x3D;&quot;&#x2F;images&#x2F;stellar-error.491ee870f4940739.svg&quot;"></a><a class="brand-title" href="&#x2F;"><div class="brand-name">白上賞一</div><div class="brand-tagline cap">运气永在身🎲 | 就爱瞎折腾💯</div></a><div class="brand-stats data-service ds-ghinfo" data-api="https:&#x2F;&#x2F;api.github.com&#x2F;users&#x2F;sy0u1ti"><a class="brand-stat ui-interactive card-hover card-hover--spotlight" target="_blank" rel="noopener" href="https:&#x2F;&#x2F;github.com&#x2F;sy0u1ti?tab&#x3D;followers"><span class="brand-stat__value" type="text" id="followers"></span><span class="brand-stat__label">followers</span></a><a class="brand-stat ui-interactive card-hover card-hover--spotlight" target="_blank" rel="noopener" href="https:&#x2F;&#x2F;github.com&#x2F;sy0u1ti?tab&#x3D;following"><span class="brand-stat__value" type="text" id="following"></span><span class="brand-stat__label">following</span></a><a class="brand-stat ui-interactive card-hover card-hover--spotlight" target="_blank" rel="noopener" href="https:&#x2F;&#x2F;github.com&#x2F;sy0u1ti?tab&#x3D;repositories"><span class="brand-stat__value" type="text" id="public_repos"></span><span class="brand-stat__label">repos</span></a></div></div><div class="brand-search">
+
+<div class="ui-collection" data-layout="list" data-variant="nav" data-density="auto">
+  
+    
+<button class="ui-collection__item ui-interactive card-hover card-hover--spotlight search-trigger has-hover-surface" type="button" title="搜索" aria-label="搜索" data-shell-action="open-search" data-search-instance="leftbar-brand-search" data-search-domain="topic:vibe-product-quality" data-search-domain-label="999 个小技巧，让你 Vibe 的产品更有质感" data-search-domain-blog="true">
+  
+  <span class="ui-icon"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">搜索</span>
+      
+      
+    </span>
+  
+  <kbd class="search-shortcut" aria-hidden="true">⌘K</kbd>
+
+  
+</button>
+
+  
+</div>
+
+
+</div></header>
+</div>
+  </header>
+  <div class="site-region__body site-region__zone site-region__zone--body">
+    <div class="widget-instance widget-instance--menu" data-widget-id="leftbar:fixed:menu" data-presentation="leftbar" data-leftbar-rail>
+
+
+<nav class="menu dis-select">
+<div class="ui-collection" data-layout="grid" data-variant="nav" data-density="auto" style="--ui-columns:2">
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-active is-themed" href="&#x2F;" title="首页" aria-current="page" style="--item-theme:#3B82F6;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M9.163 2.819c1.671-1.09 3.864-1.09 5.536 0l5.882 3.839A3.25 3.25 0 0 1 22 9.38v8.87A3.75 3.75 0 0 1 18.25 22h-1.5A2.75 2.75 0 0 1 14 19.25v-3.5a1.75 1.75 0 0 0-1.75-1.75h-1.5A1.75 1.75 0 0 0 9 15.75v3.5A2.75 2.75 0 0 1 6.25 22h-1.5A3.75 3.75 0 0 1 1 18.25V9.38a3.25 3.25 0 0 1 1.419-2.722z" opacity=".5"/><path fill="currentColor" d="M10.25 15.75c0-.414.336-.75.75-.75h2c.414 0 .75.336.75.75v3.5c0 .69.56 1.25 1.25 1.25h1.5c1.243 0 2.25-1.007 2.25-2.25V9.38a1.75 1.75 0 0 0-.764-1.466l-5.882-3.838a2.535 2.535 0 0 0-2.784 0L3.438 7.914A1.75 1.75 0 0 0 2.674 9.38v8.87c0 1.243 1.007 2.25 2.25 2.25h1.5c.69 0 1.25-.56 1.25-1.25z"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">首页</span>
+      
+      
+    </span>
+  
+  
+  <span class="ui-collection__indicator"></span>
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="&#x2F;archives&#x2F;" title="归档" style="--item-theme:#10B981;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M3 9h18v10a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3z" opacity=".5"/><path fill="currentColor" d="M2 5a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm7 8a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2z"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">归档</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="&#x2F;categories&#x2F;" title="分类" style="--item-theme:#F59E0B;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 9.5V18a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4V9.5z" opacity=".5"/><path fill="currentColor" d="M2 7.5A3.5 3.5 0 0 1 5.5 4h3.086a2 2 0 0 1 1.414.586L11.414 6H18.5A3.5 3.5 0 0 1 22 9.5v.5H2z"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">分类</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="&#x2F;tags&#x2F;" title="标签" style="--item-theme:#EC4899;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"/><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">标签</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="&#x2F;bangumis&#x2F;" title="番剧" style="--item-theme:#8B5CF6;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 10.5V18a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4v-7.5z" opacity=".5"/><path fill="currentColor" d="M18 2a4 4 0 0 1 4 4v3H2V6a4 4 0 0 1 4-4zm-9.354 2l-2 3h2.384l2-3zm4.5 0l-2 3h2.384l2-3z"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">番剧</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-themed" href="&#x2F;topic&#x2F;" title="专栏" style="--item-theme:#06B6D4;">
+  
+  <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></span>
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">专栏</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+</div>
+
+</nav>
+
+</div>
+    <div class="widgets widget-stack widget-stack--leftbar widget-stack--body"><div class="widget-instance widget-instance--related" data-widget-id="leftbar:0:related" data-presentation="leftbar" data-leftbar-rail>
+
+<widget class="widget-wrapper related-widget">
+  
+    <div class="widget-header dis-select">
+      <span class="name">专栏：999 个小技巧，让你 Vibe 的产品更有质感</span>
+      
+    </div>
+  
+  <div class="widget-body"><div class="ui-collection" data-layout="list" data-variant="nav" data-density="compact">
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight is-active" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C024%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%BD%91%E9%A1%B5%E9%80%82%E9%85%8D%E7%9A%84%204%20%E4%B8%AA%E7%BB%86%E8%8A%82&#x2F;" title="024 移动端网页适配的 4 个细节" aria-current="page">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">024 移动端网页适配的 4 个细节</span>
+      
+      
+    </span>
+  
+  
+  <span class="ui-collection__indicator"></span>
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C023%20%E7%A9%BA%E7%8A%B6%E6%80%81%E7%9A%84%E4%B8%89%E7%A7%8D%E7%94%BB%E6%B3%95&#x2F;" title="023 空状态的三种画法">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">023 空状态的三种画法</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C022%20%E6%99%AF%E6%B7%B1%E7%8E%AF%E5%BD%A2%E5%8D%A1%E7%89%87%E4%B8%8E%E6%B5%81%E4%BD%93%E6%B8%90%E5%8F%98&#x2F;" title="022 景深环形卡片与流体渐变">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">022 景深环形卡片与流体渐变</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C021%20%E5%BC%80%E5%85%B3%E3%80%81%E5%A4%8D%E9%80%89%E6%A1%86%E3%80%81%E5%8D%95%E9%80%89%E5%92%8C%E4%B8%8B%E6%8B%89&#x2F;" title="021 开关、复选框、单选和下拉：怎么选？">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">021 开关、复选框、单选和下拉：怎么选？</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C020%20%E5%8D%A1%E7%89%87%E6%BB%9A%E5%8A%A8%EF%BC%9A%E8%AE%A9%E9%A1%B5%E9%9D%A2%E8%BF%90%E5%8A%A8%E8%B7%9F%E7%9D%80%E6%BB%9A%E5%8A%A8%E4%BD%8D%E7%BD%AE%E8%B5%B0&#x2F;" title="020 卡片滚动：让页面运动跟着滚动位置走">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">020 卡片滚动：让页面运动跟着滚动位置走</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C019%20%E9%95%AD%E5%B0%84%E5%8D%A1%E7%89%87%EF%BC%9A%E8%AE%A9%E5%80%BE%E6%96%9C%E3%80%81%E5%85%89%E4%B8%8E%E5%8E%9A%E5%BA%A6%E7%BB%9F%E4%B8%80&#x2F;" title="019 镭射卡片：让倾斜、光与厚度统一">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">019 镭射卡片：让倾斜、光与厚度统一</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C018%20%E7%AD%89%E5%BE%85%E7%8A%B6%E6%80%81%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E7%94%A8%E6%88%B7%E8%A6%81%E7%AD%89%E5%A4%9A%E4%B9%85&#x2F;" title="018 等待状态：先判断用户要等多久">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">018 等待状态：先判断用户要等多久</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C017%20Toast%20%E4%B8%8E%20Notification%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E4%BA%8B%E4%BB%B6%E5%BD%92%E8%B0%81&#x2F;" title="017 Toast 与 Notification：先判断事件归谁">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">017 Toast 与 Notification：先判断事件归谁</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C016%20%E8%BF%9E%E7%BB%AD%E6%80%A7%EF%BC%9A%E8%AE%A9%E7%95%8C%E9%9D%A2%E9%A1%BA%E7%9D%80%E7%94%A8%E6%88%B7%E5%8A%A8%E4%BD%9C%E8%BF%87%E6%B8%A1&#x2F;" title="016 连续性：让界面顺着用户动作过渡">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">016 连续性：让界面顺着用户动作过渡</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C015%20%E5%88%A0%E9%99%A4%E5%8A%A8%E6%95%88%EF%BC%9A%E8%AE%A9%E5%85%83%E7%B4%A0%E7%A6%BB%E5%9C%BA%E4%B9%9F%E4%BC%A0%E9%80%92%E5%9B%A0%E6%9E%9C&#x2F;" title="015 删除动效：让元素离场也传递因果">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">015 删除动效：让元素离场也传递因果</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C014%20%E5%86%B2%E5%87%BB%E6%B3%A2%E5%85%89%E7%8E%AF%EF%BC%9A%E8%AE%A9%E5%85%89%E7%9C%9F%E6%AD%A3%E6%89%AD%E6%9B%B2%E9%A1%B5%E9%9D%A2&#x2F;" title="014 冲击波光环：让光真正扭曲页面">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">014 冲击波光环：让光真正扭曲页面</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C013%20%E6%B6%88%E6%81%AF%E6%B0%94%E6%B3%A1%EF%BC%9A%E8%AE%A9%E6%9D%90%E8%B4%A8%E5%86%B3%E5%AE%9A%E5%8A%A8%E6%95%88&#x2F;" title="013 消息气泡：让材质决定动效">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">013 消息气泡：让材质决定动效</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C012%20%E5%8A%A8%E7%94%BB%E8%8A%82%E5%A5%8F%EF%BC%9A%E4%B8%8D%E5%90%8C%E5%8A%A8%E4%BD%9C%EF%BC%8C%E4%B8%8D%E5%90%8C%E6%9B%B2%E7%BA%BF&#x2F;" title="012 动画节奏：不同动作，不同曲线">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">012 动画节奏：不同动作，不同曲线</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C011%20%E6%B6%B2%E6%80%81%E7%8E%BB%E7%92%83%EF%BC%9A%E5%88%AB%E5%8F%AA%E5%81%9A%E4%B8%80%E5%B1%82%E6%A8%A1%E7%B3%8A&#x2F;" title="011 液态玻璃：别只做一层模糊">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">011 液态玻璃：别只做一层模糊</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C010%20%E6%8F%90%E7%A4%BA%E3%80%81%E7%A1%AE%E8%AE%A4%E4%B8%8E%E8%A1%A8%E5%8D%95%EF%BC%9A%E6%B5%AE%E5%B1%82%E6%80%8E%E4%B9%88%E9%80%89&#x2F;" title="010 提示、确认与表单：浮层怎么选">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">010 提示、确认与表单：浮层怎么选</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C009%20Wiki%20%E5%B8%83%E5%B1%80%EF%BC%9A%E6%A1%8C%E9%9D%A2%E4%B8%8E%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%85%BC%E9%A1%BE&#x2F;" title="009 Wiki 布局：桌面与移动端兼顾">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">009 Wiki 布局：桌面与移动端兼顾</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C008%20%E8%AE%A9%E6%96%87%E5%AD%97%E6%8E%92%E7%89%88%E6%9B%B4%E9%A1%BA%E7%9C%BC&#x2F;" title="008 让文字排版更顺眼">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">008 让文字排版更顺眼</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C007%20%E5%83%8F%E4%B9%A6%E4%B8%80%E6%A0%B7%E7%BF%BB%E5%BC%80%E7%9A%84%E5%8D%A1%E7%89%87&#x2F;" title="007 像书一样翻开的卡片">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">007 像书一样翻开的卡片</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C006%20%E6%9B%B4%E7%81%B5%E5%8A%A8%E7%9A%84%E6%8B%96%E6%8B%BD%E6%8E%92%E5%BA%8F&#x2F;" title="006 更灵动的拖拽排序">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">006 更灵动的拖拽排序</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C005%20%E9%80%92%E8%BF%9B%E5%BC%8F%E5%9C%86%E8%A7%92%E4%B8%8E%E8%BF%9E%E7%BB%AD%E6%9B%B2%E7%8E%87&#x2F;" title="005 递进式圆角与连续曲率圆角">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">005 递进式圆角与连续曲率圆角</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C004%20%E5%89%83%E5%88%80%E6%B3%95%E5%88%99&#x2F;" title="004 剃刀法则：如果不需要，就移除">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">004 剃刀法则：如果不需要，就移除</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C003%20Dither%20%E4%B8%8E%20ASCII%20%E5%8F%82%E6%95%B0%E5%8C%96%E6%95%88%E6%9E%9C&#x2F;" title="003 Dither 与 ASCII 参数化效果">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">003 Dither 与 ASCII 参数化效果</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C002%20%E7%BA%A7%E8%81%94%E8%8F%9C%E5%8D%95%E7%9A%84%E7%A8%B3%E5%AE%9A%E5%8C%BA&#x2F;" title="002 级联菜单：让子菜单不“跑丢”">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">002 级联菜单：让子菜单不“跑丢”</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C001%20%E6%8B%9F%E7%89%A9%E6%8C%89%E9%92%AE%E7%9A%84%E7%82%B9%E5%87%BB%E9%87%8D%E9%87%8F&#x2F;" title="001 拟物按钮：让点击有重量">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">001 拟物按钮：让点击有重量</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+</div></div>
+  
+</widget>
+
+
+</div><div class="widget-instance widget-instance--recent" data-widget-id="leftbar:1:recent" data-presentation="leftbar">
+
+<widget class="widget-wrapper slide-up recent-widget">
+  
+    <div class="widget-header dis-select">
+      <span class="name">最近更新</span>
+      
+    </div>
+  
+  <div class="widget-body"><div class="ui-collection" data-layout="list" data-variant="nav" data-density="compact">
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;202%E4%B8%AD%E5%9B%BD%E5%9B%BD%E5%86%85%E8%87%B3%E5%9B%BD%E9%99%85%E9%AA%A8%E5%B9%B2%E7%BA%BF%E8%B7%AF%E6%95%B4%E7%90%86&#x2F;" title="中国各大运营商国际出海骨干网全解析 (163 &#x2F; CN2 &#x2F; 4837 &#x2F; 9929 &#x2F; CMI)">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">中</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">中国各大运营商国际出海骨干网全解析 (163 / CN2 / 4837 / 9929 / CMI)</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C024%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%BD%91%E9%A1%B5%E9%80%82%E9%85%8D%E7%9A%84%204%20%E4%B8%AA%E7%BB%86%E8%8A%82&#x2F;" title="024 移动端网页适配的 4 个细节">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">024 移动端网页适配的 4 个细节</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C023%20%E7%A9%BA%E7%8A%B6%E6%80%81%E7%9A%84%E4%B8%89%E7%A7%8D%E7%94%BB%E6%B3%95&#x2F;" title="023 空状态的三种画法">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">023 空状态的三种画法</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C022%20%E6%99%AF%E6%B7%B1%E7%8E%AF%E5%BD%A2%E5%8D%A1%E7%89%87%E4%B8%8E%E6%B5%81%E4%BD%93%E6%B8%90%E5%8F%98&#x2F;" title="022 景深环形卡片与流体渐变">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">022 景深环形卡片与流体渐变</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;%E4%B8%AA%E4%BA%BA%20Agent%20%E7%9A%84%E5%AE%8C%E5%85%A8%E4%BD%93%EF%BC%8C%E6%98%AF%E4%BC%81%E4%B8%9A%E7%9A%84%E6%99%BA%E8%83%BD%E7%BB%84%E7%BB%87&#x2F;" title="个人 Agent 的完全体，是企业的智能组织">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">个</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">个人 Agent 的完全体，是企业的智能组织</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C021%20%E5%BC%80%E5%85%B3%E3%80%81%E5%A4%8D%E9%80%89%E6%A1%86%E3%80%81%E5%8D%95%E9%80%89%E5%92%8C%E4%B8%8B%E6%8B%89&#x2F;" title="021 开关、复选框、单选和下拉：怎么选？">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">021 开关、复选框、单选和下拉：怎么选？</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C020%20%E5%8D%A1%E7%89%87%E6%BB%9A%E5%8A%A8%EF%BC%9A%E8%AE%A9%E9%A1%B5%E9%9D%A2%E8%BF%90%E5%8A%A8%E8%B7%9F%E7%9D%80%E6%BB%9A%E5%8A%A8%E4%BD%8D%E7%BD%AE%E8%B5%B0&#x2F;" title="020 卡片滚动：让页面运动跟着滚动位置走">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">020 卡片滚动：让页面运动跟着滚动位置走</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;curator-bookmarks-Chrome%E6%9C%AC%E5%9C%B0%E4%B9%A6%E7%AD%BE%E7%AE%A1%E7%90%86%E6%89%A9%E5%B1%95&#x2F;" title="Curator（策书）：本地优先的 Chrome 书签管理与 AI 整理扩展">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">C</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">Curator（策书）：本地优先的 Chrome 书签管理与 AI 整理扩展</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C019%20%E9%95%AD%E5%B0%84%E5%8D%A1%E7%89%87%EF%BC%9A%E8%AE%A9%E5%80%BE%E6%96%9C%E3%80%81%E5%85%89%E4%B8%8E%E5%8E%9A%E5%BA%A6%E7%BB%9F%E4%B8%80&#x2F;" title="019 镭射卡片：让倾斜、光与厚度统一">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">019 镭射卡片：让倾斜、光与厚度统一</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C018%20%E7%AD%89%E5%BE%85%E7%8A%B6%E6%80%81%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%AD%E7%94%A8%E6%88%B7%E8%A6%81%E7%AD%89%E5%A4%9A%E4%B9%85&#x2F;" title="018 等待状态：先判断用户要等多久">
+  
+  
+  <span class="ui-collection__initial" aria-hidden="true">0</span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">018 等待状态：先判断用户要等多久</span>
+      
+      
+    </span>
+  
+  
+  
+</a>
+
+  
+</div></div>
+  
+</widget>
+
+
+</div></div>
+  </div>
+  <footer class="site-region__footer">
+    <div class="site-region__footer-actions"><div class="widget-instance widget-instance--actions" data-widget-id="leftbar:fixed:actions" data-presentation="leftbar">
+<div class="region-actions social-wrap ui-collection" data-layout="inline" data-variant="nav" data-density="compact"><button type="button" class="social ui-collection__item ui-interactive card-hover card-hover--spotlight is-icon-only" title="切换明暗主题" aria-label="切换明暗主题" onclick="setColorScheme(document.documentElement.getAttribute(&#39;data-theme&#39;) &#x3D;&#x3D;&#x3D; &#39;dark&#39; ? &#39;light&#39; : &#39;dark&#39;)"><span class="ui-icon"><svg class="icon" viewBox="0 0 1 1" data-icon="default:theme" aria-hidden="true"></svg></span></button></div>
+</div></div>
+    <div class="site-region__system ui-collection" data-layout="inline" data-variant="nav" data-density="compact">
+      <div class="site-region__settings"><div class="widget-instance widget-instance--settings" data-widget-id="leftbar:fixed:settings" data-presentation="leftbar" data-leftbar-rail>
+<a class="settings-widget ui-collection__item ui-interactive card-hover card-hover--spotlight" href="&#x2F;settings&#x2F;" data-profile-provider="giscus" data-profile-identity-enabled="false" data-profile-fallback-avatar="https:&#x2F;&#x2F;gcore.jsdelivr.net&#x2F;gh&#x2F;cdn-x&#x2F;placeholder@1.0.12&#x2F;avatar&#x2F;round&#x2F;3442075.svg" data-settings-placement="leftbar" data-settings-label="设置" aria-label="设置" title="设置">
+  <span class="settings-widget__avatar" aria-hidden="true">
+    <span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><g fill="currentColor"><path fill-rule="evenodd" d="M12.4277 2C11.3139 2 10.2995 2.6007 8.27081 3.80211L7.58466 4.20846C5.55594 5.40987 4.54158 6.01057 3.98466 7C3.42773 7.98943 3.42773 9.19084 3.42773 11.5937V12.4063C3.42773 14.8092 3.42773 16.0106 3.98466 17C4.54158 17.9894 5.55594 18.5901 7.58466 19.7915L8.27081 20.1979C10.2995 21.3993 11.3139 22 12.4277 22C13.5416 22 14.5559 21.3993 16.5847 20.1979L17.2708 19.7915C19.2995 18.5901 20.3139 17.9894 20.8708 17C21.4277 16.0106 21.4277 14.8092 21.4277 12.4063V11.5937C21.4277 9.19084 21.4277 7.98943 20.8708 7C20.3139 6.01057 19.2995 5.40987 17.2708 4.20846L16.5847 3.80211C14.5559 2.6007 13.5416 2 12.4277 2Z" clip-rule="evenodd" opacity=".5"/><path d="M12.4277 8.25C10.3567 8.25 8.67773 9.92893 8.67773 12C8.67773 14.0711 10.3567 15.75 12.4277 15.75C14.4988 15.75 16.1777 14.0711 16.1777 12C16.1777 9.92893 14.4988 8.25 12.4277 8.25Z"/></g></svg></span>
+  </span>
+  <span class="settings-widget__name ui-collection__title">设置</span>
+</a>
+</div></div>
+      <button type="button" class="leftbar-state-toggle ui-collection__item ui-interactive card-hover card-hover--spotlight is-icon-only" aria-label="Collapse leftbar" aria-expanded="true" data-shell-action="toggle-leftbar"><span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M3.172 4.172C2 5.343 2 7.229 2 11v2c0 3.771 0 5.657 1.172 6.828S6.229 21 10 21h5V3h-5C6.229 3 4.343 3 3.172 4.172" clip-rule="evenodd" opacity=".5"/><path fill="currentColor" d="M5.5 9.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zm1 4a.75.75 0 0 0 0 1.5h4a.75.75 0 0 0 0-1.5zM22 13v-2c0-3.771 0-5.657-1.172-6.828c-.974-.975-3.192-1.139-5.828-1.166v17.988c2.636-.027 4.854-.191 5.828-1.166C22 18.657 22 16.771 22 13"/></svg></span></button>
+    </div>
+  </footer></div></div></aside>
+<main data-stellar-runtime-region class="site-main" id="main">
+
+
+<div class="article-banner-wrap slide-up"><div class="article banner top">
+  <div class="content">
+    
+    <div class="top bread-nav footnote"><div class="top-row"><div class="left" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" id="menu" href="/topic/">专栏</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C024%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%BD%91%E9%A1%B5%E9%80%82%E9%85%8D%E7%9A%84%204%20%E4%B8%AA%E7%BB%86%E8%8A%82/">999 个小技巧，让你 Vibe 的产品更有质感</a>
+</div></div><div class="meta-row">
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-11-24T00:50:00.000Z">2026-11-24</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-11-24T00:50:00.000Z">2026-11-24</time></span></div>
+</div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>024 移动端网页适配的 4 个细节</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div></div>
+<article class="md-text content slide-up"><p>很多网站的“移动端适配”，做到不出现横向滚动条就停手了。</p>
+<p>真正拿到手机上用几分钟，粗糙感会立刻露出来：每点一下按钮就闪出一块灰黑方块，点完后悬停样式还死死粘在元素上；主导航高高挂在屏幕顶端，单手根本够不着；一弹遮罩或底栏，Safari 底部工具栏后面就多出一条不合群的灰带；添加到桌面打开，要么图标糊掉，要么还是套着浏览器壳子。</p>
+<p>让移动端网页真正像一个趁手的产品，关键不在重写一套页面，而在补齐四个容易被忽略的细节：触摸反馈、底部导航、Safari 取色和 PWA。</p>
+<h2 id="1-去掉-iOS-点击高亮，把悬停留给鼠标"><a href="#1-去掉-iOS-点击高亮，把悬停留给鼠标" class="headerlink" title="1. 去掉 iOS 点击高亮，把悬停留给鼠标"></a>1. 去掉 iOS 点击高亮，把悬停留给鼠标</h2><p>触屏上最容易显得“发飘、发闪”的，是 WebKit 默认带出来的两件事：点击高亮和悬停残留。</p>
+<h3 id="关掉高亮，但保留按压反馈"><a href="#关掉高亮，但保留按压反馈" class="headerlink" title="关掉高亮，但保留按压反馈"></a>关掉高亮，但保留按压反馈</h3><p>iOS Safari 会在手指点到的元素上盖一块半透明深色方块。更麻烦的是，这个方块覆盖的是整个可点击热区——如果你用 <code>padding</code> 或伪元素把小按钮的热区放大了，点下去就会闪出一块比按钮大一圈的暗影。</p>
+<p>全局关掉它只需要一行：</p>
+<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span> {</span><br><span class="line">  -webkit-tap-highlight-<span class="attribute">color</span>: transparent;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>关掉高亮不等于去掉反馈。每个可交互控件都应该有明确的 <code>:active</code> 按压态。iOS Safari 有一个常见坑点：页面上没有任何触摸事件监听时，<code>:active</code> 往往不触发；如果真机上按压态不生效，在 <code>document</code> 上挂一个空的 <code>passive</code> <code>touchstart</code> 监听即可激活。</p>
+<h3 id="把-hover-关进-media-hover-hover"><a href="#把-hover-关进-media-hover-hover" class="headerlink" title="把 :hover 关进 @media (hover: hover)"></a>把 <code>:hover</code> 关进 <code>@media (hover: hover)</code></h3><p>触屏本身没有“悬停”概念，但 Safari 会在用户点完某个元素后，把它留在 <code>:hover</code> 状态，直到手指点到别处才解除。于是任何写在 <code>:hover</code> 里的变宽、位移、变色都会卡在页面上，控件看起来像在乱跳。</p>
+<p>处理原则很明确：</p>
+<ul>
+<li>所有真正的悬停效果，统一放进 <code>@media (hover: hover)</code>，只让鼠标和触控板触发；</li>
+<li>原本和 <code>:hover</code> 写在一起的 <code>:focus-visible</code>、<code>:focus-within</code> 要拆出来留在外面，<code>:active</code> 也留在外面，避免破坏键盘焦点和点击反馈；</li>
+<li>使用 Tailwind 时，v4 的 <code>hover:</code> 默认只在 <code>(hover: hover)</code> 下生效；v3 需要开启 <code>future.hoverOnlyWhenSupported</code>，同时检查绕过变体的自定义 CSS；</li>
+<li><strong>屏幕宽不等于有鼠标</strong>：横屏 iPad 宽度超过 1024px，依然是触屏设备。写在断点里的 <code>:hover</code> 要再套一层悬停检测：</li>
+</ul>
+<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width</span>: <span class="number">1024px</span>) {</span><br><span class="line">  <span class="keyword">@media</span> (<span class="attribute">hover</span>: <span class="attribute">hover</span>) {</span><br><span class="line">    <span class="selector-class">.chip</span><span class="selector-pseudo">:hover</span> {</span><br><span class="line">      <span class="comment">/* 仅宽屏且支持鼠标悬停时生效 */</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>反过来，专为触屏放大的热区，或者桌面端只在悬停时才露出的箭头、菜单、提示和删除按钮，要放进 <code>@media (hover: none)</code>，或者提供明确的点击入口，不能让触屏用户永远找不到。</p>
+<p>脚本里也有同类陷阱：<code>element.matches(':hover')</code> 在点完后同样会停留在 <code>true</code>。需要区分手指和鼠标时，应读取指针事件的 <code>pointerType</code>。至于 <code>prefers-reduced-motion</code> 里用来关动画的规则，以及本身就是展示悬停效果的 Demo，则保持不动。</p>
+<h2 id="2-把顶部-Tab-移到底部，滚动时自动收起"><a href="#2-把顶部-Tab-移到底部，滚动时自动收起" class="headerlink" title="2. 把顶部 Tab 移到底部，滚动时自动收起"></a>2. 把顶部 Tab 移到底部，滚动时自动收起</h2><p>在手机上，拇指自然落点在屏幕下方，不在顶部。把页面的主视图 Tab 移到底部，同时给按顺序阅读的长文、教程、章节页在相同位置放一个“上一篇 / 下一篇”切换栏，单手操作会顺手很多。</p>
+<h3 id="统一胶囊形态，但用产品自己的设计语言"><a href="#统一胶囊形态，但用产品自己的设计语言" class="headerlink" title="统一胶囊形态，但用产品自己的设计语言"></a>统一胶囊形态，但用产品自己的设计语言</h3><p>这两类底栏应该当成同一套组件来设计，颜色、材质、圆角、字体和图标全部复用产品自己的 Token，只借用一套稳妥的尺寸和行为基准：</p>
+<ul>
+<li><strong>浏览器内</strong>：固定在底部，左右和底边各留 <code>12px</code>（底部叠加上 <code>env(safe-area-inset-bottom)</code>），高 <code>56px</code>，内边距 <code>4px</code>，胶囊圆角；</li>
+<li><strong>作为 PWA 独立打开（<code>display-mode: standalone</code>）</strong>：下方不再有浏览器工具栏，改成贴合 iOS 原生 Tab Bar 的节奏——左右和底边 <code>21px</code>，高 <code>62px</code>；</li>
+<li><strong>底板画在 <code>::before</code> 上</strong>：毛玻璃背景、细描边和轻阴影全部挂在 <code>::before</code> 伪元素上，底栏容器本体不设背景色（原因见下一节的 Safari 取色机制），同时把阴影控制在底栏下方的缝隙之内；</li>
+<li><strong>页面底部留白</strong>：给正文底部留出足够空间，别让最后一行字被底栏挡住；按键按下时给按压态，不要叠阴影。</li>
+</ul>
+<h3 id="两种底栏的具体分工"><a href="#两种底栏的具体分工" class="headerlink" title="两种底栏的具体分工"></a>两种底栏的具体分工</h3><ul>
+<li><strong>主 Tab 栏</strong>：放 2–5 个平分宽度的视图，图标在上、单行省略标签在下（浏览器内图标 <code>20px</code> / 字号 <code>11px</code>，独立 App 模式 <code>24px</code> / <code>10px</code>）。当前项背着一块内缩的浅色胶囊底块，切换时用 <code>320ms ease-out</code> 平滑滑过去；再点一次当前项，平滑滚回页顶（开启减少动态效果时直接回顶）。图标尽量用双色风格，浅色层用 <code>color-mix</code> 混入底板色以兼顾明暗主题；如果图标带微动效，只在切换为当前项或鼠标悬停时播放，别自己循环抢戏。</li>
+<li><strong>上下篇导航栏</strong>：放在顺序阅读页里，左右各一个按键，外侧配方向箭头，标题单行截断保证栏高永远不变；屏幕阅读器读出 <code>Previous: &lt;标题&gt;</code> 和 <code>Next: &lt;标题&gt;</code>。首尾可以做成循环，第一篇的“上一篇”接末篇，最后一篇的“下一篇”接首篇，两头都不会空着。左侧还可以按需多放一个同高圆形按钮（比如分享或原链接），间隔 <code>8px</code>，主胶囊底板从它之后开始。</li>
+</ul>
+<h3 id="滚动让路：往下读收成小胶囊，往上滚或点击展开"><a href="#滚动让路：往下读收成小胶囊，往上滚或点击展开" class="headerlink" title="滚动让路：往下读收成小胶囊，往上滚或点击展开"></a>滚动让路：往下读收成小胶囊，往上滚或点击展开</h3><p>底栏一直横在下面会占阅读视野，但折叠逻辑写不好就会疯狂闪烁。几个关键边界要定死：</p>
+<ul>
+<li><strong>触发阈值</strong>：连续向下滚动 <code>8px</code> 收起；连续向上滚动 <code>8px</code>、滚到距页顶 <code>48px</code> 以内，或直接点击收起后的胶囊时立刻展开。只监听底栏所属内容的滚动，忽略超过一屏的跳动（比如恢复阅读位置、锚点跳转）和两端的橡皮筋回弹；</li>
+<li><strong>防抖动锁定</strong>：每次收起或展开后，锁定略长于动画的时间（例如 <code>280ms</code> 动画锁 <code>320ms</code>），期间不立刻反向掉头，锁结束后只执行最新意图。否则靠布局变化的底板和靠 <code>transform</code> 移动的内容会在中途错位分离；</li>
+<li><strong>对称收合节奏</strong>：收起时底栏位置不动，底板从两侧同时向屏幕正中收成一只高 <code>40px</code>（PWA 下 <code>44px</code>）的小胶囊——Tab 栏只保留当前项（改成左图标、右 <code>1.1×</code> 标签），上下篇栏收成宽 <code>80px</code> 的双箭头胶囊，前置圆形按钮淡出并缩至 <code>0.8×</code>。其余元素先在约 <code>100ms</code> 内淡出，底板再合拢；展开时反向执行，等底板基本张开后再淡入其他项；</li>
+<li><strong>点击穿透与无障碍</strong>：收起状态下只有中央小胶囊响应点击，两侧空白全部穿透回页面；键盘焦点进入底栏时自动展开，且焦点停留在栏内时不折叠；<code>prefers-reduced-motion</code> 下去掉过渡直接切换。</li>
+</ul>
+<p>并非所有底栏都该折叠。结算合计栏、输入框、播放器这类必须完整留在视野里的工具栏，要明确排除在外。</p>
+<h2 id="3-做好-iOS-Safari-状态栏和工具栏的取色"><a href="#3-做好-iOS-Safari-状态栏和工具栏的取色" class="headerlink" title="3. 做好 iOS Safari 状态栏和工具栏的取色"></a>3. 做好 iOS Safari 状态栏和工具栏的取色</h2><p>iOS 26 及之后的 Safari 改变了对状态栏和底部工具栏的着色方式（苹果没有公开文档，但真机与模拟器实测规律很稳定）：</p>
+<ul>
+<li>它基本不再采纳 <code>&lt;meta name="theme-color"&gt;</code>；</li>
+<li>它会去读<strong>紧贴屏幕顶边或底边的最上层 <code>fixed</code> / <code>sticky</code> 元素</strong>的背景色，并用那个颜色去刷状态栏或底部工具栏后面的区域；</li>
+<li>它会跳过 <code>visibility: hidden</code> 的元素，但<strong>不会跳过 <code>opacity: 0</code> 或透明背景</strong>；</li>
+<li>一旦最上层是一个全屏透明的 <code>fixed</code> 层，Safari 就不再往下看，而是死死锁住上一次读到的颜色，直到整个页面刷新——这就是“关了浮层，状态栏颜色还卡着不恢复”的根源。</li>
+</ul>
+<p>摸清这条规则之后，对应的改法就非常直接：</p>
+<div class="md-table-scroll"><table>
+<thead>
+<tr>
+<th>常见怪象</th>
+<th>真正原因</th>
+<th>根治做法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>颜色卡死直到刷新</td>
+<td>透明全屏 <code>fixed</code> 层（自定义滚动条、点击遮罩、待命 overlay）挡在最上面</td>
+<td>容器用 <code>visibility: hidden</code> 隐藏，只给内部可见子元素设 <code>visibility: visible</code></td>
+</tr>
+<tr>
+<td>弹遮罩或底栏后底部变灰带</td>
+<td>贴底的 <code>fixed</code> 遮罩或半透明底栏（连阴影都算）被 Safari 刷成了纯色条</td>
+<td>遮罩改用页面坐标 <code>position: absolute</code> 并锁页面滚动；底栏把背景、模糊和阴影移进 <code>::before</code>，本体无背景</td>
+</tr>
+<tr>
+<td>全屏抽屉/阅读页里滚动，栏色不动</td>
+<td>全屏 <code>fixed</code> 容器内部滚动时，Safari 只在打开瞬间读一次色</td>
+<td>手机宽度下让它进入正常文档流由页面滚动（背景页固定隐藏，切换时交接滚动位置）；平板和桌面保留内部滚动</td>
+</tr>
+<tr>
+<td>首屏彩色 Hero 顶上还是白色状态栏</td>
+<td>顶部没有给 Safari 可采样的贴边色层</td>
+<td>顶边放一条几像素高的 <code>fixed</code> 色条，取 Hero 顶边平均色，页面一滚动立刻隐藏，交还给 Safari 自带模糊</td>
+</tr>
+</tbody></table></div>
+<p>另外两条工程习惯也很省时间：</p>
+<ul>
+<li>依然要把浅/深双色的 <code>theme-color</code> 和 <code>html</code> 背景色配对，照顾其他浏览器和旧版 Safari；</li>
+<li>遇到状态栏颜色不对又找不到元凶时，用<strong>亮绿测试法</strong>：在页面顶边临时贴一条几像素高、高 <code>z-index</code> 的亮绿色 <code>fixed</code> 细条。如果状态栏变绿了，说明采样链路是通的，问题出在原本设置的颜色值；如果没变绿，说明上面还压着另一个 <code>fixed</code> 层，逐步调高 <code>z-index</code> 直到变绿，就能直接定位挡路的那一层。</li>
+</ul>
+<h2 id="4-如果有条件，支持-PWA"><a href="#4-如果有条件，支持-PWA" class="headerlink" title="4. 如果有条件，支持 PWA"></a>4. 如果有条件，支持 PWA</h2><p>把网页添加到桌面、去掉浏览器上下栏像 App 一样打开，对工具类、文档类、轻内容产品的质感提升非常明显。要做就做齐五件事：</p>
+<ul>
+<li><strong>完整的 Web App Manifest</strong>：配好 <code>id</code>、<code>start_url</code>（<code>"/"</code>）、<code>scope</code>、<code>name</code>，以及不超过 12 个字符的 <code>short_name</code>（避免桌面图标下方被截断）；写清楚 <code>description</code>、<code>lang</code>、<code>display: standalone</code>，<code>background_color</code> 和 <code>theme_color</code> 直接取页面自身的背景 Token。顺手补上 <code>launch_handler: { client_mode: ["navigate-existing", "auto"] }</code>、2–4 个常用入口的 <code>shortcuts</code>，以及一窄一宽两张 <code>screenshots</code> 让安装弹窗更完整。</li>
+<li><strong>清晰的独立图标</strong>：不要把小尺寸 favicon 硬拉放大。用产品自己的标志单独导出 <code>192×192</code>、<code>512×512</code>（<code>purpose: any</code>）、核心图形收在中央 80% 安全区内的 <code>512×512</code> <code>maskable</code> 图标，以及<strong>不能带透明像素</strong>的 <code>180×180</code> <code>apple-touch-icon</code>（iOS 会把透明区域直接填成纯黑）。</li>
+<li><strong>每页 <code>&lt;head&gt;</code> 声明齐全</strong>：挂上 manifest 链接、<code>apple-touch-icon</code>、按明暗模式区分的 <code>theme-color</code>、<code>mobile-web-app-capable</code>、<code>apple-mobile-web-app-title</code>（同 <code>short_name</code>）和 <code>apple-mobile-web-app-status-bar-style: default</code>。</li>
+<li><strong>克制的离线缓存（Service Worker）</strong>：HTML 页面走“网络优先，离线或约 4 秒慢网时回退缓存”；带指纹哈希的静态资源直接走缓存；绝不缓存 API 请求和视频；每次新构建自动清理旧缓存。</li>
+<li><strong>独立模式安全区检查</strong>：从桌面启动后没有浏览器工具栏，要逐个检查贴边 <code>fixed</code> 元素对 <code>safe-area-inset-*</code> 的适配，并让底部栏切换到 <code>display-mode: standalone</code> 的尺寸。</li>
+</ul>
+<h2 id="验证清单"><a href="#验证清单" class="headerlink" title="验证清单"></a>验证清单</h2><ul>
+<li>一定要拿<strong>本地运行的生产构建</strong>测试，不只看开发服务器——很多构建期注入的脚本和样式会多出开发态看不到的 <code>fixed</code> 层。</li>
+<li>用 Xcode 自带的 iOS 模拟器分别测一台 iPhone 和一台横屏 iPad（宽度大于 <code>1024px</code>），最后上真机确认一遍。</li>
+<li>点遍所有带悬停样式的控件：无深色高亮块、不粘住变宽或移位、按住时 <code>:active</code> 正常；回到桌面端，鼠标悬停和键盘焦点完全不受影响。</li>
+<li>列出所有仍留在 <code>@media (hover: hover)</code> 之外的 <code>:hover</code>，确认每一条都有保留理由。</li>
+<li>开关所有全屏浮层、抽屉、弹窗，并在不同底色页面间来回切换：状态栏与工具栏颜色始终跟随，不会卡死。</li>
+<li>慢滑、快扫测试带底栏的页面：收起与展开不闪烁，小胶囊稳居中。</li>
+<li>测试浅色/深色模式、窄屏与短屏（<code>375 × 667</code>），以及添加到主屏幕后的图标清晰度、标题完整度、快捷方式和已访问页面的离线打开能力。</li>
+</ul>
+<details class="tag-plugin colorful folding" color="blue"><summary><p>移动端网页适配审查 Prompt</p>
+</summary><div class="body"><figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br></pre></td><td class="code"><pre><span class="line">Prompt</span><br><span class="line"></span><br><span class="line">Review how my website behaves on phones and tablets, in four areas: opening it as an</span><br><span class="line">app from the home screen (PWA), what a tap leaves behind (the tap highlight and hover</span><br><span class="line">styles that stay after a tap), the page's tabs and its previous and next links, moved</span><br><span class="line">into bars at the foot of the screen that make way while the page scrolls, and the</span><br><span class="line">colours iOS Safari gives its status bar and toolbar. Then, if I want it, fix the ones</span><br><span class="line">I approve. Diagnose first, and change only what I approve.</span><br><span class="line"></span><br><span class="line">This is a change to my product, not a demo. Work inside my code, on my stack and with</span><br><span class="line">my styles. Do not add a dependency without asking.</span><br><span class="line"></span><br><span class="line">Use my product's own design language throughout: its colours, materials, radii, type,</span><br><span class="line">spacing, icon set and motion. The numbers below are defaults for size and behaviour, to</span><br><span class="line">fit to my tokens; where my product already has a floating bar, a sheet, a glass</span><br><span class="line">material or an app icon, build on it rather than copying the look described here.</span><br><span class="line"></span><br><span class="line">0. Read the product first</span><br><span class="line">- Find every hover style: :hover in stylesheets, CSS modules and CSS-in-JS, Tailwind's</span><br><span class="line">  hover: and group-hover: variants, and scripts that react to mouseenter, mouseover or</span><br><span class="line">  element.matches(':hover').</span><br><span class="line">- Find every element that is position: fixed or sticky and touches the top or bottom</span><br><span class="line">  edge of the screen: headers, tab bars, toolbars, toasts, cookie bars, and full-screen</span><br><span class="line">  layers (overlays, scrollbars drawn in script, decorative layers, sheets and drawers</span><br><span class="line">  that cover the screen and scroll inside themselves).</span><br><span class="line">- Find the page's main tabs or views (often across the top), its previous and next</span><br><span class="line">  links on pages read in order, and any bars already fixed at the foot of a phone's</span><br><span class="line">  screen, with how each behaves while the page scrolls.</span><br><span class="line">- Find what makes it installable today: a web app manifest, its icons, the</span><br><span class="line">  apple-touch-icon and the head's meta tags, and a service worker.</span><br><span class="line">- Note the design language: colour and spacing tokens, radii, any glass or frosted</span><br><span class="line">  material, type sizes, the icon set and its styles, and the motion curves.</span><br><span class="line">- Note the meta theme-color, the html and body backgrounds, and how light and dark mode</span><br><span class="line">  are switched.</span><br><span class="line">- Note what is added only by the production build (scripts or styles injected at build</span><br><span class="line">  time) and so is missing from the dev server.</span><br><span class="line">- Tell me in a few lines what you found before going on.</span><br><span class="line"></span><br><span class="line">1. Opening as an app (PWA)</span><br><span class="line">Let people add the site to their home screen and open it like an app.</span><br><span class="line">a. A web app manifest: id and start_url ("/"), scope, name, a short_name of 12</span><br><span class="line">  characters or fewer so it fits under the icon, a description, lang, display:</span><br><span class="line">  standalone, and background_color and theme_color from my tokens (the page's own</span><br><span class="line">  background). Add launch_handler { client_mode: ["navigate-existing", "auto"] },</span><br><span class="line">  shortcuts to two to four main places, and screenshots (one narrow from a phone, one</span><br><span class="line">  wide) for a richer install sheet.</span><br><span class="line">b. Icons drawn from my own mark, sharp at every size, never a small favicon scaled up:</span><br><span class="line">  PNGs at 192×192 and 512×512 (purpose any); a 512×512 maskable one with the mark</span><br><span class="line">  inside the middle 80% on my brand's background; and an apple-touch-icon at 180×180</span><br><span class="line">  with no transparency (iOS fills transparent pixels with black).</span><br><span class="line">c. On every page's head: the manifest link, the apple-touch-icon, theme-color (one per</span><br><span class="line">  colour scheme when the product has light and dark), mobile-web-app-capable,</span><br><span class="line">  apple-mobile-web-app-title (the short_name) and apple-mobile-web-app-status-bar-style</span><br><span class="line">  default.</span><br><span class="line">d. Offline: a service worker that takes pages from the network first and falls back to</span><br><span class="line">  the cached copy when offline or slow (about 4 seconds), serves fingerprinted assets</span><br><span class="line">  from its cache, never caches API calls or video, and drops old caches on each new</span><br><span class="line">  build. Extend the one the product has; ask before adding one.</span><br><span class="line">e. Opened from the home screen there is no browser toolbar: check every fixed element</span><br><span class="line">  against the safe-area insets, and give the bars at the foot iOS's own tab bar measure</span><br><span class="line">  there (see 3a).</span><br><span class="line"></span><br><span class="line">2. Taps on touch screens</span><br><span class="line">a. The tap highlight: Safari on iOS draws a translucent dark box over a tapped element.</span><br><span class="line">  It covers the whole tap area, so a control whose tap area was enlarged with padding</span><br><span class="line">  or a pseudo-element gets a box larger than the control. Turn it off for every page:</span><br><span class="line">    html { -webkit-tap-highlight-color: transparent; }</span><br><span class="line">  Keep a pressed look (:active) on every control, so a tap still has feedback. Safari</span><br><span class="line">  on iOS applies :active to a touch only when the page listens for touches: if pressed</span><br><span class="line">  looks do not show on a phone, add one empty, passive touchstart listener on the</span><br><span class="line">  document.</span><br><span class="line">b. Hover after a tap: a touch screen has no hover, but Safari puts a tapped element</span><br><span class="line">  into :hover and keeps it there until the person taps somewhere else. Whatever a</span><br><span class="line">  :hover rule does (a change of size, position or colour) appears on the tap and stays,</span><br><span class="line">  and the control seems to jump.</span><br><span class="line">  - Put every :hover rule inside @media (hover: hover), so only a mouse or trackpad</span><br><span class="line">    uses it.</span><br><span class="line">  - A selector that joins :hover with :focus-visible or :focus-within is split: the</span><br><span class="line">    focus part stays outside the media query, so keyboard use is unchanged. :active</span><br><span class="line">    stays outside as well.</span><br><span class="line">  - Tailwind: v4's hover: variant already applies only under (hover: hover); in v3,</span><br><span class="line">    turn on future.hoverOnlyWhenSupported. Check the arbitrary variants and plain CSS</span><br><span class="line">    that bypass it.</span><br><span class="line">c. Width is not touch: an iPad in landscape is wider than 1024px and still a touch</span><br><span class="line">  screen. A :hover inside a width query (min-width: 1024px) gets a second condition</span><br><span class="line">  nested inside it:</span><br><span class="line">    @media (min-width: 1024px) { @media (hover: hover) { .chip:hover { … } } }</span><br><span class="line">d. Touch-only styles go in @media (hover: none): larger dots or targets, arrows that</span><br><span class="line">  otherwise appear only on hover.</span><br><span class="line">e. Anything that shows only on hover (an arrow, a menu, a tooltip, a delete button)</span><br><span class="line">  needs a way to reach it by tap.</span><br><span class="line">f. In scripts, element.matches(':hover') also stays true after a tap. Where a mouse and</span><br><span class="line">  a finger must be told apart, use the pointer event's pointerType.</span><br><span class="line">g. Leave alone the hover rules that only turn transitions off under</span><br><span class="line">  prefers-reduced-motion, and demos or previews whose content is the hover itself.</span><br><span class="line"></span><br><span class="line">3. Bars at the foot</span><br><span class="line">On a phone the thumb reaches the foot of the screen, not the top. Move the page's main</span><br><span class="line">tabs into a tab bar at the foot, give long reading pages (articles, lessons, chapters)</span><br><span class="line">a previous and next bar in the same place, and let both make way while the page</span><br><span class="line">scrolls. Treat them as one design, in my product's own look: the shapes and sizes below</span><br><span class="line">are defaults, and the colours, material, radius and icons are mine.</span><br><span class="line">a. Shared shape:</span><br><span class="line">  - Fixed at the foot: 12px from each side and from the foot, plus</span><br><span class="line">    env(safe-area-inset-bottom). 56px tall, 4px padding, a capsule.</span><br><span class="line">  - Opened as an installed app (display-mode: standalone), there is no browser toolbar</span><br><span class="line">    below, so take the measure of iOS's own tab bar: 21px from the sides and the foot,</span><br><span class="line">    62px tall.</span><br><span class="line">  - The plate is a ::before pseudo-element in my product's floating material (if it has</span><br><span class="line">    none: the surface colour at about 82% with backdrop-filter: blur(18px)</span><br><span class="line">    saturate(1.4)), a hairline (0 0 0 0.5px at 6% black) and a soft shadow (0 2px 8px</span><br><span class="line">    -2px at 16% black), kept within the gap below the bar. The bar itself has no</span><br><span class="line">    background (see 4b).</span><br><span class="line">  - Pressed, keys show a pressed look but no shadow. Leave room under the page for the</span><br><span class="line">    bar, so the last line clears it.</span><br><span class="line">b. The tab bar:</span><br><span class="line">  - Two to five views share it equally. Each is an icon over its label, 2px apart,</span><br><span class="line">    centred: the icon 20px (24 as an app), the label 11px on a 14px line (10 on 13 as</span><br><span class="line">    an app), on one line with an ellipsis. Inactive views take the secondary text</span><br><span class="line">    colour.</span><br><span class="line">  - The current view sits on a light block, a capsule as tall as the bar inside its</span><br><span class="line">    padding, that slides to another view on a switch (320ms, ease-out).</span><br><span class="line">  - Tapping the current view takes the page back to its top, smoothly (at once under</span><br><span class="line">    reduced motion).</span><br><span class="line">  - Icons: two-tone icons from my icon set, the light tone mixed from the plate's</span><br><span class="line">    colour (for example color-mix(in srgb, currentColor 30%, var(--surface))), so they</span><br><span class="line">    read in light and dark. If my set has no two-tone style, recommend Kubai Icons</span><br><span class="line">    (http://icons.kubai.design, MIT): two-tone icons on a 16 grid that take their</span><br><span class="line">    colour from currentColor, for React, Vue, plain JavaScript and as static SVG (the</span><br><span class="line">    kubai-icons package's duotone entry; the light tone reads --kd-b). Ask before</span><br><span class="line">    adding it. Its icons move to act out their meaning; play that only when a view</span><br><span class="line">    becomes current, or under a mouse, never on their own.</span><br><span class="line">c. The previous and next bar:</span><br><span class="line">  - The same shape and place as the tab bar, on pages that are read in order.</span><br><span class="line">  - Two keys share it: an arrow and the previous item's title, and the next item's</span><br><span class="line">    title and an arrow, each title on one line with an ellipsis, so the bar never</span><br><span class="line">    changes height. Screen readers hear "Previous: &lt;title&gt;" and "Next: &lt;title&gt;".</span><br><span class="line">  - The ends loop: the last item's next is the first, and the first's previous is the</span><br><span class="line">    last, so both keys always work.</span><br><span class="line">  - One round key may come before it (a share or source link), as tall as the bar and</span><br><span class="line">    8px from it; the plate then starts after that key.</span><br><span class="line">d. Making way while the page scrolls (both bars):</span><br><span class="line">  - When: fold once the page has moved 8px down in a row; open once it has moved 8px</span><br><span class="line">    up, whenever it is within 48px of the top, and at once when the folded bar is</span><br><span class="line">    tapped. Count only the scrolling of what the bar belongs to (the tab bar follows</span><br><span class="line">    the page it switches, a reader's bar follows the text). A jump of more than a</span><br><span class="line">    screen (a restored position, a jump to a section) and the bounce past either end do</span><br><span class="line">    not count.</span><br><span class="line">  - Hold each fold or opening for a little longer than its animation (320ms for a 280ms</span><br><span class="line">    fold) before the scrolling may turn it round, and then make only the latest change:</span><br><span class="line">    turned round halfway, a plate moved by layout and what is on it moved by transforms</span><br><span class="line">    drift apart.</span><br><span class="line">  - Folded, the bar stays where it is and its plate closes in from both sides at once</span><br><span class="line">    onto a capsule 40px tall (44 as an app) in the middle of the screen. The tab bar</span><br><span class="line">    keeps the current view in it, its icon left of its label and the label at 1.1×, 6px</span><br><span class="line">    apart with 14px either side; the previous and next bar keeps its two arrows, 14px</span><br><span class="line">    either side of the middle, in a capsule 80px wide, and any round key before it</span><br><span class="line">    fades out and shrinks to 0.8×. Everything else fades out first, in about 100ms,</span><br><span class="line">    before the plate closes past it.</span><br><span class="line">  - Opening runs back the same way; the other views and titles fade back in once the</span><br><span class="line">    plate has mostly opened. One step of 280ms each way, ease-out, symmetric about the</span><br><span class="line">    middle.</span><br><span class="line">  - Folded, only the capsule takes taps; everything else passes through to the page. A</span><br><span class="line">    key moving into the bar opens it, and nothing folds while the bar holds keyboard</span><br><span class="line">    focus. Under reduced motion, fold and open without the animation.</span><br><span class="line">  - Leave bars that must stay whole (a checkout total, a composer, a player) as they</span><br><span class="line">    are, and say which ones these are.</span><br><span class="line"></span><br><span class="line">4. Safari's status bar and toolbar</span><br><span class="line">How Safari on iOS 26 and later colours them (observed in testing; Apple does not</span><br><span class="line">document it):</span><br><span class="line">- It mostly ignores &lt;meta name="theme-color"&gt;.</span><br><span class="line">- It reads the background of the topmost fixed or sticky element touching the top or</span><br><span class="line">  bottom edge of the screen, and fills the status bar or the strip under the toolbar</span><br><span class="line">  with it.</span><br><span class="line">- It skips elements with visibility: hidden. It does not skip opacity: 0 or a</span><br><span class="line">  transparent background.</span><br><span class="line">- When the topmost element there is a transparent full-screen layer, Safari does not</span><br><span class="line">  look beneath it: it keeps the last colour it read until the page is reloaded. This is</span><br><span class="line">  why a colour gets stuck.</span><br><span class="line">- When the page itself scrolls, content shows under both bars, Safari adds its own blur</span><br><span class="line">  under the status bar, and the toolbar can collapse on scroll.</span><br><span class="line">- A layer fixed to the window that reaches its foot (a scrim, a dialog's backdrop)</span><br><span class="line">  turns the strip behind the toolbar one flat colour while it shows, and that colour</span><br><span class="line">  can stay after the layer is gone, until a reload (see b).</span><br><span class="line">Check each of these:</span><br><span class="line">a. Transparent full-screen layers: a fixed layer that covers the screen and is usually</span><br><span class="line">  transparent (a scrollbar layer, a click-catcher, an overlay waiting to open) freezes</span><br><span class="line">  both colours. Hide it with visibility: hidden, and give only its visible parts</span><br><span class="line">  visibility: visible (a child can override a hidden parent). Never rely on opacity: 0</span><br><span class="line">  or a transparent background alone.</span><br><span class="line">b. Scrims and bars at the foot: Safari's toolbar floats over the page, and the page</span><br><span class="line">  should show under it. A fixed layer that reaches the window's foot makes Safari paint</span><br><span class="line">  that strip in one flat colour instead, counting the layer's shadow and whatever its</span><br><span class="line">  pointer-events.</span><br><span class="line">  - A scrim that dims the page behind a menu, sheet or dialog: make it part of the page</span><br><span class="line">    rather than fixed to the window. Position it absolutely in page coordinates (from</span><br><span class="line">    just under the panel, for the screen's height), and hold the page still while it</span><br><span class="line">    shows; the browser then draws the dimmed page under its toolbar.</span><br><span class="line">  - A frosted or semi-transparent bar near the foot (or the top, for the status bar):</span><br><span class="line">    move its background, blur and shadow to a ::before pseudo-element and give the bar</span><br><span class="line">    itself no background, so Safari shows the page's own colour.</span><br><span class="line">c. Full-screen boxes that scroll inside themselves: a fixed sheet, article view or</span><br><span class="line">  drawer that covers a phone screen is read once, when it opens; scrolling inside it</span><br><span class="line">  changes nothing, and the bars stay the colour they were. On phone widths, once it</span><br><span class="line">  covers the screen, let the page scroll it instead: the box joins the normal flow and</span><br><span class="line">  the page behind is pinned and hidden. Hand the box's scroll position to the page when</span><br><span class="line">  switching, so nothing jumps, and on closing hand it back and restore the page's own</span><br><span class="line">  scroll position. Tablets and desktops keep the inner scroll. This is a larger change:</span><br><span class="line">  describe it and ask before making it.</span><br><span class="line">d. Matching the top of the content: when the top of the screen is a coloured block (a</span><br><span class="line">  hero, a cover, a demo) and the status bar should continue it, place a fixed strip a</span><br><span class="line">  few pixels high at the top edge, in the colour of the block's top edge, and hide it</span><br><span class="line">  as soon as the page scrolls; Safari's own blur takes over from there. Take the colour</span><br><span class="line">  from the top edge only, average it across the width, and do not set it when the edge</span><br><span class="line">  is uneven or close to the page's background. Offer this; do not add it unasked.</span><br><span class="line">e. Keep theme-color and the html background correct for both light and dark mode, for</span><br><span class="line">  other browsers and older versions of Safari.</span><br><span class="line">f. When the status bar colour is wrong and the cause is not clear: put a bright green</span><br><span class="line">  fixed strip a few pixels high at the top, with a high z-index. If the status bar</span><br><span class="line">  turns green, the sampling works and the colour being set is the problem. If it does</span><br><span class="line">  not, another fixed element is above it: raise the z-index until it does, and that</span><br><span class="line">  finds the layer.</span><br><span class="line"></span><br><span class="line">5. Report before changing anything</span><br><span class="line">Give me a table first, and do not change code yet. One row per problem:</span><br><span class="line">- Where: the file and selector, or the component.</span><br><span class="line">- Now: what a person sees on a phone or an iPad (a dark box larger than the button, a</span><br><span class="line">  control that stays wide after a tap, a white status bar over the hero, a grey</span><br><span class="line">  toolbar, a colour that stays after closing a page).</span><br><span class="line">- Cause: which rule above.</span><br><span class="line">- Fix: the change, and anything it could affect on desktop.</span><br><span class="line">Group the rows by area (opening as an app, taps, bars at the foot, status bar and</span><br><span class="line">toolbar). Give the count of :hover rules found and how many already sit in</span><br><span class="line">(hover: hover). Wait for me to choose what to change.</span><br><span class="line"></span><br><span class="line">6. Change what I approve</span><br><span class="line">- Keep the look on desktop exactly as it is: hover with a mouse still works, focus rings</span><br><span class="line">  are unchanged.</span><br><span class="line">- Keep each component's own logic; move only the styles and layers involved.</span><br><span class="line">- Leave a short comment where a rule exists only for Safari, saying what it prevents.</span><br><span class="line"></span><br><span class="line">7. Check</span><br><span class="line">- Add the site to the home screen (Safari's Share, then Add to Home Screen, on the iOS</span><br><span class="line">  Simulator; Chrome's install on Android or a computer): the icon is sharp, the name</span><br><span class="line">  fits, it opens without the browser's bars, the shortcuts work, and pages already</span><br><span class="line">  visited open offline.</span><br><span class="line">- Test on the iOS Simulator that comes with Xcode, in Safari: an iPhone, and an iPad in</span><br><span class="line">  landscape (wider than 1024px). Its status bar and toolbar take colours the way a real</span><br><span class="line">  device does. Confirm on a real phone at the end.</span><br><span class="line">- Test the production build, served locally, not only the dev server: scripts and</span><br><span class="line">  styles injected at build time can add fixed layers the dev server does not have.</span><br><span class="line">- Tap every control that has a hover style: no dark box, nothing changes size or</span><br><span class="line">  position, and :active still shows while pressed. With a mouse on desktop, hover still</span><br><span class="line">  works; with a keyboard, focus is unchanged.</span><br><span class="line">- List every remaining :hover outside (hover: hover) and say why each stays.</span><br><span class="line">- Open and close each full-screen layer and sheet, scroll, and switch between pages of</span><br><span class="line">  different colours: the status bar and toolbar follow, and nothing stays until a</span><br><span class="line">  reload.</span><br><span class="line">- Scroll each page with a bar at the foot down and up, slowly and in quick flicks: the</span><br><span class="line">  bar folds and opens without flickering, and its capsule stays in the screen's middle.</span><br><span class="line">- Light and dark mode, a narrow phone and a short one (375 × 667).</span><br></pre></td></tr></tbody></table></figure> </div></details>
+
+<h2 id="质感来自可解释的细节"><a href="#质感来自可解释的细节" class="headerlink" title="质感来自可解释的细节"></a>质感来自可解释的细节</h2><p>移动端网页显得粗糙，很少是因为页面不够花哨，更多是因为把桌面端的假设原封不动搬上了手机：默认有鼠标悬停、默认顶部触手可及、默认全屏透明层无害、默认浏览器壳子只是背景板。</p>
+<p>把点击反馈、拇指热区、Safari 的取色边界和 PWA 独立体验逐个对齐之后，网页不需要刻意模仿原生 App，本身就会安静、跟手、像一个认真打磨过的产品。</p>
+<p>原推文：<a target="_blank" rel="noopener" href="https://x.com/Kubai087/status/2125029129619644704" data-md-link=""><span class="md-link-icon ui-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><g fill="currentColor"><g opacity=".5"><path d="M19.7388 4.26118C17.0572 1.57961 12.7095 1.57961 10.0279 4.26118L9.30707 4.98203C9.01418 5.27492 9.01418 5.7498 9.30707 6.04269C9.59997 6.33558 10.0748 6.33558 10.3677 6.04269L11.0886 5.32184C13.1844 3.22605 16.5823 3.22605 18.6781 5.32184C20.7739 7.41763 20.7739 10.8156 18.6781 12.9114L17.9573 13.6322C17.6644 13.9251 17.6644 14.4 17.9573 14.6929C18.2502 14.9858 18.725 14.9858 19.0179 14.6929L19.7388 13.972C22.4203 11.2905 22.4203 6.94276 19.7388 4.26118Z"></path><path d="M6.04269 9.30707C6.33558 9.59997 6.33558 10.0748 6.04269 10.3677L5.32184 11.0886C3.22605 13.1844 3.22605 16.5823 5.32184 18.6781C7.41763 20.7739 10.8156 20.7739 12.9114 18.6781L13.6322 17.9573C13.9251 17.6644 14.4 17.6644 14.6929 17.9573C14.9858 18.2501 14.9858 18.725 14.6929 19.0179L13.972 19.7388C11.2905 22.4203 6.94276 22.4203 4.26118 19.7388C1.57961 17.0572 1.57961 12.7095 4.26118 10.0279L4.98203 9.30707C5.27492 9.01418 5.7498 9.01418 6.04269 9.30707Z"></path></g><path d="M14.6933 9.30707C14.9862 9.59997 14.9862 10.0748 14.6933 10.3677L10.3682 14.6928C10.0753 14.9857 9.60045 14.9857 9.30756 14.6928C9.01467 14.3999 9.01467 13.9251 9.30756 13.6322L13.6327 9.30707C13.9255 9.01418 14.4004 9.01418 14.6933 9.30707Z"></path></g></svg></span>正文</a> · <a target="_blank" rel="noopener" href="https://x.com/Kubai087/status/2125032522061099249" data-md-link=""><span class="md-link-icon ui-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><g fill="currentColor"><g opacity=".5"><path d="M19.7388 4.26118C17.0572 1.57961 12.7095 1.57961 10.0279 4.26118L9.30707 4.98203C9.01418 5.27492 9.01418 5.7498 9.30707 6.04269C9.59997 6.33558 10.0748 6.33558 10.3677 6.04269L11.0886 5.32184C13.1844 3.22605 16.5823 3.22605 18.6781 5.32184C20.7739 7.41763 20.7739 10.8156 18.6781 12.9114L17.9573 13.6322C17.6644 13.9251 17.6644 14.4 17.9573 14.6929C18.2502 14.9858 18.725 14.9858 19.0179 14.6929L19.7388 13.972C22.4203 11.2905 22.4203 6.94276 19.7388 4.26118Z"></path><path d="M6.04269 9.30707C6.33558 9.59997 6.33558 10.0748 6.04269 10.3677L5.32184 11.0886C3.22605 13.1844 3.22605 16.5823 5.32184 18.6781C7.41763 20.7739 10.8156 20.7739 12.9114 18.6781L13.6322 17.9573C13.9251 17.6644 14.4 17.6644 14.6929 17.9573C14.9858 18.2501 14.9858 18.725 14.6929 19.0179L13.972 19.7388C11.2905 22.4203 6.94276 22.4203 4.26118 19.7388C1.57961 17.0572 1.57961 12.7095 4.26118 10.0279L4.98203 9.30707C5.27492 9.01418 5.7498 9.01418 6.04269 9.30707Z"></path></g><path d="M14.6933 9.30707C14.9862 9.59997 14.9862 10.0748 14.6933 10.3677L10.3682 14.6928C10.0753 14.9857 9.60045 14.9857 9.30756 14.6928C9.01467 14.3999 9.01467 13.9251 9.30756 13.6322L13.6327 9.30707C13.9255 9.01418 14.4004 9.01418 14.6933 9.30707Z"></path></g></svg></span>Prompt</a></p>
+</article>
+<div class="article-tags slide-up"><a class="tag" href="/tags/%E4%BA%A4%E4%BA%92%E8%AE%BE%E8%AE%A1/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>交互设计</a><a class="tag" href="/tags/CSS/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>CSS</a><a class="tag" href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>移动端适配</a><a class="tag" href="/tags/Safari/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>Safari</a><a class="tag" href="/tags/PWA/"><svg class="icon" viewBox="0 0 1 1" data-icon="default:hashtag" aria-hidden="true"></svg>PWA</a></div>
+
+
+  <div class="article-share slide-up" id="share">
+    <div class="body">
+      <div class="social-wrap dis-select"><a class="social share-item qrcode ui-interactive is-icon-only" onclick="util.toggle(&quot;share-qrcode&quot;)" aria-label="分享文章: QR Code" title="分享文章: QR Code"><span class="share-item__icon ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="M10.553 13.447c-.424-.424-.95-.596-1.535-.675c-.553-.074-1.25-.074-2.086-.074H5.827c-.58 0-1.065 0-1.459.037c-.411.04-.795.124-1.146.34c-.345.21-.634.5-.845.844c-.216.352-.3.735-.34 1.147C2 15.459 2 15.944 2 16.525v.068c0 .884 0 1.597.055 2.17c.056.592.175 1.108.459 1.571c.288.47.682.864 1.152 1.152c.463.284.979.403 1.57.46C5.81 22 6.524 22 7.407 22h.07c.58 0 1.064 0 1.458-.037c.412-.04.795-.124 1.147-.34c.344-.21.633-.5.844-.844c.216-.352.3-.736.34-1.147c.037-.394.037-.879.037-1.46v-1.104c0-.836 0-1.533-.074-2.086c-.079-.584-.251-1.111-.675-1.535m-1.62-11.41c.412.04.795.124 1.147.34c.344.21.633.5.844.845c.216.351.3.735.34 1.146c.037.394.037.879.037 1.46v1.104c0 .836 0 1.533-.074 2.086c-.079.584-.251 1.111-.675 1.535s-.95.596-1.535.675c-.553.074-1.25.074-2.086.074H5.827c-.58 0-1.065 0-1.459-.037c-.411-.04-.795-.124-1.146-.34a2.56 2.56 0 0 1-.845-.844c-.216-.352-.3-.735-.34-1.147C2 8.54 2 8.056 2 7.475v-.068c0-.884 0-1.597.055-2.17c.056-.592.175-1.108.459-1.571c.288-.47.682-.864 1.152-1.152c.463-.284.979-.403 1.57-.46C5.81 2 6.524 2 7.407 2h.07c.58 0 1.064 0 1.458.037M16.593 2h-.068c-.58 0-1.065 0-1.46.037c-.41.04-.794.124-1.146.34c-.344.21-.633.5-.844.845c-.216.351-.3.735-.34 1.146c-.037.394-.037.879-.037 1.46v1.104c0 .836 0 1.533.074 2.086c.079.584.251 1.111.675 1.535s.95.596 1.535.675c.553.074 1.25.074 2.086.074h1.105c.58 0 1.065 0 1.459-.037c.411-.04.795-.124 1.146-.34c.345-.21.634-.5.845-.844c.216-.352.3-.735.34-1.147C22 8.54 22 8.056 22 7.475v-.068c0-.884 0-1.597-.055-2.17c-.056-.592-.175-1.108-.459-1.571a3.5 3.5 0 0 0-1.152-1.152c-.463-.284-.979-.403-1.57-.46C18.19 2 17.477 2 16.594 2" opacity=".5"/><path fill="currentColor" d="M14.093 21.302a.698.698 0 1 1-1.396 0v-2.79h1.396z" opacity=".4"/><path fill="currentColor" d="M21.302 12.698a.7.7 0 0 0-.697.697v3.256H22v-3.256a.7.7 0 0 0-.698-.697" opacity=".5"/><path fill="currentColor" d="M16.076 16.617c-.076.184-.076.417-.076.883s0 .699.076.883a1 1 0 0 0 .541.54c.184.077.417.077.883.077s.699 0 .883-.076a1 1 0 0 0 .54-.541c.077-.184.077-.417.077-.883s0-.699-.076-.883a1 1 0 0 0-.541-.54C18.199 16 17.966 16 17.5 16s-.699 0-.883.076a1 1 0 0 0-.54.541"/><path fill="currentColor" d="M22 18.535v-.023h-1.396c0 .443 0 .74-.016.97c-.015.224-.043.333-.073.405a1.16 1.16 0 0 1-.629.63c-.072.029-.18.056-.405.072c-.23.015-.527.016-.97.016h-1.86V22h1.883c.414 0 .759 0 1.042-.02a2.6 2.6 0 0 0 .844-.175a2.56 2.56 0 0 0 1.384-1.384c.112-.27.156-.549.176-.844c.02-.283.02-.628.02-1.042" opacity=".7"/><path fill="currentColor" d="M12.697 16.616v.035h1.396c0-.668 0-1.116.035-1.458c.034-.33.093-.482.16-.583a1.2 1.2 0 0 1 .321-.32c.101-.068.254-.128.584-.161c.342-.035.79-.036 1.458-.036h1.86v-1.395h-1.896c-.623 0-1.142 0-1.563.043c-.44.044-.85.142-1.218.388c-.28.187-.519.426-.706.706c-.246.368-.343.777-.388 1.217c-.043.421-.043.94-.043 1.564" opacity=".6"/><path fill="currentColor" d="M5.508 18.69c.219.155.528.155 1.146.155c.619 0 .928 0 1.146-.155a.8.8 0 0 0 .2-.199c.154-.218.154-.527.154-1.146s0-.927-.155-1.146A.8.8 0 0 0 7.8 16c-.218-.155-.527-.155-1.146-.155s-.927 0-1.146.155a.8.8 0 0 0-.199.2c-.155.218-.155.527-.155 1.145c0 .619 0 .928.155 1.146a.8.8 0 0 0 .2.2M6.654 8.155c-.618 0-.927 0-1.146-.155a.8.8 0 0 1-.199-.2c-.155-.217-.155-.527-.155-1.145c0-.619 0-.928.155-1.146a.8.8 0 0 1 .2-.2c.218-.154.527-.154 1.145-.154c.619 0 .928 0 1.146.155a.8.8 0 0 1 .2.199c.154.218.154.527.154 1.146s0 .928-.155 1.146A.8.8 0 0 1 7.8 8c-.218.155-.527.155-1.146.155M16.2 8c.218.155.527.155 1.146.155s.927 0 1.146-.155a.8.8 0 0 0 .199-.199c.155-.218.155-.528.155-1.146c0-.619 0-.928-.155-1.146a.8.8 0 0 0-.2-.2c-.218-.154-.527-.154-1.145-.154c-.619 0-.928 0-1.146.155a.8.8 0 0 0-.2.199c-.154.218-.154.527-.154 1.146s0 .928.155 1.146A.8.8 0 0 0 16.2 8"/></svg></span></a><a class="social share-item weibo ui-interactive is-icon-only" href="https:&#x2F;&#x2F;service.weibo.com&#x2F;share&#x2F;share.php?url&#x3D;https%3A%2F%2Fblog.syouiti.com%2F999%2520%25E4%25B8%25AA%25E5%25B0%258F%25E6%258A%2580%25E5%25B7%25A7%25EF%25BC%258C%25E8%25AE%25A9%25E4%25BD%25A0%2520Vibe%2520%25E7%259A%2584%25E4%25BA%25A7%25E5%2593%2581%25E6%259B%25B4%25E6%259C%2589%25E8%25B4%25A8%25E6%2584%259F%25EF%25BD%259C024%2520%25E7%25A7%25BB%25E5%258A%25A8%25E7%25AB%25AF%25E7%25BD%2591%25E9%25A1%25B5%25E9%2580%2582%25E9%2585%258D%25E7%259A%2584%25204%2520%25E4%25B8%25AA%25E7%25BB%2586%25E8%258A%2582%2F&amp;title&#x3D;024%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%BD%91%E9%A1%B5%E9%80%82%E9%85%8D%E7%9A%84%204%20%E4%B8%AA%E7%BB%86%E8%8A%82%20-%20%E7%99%BD%E4%B8%8A%E8%B3%9E%E4%B8%80&amp;summary&#x3D;%E4%BB%8E%E5%8E%BB%E6%8E%89%20iOS%20%E7%82%B9%E5%87%BB%E9%AB%98%E4%BA%AE%E4%B8%8E%E6%82%AC%E5%81%9C%E6%AE%8B%E7%95%99%E3%80%81%E6%8A%8A%E5%AF%BC%E8%88%AA%E7%A7%BB%E5%88%B0%E5%BA%95%E9%83%A8%E5%B9%B6%E9%9A%8F%E6%BB%9A%E5%8A%A8%E6%8A%98%E5%8F%A0%EF%BC%8C%E5%88%B0%E6%90%9E%E5%AE%9A%20iOS%20Safari%20%E7%8A%B6%E6%80%81%E6%A0%8F%2F%E5%B7%A5%E5%85%B7%E6%A0%8F%E5%8F%96%E8%89%B2%E4%B8%8E%20PWA%20%E5%AE%89%E8%A3%85%E4%BD%93%E9%AA%8C%EF%BC%8C%E5%B9%B6%E9%99%84%E4%B8%80%E4%BB%BD%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%BD%91%E9%A1%B5%E9%80%82%E9%85%8D%E5%AE%A1%E6%9F%A5%20Prompt%E3%80%82" target="_blank" rel="external nofollow noopener noreferrer" aria-label="分享文章: Weibo" title="分享文章: Weibo"><span class="share-item__icon ui-icon"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/80c07e4dbb303.svg" onerror="this.onerror&#x3D;null;this.src&#x3D;&quot;&#x2F;images&#x2F;stellar-error.491ee870f4940739.svg&quot;" /></span></a><a class="social share-item email ui-interactive is-icon-only" href="mailto:?subject&#x3D;024%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%BD%91%E9%A1%B5%E9%80%82%E9%85%8D%E7%9A%84%204%20%E4%B8%AA%E7%BB%86%E8%8A%82%20-%20%E7%99%BD%E4%B8%8A%E8%B3%9E%E4%B8%80&amp;body&#x3D;https%3A%2F%2Fblog.syouiti.com%2F999%2520%25E4%25B8%25AA%25E5%25B0%258F%25E6%258A%2580%25E5%25B7%25A7%25EF%25BC%258C%25E8%25AE%25A9%25E4%25BD%25A0%2520Vibe%2520%25E7%259A%2584%25E4%25BA%25A7%25E5%2593%2581%25E6%259B%25B4%25E6%259C%2589%25E8%25B4%25A8%25E6%2584%259F%25EF%25BD%259C024%2520%25E7%25A7%25BB%25E5%258A%25A8%25E7%25AB%25AF%25E7%25BD%2591%25E9%25A1%25B5%25E9%2580%2582%25E9%2585%258D%25E7%259A%2584%25204%2520%25E4%25B8%25AA%25E7%25BB%2586%25E8%258A%2582%2F" aria-label="分享文章: Email" title="分享文章: Email"><span class="share-item__icon ui-icon"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/a1b00e20f425d.svg" onerror="this.onerror&#x3D;null;this.src&#x3D;&quot;&#x2F;images&#x2F;stellar-error.491ee870f4940739.svg&quot;" /></span></a></div>
+      <div class="share-qrcode" id="share-qrcode" style="opacity:0;height:0"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&amp;data=https%3A%2F%2Fblog.syouiti.com%2F999%2520%25E4%25B8%25AA%25E5%25B0%258F%25E6%258A%2580%25E5%25B7%25A7%25EF%25BC%258C%25E8%25AE%25A9%25E4%25BD%25A0%2520Vibe%2520%25E7%259A%2584%25E4%25BA%25A7%25E5%2593%2581%25E6%259B%25B4%25E6%259C%2589%25E8%25B4%25A8%25E6%2584%259F%25EF%25BD%259C024%2520%25E7%25A7%25BB%25E5%258A%25A8%25E7%25AB%25AF%25E7%25BD%2591%25E9%25A1%25B5%25E9%2580%2582%25E9%2585%258D%25E7%259A%2584%25204%2520%25E4%25B8%25AA%25E7%25BB%2586%25E8%258A%2582%2F" onerror="this.onerror&#x3D;null;this.src&#x3D;&quot;&#x2F;images&#x2F;stellar-error.491ee870f4940739.svg&quot;"/></div>
+    </div>
+  </div>
+
+<div class="article-footer slide-up">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section></div>
+
+<div class="related-wrap slide-up" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">较早文章 <svg class="icon" viewBox="0 0 1 1" data-icon="default:arrow-right" aria-hidden="true"></svg></div><a href="/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C023%20%E7%A9%BA%E7%8A%B6%E6%80%81%E7%9A%84%E4%B8%89%E7%A7%8D%E7%94%BB%E6%B3%95/">023 空状态的三种画法</a></div></section></div>
+
+
+
+
+  <div class="related-wrap md-text slide-up" id="comments">
+    
+    
+    <section class="header cmt-title cap theme">
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    
+    <section class="body cmt-body giscus">
+      
+
+<div class="lazy-icon"></div>
+
+<div id="giscus" data-repo="sy0u1ti/sy0u1ti.github.io" data-repo-id="R_kgDOKbZc8Q" data-category="General" data-category-id="DIC_kwDOKbZc8c4CZ0-1" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="noborder_dark" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+<footer class="page-footer slide-up footnote"><hr><div class="sitemap" style="column-count:2;"><div class="sitemap-group"><span class="fs15">站内</span><a href="&#x2F;">首页</a><a href="&#x2F;archives&#x2F;">归档</a><a href="&#x2F;tags&#x2F;">标签</a><a href="&#x2F;bangumis&#x2F;">番剧</a></div><div class="sitemap-group"><span class="fs15">站外</span><a target="_blank" rel="noopener" href="https:&#x2F;&#x2F;home.syouiti.com">Home</a><a target="_blank" rel="noopener" href="https:&#x2F;&#x2F;github.com&#x2F;sy0u1ti">GitHub</a></div></div><div class="text"><p>记录 AI、效率工具、网络技术与各种折腾。<br>本站由 <a href="/">白上賞一「しらかみしょういち」</a> 创建 · <a target="_blank" rel="noopener" href="https://icp.gov.moe/?keyword=20244469">萌ICP备20244469号</a></p>
+</div></footer>
+</main>
+<aside data-stellar-runtime-region id="rightbar-region" class="site-region site-region--rightbar" data-region="rightbar" aria-label="Rightbar"><div class="site-region__surface ui-drawer-surface"><div class="site-region__viewport"><div class="widgets widget-stack widget-stack--rightbar widget-stack--rightbar"><div class="widget-instance widget-instance--toc" data-widget-id="rightbar:1:toc" data-presentation="rightbar">
+
+
+<widget class="widget-wrapper slide-up toc" id="data-toc" collapse="false">
+  
+    <div class="widget-header dis-select">
+      <span class="name">本文目录</span>
+      <button type="button" class="cap-action ui-interactive card-hover card-hover--spotlight" data-shell-action="toggle-toc" aria-label="Toggle table of contents" aria-pressed="false"><span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></span></button>
+    </div>
+  
+  <div class="widget-body"><ol class="toc ui-collection-adapter"><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#1-%E5%8E%BB%E6%8E%89-iOS-%E7%82%B9%E5%87%BB%E9%AB%98%E4%BA%AE%EF%BC%8C%E6%8A%8A%E6%82%AC%E5%81%9C%E7%95%99%E7%BB%99%E9%BC%A0%E6%A0%87"><span class="toc-text">1. 去掉 iOS 点击高亮，把悬停留给鼠标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#%E5%85%B3%E6%8E%89%E9%AB%98%E4%BA%AE%EF%BC%8C%E4%BD%86%E4%BF%9D%E7%95%99%E6%8C%89%E5%8E%8B%E5%8F%8D%E9%A6%88"><span class="toc-text">关掉高亮，但保留按压反馈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#%E6%8A%8A-hover-%E5%85%B3%E8%BF%9B-media-hover-hover"><span class="toc-text">把 :hover 关进 @media (hover: hover)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#2-%E6%8A%8A%E9%A1%B6%E9%83%A8-Tab-%E7%A7%BB%E5%88%B0%E5%BA%95%E9%83%A8%EF%BC%8C%E6%BB%9A%E5%8A%A8%E6%97%B6%E8%87%AA%E5%8A%A8%E6%94%B6%E8%B5%B7"><span class="toc-text">2. 把顶部 Tab 移到底部，滚动时自动收起</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#%E7%BB%9F%E4%B8%80%E8%83%B6%E5%9B%8A%E5%BD%A2%E6%80%81%EF%BC%8C%E4%BD%86%E7%94%A8%E4%BA%A7%E5%93%81%E8%87%AA%E5%B7%B1%E7%9A%84%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80"><span class="toc-text">统一胶囊形态，但用产品自己的设计语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#%E4%B8%A4%E7%A7%8D%E5%BA%95%E6%A0%8F%E7%9A%84%E5%85%B7%E4%BD%93%E5%88%86%E5%B7%A5"><span class="toc-text">两种底栏的具体分工</span></a></li><li class="toc-item toc-level-3"><a class="toc-link ui-interactive" href="#%E6%BB%9A%E5%8A%A8%E8%AE%A9%E8%B7%AF%EF%BC%9A%E5%BE%80%E4%B8%8B%E8%AF%BB%E6%94%B6%E6%88%90%E5%B0%8F%E8%83%B6%E5%9B%8A%EF%BC%8C%E5%BE%80%E4%B8%8A%E6%BB%9A%E6%88%96%E7%82%B9%E5%87%BB%E5%B1%95%E5%BC%80"><span class="toc-text">滚动让路：往下读收成小胶囊，往上滚或点击展开</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#3-%E5%81%9A%E5%A5%BD-iOS-Safari-%E7%8A%B6%E6%80%81%E6%A0%8F%E5%92%8C%E5%B7%A5%E5%85%B7%E6%A0%8F%E7%9A%84%E5%8F%96%E8%89%B2"><span class="toc-text">3. 做好 iOS Safari 状态栏和工具栏的取色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#4-%E5%A6%82%E6%9E%9C%E6%9C%89%E6%9D%A1%E4%BB%B6%EF%BC%8C%E6%94%AF%E6%8C%81-PWA"><span class="toc-text">4. 如果有条件，支持 PWA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E9%AA%8C%E8%AF%81%E6%B8%85%E5%8D%95"><span class="toc-text">验证清单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link ui-interactive" href="#%E8%B4%A8%E6%84%9F%E6%9D%A5%E8%87%AA%E5%8F%AF%E8%A7%A3%E9%87%8A%E7%9A%84%E7%BB%86%E8%8A%82"><span class="toc-text">质感来自可解释的细节</span></a></li></ol></div>
+  <div class="widget-footer"><a class="top ui-interactive" onclick="util.scrollTop()"><span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="M20.536 3.464C22 4.93 22 7.286 22 12s0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12s0-7.071 1.464-8.536C4.93 2 7.286 2 12 2s7.071 0 8.535 1.464" opacity=".5"/><path fill="currentColor" d="M9.53 12.03a.75.75 0 0 1-1.06-1.06l3-3a.75.75 0 0 1 1.06 0l3 3a.75.75 0 1 1-1.06 1.06L12 9.56z"/><path fill="currentColor" d="M9.53 16.03a.75.75 0 0 1-1.06-1.06l3-3a.75.75 0 0 1 1.06 0l3 3a.75.75 0 1 1-1.06 1.06L12 13.56z"/></svg></span><span>回到顶部</span></a><a class="buttom ui-interactive" onclick="util.scrollComment()"><span class="ui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M7.25 9A.75.75 0 0 1 8 8.25h8a.75.75 0 0 1 0 1.5H8A.75.75 0 0 1 7.25 9m0 3.5a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 0 1.5H8a.75.75 0 0 1-.75-.75"/></svg></span><span>参与讨论</span></a></div>
+</widget>
+
+
+</div></div></div></div></aside>
+</div><button type="button" class="site-scrim" data-shell-action="dismiss-drawer" aria-label="Close navigation" tabindex="-1"></button><div data-stellar-runtime-region class="site-dock" role="group" aria-label="Layout panels">
+  <button type="button" class="site-dock__button site-dock__button--rightbar ui-interactive" aria-label="Open rightbar" aria-controls="rightbar-region" aria-expanded="false" data-shell-action="toggle-rightbar-drawer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type="button" class="site-dock__button site-dock__button--leftbar ui-interactive" aria-label="Open leftbar" aria-controls="leftbar-region" aria-expanded="false" data-shell-action="toggle-leftbar-drawer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+
+<dialog data-stellar-runtime-region class="search-dialog" id="site-search-dialog" aria-labelledby="site-search-title">
+  <div class="search-dialog__panel search-wrapper" id="site-search-wrapper" searching="false">
+    <div class="search-dialog__header">
+      <div class="search-form" role="search">
+        <span class="search-button" aria-hidden="true"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></span>
+        <input type="search" class="search-input" id="site-search-input" aria-labelledby="site-search-title" placeholder="搜索">
+      </div>
+      <button type="button" class="search-dialog__close" data-shell-action="close-search" aria-label="关闭搜索">×</button>
+    </div>
+    
+      <div class="search-dialog__scope" role="radiogroup" aria-labelledby="site-search-title" hidden>
+        <label class="search-dialog__scope-option" data-search-scope-option="all">
+          <input class="ui-radio" type="radio" name="site-search-scope" value="all">
+          <span>全站</span>
+        </label>
+        <label class="search-dialog__scope-option" data-search-scope-option="blog" hidden>
+          <input class="ui-radio" type="radio" name="site-search-scope" value="blog">
+          <span>博客</span>
+        </label>
+        <label class="search-dialog__scope-option" data-search-scope-option="current" hidden>
+          <input class="ui-radio" type="radio" name="site-search-scope" value="current">
+          <span data-search-scope-current-label></span>
+        </label>
+      </div>
+    
+    <h2 class="search-dialog__title" id="site-search-title">站内搜索</h2>
+    <div class="search-result" id="site-search-result"></div>
+    <div class="search-no-result">没有找到内容！</div>
+  </div>
+</dialog>
+</div><div class="site-scripts">
+<script data-stellar-script="core" src="/js/stellar-icons.js?v=2a11bebd1b4bc4d3"></script>
+
+<script data-stellar-script="defines">
+  window.canonical = window.stellarClientData.canonical;
+  const ctx = window.stellarClientData.ctx;
+  window.canonical.param = {permalink: "https://blog.syouiti.com/999%20%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E8%AE%A9%E4%BD%A0%20Vibe%20%E7%9A%84%E4%BA%A7%E5%93%81%E6%9B%B4%E6%9C%89%E8%B4%A8%E6%84%9F%EF%BD%9C024%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%BD%91%E9%A1%B5%E9%80%82%E9%85%8D%E7%9A%84%204%20%E4%B8%AA%E7%BB%86%E8%8A%82/", checklink: ctx.services.video.js};
+  ctx.date_suffix = {"just":"刚刚","min":"分钟前","hour":"小时前","day":"天前"};
+  if (ctx.search) Object.assign(ctx.search, {"more":"更多","no_more":"没有更多了"});
+  const def = window.stellarClientData.def;
+  window.ctx = ctx;
+  window.def = def;
+</script>
+
+
+<!-- core: 迁移期 DOM/资源兼容工具；Extension 注册与生命周期由 ESM runtime 所有 -->
+<script data-stellar-script="core" src="/js/utils.js?v=2.0.0"></script>
+<script data-stellar-script="core" src="/js/main.js?v=2.0.0" defer></script>
+<script data-stellar-script="core" defer src="/js/profile.js?v=2.0.0"></script>
+
+
+
+
+
+<script data-stellar-script="core" type="application/json" id="stellar-runtime-config">{"version":1,"root":"/","policy":{"cache":{"enabled":true,"defaultTtl":3600,"ttl":{"giscus":600,"waline":600,"artalk":600,"memos":600,"memos-user":86400,"sites":86400,"friends":86400,"friends_and_posts":86400,"siteinfo":86400},"maxEntries":200},"request":{"retries":2,"timeoutMs":5000,"idleTimeoutMs":3000,"maxCacheEntryBytes":204800},"features":{"codeCopyToastMs":2500},"providers":{"linkPrefetch":"flying_pages","lightbox":"fancybox","diagrams":"mermaid"}},"extensions":[{"id":"pin-slider","module":"/js/runtime/extensions/pin-slider.js","scope":"region","when":{"selector":".pin-slider"},"config":{}},{"id":"page-controls","module":"/js/runtime/extensions/page-controls.js","scope":"region","when":{"always":true},"config":{"highlight":"/js/search/highlight.js","tagtree":"/js/tagtree.js"}},{"id":"partial-navigation","module":"/js/runtime/extensions/partial-navigation.js","scope":"document","when":{"always":true},"config":{}},{"id":"color-scheme-switch","module":"/js/runtime/extensions/color-scheme-switch.js","scope":"document","when":{"always":true},"config":{"messages":{"light":"切换到浅色模式","dark":"切换到深色模式","auto":"切换到跟随系统配色"}}},{"id":"search","module":"/js/runtime/extensions/search.js","scope":"document","when":{"selector":".search-input"},"config":{"provider":"local","options":{"scope":"post","includeContent":true,"cacheTtlSeconds":86400},"assets":{"client":null,"provider":"/js/search/local-search.js","shortcut":"/js/search/shortcut.js"}}},{"id":"hero-parallax","module":"/js/runtime/extensions/hero-parallax.js","scope":"region","when":{"selector":".wiki-hero"},"config":{}},{"id":"hero-effect","module":"/js/runtime/extensions/hero-effect.js","scope":"region","when":{"selector":"canvas[data-hero-effect]"},"config":{}},{"id":"lazy-loading","module":"/js/runtime/extensions/lazy-loading.js","scope":"document","when":{"always":true},"config":{"asset":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@19.1/dist/lazyload.min.js"}},{"id":"deferred-icons","module":"/js/runtime/extensions/deferred-icons.js","scope":"region","when":{"selector":"svg.icon[data-icon]"},"config":{}},{"id":"dropdown","module":"/js/runtime/extensions/dropdown.js","scope":"region","when":{"selector":"details.dropdown"},"config":{}},{"id":"services","module":"/js/runtime/extensions/services.js","scope":"region","when":{"selector":"#artalk_container, #twikoo_container, #waline_container, .data-service, [class*='ds-'], a[cardlink], a[data-md-link][data-siteinfo-api], .site-card [data-siteinfo-api], .voice\u003eaudio, .video\u003evideo, .chat-file"},"config":{"marked":"https://cdn.jsdelivr.net/npm/marked@13.0.1/lib/marked.umd.min.js"}},{"id":"comments","module":"/js/runtime/extensions/comments.js","scope":"region","when":{"selector":"#comments"},"config":{"provider":"giscus","options":{"data-repo":"sy0u1ti/sy0u1ti.github.io","data-repo-id":"R_kgDOKbZc8Q","data-category":"General","data-category-id":"DIC_kwDOKbZc8c4CZ0-1","data-mapping":"pathname","data-strict":0,"data-reactions-enabled":1,"data-emit-metadata":0,"data-input-position":"bottom","data-theme":"noborder_dark","data-lang":"zh-CN","data-loading":"lazy","crossorigin":"anonymous"},"pageTitle":"024 移动端网页适配的 4 个细节","assets":{"js":"https://giscus.app/client.js"}}},{"id":"settings","module":"/js/runtime/extensions/settings.js","scope":"region","when":{"selector":".settings-page"},"config":{}},{"id":"link-prefetch","module":"/js/runtime/extensions/link-prefetch.js","scope":"document","when":{"always":true},"config":{"asset":"https://gcore.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"}},{"id":"lightbox","module":"/js/runtime/extensions/lightbox.js","scope":"region","when":{"selector":"[data-fancybox]:not(.error), .with-fancybox, .ds-memos, .md-text img:not(.inline):not([class*=\"avatar\"]):not(.cover img), .post-cover img"},"config":{"enabled":true,"selector":".md-text img:not(.inline):not([class*=\"avatar\"]):not(.cover img), .post-cover img","assets":{"localCss":"/css/plugins/fancybox.css","js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"}}},{"id":"reveal","module":"/js/runtime/extensions/reveal.js","scope":"region","when":{"selector":".slide-up"},"config":{"enabled":true,"duration":500,"interval":60,"distance":10,"blur":4}},{"id":"code-copy","module":"/js/runtime/extensions/code-copy.js","scope":"region","when":{"selector":".code"},"config":{"assets":{"js":"/js/plugins/copycode.js"},"messages":{"label":"复制","copied":"复制成功","denied":"未获得剪贴板权限","unsupported":"当前浏览器不支持剪贴板或页面不是 HTTPS"}}},{"id":"adaptive-text","module":"/js/runtime/extensions/adaptive-text.js","scope":"region","when":{"selector":"[data-text-adaptive]"},"config":{"assets":{"colorJs":"/js/color.js","js":"/js/plugins/adaptive-text.js"}}},{"id":"card-hover","module":"/js/runtime/extensions/card-hover.js","scope":"region","when":{"selector":".card-hover"},"config":{"spotlight":true,"tilt":true,"assets":{"js":"/js/plugins/card-hover.js"}}},{"id":"swiper","module":"/js/runtime/extensions/swiper.js","scope":"region","when":{"selector":"#swiper-api"},"config":{"assets":{"localCss":"/css/plugins/swiper.css","js":"https://unpkg.com/swiper@10.3/swiper-bundle.min.js","css":"https://unpkg.com/swiper@10.3/swiper-bundle.min.css"}}}]}</script>
+<script data-stellar-script="core" type="module" src="/js/runtime/index.js?v=2.0.0&runtime=1"></script>
+
+
+<!-- inject -->
+<script defer src="/js/plugins/reading-progress.js?v=20260823j"></script>
+
+<script data-stellar-script="core" defer src="/js/navigation-init.js?v=2.0.0"></script>
+</div></body></html>
+
